@@ -1,3 +1,10 @@
+bsdgames (2.14-2) unstable; urgency=low
+
+  * My patch to bcd.6 is no longer necessary.
+  * hack: Consistently refer to O as options key, not o. Closes: #191452
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  1 May 2003 11:31:52 -0400
+
 bsdgames (2.14-1) unstable; urgency=low
 
   * New upstream release, whivh includes hack, back fron bsdgames-nonfree.

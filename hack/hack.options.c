@@ -210,7 +210,7 @@ bad:
 		if (!strncmp(opts, "help", 4)) {
 			pline("%s%s%s",
 			      "To set options use `HACKOPTIONS=\"<options>\"' in your environment, or ",
-			      "give the command 'o' followed by the line `<options>' while playing. ",
+			      "give the command 'O' followed by the line `<options>' while playing. ",
 			      "Here <options> is a list of <option>s separated by commas.");
 			pline("%s%s%s",
 			      "Simple (boolean) options are rest_on_space, news, time, ",
@@ -225,7 +225,7 @@ bad:
 			return;
 		}
 		pline("Bad option: %s.", opts);
-		pline("Type `o help<cr>' for help.");
+		pline("Type `O help<cr>' for help.");
 		return;
 	}
 	puts("Bad syntax in HACKOPTIONS.");
