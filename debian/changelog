@@ -1,3 +1,10 @@
+bsdgames (2.8-3) unstable; urgency=low
+
+  * Patch from William Brioschi to make random work on alpha. Closes: #47903
+    (forwared upstream)
+
+ -- Joey Hess <joeyh@master.debian.org>  Sun, 24 Oct 1999 16:27:54 -0700
+
 bsdgames (2.8-2) unstable; urgency=low
 
   * Corrected the capital of Monaco. (Closes: #46119)
