@@ -5,7 +5,7 @@ sources from:
 	ftp://sunsite.unc.edu/pub/Linux/Incoming/bsd-games-2.5.tar.gz
 
 Most programs in this package have the standard BSD copyright. See
-/usr/share/common-licenses/BSD for the text of this copyright. There are some
+/usr/doc/copyrigght/BSD for the text of this copyright. There are some
 exceptions, as follows:
 
 atc:

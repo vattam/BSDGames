@@ -1,9 +1,8 @@
-bsdgames (2.6-3) unstable; urgency=low
+bsdgames (2.7-1) unstable; urgency=low
 
-  * FHS. This involves moving to /var/games for all game data. Score files
-    are moved to there in the postinst now.
+  * New upstream release.
 
- -- Joey Hess <joeyh@master.debian.org>  Wed,  8 Sep 1999 17:02:12 -0700
+ -- Joey Hess <joeyh@master.debian.org>  Tue,  6 Apr 1999 23:50:51 -0700
 
 bsdgames (2.6-2) unstable; urgency=low
 

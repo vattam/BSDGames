@@ -27,24 +27,23 @@ binary-arch: build
 	dh_testdir
 	dh_testroot
 	dh_clean
-	dh_installdirs usr/share/doc/bsdgames \
-		usr/share/games/bsdgames/phantasia
+	dh_installdirs usr/doc/bsdgames usr/share/games/bsdgames/phantasia
 
 	$(MAKE) install
-	cp atc/BUGS debian/tmp/usr/share/doc/bsdgames/BUGS.atc
-	cp hunt/README debian/tmp/usr/share/doc/bsdgames/README.hunt
-	cp hunt/README.linux debian/tmp/usr/share/doc/bsdgames/README.linux.hunt
-	cp phantasia/README debian/tmp/usr/share/doc/bsdgames/README.phantasia
-	cp boggle/README debian/tmp/usr/share/doc/bsdgames/README.boggle
-	cp boggle/README.linux debian/tmp/usr/share/doc/bsdgames/README.linux.boggle
+	cp atc/BUGS debian/tmp/usr/doc/bsdgames/BUGS.atc
+	cp hunt/README debian/tmp/usr/doc/bsdgames/README.hunt
+	cp hunt/README.linux debian/tmp/usr/doc/bsdgames/README.linux.hunt
+	cp phantasia/README debian/tmp/usr/doc/bsdgames/README.phantasia
+	cp boggle/README debian/tmp/usr/doc/bsdgames/README.boggle
+	cp boggle/README.linux debian/tmp/usr/doc/bsdgames/README.linux.boggle
 	# Since factor is not installed, and primes.6 is a symlink to
 	# factor.6, I need to change that to the actual man page.
-	-rm -f debian/tmp/usr/share/man/man6/factor.6.gz \
-		debian/tmp/usr/share/man/man6/primes.6
-	cp factor/factor.6 debian/tmp/usr/share/man/man6/primes.6
+	-rm -f debian/tmp/usr/man/man6/factor.6.gz \
+		debian/tmp/usr/man/man6/primes.6
+	cp factor/factor.6 debian/tmp/usr/man/man6/primes.6
 	# Move phantasia's binary state files into /usr, they are copied
 	# back to /var in the postinst.
-	mv debian/tmp/var/games/bsdgames/phantasia/{monsters,void} \
+	mv debian/tmp/var/lib/games/bsdgames/phantasia/{monsters,void} \
 		debian/tmp/usr/share/games/bsdgames/phantasia/
 
 	dh_installdocs ChangeLog ChangeLog.0 TODO README \
@@ -65,9 +64,9 @@ binary-arch: build
 	chmod g+s debian/tmp/usr/games/{atc,battlestar,canfield,cribbage,robots,snake,tetris-bsd,phantasia,sail}
 	# The game directories need to be sgid too, and let's
 	# remove all the zero byte score files in them.
-	chown root.games debian/tmp/var/games/bsdgames/{,phantasia}
-	chmod g+rws debian/tmp/var/games/bsdgames/{,phantasia}
-	find debian/tmp/var/games/bsdgames -size 0 -exec rm {} \;
+	chown root.games debian/tmp/var/lib/games/bsdgames/{,phantasia}
+	chmod g+rws debian/tmp/var/lib/games/bsdgames/{,phantasia}
+	find debian/tmp/var/lib/games/bsdgames -size 0 -exec rm {} \;
 
 	dh_suidregister
 

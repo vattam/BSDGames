@@ -1,50 +1,32 @@
 #!/bin/sh -e
 
 SCOREFILES="
-	/var/games/bsdgames/atc_score
-	/var/games/bsdgames/battlestar.log
-	/var/games/bsdgames/cfscores
-	/var/games/bsdgames/criblog
-	/var/games/bsdgames/robots_roll
-	/var/games/bsdgames/saillog
-	/var/games/bsdgames/snake.log
-	/var/games/bsdgames/snakerawscores
-	/var/games/bsdgames/tetris-bsd.scores
-	/var/games/bsdgames/phantasia/characs
-	/var/games/bsdgames/phantasia/gold
-	/var/games/bsdgames/phantasia/lastdead
-	/var/games/bsdgames/phantasia/mess
-	/var/games/bsdgames/phantasia/motd
-	/var/games/bsdgames/phantasia/scoreboard
-	/var/games/bsdgames/phantasia/void
-	/var/games/bsdgames/phantasia/monsters"
-
-# We used to keep score files in /var/lib/games, and if files are there,
-# move them into the new location.
-if [ -d /var/lib/games ]; then
-	for file in $SCOREFILES; do
-		oldfile=`echo $file | sed s:/var/games/:/var/lib/games/:`
-		if [ -e $oldfile ]; then
-			if [ ! -e $file ]; then
-				mv -f $oldfile $file
-			else
-				rm -f $oldfile
-			fi
-		fi
-	done
-	
-	# Delete the old directory hierarchy.
-	rm -rf /var/lib/games/bsdgames
-fi
+	/var/lib/games/bsdgames/atc_score
+	/var/lib/games/bsdgames/battlestar.log
+	/var/lib/games/bsdgames/cfscores
+	/var/lib/games/bsdgames/criblog
+	/var/lib/games/bsdgames/robots_roll
+	/var/lib/games/bsdgames/saillog
+	/var/lib/games/bsdgames/snake.log
+	/var/lib/games/bsdgames/snakerawscores
+	/var/lib/games/bsdgames/tetris-bsd.scores
+	/var/lib/games/bsdgames/phantasia/characs
+	/var/lib/games/bsdgames/phantasia/gold
+	/var/lib/games/bsdgames/phantasia/lastdead
+	/var/lib/games/bsdgames/phantasia/mess
+	/var/lib/games/bsdgames/phantasia/motd
+	/var/lib/games/bsdgames/phantasia/scoreboard
+	/var/lib/games/bsdgames/phantasia/void
+	/var/lib/games/bsdgames/phantasia/monsters"
 
 # These files cannot just be zero-byte files:
-if [ ! -e /var/games/bsdgames/phantasia/void ]; then
+if [ ! -e /var/lib/games/bsdgames/phantasia/void ]; then
 	cp /usr/share/games/bsdgames/phantasia/void \
-		/var/games/bsdgames/phantasia/void
+		/var/lib/games/bsdgames/phantasia/void
 fi
-if [ ! -e /var/games/bsdgames/phantasia/monsters ] ; then
+if [ ! -e /var/lib/games/bsdgames/phantasia/monsters ] ; then
 	cp /usr/share/games/bsdgames/phantasia/monsters \
-		/var/games/bsdgames/phantasia/monsters
+		/var/lib/games/bsdgames/phantasia/monsters
 fi
 
 touch $SCOREFILES

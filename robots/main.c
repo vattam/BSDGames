@@ -184,7 +184,7 @@ main(ac, av)
  */
 void
 quit(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
 	endwin();
 	exit(0);

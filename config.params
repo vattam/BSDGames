@@ -11,11 +11,16 @@ bsd_games_cfg_no_build_dirs="dm banner fortune factor"
 # change this later.
 bsd_games_cfg_sbindir=/usr/sbin
 
+# Use /usr/man still. Debian doesn't use this part of FHS yet.
+bsd_games_cfg_man8dir=/usr/man/man8
+bsd_games_cfg_man6dir=/usr/man/man6
+bsd_games_cfg_man5dir=/usr/man/man5
+
 # Debian doesn't like cluttering up the /usr/*/games/ dirs too much,
 # use a subdir. /var too.
 bsd_games_cfg_usrlibdir=/usr/lib/games/bsdgames
 bsd_games_cfg_sharedir=/usr/share/games/bsdgames
-bsd_games_cfg_varlibdir=/var/games/bsdgames
+bsd_games_cfg_varlibdir=/var/lib/games/bsdgames
 
 # Do not do chown now, we arn't running as root.
 bsd_games_cfg_do_chown=n

@@ -1,30 +1,30 @@
 #!/bin/sh -e
 
 SCOREFILES="
-	/var/games/bsdgames/atc_score
-	/var/games/bsdgames/battlestar.log
-	/var/games/bsdgames/cfscores
-	/var/games/bsdgames/criblog
-	/var/games/bsdgames/robots_roll
-	/var/games/bsdgames/saillog
-	/var/games/bsdgames/snake.log
-	/var/games/bsdgames/snakerawscores
-	/var/games/bsdgames/tetris-bsd.scores
-	/var/games/bsdgames/phantasia/characs
-	/var/games/bsdgames/phantasia/gold
-	/var/games/bsdgames/phantasia/lastdead
-	/var/games/bsdgames/phantasia/mess
-	/var/games/bsdgames/phantasia/motd
-	/var/games/bsdgames/phantasia/scoreboard
-	/var/games/bsdgames/phantasia/void
-	/var/games/bsdgames/phantasia/monsters"
+	/var/lib/games/bsdgames/atc_score
+	/var/lib/games/bsdgames/battlestar.log
+	/var/lib/games/bsdgames/cfscores
+	/var/lib/games/bsdgames/criblog
+	/var/lib/games/bsdgames/robots_roll
+	/var/lib/games/bsdgames/saillog
+	/var/lib/games/bsdgames/snake.log
+	/var/lib/games/bsdgames/snakerawscores
+	/var/lib/games/bsdgames/tetris-bsd.scores
+	/var/lib/games/bsdgames/phantasia/characs
+	/var/lib/games/bsdgames/phantasia/gold
+	/var/lib/games/bsdgames/phantasia/lastdead
+	/var/lib/games/bsdgames/phantasia/mess
+	/var/lib/games/bsdgames/phantasia/motd
+	/var/lib/games/bsdgames/phantasia/scoreboard
+	/var/lib/games/bsdgames/phantasia/void
+	/var/lib/games/bsdgames/phantasia/monsters"
 
 # Remove high score files on purge.
 if [ "$1" = "purge" ]; then
 	rm -f $SCOREFILES
 fi
 
-rmdir /var/games/bsdgames/phantasia /var/games/bsdgames \
-	/var/games 2>/dev/null || true 
+rmdir /var/lib/games/bsdgames/phantasia /var/lib/games/bsdgames \
+	/var/lib/games 2>/dev/null || true 
 
 #DEBHELPER#

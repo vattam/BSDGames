@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.8 1998/09/15 13:43:34 frueauf Exp $	*/
+/*	$NetBSD: main.c,v 1.9 1999/02/10 12:29:47 hubertf Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1980, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: main.c,v 1.8 1998/09/15 13:43:34 frueauf Exp $");
+__RCSID("$NetBSD: main.c,v 1.9 1999/02/10 12:29:47 hubertf Exp $");
 #endif
 #endif				/* not lint */
 
@@ -53,7 +53,6 @@ __RCSID("$NetBSD: main.c,v 1.8 1998/09/15 13:43:34 frueauf Exp $");
 #include <time.h>
 
 #define MVPAUSE	5		/* time to sleep when stuck */
-#define MAXUSERS 35		/* maximum number of users */
 
 extern const char   *const instr[];		/* text of instructions */
 extern const char   *const message[];		/* update message */
@@ -73,18 +72,8 @@ const char   *const contin[] = {		/* pause message */
 	"",
 	0
 };
-#if 0
-static char user1a[] =
-"Sorry, you cannot play backgammon when there are more than ";
-static char user1b[] =
-" users\non the system.";
-static char user2a[] =
-"\nThere are now more than ";
-static char user2b[] =
-" users on the system, so you cannot play\nanother game.  ";
-#endif
 static const char rules[] = "\nDo you want the rules of the game?";
-static const char noteach[] = "Teachgammon not available!\n\007";
+static const char noteach[] = "Teachgammon not available!\n\a";
 static const char need[] = "Do you need instructions for this program?";
 static const char askcol[] =
 "Enter 'r' to play red, 'w' to play white, 'b' to play both:";
@@ -106,7 +95,7 @@ static char pbuf[10];
 
 int
 main(argc, argv)
-	int     argc __attribute__((unused));
+	int     argc __attribute__((__unused__));
 	char  **argv;
 {
 	int     i;		/* non-descript index */
@@ -127,16 +116,6 @@ main(argc, argv)
 	bg_raw = noech;
 	bg_raw.c_lflag &= ~ICANON;	/* set up modes */
 	ospeed = cfgetospeed(&old);	/* for termlib */
-
-	/* check user count */
-#ifdef CORY
-	if (ucount() > MAXUSERS) {
-		writel(user1a);
-		wrint(MAXUSERS);
-		writel(user1b);
-		getout(0);
-	}
-#endif
 
 	/* get terminal capabilities, and decide if it can cursor address */
 	tflag = getcaps(getenv("TERM"));
@@ -489,37 +468,26 @@ main(argc, argv)
 		if (tflag)
 			refresh();
 
-		/*
-		 * If any men have been born off, it's a single game,
-		 * regardless of where other men are.
-		 */
-	  
-	  	if (*offptr > 0) {	
-		  	// Single game.
-		} else {
-		  	/* backgammon? */
-		  	mflag = 0;
-		  	l = bar + 7 * cturn;
-		  	for (i = bar; i != l; i += cturn)
-		    		if (board[i] * cturn)
-		      			mflag++;
-		  
-		  	/* compute game value */
-		  	if (tflag)
-		    		curmove(20, 0);
-		  	if (*offopp == 15) {
-			  	if (mflag) {
-				  	writel(bgammon);
-				  	gvalue *= 3;
-				} else
-			    		if (*offptr <= 0) {
-					  	writel(gammon);
-					  	gvalue *= 2;
-					}
-			}
-	        }
+		/* backgammon? */
+		mflag = 0;
+		l = bar + 7 * cturn;
+		for (i = bar; i != l; i += cturn)
+			if (board[i] * cturn)
+				mflag++;
 
-  		/* report situation */
+		/* compute game value */
+		if (tflag)
+			curmove(20, 0);
+		if (*offopp == 15 && *offptr <= 0) {
+			if (mflag) {
+				writel(bgammon);
+				gvalue *= 3;
+			} else {
+				writel(gammon);
+				gvalue *= 2;
+			}
+		}
+		/* report situation */
 		if (cturn == -1) {
 			writel("Red wins ");
 			rscore += gvalue;
@@ -535,17 +503,6 @@ main(argc, argv)
 
 		/* write score */
 		wrscore();
-
-		/* check user count */
-#ifdef CORY
-		if (ucount() > MAXUSERS) {
-			writel(user2a);
-			wrint(MAXUSERS);
-			writel(user2b);
-			rfl = 1;
-			break;
-		}
-#endif
 
 		/* see if he wants another game */
 		writel(again);

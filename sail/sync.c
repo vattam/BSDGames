@@ -1,4 +1,4 @@
-/*	$NetBSD: sync.c,v 1.10 1998/09/11 14:15:46 hubertf Exp $	*/
+/*	$NetBSD: sync.c,v 1.11 1999/02/10 00:45:46 hubertf Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
