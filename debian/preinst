@@ -5,7 +5,6 @@ SCOREFILES="
 	/var/games/bsdgames/battlestar.log
 	/var/games/bsdgames/cfscores
 	/var/games/bsdgames/criblog
-	/var/games/bsdgames/robots_roll
 	/var/games/bsdgames/saillog
 	/var/games/bsdgames/snake.log
 	/var/games/bsdgames/snakerawscores
@@ -46,6 +45,13 @@ if [ -d /var/lib/games ]; then
 	
 	# Delete the old directory hierarchy.
 	rm -rf /var/lib/games/bsdgames
+fi
+
+# I didn't move robots_roll above, because the version used by old bsdgames has
+# a different file format. Make sure that if I'm ugrading from pre 2.8 days,
+# the old file is deleted.
+if [ "$1" = "upgrade" ] && dpkg --compare-versions "$2" lt 2.8; then
+	rm -rf /var/games/bsdgames/robots_roll
 fi
 
 #DEBHELPER#

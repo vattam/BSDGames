@@ -9,6 +9,7 @@ build-stamp:
 	dh_testdir
 	./configure
 	$(MAKE)
+	$(MAKE) test
 	touch build-stamp
 
 clean:
@@ -50,6 +51,7 @@ binary-arch: build
 
 	dh_installdocs ChangeLog ChangeLog.0 TODO README \
 		trek/USD.doc/trek.me SECURITY THANKS AUTHORS BUGS YEAR2000
+	cat COPYING >> debian/tmp/usr/share/doc/bsdgames/copyright
 	dh_installexamples
 	dh_installmenu
 	dh_installcron

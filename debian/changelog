@@ -1,3 +1,11 @@
+bsdgames (2.8-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated copyright based on the updated COPYING file
+  * RUn the regression tests at build time.
+
+ -- Joey Hess <joeyh@master.debian.org>  Sun, 26 Sep 1999 14:30:06 -0700
+
 bsdgames (2.7-3) unstable; urgency=low
 
   * FHS. This involves moving to /var/games for all game data. Score files
