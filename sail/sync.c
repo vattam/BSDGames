@@ -57,8 +57,12 @@ __RCSID("$NetBSD: sync.c,v 1.14 2000/02/09 22:27:56 jsm Exp $");
 #include <time.h>
 #include "extern.h"
 #include "pathnames.h"
+#include <stdio.h>
+#include <signal.h>
 
 #define BUFSIZE 4096
+
+int sync_update(type, ship, astr, a, b, c, d);
 
 static const char SF[] = _PATH_SYNC;
 static const char LF[] = _PATH_LOCK;

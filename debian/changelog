@@ -1,3 +1,11 @@
+bsdgames (2.13-1) unstable; urgency=low
+
+  * New upstream release.
+  * Patched sail/sync.c to build (lots of missing includes and other trivial
+    mistakes).
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 28 Dec 2001 18:15:41 -0500
+
 bsdgames (2.12-11) unstable; urgency=low
 
   * Added menu hints for backgammon and gomoku, Closes: #121012, #121012

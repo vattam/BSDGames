@@ -96,7 +96,6 @@ binary-arch: build
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
-#	dh_makeshlibs
 	dh_md5sums
 	dh_builddeb
 
