@@ -187,6 +187,7 @@ main(ac, av)
 				sleep(1);
 			refresh();
 		}
+	  	Num_games = 1;
 	} while (!Auto_bot && another());
 	quit(0);
 	/* NOTREACHED */

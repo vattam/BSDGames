@@ -1,3 +1,12 @@
+bsdgames (2.8-5) unstable; urgency=low
+
+  * Patch from Malcolm Parsons <malcolm@bits.bris.ac.uk> to fix robots -A
+    score problem. (Closes: #49894)
+  * Patch from Malcolm to fix robots so it asks if you want a new game after
+    each game. (Closes: #49897)
+
+ -- Joey Hess <joeyh@master.debian.org>  Thu, 11 Nov 1999 11:28:52 -0800
+
 bsdgames (2.8-4) unstable; urgency=low
 
   * Fixed rot13 test suite to work before the package is installed. 
