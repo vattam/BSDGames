@@ -1,0 +1,27 @@
+# Makefrag - makefile fragment for atc
+
+atc_CLEANFILES := grammar.c grammar.h y.tab.* lex.c lex.yy.c
+atc_DEFS := -DBSD -DYY_NO_UNPUT
+atc_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+atc_all:	atc/atc atc/atc.6
+
+atc/grammar.c:	atc/grammar.y
+	cd atc && $(YACC) -d grammar.y
+	mv atc/y.tab.c $@
+	mv atc/y.tab.h atc/grammar.h
+	touch atc/grammar.h
+
+atc/grammar.h:	atc/grammar.c
+
+atc/lex.d:	atc/grammar.h
+
+atc/lex.c:	atc/lex.l
+	cd atc && $(LEX) lex.l
+	mv atc/lex.yy.c $@
+
+atc_install:	atc_all
+	$(INSTALL_SCORE_GAME) atc/atc $(INSTALL_PREFIX)$(GAMESDIR)/atc
+	$(HIDE_GAME) atc
+	$(INSTALL_SCORE_FILE) $(ATC_SCOREFILE)
+	$(INSTALL_MANUAL) atc/atc.6

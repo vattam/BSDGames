@@ -1,0 +1,14 @@
+# Makefrag - makefile fragment for hunt/hunt
+
+include hunt/Makeconfig
+
+hunt_hunt_DEFS := $(hunt_DEFS)
+hunt_hunt_DIRS := $(GAMESDIR) $(MAN6DIR)
+hunt_hunt_INCS := -Ihunt/huntd
+
+hunt_hunt_all:	hunt/hunt/hunt hunt/hunt/hunt.6
+
+hunt_hunt_install:	hunt_hunt_all
+	$(INSTALL_BINARY) hunt/hunt/hunt $(INSTALL_PREFIX)$(GAMESDIR)/hunt
+	$(HIDE_GAME) hunt
+	$(INSTALL_MANUAL) hunt/hunt/hunt.6

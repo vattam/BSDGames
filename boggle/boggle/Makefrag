@@ -1,0 +1,15 @@
+# Makefrag - makefile fragment for boggle/boggle
+
+# Defining NEW_STYLE causes this program to be compiled with the Linux
+# improvements; removing this definition gives the original BSD behaviour.
+#
+boggle_boggle_DEFS := -DNEW_STYLE
+boggle_boggle_DIRS := $(GAMESDIR) $(MAN6DIR) $(BOGGLE_DIR)
+
+boggle_boggle_all:	boggle/boggle/boggle boggle/boggle/boggle.6 boggle/boggle/helpfile
+
+boggle_boggle_install:	boggle_boggle_all
+	$(INSTALL_BINARY) boggle/boggle/boggle $(INSTALL_PREFIX)$(GAMESDIR)/boggle
+	$(HIDE_GAME) boggle
+	$(INSTALL_MANUAL) boggle/boggle/boggle.6
+	$(INSTALL_DATA) boggle/boggle/helpfile $(INSTALL_PREFIX)$(BOGGLE_DIR)/helpfile

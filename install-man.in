@@ -1,0 +1,66 @@
+# install-man.in - install a manpage
+
+set -e
+
+if [ $# = 1 ]; then
+    page=$1
+    basepage=$(basename "$page")
+    section=${basepage##*.}
+    if [ "$section" = 6 ]; then
+	mandir=@install_prefix@@man6dir@
+    elif [ "$section" = 8 ]; then
+	mandir=@install_prefix@@man8dir@
+    elif [ "$section" = 5 ]; then
+	mandir=@install_prefix@@man5dir@
+    else
+	echo "Unknown manpage section $section" >&2
+	exit 1
+    fi
+    @install_manpage@ "$page" "$mandir/$basepage"
+    if [ @gzip_manpages@ = y ]; then
+	rm -f "$mandir/$basepage.gz"
+	gzip -9 "$mandir/$basepage"
+    fi
+elif [ $# = 2 ]; then
+    # Manpage 2 should link to manpage 1.  No complications of removing
+    # directories from their names.
+    page1=$1
+    section1=${page1##*.}
+    page2=$2
+    section2=${page2##*.}
+    if [ "$section2" = 6 ]; then
+	mandir=@install_prefix@@man6dir@
+    elif [ "$section2" = 8 ]; then
+	mandir=@install_prefix@@man8dir@
+    elif [ "$section2" = 5 ]; then
+	mandir=@install_prefix@@man5dir@
+    else
+	echo "Unknown manpage section $section2" >&2
+	exit 1
+    fi
+    if [ @use_dot_so@ = .so ]; then
+	echo ".so man$section1/$page1" >"$mandir/$page2"
+	chmod @manpage_perms@ "$mandir/$page2"
+	if [ @do_chown@ = y ]; then
+	    chown @manpage_owner@.@manpage_group@ "$mandir/$page2"
+	fi
+	if [ @gzip_manpages@ = y ]; then
+	    rm -f "$mandir/$page2.gz"
+	    gzip -9 "$mandir/$page2"
+	fi
+    else
+	if [ "$section1" = "$section2" ]; then
+	    linkto="$page1"
+	else
+	    linkto="../man$section1/$page1"
+	fi
+	if [ @gzip_manpages@ = y ]; then
+	    ln -s "$linkto.gz" "$mandir/$page2.gz"
+	else
+	    ln -s "$linkto" "$mandir/$page2"
+	fi
+    fi
+else
+    echo "usage: $0 manpage [ manpage ]" >&2
+    exit 1
+fi

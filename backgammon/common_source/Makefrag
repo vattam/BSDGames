@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for backgammon/common_source
+
+backgammon_common_source_EXEC_PATH := $(GAMESDIR)/backgammon
+backgammon_common_source_TEACH_PATH := $(GAMESDIR)/teachgammon
+
+backgammon_common_source_DEFS := -DEXEC_PATH=\"$(backgammon_common_source_EXEC_PATH)\" -DTEACH_PATH=\"$(backgammon_common_source_TEACH_PATH)\"
+
+backgammon_common_source_all:
+
+backgammon_common_source_install:

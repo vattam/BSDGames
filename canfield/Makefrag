@@ -1,0 +1,5 @@
+# Makefrag - makefile fragment for canfield
+
+canfield_all:
+
+canfield_install:

@@ -1,0 +1,14 @@
+# Makefrag - makefile fragment for primes
+
+primes_DEFS := -D_GNU_SOURCE
+primes_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+primes_all:	primes/primes
+
+primes_install:	primes_all
+	$(INSTALL_BINARY) primes/primes $(INSTALL_PREFIX)$(GAMESDIR)/primes
+	$(HIDE_GAME) primes
+	$(INSTALL_MANUAL) factor.6 primes.6
+
+primes_check:	primes_all
+	primes/primes 100 200

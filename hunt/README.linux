@@ -1,0 +1,31 @@
+1997-12-19
+
+I have replaced the old hunt port, which was rather a mess, with a version
+based on that in NetBSD-current.  This version now uses internet domain
+sockets rather than Unix domain sockets, but is almost completely untested.
+The original README.linux is below.
+
+Joseph S. Myers
+jsm28@cam.ac.uk
+
+8/25/93
+
+Finally, we have a version of hunt that appears to work!!!!!!
+It hasn't been extensively tested, and may contain many bugs.  Note,
+any problems would most likely be due to my mangling/porting the code.
+The original authors have done a nice job.
+
+Also, you can go through the Makefile and specify your desired game
+parameters.  Be careful what you change, this Linux version is rather
+fragile.  Any volunteers to sort out running over a network?
+
+One hint for those who have never played hunt before ...
+  1.  Start the hunt driver:  % /usr/sbin/huntd &
+  2.  Now start hunt:         % /usr/games/hunt [options]
+In other words, for best results, get the driver running first.
+
+Happy hunting!  (And if you ever see "black tite" show up in one of your
+hunt games, RUN!!!!!)
+
+Curt Olson
+curt@sledge.mn.org

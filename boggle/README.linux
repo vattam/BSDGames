@@ -1,0 +1,36 @@
+README.linux for boggle
+=======================
+
+I grabbed this game from comp.sources.games/volume4.  This game is now
+merged with the NetBSD version.
+
+If you wish to use a different dictionary, you can set
+boggle_mkdict_DICTSRC in mkdict/Makefrag.
+
+
+By default, this game compiles with certain Linux improvements; if you
+want the original BSD behaviour, remove -DNEW_STYLE from the
+boggle_boggle_DEFS in boggle/Makefrag.  Defining NEW_STYLE will
+provide a more intuitive way of quitting or playing a new game after
+time has run out.
+
+NOTE: You may wish to remove -DNEW_STYLE if you plan on using the post
+game word lookup feature.  Press <ESC>, type a word, and bog will
+display where it is located.  If NEW_STYLE is defined, it might be
+easy to accidently start typing the word with out pressing <ESC>
+first.  This would start a new game, and you would never be able to
+know where that word was located. :(
+
+Thanks to Andrew Kuchling.  (See ../Credits for his email address.)
+
+Curt Olson
+curt@sledge.mn.org
+
+Boggle is under the BSD licence, thanks to Paul Janzen for checking
+this with the original author.
+
+
+
+Local Variables:
+mode: text
+End:

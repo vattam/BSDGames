@@ -1,0 +1,14 @@
+# Makefrag - makefile fragment for adventure
+
+adventure_CLEANFILES := data.c
+adventure_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+adventure_all:	adventure/adventure adventure/adventure.6
+
+adventure/data.c:	adventure/glorkz adventure/setup
+	adventure/setup $< >$@
+
+adventure_install:	adventure_all
+	$(INSTALL_BINARY) adventure/adventure $(INSTALL_PREFIX)$(GAMESDIR)/adventure
+	$(HIDE_GAME) adventure
+	$(INSTALL_MANUAL) adventure/adventure.6

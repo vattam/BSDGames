@@ -1,0 +1,13 @@
+# install-score.in - install a score file
+
+set -e
+
+scorefile="@install_prefix@$1"
+
+mkdir -p "$(dirname "$scorefile")"
+
+test -e "$scorefile" || touch "$scorefile"
+if [ @do_chown@ = y ]; then
+    chown @vardata_owner@.@vardata_group@ "$scorefile"
+fi
+chmod @vardata_perms@ "$scorefile"

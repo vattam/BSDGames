@@ -1,0 +1,11 @@
+# Makefrag - makefile fragment for wump
+
+wump_DIRS := $(GAMESDIR) $(MAN6DIR) $(shell dirname $(WUMP_INFOFILE))
+
+wump_all:	wump/wump wump/wump.6 wump/wump.info
+
+wump_install:	wump_all
+	$(INSTALL_BINARY) wump/wump $(INSTALL_PREFIX)$(GAMESDIR)/wump
+	$(HIDE_GAME) wump
+	$(INSTALL_DATA) wump/wump.info $(INSTALL_PREFIX)$(WUMP_INFOFILE)
+	$(INSTALL_MANUAL) wump/wump.6

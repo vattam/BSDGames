@@ -1,0 +1,16 @@
+# Makefrag - makefile fragment for caesar
+
+caesar_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+caesar_all:	caesar/caesar caesar/caesar.6 caesar/rot13
+
+caesar_install:	caesar_all
+	$(INSTALL_BINARY) caesar/caesar $(INSTALL_PREFIX)$(GAMESDIR)/caesar
+	$(HIDE_GAME) caesar
+	$(INSTALL_SCRIPT) caesar/rot13 $(INSTALL_PREFIX)$(GAMESDIR)/rot13
+	$(HIDE_GAME) rot13
+	$(INSTALL_MANUAL) caesar/caesar.6
+	$(INSTALL_MANUAL) caesar.6 rot13.6
+
+#caesar_check:	caesar_all
+#	caesar/caesar <fortune/datfiles/fortunes-o.fake.rot13

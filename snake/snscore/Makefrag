@@ -1,0 +1,11 @@
+# Makefrag - makefile fragment for snake/snscore
+
+snake_snscore_DIRS := $(GAMESDIR) $(MAN6DIR)
+snake_snscore_INCS := -Isnake/snake
+
+snake_snscore_all:	snake/snscore/snscore
+
+snake_snscore_install:	snake_snscore_all
+	$(INSTALL_BINARY) snake/snscore/snscore $(INSTALL_PREFIX)$(GAMESDIR)/snscore
+	$(HIDE_GAME) snscore
+	$(INSTALL_MANUAL) snake.6 snscore.6

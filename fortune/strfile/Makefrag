@@ -1,0 +1,9 @@
+# Makefrag - makefile fragment for fortune/strfile
+
+fortune_strfile_DIRS := $(USRBINDIR) $(MAN8DIR)
+
+fortune_strfile_all:	fortune/strfile/strfile fortune/strfile/strfile.8
+
+fortune_strfile_install:	fortune_strfile_all
+	$(INSTALL_BINARY) fortune/strfile/strfile $(INSTALL_PREFIX)$(USRBINDIR)/strfile
+	$(INSTALL_MANUAL) fortune/strfile/strfile.8

@@ -1,0 +1,36 @@
+YEAR 2000 STATEMENT FOR BSD-GAMES AND BSD-GAMES-NON-FREE
+========================================================
+
+The BSD games, and the Linux port thereof, come with NO WARRANTY, to
+the extent permitted by applicable law; see the disclaimers in the
+source files for details.  These games are not suitable for use in
+mission-critical situations.  The information given below is for
+information only, and the maintainer can accept no liability for any
+damage that may be caused by any defect in this software or inaccuracy
+in the statement below.  (If you bought this software from a
+distributor, they may offer a warranty; contact them for any details
+of this, or if you want copies of any year 2000 statements on headed
+notepaper.)
+
+The BSD games are only one piece of software on a Linux system, and
+their year 2000 behaviour must be considered in conjunction with that
+of other software on the system; in particular, the C runtime library
+(including the math library), the ncurses library, the lex library,
+and the kernel, functions of which may be used at runtime, and the
+complier, binary utilities, make, yacc, lex and header files used to
+compile the BSD games.  I can provide no information concerning the
+compliance of these components, or how any non-compliance might affect
+the compliance of the BSD games.
+
+To the best of my knowledge, there are no date-related operations in
+any of the BSD games, in bsd-games and bsd-games-non-free versions 2.2
+or later, which will handle the year 2000 incorrectly; please see the
+disclaimer above.  Earlier versions are known to have problems; in
+particular, the game with the greatest date dependence, pom (which
+determines the phase of the Moon), may handle the year 2000
+incorrectly in earlier versions.  However I cannot vouch for the
+accuracy of the algorithm used by pom over any particular timescale,
+and for accurate information on the phases of the Moon you are advised
+to consult the Astronomical Almanac or some other reputable source.
+Any further date-related bugs that are found and reported _may_ be
+fixed in the ordinary course of subsequent releases.

@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for mille
+
+mille_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+mille_all:	mille/mille mille/mille.6
+
+mille_install:	mille_all
+	$(INSTALL_BINARY) mille/mille $(INSTALL_PREFIX)$(GAMESDIR)/mille
+	$(HIDE_GAME) mille
+	$(INSTALL_MANUAL) mille/mille.6

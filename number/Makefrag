@@ -1,0 +1,14 @@
+# Makefrag - makefile fragment for number
+
+number_DEFS := -D_GNU_SOURCE
+number_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+number_all:	number/number number/number.6
+
+number_install:	number_all
+	$(INSTALL_BINARY) number/number $(INSTALL_PREFIX)$(GAMESDIR)/number
+	$(HIDE_GAME) number
+	$(INSTALL_MANUAL) number/number.6
+
+number_check:	number_all
+	echo "1234567890" | number/number 

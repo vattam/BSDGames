@@ -1,0 +1,13 @@
+# Makefrag - makefile fragment for ppt
+
+ppt_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+ppt_all:	ppt/ppt
+
+ppt_install:	ppt_all
+	$(INSTALL_BINARY) ppt/ppt $(INSTALL_PREFIX)$(GAMESDIR)/ppt
+	$(HIDE_GAME) ppt
+	$(INSTALL_MANUAL) bcd.6 ppt.6
+
+ppt_check:	ppt_all
+	date | ppt/ppt

@@ -1,0 +1,13 @@
+# Makefrag - makefile fragment for quiz/datfiles
+
+quiz_datfiles_DIRS := $(QUIZ_DIR)
+
+quiz_datfiles_CATS := africa america areas arith asia babies bard chinese \
+	collectives ed elements europe flowers greek inca index latin \
+	locomotive midearth morse mult murders poetry posneg pres province \
+	seq-easy seq-hard sexes sov spell state trek ucc
+
+quiz_datfiles_all:
+
+quiz_datfiles_install:
+	set -e; for c in $(quiz_datfiles_CATS); do $(INSTALL_DATA) quiz/datfiles/$$c $(INSTALL_PREFIX)$(QUIZ_DIR)/$$c; done

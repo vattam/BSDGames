@@ -1,0 +1,12 @@
+# Makefile - makefile for hangman
+
+hangman_DIRS := $(GAMESDIR) $(MAN6DIR) $(shell dirname $(HANGMAN_WORDSFILE))
+hangman_WORDS := hangman/words
+
+hangman_all:	hangman/hangman $(hangman_WORDS) hangman/hangman.6
+
+hangman_install:	hangman_all
+	$(INSTALL_BINARY) hangman/hangman $(INSTALL_PREFIX)$(GAMESDIR)/hangman
+	$(HIDE_GAME) hangman
+	$(INSTALL_DATA) $(hangman_WORDS) $(INSTALL_PREFIX)$(HANGMAN_WORDSFILE)
+	$(INSTALL_MANUAL) hangman/hangman.6

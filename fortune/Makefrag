@@ -1,0 +1,5 @@
+# Makefrag - makefile fragment for fortune
+
+fortune_all:
+
+fortune_install:

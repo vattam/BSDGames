@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for random
+
+random_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+random_all:	random/random random/random.6
+
+random_install:	random_all
+	$(INSTALL_BINARY) random/random $(INSTALL_PREFIX)$(GAMESDIR)/random
+	$(HIDE_GAME) random
+	$(INSTALL_MANUAL) random/random.6

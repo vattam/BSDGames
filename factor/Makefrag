@@ -1,0 +1,16 @@
+# Makefrag - makefile fragment for factor
+
+# _GNU_SOURCE for isblank()
+factor_DEFS := -D_GNU_SOURCE
+factor_DIRS := $(GAMESDIR) $(MAN6DIR)
+factor_INCS := -Iprimes
+
+factor_all:	factor/factor factor/factor.6
+
+factor_install:	factor_all
+	$(INSTALL_BINARY) factor/factor $(INSTALL_PREFIX)$(GAMESDIR)/factor
+	$(HIDE_GAME) factor
+	$(INSTALL_MANUAL) factor/factor.6
+
+factor_check:	factor_all
+	factor/factor 69300

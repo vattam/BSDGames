@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for quiz
+
+quiz_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+quiz_all:	quiz/quiz quiz/quiz.6
+
+quiz_install:	quiz_all
+	$(INSTALL_BINARY) quiz/quiz $(INSTALL_PREFIX)$(GAMESDIR)/quiz
+	$(HIDE_GAME) quiz
+	$(INSTALL_MANUAL) quiz/quiz.6

@@ -1,0 +1,84 @@
+adventure		crc.o data.o done.o init.o io.o main.o save.o subr.o \
+	vocab.o wizard.o
+adventure/setup		setup.o
+arithmetic		arithmetic.o
+atc			extern.o grammar.o graphics.o input.o lex.o list.o \
+	log.o main.o tunable.o update.o
+backgammon/backgammon/backgammon	extra.o main.o move.o text.o \
+	version.o backgammon/common_source/allow.o \
+	backgammon/common_source/board.o backgammon/common_source/check.o \
+	backgammon/common_source/fancy.o backgammon/common_source/init.o \
+	backgammon/common_source/odds.o backgammon/common_source/one.o \
+	backgammon/common_source/save.o backgammon/common_source/subs.o \
+	backgammon/common_source/table.o
+backgammon/teachgammon/teachgammon	data.o teach.o ttext1.o ttext2.o \
+	tutor.o backgammon/common_source/allow.o \
+	backgammon/common_source/board.o backgammon/common_source/check.o \
+	backgammon/common_source/fancy.o backgammon/common_source/init.o \
+	backgammon/common_source/one.o backgammon/common_source/save.o \
+	backgammon/common_source/subs.o backgammon/common_source/table.o
+banner			banner.o
+battlestar		battlestar.o com1.o com2.o com3.o com4.o com5.o \
+	com6.o com7.o cypher.o dayfile.o dayobjs.o fly.o getcom.o globals.o \
+	init.o misc.o nightfile.o nightobjs.o parse.o room.o save.o words.o \
+	lib/fgetln.o
+bcd			bcd.o
+boggle/boggle/boggle	bog.o help.o mach.o prtable.o timer.o word.o
+boggle/mkdict/mkdict	mkdict.o
+boggle/mkindex/mkindex	mkindex.o
+caesar			caesar.o
+canfield/canfield/canfield	canfield.o
+canfield/cfscores/cfscores	cfscores.o
+cribbage		cards.o crib.o extern.o instr.o io.o score.o support.o
+dm			dm.o lib/getloadavg.o
+factor			factor.o primes/pr_tbl.o
+fish			fish.o
+fortune/fortune/fortune	fortune.o
+fortune/strfile/strfile	strfile.o
+fortune/unstr/unstr	unstr.o
+gomoku			bdinit.o bdisp.o main.o makemove.o pickmove.o stoc.o
+hangman			endgame.o extern.o getguess.o getword.o main.o \
+	playgame.o prdata.o prman.o prword.o setup.o
+hunt/hunt/hunt		connect.o hunt.o otto.o playit.o \
+	hunt/huntd/pathname.o lib/select.o
+hunt/huntd/huntd	answer.o ctl.o ctl_transact.o draw.o driver.o \
+	execute.o expl.o extern.o faketalk.o get_names.o makemaze.o \
+	pathname.o shots.o terminal.o lib/select.o
+mille			comp.o end.o extern.o init.o mille.o misc.o move.o \
+	print.o roll.o save.o types.o varpush.o
+monop			cards.o execute.o getinp.o houses.o jail.o misc.o \
+	monop.o morg.o print.o prop.o rent.o roll.o spec.o trade.o
+monop/initdeck		initdeck.o
+morse			morse.o
+number			number.o
+phantasia		fight.o gamesupport.o interplayer.o io.o main.o \
+	misc.o phantglobs.o
+phantasia/setup		phantglobs.o setup.o
+pig			pig.o
+pom			pom.o
+ppt			ppt.o
+primes			pattern.o pr_tbl.o primes.o
+quiz			quiz.o rxp.o lib/fgetln.o
+rain			rain.o
+random			random.o
+robots			extern.o flush_in.o init_field.o main.o make_level.o \
+	move.o move_robs.o play_level.o query.o rnd_pos.o score.o
+rogue			hit.o init.o inventory.o level.o machdep.o main.o \
+	message.o monster.o move.o object.o pack.o play.o random.o ring.o \
+	room.o save.o score.o spec_hit.o throw.o trap.o use.o zap.o
+sail			assorted.o game.o globals.o dr_1.o dr_2.o dr_3.o \
+	dr_4.o dr_5.o dr_main.o lo_main.o main.o misc.o parties.o pl_1.o \
+	pl_2.o pl_3.o pl_4.o pl_5.o pl_6.o pl_7.o pl_main.o sync.o version.o
+snake/snake/snake	move.o snake.o
+snake/snscore/snscore	snscore.o
+tetris			input.o scores.o screen.o shapes.o tetris.o
+trek			abandon.o attack.o autover.o capture.o cgetc.o \
+	check_out.o checkcond.o compkl.o computer.o damage.o damaged.o \
+	dcrept.o destruct.o dock.o dumpgame.o dumpme.o dumpssradio.o events.o \
+	externs.o getcodi.o getpar.o help.o impulse.o initquad.o kill.o \
+	klmove.o lose.o lrscan.o main.o move.o nova.o out.o phaser.o play.o \
+	ram.o ranf.o rest.o schedule.o score.o setup.o setwarp.o shield.o \
+	snova.o srscan.o systemname.o torped.o visual.o warp.o win.o
+worm			worm.o
+worms			worms.o
+wump			wump.o

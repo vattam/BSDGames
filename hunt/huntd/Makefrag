@@ -1,0 +1,12 @@
+# Makefrag - makefile fragment for hunt/huntd
+
+include hunt/Makeconfig
+
+hunt_huntd_DEFS := $(hunt_DEFS)
+hunt_huntd_DIRS := $(SBINDIR) $(MAN6DIR)
+
+hunt_huntd_all:	hunt/huntd/huntd hunt/huntd/huntd.6
+
+hunt_huntd_install:	hunt_huntd_all
+	$(INSTALL_DAEMON) hunt/huntd/huntd $(INSTALL_PREFIX)$(SBINDIR)/huntd
+	$(INSTALL_MANUAL) hunt/huntd/huntd.6

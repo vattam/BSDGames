@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for fortune/unstr
+
+# fortune_unstr_DIRS := $(USRBINDIR)
+fortune_unstr_INCS := -Ifortune/strfile
+
+fortune_unstr_all:	fortune/unstr/unstr
+
+# We don't install unstr.
+fortune_unstr_install:	fortune_unstr_all
+#	$(INSTALL_BINARY) fortune/unstr/unstr $(INSTALL_PREFIX)$(USRBINDIR)/unstr

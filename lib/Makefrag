@@ -1,0 +1,7 @@
+# Makefrag - makefile fragment for lib
+
+# No special rules needed, but we need these dummy targets
+
+lib_all:
+
+lib_install:

@@ -1,0 +1,11 @@
+# Makefrag - makefile fragment for canfield/canfield
+
+canfield_canfield_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+canfield_canfield_all:	canfield/canfield/canfield canfield/canfield/canfield.6
+
+canfield_canfield_install: canfield_canfield_all
+	$(INSTALL_SCORE_GAME) canfield/canfield/canfield $(INSTALL_PREFIX)$(GAMESDIR)/canfield
+	$(HIDE_GAME) canfield
+	$(INSTALL_MANUAL) canfield/canfield/canfield.6
+	$(INSTALL_SCORE_FILE) $(CANFIELD_SCOREFILE)

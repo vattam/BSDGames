@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for gomoku
+
+gomoku_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+gomoku_all:	gomoku/gomoku gomoku/gomoku.6
+
+gomoku_install:	gomoku_all
+	$(INSTALL_BINARY) gomoku/gomoku $(INSTALL_PREFIX)$(GAMESDIR)/gomoku
+	$(HIDE_GAME) gomoku
+	$(INSTALL_MANUAL) gomoku/gomoku.6

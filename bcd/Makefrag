@@ -1,0 +1,13 @@
+# Makefrag - makefile fragment for bcd
+
+bcd_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+bcd_all:	bcd/bcd bcd/bcd.6
+
+bcd_install:	bcd_all
+	$(INSTALL_BINARY) bcd/bcd $(INSTALL_PREFIX)$(GAMESDIR)/bcd
+	$(HIDE_GAME) bcd
+	$(INSTALL_MANUAL) bcd/bcd.6
+
+bcd_check:	bcd_all
+	date | bcd/bcd

@@ -1,0 +1,18 @@
+# Makefrag - makefile fragment for boggle/mkdict
+
+boggle_mkdict_CLEANFILES := dictionary
+
+# boggle_mkdict_DICTSRC is the dictionary that will be used to construct the
+# word list used by boggle.
+boggle_mkdict_DICTSRC := hangman/words
+
+boggle_mkdict_DIRS := $(BOGGLE_DIR)
+boggle_mkdict_INCS := -Iboggle/boggle
+
+boggle/mkdict/dictionary:	boggle/mkdict/mkdict $(boggle_mkdict_DICTSRC)
+	$< <$(boggle_mkdict_DICTSRC) >$@
+
+boggle_mkdict_all:	boggle/mkdict/dictionary
+
+boggle_mkdict_install:	boggle_mkdict_all
+	$(INSTALL_DATA) boggle/mkdict/dictionary $(INSTALL_PREFIX)$(BOGGLE_DIR)/dictionary

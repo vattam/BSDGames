@@ -1,0 +1,11 @@
+# Makefrag - makefile fragment for battlestar
+
+battlestar_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+battlestar_all:	battlestar/battlestar battlestar/battlestar.6
+
+battlestar_install:	battlestar_all
+	$(INSTALL_SCORE_GAME) battlestar/battlestar $(INSTALL_PREFIX)$(GAMESDIR)/battlestar
+	$(HIDE_GAME) battlestar
+	$(INSTALL_MANUAL) battlestar/battlestar.6
+	$(INSTALL_SCORE_FILE) $(BATTLESTAR_SCOREFILE)

@@ -1,0 +1,12 @@
+# Makefrag - makefile fragment for cribbage
+
+cribbage_DIRS := $(GAMESDIR) $(MAN6DIR) $(shell dirname $(CRIBBAGE_INSTRFILE))
+
+cribbage_all:	cribbage/cribbage cribbage/cribbage.n cribbage/cribbage.6
+
+cribbage_install:	cribbage_all
+	$(INSTALL_SCORE_GAME) cribbage/cribbage $(INSTALL_PREFIX)$(GAMESDIR)/cribbage
+	$(HIDE_GAME) cribbage
+	$(INSTALL_DATA) cribbage/cribbage.n $(INSTALL_PREFIX)$(CRIBBAGE_INSTRFILE)
+	$(INSTALL_SCORE_FILE) $(CRIBBAGE_SCOREFILE)
+	$(INSTALL_MANUAL) cribbage/cribbage.6

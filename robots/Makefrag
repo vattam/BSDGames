@@ -1,0 +1,12 @@
+# Makefile - makefile for robots
+
+robots_DEFS := -DFANCY -DMAX_PER_UID=5
+robots_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+robots_all:	robots/robots robots/robots.6
+
+robots_install:	robots_all
+	$(INSTALL_SCORE_GAME) robots/robots $(INSTALL_PREFIX)$(GAMESDIR)/robots
+	$(HIDE_GAME) robots
+	$(INSTALL_SCORE_FILE) $(ROBOTS_SCOREFILE)
+	$(INSTALL_MANUAL) robots/robots.6

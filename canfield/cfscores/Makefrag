@@ -1,0 +1,11 @@
+# Makefrag - makefile fragment for canfield/cfscores
+
+canfield_cfscores_DIRS := $(GAMESDIR) $(MAN6DIR)
+canfield_cfscores_INCS := -Icanfield/canfield
+
+canfield_cfscores_all:	canfield/cfscores/cfscores
+
+canfield_cfscores_install:	canfield_cfscores_all
+	$(INSTALL_BINARY) canfield/cfscores/cfscores $(INSTALL_PREFIX)$(GAMESDIR)/cfscores
+	$(HIDE_GAME) cfscores
+	$(INSTALL_MANUAL) canfield.6 cfscores.6

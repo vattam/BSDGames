@@ -1,0 +1,69 @@
+TODO list for bsd-games and bsd-games-non-free
+==============================================
+
+Please let me (jsm28@cam.ac.uk) know if you're interested in doing any
+of these, or have done work on them, so we can avoid duplication of
+effort.  The order of entries is just the order they were added in, not any
+priority order.
+
+The file BUGS lists known bugs; you may wish to work on some of
+those.  The issues listed there are not included in this list.
+
+1997-04-29 - Improve security of games when running setgid.  Most of
+             this has been done, through adopting changes from
+             OpenBSD, but a thorough audit is needed - see SECURITY.
+             There are rumours of the games having been audited by the
+             Linux Security Audit Project (see linux-kernel archives
+             and Alan Cox's diary at
+             <URL:http://roadrunner.swansea.uk.linux.org/alan.shtml>)
+             but I have received no patches.
+
+1997-04-29 - Fix compilation warnings with increasingly strict warning
+             options.  -Wwrite-strings (and general use of const) is
+             currently being worked on.
+
+1997-04-29 - Get changes (at least the bug-fixes) merged back into NetBSD.
+             Various patches for specific bugs have been sent in and
+             applied: more still needs to be done, and some patches
+             are currently waiting in their bug tracking system.
+
+1997-05-01 - Games with scorefiles should lock them when updating them.
+
+1997-07-15 - Get distribution permission for hack and larn.  Get
+             licence of rogue clarified.  (See NetBSD PR 5850.)
+
+1998-07-28 - Support building in a directory other than the source directory.
+
+1998-08-18 - Fix whatever makes rogue need -fwritable-strings.  This
+             seem to be various arrays of struct id being initialised
+             with constant strings, but then being modified in the
+             course of saving and restoring.  Only object.c needs to
+             be compiled with -fwritable-strings.
+
+1998-08-27 - Convert the games that use termcap to use curses.
+             Currently these are backgammon, rain, snake, tetris and
+             worms.  Somewhat hacked versions of rain and worms that
+             use curses are distributed as test programs with ncurses;
+             these might just possibly be useful.
+
+1998-08-27 - If we build a game that links to another game's manpage,
+             but don't install the other game, then we get a dangling
+             symlink or .so for the manpage.
+
+1998-08-27 - Merge in improvements from OpenBSD.
+
+1998-08-27 - Fix warnings with -Wl,--warn-common (i.e., variables should be
+             declared extern in the header, and defined non-extern
+             exactly once).
+
+1998-09-04 - dm should not access the utmp file directly.
+
+1998-09-11 - Move building of the manpages and headers in which
+             configuration variables are substituted from the
+             configure script into the Makefiles.
+
+
+
+Local Variables:
+mode: text
+End:

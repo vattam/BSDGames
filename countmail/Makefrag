@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for countmail
+
+countmail_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+countmail_all:	countmail/countmail countmail/countmail.6
+
+countmail_install:	countmail_all
+	$(INSTALL_SCRIPT) countmail/countmail $(INSTALL_PREFIX)$(GAMESDIR)/countmail
+	$(HIDE_GAME) countmail
+	$(INSTALL_MANUAL) countmail/countmail.6

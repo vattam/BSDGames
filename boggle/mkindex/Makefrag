@@ -1,0 +1,13 @@
+# Makefrag - makefile fragment for boggle/mkindex
+
+boggle_mkindex_CLEANFILES := dictindex
+boggle_mkindex_DIRS := $(BOGGLE_DIR)
+boggle_mkindex_INCS := -Iboggle/boggle
+
+boggle/mkindex/dictindex:	boggle/mkindex/mkindex boggle/mkdict/dictionary
+	$< <boggle/mkdict/dictionary >$@
+
+boggle_mkindex_all:	boggle/mkindex/dictindex
+
+boggle_mkindex_install:	boggle_mkindex_all
+	$(INSTALL_DATA) boggle/mkindex/dictindex $(INSTALL_PREFIX)$(BOGGLE_DIR)/dictindex

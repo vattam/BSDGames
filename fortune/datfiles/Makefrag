@@ -1,0 +1,39 @@
+# Makefrag - makefile fragment for fortune/datfiles
+
+fortune_datfiles_DATFILES := fortunes.dat fortunes2.dat startrek.dat zippy.dat
+fortune_datfiles_DATFILES_off := fortunes-o.dat fortunes2-o.dat limerick.dat
+fortune_datfiles_GENSRCFILES := fortunes-o fortunes2-o limerick
+fortune_datfiles_SRCFILES := fortunes fortunes2 startrek zippy
+
+fortune_datfiles_DATFILESp := fortune/datfiles/fortunes.dat \
+	fortune/datfiles/fortunes2.dat fortune/datfiles/startrek.dat \
+	fortune/datfiles/zippy.dat
+fortune_datfiles_DATFILES_offp := fortune/datfiles/fortunes-o.dat \
+	fortune/datfiles/fortunes2-o.dat fortune/datfiles/limerick.dat
+fortune_datfiles_GENSRCFILESp := fortune/datfiles/fortunes-o \
+	fortune/datfiles/fortunes2-o fortune/datfiles/limerick
+fortune_datfiles_SRCFILESp := fortune/datfiles/fortunes \
+	fortune/datfiles/fortunes2 fortune/datfiles/startrek \
+	fortune/datfiles/zippy
+
+fortune_datfiles_CLEANFILES := $(fortune_datfiles_DATFILES) $(fortune_datfiles_DATFILES_off) $(fortune_datfiles_GENSRCFILES)
+fortune_datfiles_DIRS := $(LIBDIR)/fortunes
+
+fortune_datfiles_all:	$(fortune_datfiles_DATFILESp) $(fortune_datfiles_DATFILES_offp) $(fortune_datfiles_SRCFILESp) $(fortune_datfiles_GENSRCFILESp)
+
+fortune_datfiles_install:	fortune_datfiles_all
+	set -e; for f in $(fortune_datfiles_SRCFILES) \
+	    $(fortune_datfiles_GENSRCFILES) $(fortune_datfiles_DATFILES) \
+		$(fortune_datfiles_DATFILES_off); do \
+		$(INSTALL_DATA) fortune/datfiles/$$f \
+		    $(INSTALL_PREFIX)$(LIBDIR)/fortunes/$$f; \
+	    done
+
+$(fortune_datfiles_DATFILESp): fortune/datfiles/%.dat: fortune/datfiles/% fortune/strfile/strfile
+	fortune/strfile/strfile -rs $< $@
+
+$(fortune_datfiles_DATFILES_offp): fortune/datfiles/%.dat: fortune/datfiles/% fortune/strfile/strfile
+	fortune/strfile/strfile -rsx $< $@
+
+$(fortune_datfiles_GENSRCFILESp): %: %.$(FORTUNE_TYPE)
+	tr a-zA-Z n-za-mN-ZA-M <$< >$@

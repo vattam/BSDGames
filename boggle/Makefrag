@@ -1,0 +1,5 @@
+# Makefrag - makefile fragment for boggle
+
+boggle_all:
+
+boggle_install:

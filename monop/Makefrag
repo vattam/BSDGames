@@ -1,0 +1,15 @@
+# Makefrag - makefile fragment for monop
+
+monop_CLEANFILES := cards.pck
+monop_DIRS := $(GAMESDIR) $(MAN6DIR) $(shell dirname $(MONOP_CARDSFILE))
+
+monop_all:	monop/monop monop/cards.pck monop/monop.6
+
+monop/cards.pck:	monop/initdeck monop/cards.inp
+	$< monop/cards.inp $@
+
+monop_install:	monop_all
+	$(INSTALL_BINARY) monop/monop $(INSTALL_PREFIX)$(GAMESDIR)/monop
+	$(HIDE_GAME) monop
+	$(INSTALL_MANUAL) monop/monop.6
+	$(INSTALL_DATA) monop/cards.pck $(INSTALL_PREFIX)$(MONOP_CARDSFILE)

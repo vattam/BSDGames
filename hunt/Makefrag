@@ -1,0 +1,5 @@
+# Makefrag - makefile fragment for hunt
+
+hunt_all:
+
+hunt_install:

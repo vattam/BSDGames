@@ -1,0 +1,102 @@
+README for bsd-games
+====================
+
+This is the bsd-games package for Linux, containing ports of all the
+games from NetBSD-current that are free in the usual (DFSG/OSD) sense
+(i.e. modified and unmodified versions can be freely distributed,
+including for profit).  NetBSD-current contains three other games,
+rogue, hack and larn.  Rogue has a standard BSD licence, but with an
+additional contradictory licence that does not allow for-profit
+distribution; hack and larn have no licence at all.  If you want
+rogue, get the bsd-games-non-free package (which should be on sunsite,
+but not tsx-11), and read the README.non-free that it contains: rogue
+is being distributed separately, and hack and larn not distributed at
+all in this Linux port, in the absence of definite confirmation of
+what licences really apply.  A game not from NetBSD, paranoia, was in
+earlier versions of bsd-games-non-free (and bsd-games 1.2 and 1.3) but
+has been removed because of the lack of a clear licence.
+
+The games are mostly not enhanced from the NetBSD versions, but many
+bugs are fixed.
+
+The games should work with ncurses (any reasonably recent version).
+They might also work with BSD curses/termcap, but this is not tested
+by me.  They should work with both libc5 (version 5.4.5 or later -
+earlier versions won't work) and libc6 (glibc 2).  Note however that I
+don't test all possible combinations of libraries for each release, so
+tell me if some versions don't work.  For details of prerequisites,
+see INSTALL.
+
+For installation instructions, see the file `INSTALL'.  Some games
+have `README.linux' files you may wish to read.
+
+The statement of year 2000 issues associated with bsd-games and
+bsd-games-non-free is in the file `YEAR2000'.
+
+This package contains the following games:
+
+adventure:	the original adventure by Crowther and Woods
+arithmetic:	arithmetic quiz/speed test
+atc:		air traffic control
+backgammon:	backgammon
+banner:		display a message in big letters
+battlestar:	adventure game on a battlestar
+bcd:		outputs text in an antique form
+boggle:		boggle
+caesar:		reads fortunes from the game fortune, also some internet posts
+canfield:	curses-based solitaire
+countmail:	tell you how much new mail you have
+cribbage:	cribbage
+dm:		dungeon master, regulates games playing
+factor:		factor a number
+fish:		go fish
+fortune:	displays a random silly message
+gomoku:		gomoku
+hangman:	guess the word before it is too late
+hunt:		hunt each other in a maze (multiplayer -- great)
+mille:		mille borne against the computer
+monop:		monopoly
+morse:		output morse code
+number:		output the English text for a number
+phantasia:	interterminal fantasy game
+pig:		output text in Pig Latin
+pom:		display the phase of the moon
+ppt:		outputs text in another antique form
+primes:		generate primes
+quiz:		random knowledge tests
+rain:		attempts to create a rain drop effect (best at 9600 baud)
+random:		random lines from a file or random numbers
+robots:		well... avoid the robots
+sail:		sail your ship into battle
+snake:		grab the cash and avoid the snake and exit
+tetris:		tetris
+trek:		We come in peace, shoot to kill.  It's worse than that, he's
+		dead Jim.  Ye cannot change the laws of physics.  It's life
+		Jim, but not as we know it.  There's Klingons on the starboard
+		bow ...
+wargames:	would you like to play a game?
+worm:		eat the numbers without running into anything
+worms:		random worms scurrying across your screen
+wump:		hunt the wumpus
+
+If you have questions about bsd-games or bsd-games-non-free you can
+contact me at <jsm28@cam.ac.uk>.  Bug reports should state the
+versions of ncurses and libc used, unless clearly not relevant (e.g.,
+bugs in data files, or where you have an analysis and patch).  If you
+want to be informed by email of new releases when they come out,
+please let me know.
+
+Known bugs are listed in the file BUGS; please do not send bug reports
+for bugs listed there, but patches that fix them are welcome.
+
+For patches, I prefer unidiffs (use `diff -u OLD NEW', or `diff -ruN
+OLD-DIRECTORY NEW-DIRECTORY'), but if your diff cannot produce them
+then context diffs are OK.  Please remember to include details of the
+bug and your analysis of the problem if you are sending a patch; I
+have ported the code from NetBSD to Linux, but may not be familiar
+with the workings of any particular program, whereas you will be if
+you have been tracing and fixing a bug.  The gcc info manual contains
+a discussion of how to produce good bug reports.
+
+Joseph S. Myers
+jsm28@cam.ac.uk

@@ -1,0 +1,12 @@
+# Makefrag - makefile fragment for snake/snake
+
+snake_snake_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+snake_snake_all:	snake/snake/snake snake/snake/snake.6
+
+snake_snake_install:	snake_snake_all
+	$(INSTALL_SCORE_GAME) snake/snake/snake $(INSTALL_PREFIX)$(GAMESDIR)/snake
+	$(HIDE_GAME) snake
+	$(INSTALL_SCORE_FILE) $(SNAKE_SCOREFILE)
+	$(INSTALL_SCORE_FILE) $(SNAKE_RAWSCOREFILE)
+	$(INSTALL_MANUAL) snake/snake/snake.6

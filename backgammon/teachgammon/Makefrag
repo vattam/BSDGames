@@ -1,0 +1,12 @@
+# Makefrag - makefile fragment for backgammon/teachgammon
+
+backgammon_teachgammon_DEFS := -DV7
+backgammon_teachgammon_DIRS := $(GAMESDIR) $(MAN6DIR)
+backgammon_teachgammon_INCS := -Ibackgammon/common_source
+
+backgammon_teachgammon_all:	backgammon/teachgammon/teachgammon
+
+backgammon_teachgammon_install:	backgammon_teachgammon_all
+	$(INSTALL_BINARY) backgammon/teachgammon/teachgammon $(INSTALL_PREFIX)$(GAMESDIR)/teachgammon
+	$(HIDE_GAME) teachgammon
+	$(INSTALL_MANUAL) backgammon.6 teachgammon.6

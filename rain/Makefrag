@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for rain
+
+rain_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+rain_all:	rain/rain rain/rain.6
+
+rain_install:	rain_all
+	$(INSTALL_BINARY) rain/rain $(INSTALL_PREFIX)$(GAMESDIR)/rain
+	$(HIDE_GAME) rain
+	$(INSTALL_MANUAL) rain/rain.6

@@ -1,0 +1,14 @@
+# Makefrag - makefile fragment for atc/games
+
+atc_games_DIRS := $(ATC_DIR)
+atc_games_GAMES := atc/games/Game_List atc/games/default atc/games/easy \
+	atc/games/crossover atc/games/Killer atc/games/game_2 \
+	atc/games/Atlantis atc/games/OHare atc/games/Tic-Tac-Toe \
+	atc/games/airports atc/games/box atc/games/crosshatch \
+	atc/games/game_3 atc/games/game_4 atc/games/novice \
+	atc/games/two-corners
+
+atc_games_all:	$(atc_games_GAMES)
+
+atc_games_install:
+	set -e; for g in Game_List `cat atc/games/Game_List`; do $(INSTALL_DATA) atc/games/$$g $(INSTALL_PREFIX)$(ATC_DIR)/$$g; done

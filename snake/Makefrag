@@ -1,0 +1,5 @@
+# Makefrag - makefile fragment for snake
+
+snake_all:
+
+snake_install:

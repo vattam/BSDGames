@@ -1,0 +1,66 @@
+Credits and acknowledgements for bsd-games and bsd-games-non-free
+=================================================================
+
+For details of authors of the games and maintenance of the bsd-games
+and bsd-games-non-free packages, see AUTHORS.  The following are
+further credits for people who have helped improve the package; thanks
+also to those who have reported bugs and so helped us improve the
+package, and to those who have similarly contributed to the games in
+*BSD over the years.  Please help me to repair any errors or omissions
+in this list.
+
+
+For recent work (since 1.3), thanks to:
+
+Joey Hess <joeyh@master.debian.org>
+
+  For the Debian patches, which covered what was needed to make the games
+  compile with current libraries, provided many bug fixes and showed
+  where I needed to do things like parametrise manpages.  Also many other
+  bug reports and fixes, and manpages for wargames and paranoia.
+
+David Frey <david@eos.lugs.ch>
+
+  For the ports of tetris and gomoku.
+
+Bill Lash <lash@tellabs.com>
+
+  For tracking down and fixing a bug in rogue.
+
+Paul Janzen <pjanzen@foatdi.harvard.edu>
+
+  For work on the OpenBSD games, including supplying improvements that
+  could be applied to the Linux port, and merging NetBSD changes into
+  OpenBSD so making it easier to extract his and other OpenBSD changes
+  to include in the Linux port.  Also for checking the licence of
+  boggle, so it could be included in the main bsd-games package.
+
+Hubert Feyrer <hubertf@netbsd.org>
+
+  For timely responses to my NetBSD PRs, merging the Linux changes
+  back into NetBSD.
+
+For the original bsd-games package (versions up to 1.3):
+
+Special Thanks to:
+
+Andy Tefft (teffta@engr.dnet.ge.com)
+
+  For porting backgammon, canfield, fortune, and number.  Andy also was a
+  big help in organizing this project, and in getting the ball rolling in
+  the early stages.
+
+Thanks also to:
+  Ross Becker (beckerr@pyrite.som.cwru.edu) - working on hunt.
+  jyanowit@orixa.mtholyoke.edu - backgammon bug fix.
+  Andrew Kuchling (fnord@binkley.cs.mcgill.ca) - bog bug fix.
+  Rik Faith (faith@cs.unc.edu) - words file for hangman and bog.
+
+For authors and acknowledgements for the original BSD games, see
+AUTHORS.
+
+
+
+Local Variables:
+mode: text
+End:

@@ -1,0 +1,13 @@
+# Makefrag - makefile fragment for pig
+
+pig_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+pig_all:	pig/pig pig/pig.6
+
+pig_install:	pig_all
+	$(INSTALL_BINARY) pig/pig $(INSTALL_PREFIX)$(GAMESDIR)/pig
+	$(HIDE_GAME) pig
+	$(INSTALL_MANUAL) pig/pig.6
+
+pig_check:	pig_all
+	echo "This is a test" |pig/pig

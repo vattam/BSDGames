@@ -1,0 +1,186 @@
+Installation instructions
+=========================
+
+Packaging
+=========
+
+If packaging bsd-games or bsd-games-non-free for a Linux distribution,
+please read the PACKAGING file for further information after this one.
+Others who wish to install it under a packaging system, or rebuild it
+automatically and without interactive configuration, may also find
+this file useful.
+
+Non-free games
+==============
+
+These installation instructions apply to both bsd-games and
+bsd-games-non-free.  bsd-games-non-free contains rogue, which it seems
+cannot be sold for profit: the rest of the games are under the
+standard BSD distribution conditions, or very similar ones (phantasia
+is public domain, i.e. not copyrighted).  As of version 2.2 and later,
+the bsd-games-non-free package unpacks conventionally into a directory
+of its own.  It can be built separately from bsd-games, or in the same
+source directory: to do the latter, move those files and directories
+that are in bsd-games-non-free but not bsd-games into the
+bsd-games-VERSION directory before building.  If you are building
+bsd-games, cd to boggle and decide if you want -DNEW_STYLE or not --
+see boggle/README.linux for more information.  If you are in a hurry,
+don't worry about it ... it really is more of an aesthetic thing.
+
+Prerequisites
+=============
+
+You need gcc, libc5 (version 5.4.5 or later) or libc6, and ncurses
+(any reasonably recent version).  Older versions of ncurses may work
+(but are much more buggy), and BSD curses / termcap just might work
+(but is obsolete), but these are completely unsupported; even with
+recent ncurses versions you could run into problems with some games
+dependent on the version of ncurses; if so, get a debugging version of
+ncurses (libncurses_g.a), link with -lncurses_g instead of -lncurses,
+and good luck bug-hunting.  If the display gets confused in ordinary
+use (as opposed for example to after resizing the window), this might
+be a bug in the game, but is probably a bug in ncurses.  You also need
+some sort of lex and yacc; by default this package will use flex and
+bison, but byacc will probably work as well.  Libc5 versions before
+5.4.5, or libc4, will not work since they don't have the BSD <err.h>
+error reporting functions.
+
+The makefiles require GNU make; if you have a strange system on which
+`make' is not GNU make you can use it under some other name since
+$(MAKE) is used where appropriate.  The configure script assumes that
+/bin/sh is a POSIX.2 shell (bash is known to work; current versions of
+ksh and ash should be OK but I haven't tested them); it can be run
+manually with `bash configure' or similar if /bin/sh is not a POSIX.2
+shell.  It uses the POSIX.2 printf utility (in GNU sh-utils, and a
+builtin in bash 2.02) to avoid depending on echo -n.
+
+I am not aware of any dependence on the version of gcc used, although
+it would be advisable to use gcc 2.7.2.1 or later (or use
+-fno-strength-reduce).  Sufficiently recent egcs snapshots (those with
+global CSE), and egcs releases 1.1 or later, may produce spurious
+warnings about uninitialized variables because of limitations in the
+code to detect this, but this does not affect the correctness of the
+compiled code.  Some glibc versions may produce many warnings in the
+system headers; these can be ignored.
+
+Some man pages may look better with the tmac.doc macros from NetBSD,
+rather than the older ones distributed with groff.  If any man pages
+look funny or appear to have words missing (especially the program
+name or a reference to NetBSD), having older tmac.doc may be the
+cause.
+
+Security
+========
+
+See the SECURITY file for a discussion of security issues about the
+BSD games.
+
+Building and installation
+=========================
+
+1.  cd to the top level directory in the source distribution, i.e. the
+    directory that contains this file.  There is not yet any support
+    for building in a directory other than the source directory.
+
+2.  Run `./configure' and configure the installation to your liking.
+    There may be some games you don't want to build because you have
+    them from elsewhere; for example, there is another fortune package
+    (fortune-mod) available, and factor is included in GNU sh-utils as
+    of version 1.12q.  Also banner is in util-linux.  You can specify
+    particular games you do not want built before specifying the list
+    of games to build (which will default to all those available,
+    except those you have excluded).
+
+    The filesystem structure used defaults to that the the Filesystem
+    Hierarchy Standard (FHS), version 2.0.  If you are using the older
+    FSSTND 1.2, or a newer FHS, or wish to install into /usr/local,
+    check the paths given and make changes as appropriate.
+
+3.  Type `make'.  You can probably ignore compiler warnings, although
+    most should be fixed in this release.  If you are building on a 64
+    bit architecture, you might want to look over the warnings and let
+    me know about any that are normally significant in such cases.
+    Some versions of gcc (e.g. egcs 1.1) give many `missing
+    initializer' warnings; these are harmless.
+
+    At the start of the build, their will be many `No such file or
+    directory' warnings from make.  Ignore these as long as make does
+    not stop because of them: these refer to dependency files that
+    make can regenerate for itself.  See `Automatic Dependencies' in
+    the GNU Make manual for details.
+
+    In the unlikely event of an internal compiler error, the build
+    system supports generating the files of preprocessor output
+    required for a bug report: if the error occurs while compiling
+    `foo/bar.c', then `make foo/bar.i' will put the preprocessor
+    output in `foo/bar.i', suitable for sending in a bug report along
+    with details of compiler version and options used.  You may,
+    however, wish to minimise the testcase before sending a bug
+    report, if you have the time to do so.
+
+4.  Save copies of any old versions of games you like and their
+    datafiles, until you know that the new versions work.
+
+5.  Become root.  (If, as an ordinary user, you are installing under
+    your home directory, and have chosen not to set owners and groups
+    on the installed files, there is of course no need to do this.)
+
+6.  Type `make install'.  If you want the installed binaries to be
+    stripped, use `make install-strip' instead.  This saves disk
+    space, but means that you cannot debug the installed binaries.
+
+7.  If you had an old installation of bsd-games, check for file
+    locations that have changed.  You will probably want to remove old
+    executables and static data (formerly defaulting to installation
+    in /usr/games/lib), and replace any empty score files that have
+    been installed with your old ones (checking the permissions).
+
+    The default locations changed again in 2.2, to those mandated by
+    the new FHS 2.0 - manpages in /usr/share/man, variable data in
+    /var/games.  In addition, huntd's default location has changed
+    from /usr/sbin back to /usr/games and the location for dm to keep
+    hidden games has changed from /usr/libexec/dm to
+    /usr/lib/games/dm.
+
+    In version 2.4, the recommended permissions on the directory for
+    sail, if you installed it setgid, changed from 0775 to 2770; you
+    may need to adjust the permissions manually if you had a previous
+    installation of version 2.3.
+
+8.  You may wish to do something with the BSD Users' Supplementary
+    Documents for trek and rogue, in trek/USD.doc/trek.me and
+    rogue/USD.doc/rogue.me.  You can look at them on a text terminal
+    with `nroff -me' (piped to your pager), or format in PostScript
+    for printing with `groff -me -Tps'.
+
+9.  `make distclean' will restore the source directory to the original
+    unpacked state.  The automatically generated dependency files
+    include paths to system headers, including those in gcc's internal
+    header directory: if you have changed your compiler or library
+    headers between building bsd-games and cleaning up, you can use
+    `make distclean nodep=true' to avoid this causing problems.
+
+    `make clean' will restore the sources to the state just after
+    configuration.
+
+Further information
+===================
+
+Some subdirectories have README.linux files.  If you are still having
+trouble with a program, check this file first -- it may contain some
+helpful hints, or information about further configuration options.
+
+See TODO for information on what needs to be improved in this package;
+you may want to volunteer for some of the things in there.
+
+The file BUGS lists known bugs.  The README file discusses how to
+produce useful bug reports.
+
+Joseph S. Myers
+jsm28@cam.ac.uk
+
+
+
+Local Variables:
+mode: text
+End:

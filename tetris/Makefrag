@@ -1,0 +1,14 @@
+# Makefrag - makefile fragment for tetris
+
+tetris_CLEANFILES := tetris-bsd.6
+tetris_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+tetris_all:	tetris/tetris tetris/tetris.6
+
+tetris_install:	tetris_all
+	$(INSTALL_SCORE_GAME) tetris/tetris $(INSTALL_PREFIX)$(GAMESDIR)/tetris-bsd
+	$(HIDE_GAME) tetris-bsd
+	$(INSTALL_SCORE_FILE) $(TETRIS_SCOREFILE)
+	ln -f tetris/tetris.6 tetris/tetris-bsd.6
+	$(INSTALL_MANUAL) tetris/tetris-bsd.6
+	rm -f tetris/tetris-bsd.6

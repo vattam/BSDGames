@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for trek
+
+trek_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+trek_all:	trek/trek trek/trek.6
+
+trek_install:	trek_all
+	$(INSTALL_BINARY) trek/trek $(INSTALL_PREFIX)$(GAMESDIR)/trek
+	$(HIDE_GAME) trek
+	$(INSTALL_MANUAL) trek/trek.6

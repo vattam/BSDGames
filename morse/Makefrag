@@ -1,0 +1,13 @@
+# Makefrag - makefile fragment for morse
+
+morse_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+morse_all:	morse/morse
+
+morse_install:	morse_all
+	$(INSTALL_BINARY) morse/morse $(INSTALL_PREFIX)$(GAMESDIR)/morse
+	$(HIDE_GAME) morse
+	$(INSTALL_MANUAL) bcd.6 morse.6
+
+morse_check:	morse_all
+	echo "Eat at Joe's" | morse/morse

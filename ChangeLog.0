@@ -1,0 +1,67 @@
+10/24/93 -replace previous words file with the words file provided by 
+	  Rik Faith, faith@cs.unc.edu.  This package can be found at 
+	  ftp.cs.unc.edu in /pub/faith/linux/utils/linux.words.2.tar.gz
+
+9/30/93 - changed 'mkdir' to 'mkdir -p' in the top level Makefile so 
+	  intermediate directories will be created if they don't exist.
+
+9/25/93 - Top level Makefile now creates the directories DESTDIR, MANDIR,
+	  and LIBDIR if they do not exist before trying to install the 
+	  individual programs.
+
+9/25/93 - Fixed makefiles to inherit defines from upper level makefiles.
+	  Also fixed hard coded pathnames in .h files to be taken from the
+	  makefiles.
+
+9/23/93 - [bog]  Modified the end of game behavior to be more intuitive.
+	  Original behavior can be set by defining PURE in CFLAGS.
+
+9/23/93 - [bog]  Fixed a bug in bog which caused a crash at the end of 
+	  displaying the help.  
+	  "extern char *version" -> "extern char version[]"
+	  Aren't these two equivalent???  I guess not :)  Thanks Andrew
+	  Kuchling for spotting this one.
+
+8/25/93 - Version 1.2 Released
+
+==============================================================================
+
+8/25/93 - Added paranoia
+
+8/25/93 - Added hunt
+
+8/23/93 - Added sail
+
+8/23/93 - Added pom
+
+8/23/93 - Added bog
+
+8/22/93 - Added factor
+
+8/22/93 - Added primes
+
+8/21/93 - Added trek
+
+8/21/93 - Added monop
+
+8/19/93 - Version 1.1 Semi-released
+
+==============================================================================
+
+8/19/93 - Added wargames
+
+8/19/93 - [robots]  Fixed robots screen restore bug.
+
+8/19/93 - Added snake
+
+8/19/93 - Added caesar
+
+8/19/93 - Added cribbage
+
+8/18/93 - Found a man page for number
+
+8/17/93 - Version 1.0 Released.
+
+==============================================================================
+
+

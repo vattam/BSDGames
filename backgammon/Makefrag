@@ -1,0 +1,5 @@
+# Makefrag - makefile fragment for backgammon
+
+backgammon_all:
+
+backgammon_install:

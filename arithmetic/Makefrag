@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for arithmetic
+
+arithmetic_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+arithmetic_all:	arithmetic/arithmetic arithmetic/arithmetic.6
+
+arithmetic_install:	arithmetic/arithmetic
+	$(INSTALL_BINARY) arithmetic/arithmetic $(INSTALL_PREFIX)$(GAMESDIR)/arithmetic
+	$(HIDE_GAME) arithmetic
+	$(INSTALL_MANUAL) arithmetic/arithmetic.6

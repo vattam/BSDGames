@@ -1,0 +1,12 @@
+# Makefrag - makefile fragment for sail
+
+sail_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+sail_all:	sail/sail sail/sail.6
+
+sail_install:	sail_all
+	$(INSTALL_SCORE_GAME) sail/sail $(INSTALL_PREFIX)$(GAMESDIR)/sail
+	$(HIDE_GAME) sail
+	$(INSTALL_SCORE_FILE) $(SAIL_SCOREFILE)
+	$(INSTALL_SAIL_DIR) $(INSTALL_PREFIX)$(SAIL_DIR)
+	$(INSTALL_MANUAL) sail/sail.6

@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for banner
+
+banner_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+banner_all:	banner/banner banner/banner.6
+
+banner_install:	banner_all
+	$(INSTALL_BINARY) banner/banner $(INSTALL_PREFIX)$(GAMESDIR)/banner
+	$(HIDE_GAME) banner
+	$(INSTALL_MANUAL) banner/banner.6

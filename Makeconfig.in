@@ -1,0 +1,96 @@
+# Makeconfig.in - configuration included in Makefiles after substitution
+# If some variables are unexpanded in Makeconfig, this shouldn't be a
+# problem, it will be because they weren't configured since the relevant
+# games weren't being built.
+
+# Source directory
+SRCDIR := @srcdir@
+# Build directories
+BUILDDIRS := @build_dirs@
+# Installation prefix
+INSTALL_PREFIX := @install_prefix@
+# Games directory
+GAMESDIR := @gamesdir@
+# Daemon directory
+SBINDIR := @sbindir@
+# Other binaries directory
+USRBINDIR := @usrbindir@
+# Manual pages, section 6
+MAN6DIR := @man6dir@
+# Manual pages, section 8
+MAN8DIR := @man8dir@
+# Manual pages, section 5
+MAN5DIR := @man5dir@
+# Constant data (arch-dependent)
+LIBDIR := @usrlibdir@
+# Constant data (arch-independent)
+SHAREDIR := @sharedir@
+# Variable data
+VARLIBDIR := @varlibdir@
+# Directory for hidden games (dm)
+LIBEXECDIR := @libexecdir@
+# Installation commands, with install -c -o whatever -s etc.
+INSTALL_BINARY := @install_binary@
+INSTALL_SCRIPT := @install_script@
+INSTALL_SCORE_GAME := @install_score_game@
+INSTALL_DAEMON := @install_daemon@
+INSTALL_MANUAL := @srcdir@/install-man
+INSTALL_DATA := @install_constdata@
+INSTALL_VARDATA := @install_vardata@
+INSTALL_DM := @install_dm@
+INSTALL_SAIL_DIR := @install_sail_dir@
+# Is INSTALL_VARDATA actually needed (for games that start with non-empty
+# scorefile?)
+# For games which can start with empty scorefile we do:
+INSTALL_SCORE_FILE := @srcdir@/install-score
+# Definitions of INSTALL_* that may have -s added
+# This first one should no longer be needed
+DEFS_TO_PASS := INSTALL_BINARY="$(INSTALL_BINARY)" \
+	INSTALL_SCORE_GAME="$(INSTALL_SCORE_GAME)" \
+	INSTALL_DAEMON="$(INSTALL_DAEMON)" INSTALL_DM="$(INSTALL_DM)"
+# For the top level install-strip target
+DEFS_TO_PASS_STRIP := INSTALL_BINARY="$(INSTALL_BINARY) -s" \
+	INSTALL_SCORE_GAME="$(INSTALL_SCORE_GAME) -s" \
+	INSTALL_DAEMON="$(INSTALL_DAEMON) -s" INSTALL_DM="$(INSTALL_DM) -s"
+# srcdir/hide-game or :
+HIDE_GAME := @hidegame@
+
+# Compilation details
+CC := @cc@
+OPTIMIZE := @optimize_flags@
+WARNING := @warning_flags@
+CFLAGS := $(OPTIMIZE) $(WARNING) @other_cflags@
+LDFLAGS := @other_ldflags@
+NCURSES_LIB := @ncurses_lib@
+NCURSES_INCS := @ncurses_includes@
+BASE_INCS := -Iinclude $(NCURSES_INCS)
+BASE_LIBS := @base_libs@
+YACC := @yacc@
+LEX := @lex@
+LEX_LIB := @lex_lib@
+
+# More paths
+PAGER := @pager@
+
+# Individual games
+ATC_DIR := @atc_dir@
+ATC_SCOREFILE := @atc_scorefile@
+BATTLESTAR_SCOREFILE := @battlestar_scorefile@
+BOGGLE_DIR := @boggle_dir@
+CANFIELD_SCOREFILE := @canfield_scorefile@
+CRIBBAGE_INSTRFILE := @cribbage_instrfile@
+CRIBBAGE_SCOREFILE := @cribbage_scorefile@
+FISH_INSTRFILE := @fish_instrfile@
+FORTUNE_TYPE := @fortune_type@
+HANGMAN_WORDSFILE := @hangman_wordsfile@
+MONOP_CARDSFILE := @monop_cardsfile@
+PHANTASIA_DIR := @phantasia_dir@
+QUIZ_DIR := @quiz_dir@
+ROBOTS_SCOREFILE := @robots_scorefile@
+ROGUE_SCOREFILE := @rogue_scorefile@
+SAIL_SCOREFILE := @sail_scorefile@
+SAIL_DIR := @sail_dir@
+SNAKE_SCOREFILE := @snake_scorefile@
+SNAKE_RAWSCOREFILE := @snake_rawscorefile@
+TETRIS_SCOREFILE := @tetris_scorefile@
+WUMP_INFOFILE := @wump_infofile@

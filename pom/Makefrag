@@ -1,0 +1,13 @@
+# Makefrag - makefile fragment for pom
+
+pom_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+pom_all:	pom/pom pom/pom.6
+
+pom_install:	pom_all
+	$(INSTALL_BINARY) pom/pom $(INSTALL_PREFIX)$(GAMESDIR)/pom
+	$(HIDE_GAME) pom
+	$(INSTALL_MANUAL) pom/pom.6
+
+pom_check:	pom_all
+	pom/pom

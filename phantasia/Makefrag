@@ -1,0 +1,14 @@
+# Makefrag - makefile fragment for phantasia
+
+phantasia_DIRS := $(GAMESDIR) $(MAN6DIR) $(PHANTASIA_DIR)
+phantasia_VFILES := gold lastdead mess monsters motd characs scoreboard void
+
+phantasia_all:	phantasia/phantasia phantasia/setup phantasia/monsters.asc phantasia/phantasia.6
+
+phantasia_install:	phantasia_all
+	$(INSTALL_SCORE_GAME) phantasia/phantasia $(INSTALL_PREFIX)$(GAMESDIR)/phantasia
+	$(HIDE_GAME) phantasia
+	DESTDIR=$(INSTALL_PREFIX) phantasia/setup -m phantasia/monsters.asc
+	(set -e; for f in $(phantasia_VFILES); do $(INSTALL_SCORE_FILE) \
+	    $(PHANTASIA_DIR)/$$f; done)
+	$(INSTALL_MANUAL) phantasia/phantasia.6

@@ -1,0 +1,10 @@
+# Makefrag - makefile fragment for worms
+
+worms_DIRS := $(GAMESDIR) $(MAN6DIR)
+
+worms_all:	worms/worms worms/worms.6
+
+worms_install:	worms_all
+	$(INSTALL_BINARY) worms/worms $(INSTALL_PREFIX)$(GAMESDIR)/worms
+	$(HIDE_GAME) worms
+	$(INSTALL_MANUAL) worms/worms.6

@@ -1,0 +1,12 @@
+# Makefile - makefile fragment for backgammon/backgammon
+
+backgammon_backgammon_DEFS := -DV7
+backgammon_backgammon_DIRS := $(GAMESDIR) $(MAN6DIR)
+backgammon_backgammon_INCS := -Ibackgammon/common_source
+
+backgammon_backgammon_all:	backgammon/backgammon/backgammon backgammon/backgammon/backgammon.6
+
+backgammon_backgammon_install:	backgammon_backgammon_all
+	$(INSTALL_BINARY) backgammon/backgammon/backgammon $(INSTALL_PREFIX)$(GAMESDIR)/backgammon
+	$(HIDE_GAME) backgammon
+	$(INSTALL_MANUAL) backgammon/backgammon/backgammon.6
