@@ -1,1 +1,2 @@
-ftp://sunsite.unc.edu /pub/Linux/games/ bsd-games-([0-9]+.*).tar.gz debian
+version=2
+ftp://sunsite.unc.edu/pub/Linux/games/bsd-games-([0-9]+.*).tar.gz
