@@ -1,3 +1,9 @@
+bsdgames (2.13-8) unstable; urgency=low
+
+  * COrrected primes (really factor) man page. Closes: #144738
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 27 Apr 2002 11:00:25 -0400
+
 bsdgames (2.13-7) unstable; urgency=low
 
   * Make sure boggle is always built with the same wordlist, and use the union
