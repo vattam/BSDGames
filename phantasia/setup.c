@@ -1,15 +1,16 @@
-/*	$NetBSD: setup.c,v 1.8 1997/11/24 01:47:26 mrg Exp $	*/
+/*	$NetBSD: setup.c,v 1.10 1999/09/19 18:14:52 jsm Exp $	*/
 
 /*
  * setup.c - set up all files for Phantasia
  */
+#include <stdio.h>
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "include.h"
 
 int main __P((int, char *[]));
-void Error __P((char *, char *));
+void Error __P((const char *, const char *)) __attribute__((__noreturn__));
 double drandom __P((void));
 
 /**/
@@ -44,7 +45,7 @@ double drandom __P((void));
 /
 / ************************************************************************/
 
-static char *files[] = {		/* all files to create */
+static const char *const files[] = {		/* all files to create */
 	_PATH_MONST,
 	_PATH_PEOPLE,
 	_PATH_MESS,
@@ -56,19 +57,23 @@ static char *files[] = {		/* all files to create */
 	NULL,
 };
 
-char *monsterfile="monsters.asc";
+const char *monsterfile = "monsters.asc";
 
 int
 main(argc, argv)
 	int argc;
 	char *argv[];
 {
-	register char	**filename;	/* for pointing to file names */
+	register const char *const *filename; /* for pointing to file names */
 	register int	fd;		/* file descriptor */
 	FILE	*fp;			/* for opening files */
 	struct stat	fbuf;		/* for getting files statistics */
 	int ch;
+#if defined(__GLIBC__)
+	char *path, *prefix;
+#else
 	char path[MAXPATHLEN], *prefix;
+#endif
 
 	while ((ch = getopt(argc, argv, "m:")) != -1)
 		switch(ch) {
@@ -93,7 +98,15 @@ main(argc, argv)
     while (*filename != NULL)
 	/* create each file */
 	{
+#if defined(__GLIBC__)
+	path = NULL;
+	asprintf(&path, "%s%s", prefix?prefix:"", *filename);
+	if (!path)
+		Error ("Not enough memory to store filename.", "");
+		/*NOTREACHED*/
+#else
 	snprintf(path, sizeof(path), "%s%s", prefix?prefix:"", *filename);
+#endif
 	if (stat(path, &fbuf) == 0)
 	    /* file exists; remove it */
 	    {
@@ -123,23 +136,48 @@ main(argc, argv)
 	close(fd);			/* close newly created file */
 
 	++filename;			/* process next file */
+#if defined(__GLIBC__)
+	free (path);
+#endif
 	}
 
     /* put holy grail info into energy void file */
     Enrgyvoid.ev_active = TRUE;
     Enrgyvoid.ev_x = ROLL(-1.0e6, 2.0e6);
     Enrgyvoid.ev_y = ROLL(-1.0e6, 2.0e6);
+#if defined(__GLIBC__)
+	path = NULL;
+	asprintf (&path, "%s%s", prefix?prefix:"", _PATH_VOID);
+	if (!path)
+		Error ("Not enough memory to store filename.", "");
+		/*NOTREACHED*/
+#else
     snprintf(path, sizeof(path), "%s%s", prefix?prefix:"", _PATH_VOID);
+#endif
     if ((fp = fopen(path, "w")) == NULL)
 	Error("Cannot update %s.\n", path);
     else
 	{
 	fwrite(&Enrgyvoid, SZ_VOIDSTRUCT, 1, fp);
+	fflush(fp);
+	if (ferror(fp))
+	    Error("Writing %s.\n", path);
 	fclose(fp);
 	}
+#if defined(__GLIBC__)
+	free (path);
+#endif
 
     /* create binary monster data base */
+#if defined(__GLIBC__)
+	path = NULL;
+	asprintf (&path, "%s%s", prefix?prefix:"", _PATH_MONST);
+	if (!path)
+		Error ("Not enough memory to store filename.", "");
+		/*NOTREACHED*/
+#else
     snprintf(path, sizeof(path), "%s%s", prefix?prefix:"", _PATH_MONST);
+#endif
     if ((Monstfp = fopen(path, "w")) == NULL)
 	Error("Cannot update %s.\n", path);
     else
@@ -171,16 +209,30 @@ main(argc, argv)
 		fwrite((char *) &Curmonster, SZ_MONSTERSTRUCT, 1, Monstfp);
 		}
 	    fclose(fp);
+	    fflush(Monstfp);
+	    if (ferror(Monstfp))
+		Error("Writing %s.\n", path);
 	    fclose(Monstfp);
 	    }
 	}
+#if defined(__GLIBC__)
+	free (path);
+#endif
 
 #ifdef MAKE_INSTALLS_THIS_AND_DOESNT_WANT_TO_HEAR_ABOUT_IT
     /* write to motd file */
     printf("One line 'motd' ? ");
     if (fgets(Databuf, SZ_DATABUF, stdin) == NULL)
 	Databuf[0] = '\0';
+#if defined(__GLIBC__)
+	path = NULL;
+	asprintf (&path, "%s%s", prefix?prefix:"", _PATH_MOTD);
+	if (!path)
+		Error ("Not enough memory to store filename.", "");
+		/*NOTREACHED*/
+#else
     snprintf(path, sizeof(path), "%s%s", prefix?prefix:"", _PATH_MOTD);
+#endif
     if ((fp = fopen(path, "w")) == NULL)
 	Error("Cannot update %s.\n", path);
     else
@@ -188,6 +240,9 @@ main(argc, argv)
 	fwrite(Databuf, sizeof(char), strlen(Databuf), fp);
 	fclose(fp);
 	}
+#if defined(__GLIBC__)
+	free (path);
+#endif
 
     /* report compile-time options */
     printf("Compiled options:\n\n");
@@ -242,7 +297,7 @@ main(argc, argv)
 
 void
 Error(str, file)
-char	*str, *file;
+	const char	*str, *file;
 {
     fprintf(stderr, "Error: ");
     fprintf(stderr, str, file);

@@ -393,7 +393,11 @@ list_drivers()
 	static SOCKET		test;
 	int			test_socket;
 	int			namelen;
+# ifdef MAXHOSTNAMELEN
 	char			local_name[MAXHOSTNAMELEN + 1];
+# else
+	char			local_name[] = "127.0.0.1";
+# endif
 	static int		initial = TRUE;
 	static struct in_addr	local_address;
 	struct hostent		*hp;
@@ -414,11 +418,13 @@ list_drivers()
 # ifndef BROADCAST
 		sethostent(1);		/* don't bother to close host file */
 # endif
+# ifdef MAXHOSTNAMELEN
 		if (gethostname(local_name, sizeof local_name) < 0) {
 			leave(1, "Sorry, I have no name.");
 			/* NOTREACHED */
 		}
 		local_name[sizeof(local_name) - 1] = '\0';
+# endif
 		if ((hp = gethostbyname(local_name)) == NULL) {
 			leave(1, "Can't find myself.");
 			/* NOTREACHED */

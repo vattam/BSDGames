@@ -1,3 +1,10 @@
+bsdgames (2.12-8) unstable; urgency=low
+
+  * Applied a patch from Igor Khavkine <i_khavki@alcor.concordia.ca> to
+    make the package build on the Hurd. Closes: #98562
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 23 May 2001 22:49:26 -0400
+
 bsdgames (2.12-7) unstable; urgency=low
 
   * Modified all the rest of the menu items that need a pause after
