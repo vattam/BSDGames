@@ -1,0 +1,50 @@
+# substfiles2 - list of files in which parameters are to be substituted.
+# These ones get substituted during the make process.
+#
+# Copyright (c) 1997, 1998, 1999 Joseph Samuel Myers.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+atc/atc.6
+backgammon/backgammon/backgammon.6
+caesar/rot13
+canfield/canfield/canfield.6
+cribbage/cribbage.6
+dm/dm.8
+dm/dm.conf.5
+fortune/fortune/fortune.6
+hangman/hangman.6
+hunt/hunt/hunt.6
+hunt/huntd/huntd.6
+monop/monop.6
+quiz/datfiles/index
+quiz/quiz.6
+robots/robots.6
+rogue/rogue.6
+snake/snake/snake.6
+tetris/tetris.6
+trek/trek.6
+wtf/wtf.6
+wtf/wtf

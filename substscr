@@ -1,0 +1,96 @@
+#!/bin/sh
+# substscr - substitute parameters to create a file from a .in.
+#
+# Copyright (c) 1999 Joseph Samuel Myers.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+
+# First argument is some combination of:
+# r to generate makefile rules
+# g to generate the file in question
+
+# Second argument gives the style of comment:
+# c for C comment
+# h for generic # comment
+# m for manpage comment
+# n for none
+# s for shell comment
+
+# Third argument is the source file.
+
+# Fourth argument is the target file.
+
+# The target gets its permissions from the source.
+
+set -e
+
+if [ $# != 4 ]; then
+    echo "usage: $0 action comment-style source target" >&2
+    exit 1
+fi
+
+action="$1"
+style="$2"
+source="$3"
+target="$4"
+
+if echo $action |grep -q g; then
+    echo "Generating $target from $source"
+    rm -f $target
+    cp "$source" "$target" # set permissions
+
+    case "$style" in
+	(c)
+	    echo "/* Automatically generated from $source.  Do not edit.  */" >"$target"
+	    ;;
+	(h)
+	    echo "# Automatically generated from $source.  Do not edit." >"$target"
+	    ;;
+	(m)
+	    echo ".\\\" Automatically generated from $source.  Do not edit." >"$target"
+	    ;;
+	(n)
+	    : >"$target"
+	    ;;
+	(s)
+	    echo "#!/bin/sh" >"$target"
+	    echo "# Automatically generated from $source.  Do not edit." >>"$target"
+	    ;;
+	(*)
+	    echo "$0: unknown comment style $style" >&2
+	    exit 1
+    esac
+
+    sed -f subst.sed <"$source" >>"$target"
+fi
+
+if echo $action |grep -q r; then
+    # Append to subst.rules.
+    cat >>subst.rules <<EOF
+$target:	$source subst.sed substscr
+	./substscr g $style $source $target
+
+EOF
+fi
