@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.5 1998/09/11 13:42:03 hubertf Exp $	*/
+/*	$NetBSD: main.c,v 1.9 2000/05/08 07:56:04 mycroft Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1983, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: main.c,v 1.5 1998/09/11 13:42:03 hubertf Exp $");
+__RCSID("$NetBSD: main.c,v 1.9 2000/05/08 07:56:04 mycroft Exp $");
 #endif
 #endif /* not lint */
 
@@ -53,10 +53,33 @@ __RCSID("$NetBSD: main.c,v 1.5 1998/09/11 13:42:03 hubertf Exp $");
  * This game written by Ken Arnold.
  */
 int
-main(void)
+main(argc, argv)
+	int argc;
+	char *argv[];
 {
+	int ch;
+
 	/* Revoke setgid privileges */
 	setregid(getgid(), getgid());
+
+	while ((ch = getopt(argc, argv, "m:d:")) != -1) {
+		switch (ch) {
+		case 'd':
+			Dict_name = optarg;
+			break;
+		case 'm':
+			Minlen = atoi(optarg);
+			if (Minlen < 2) {
+				fprintf(stderr, "minlen too short\n");
+				exit(1);
+			}
+			break;
+		case '?':
+		default:
+			(void)fprintf(stderr, "usage: hangman [-d wordlist] [-m minlen]\n");
+			exit(1);
+		}
+	}
 
 	initscr();
 	signal(SIGINT, die);
@@ -74,7 +97,7 @@ main(void)
  */
 void
 die(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
 	mvcur(0, COLS - 1, LINES - 1, 0);
 	endwin();

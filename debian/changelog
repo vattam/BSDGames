@@ -1,3 +1,9 @@
+bsdgames (2.13-3) unstable; urgency=low
+
+  * Added -m option to hangman to set MINLEN. Closes: #129998
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 19 Jan 2002 18:04:06 -0500
+
 bsdgames (2.13-2) unstable; urgency=low
 
   * Fixed bad merge (that's why sail was broken).
