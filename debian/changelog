@@ -1,3 +1,9 @@
+bsdgames (2.16-2) unstable; urgency=low
+
+  * FIx primes(6). Closes: #234515
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 24 Feb 2004 11:26:42 -0500
+
 bsdgames (2.16-1) unstable; urgency=low
 
   * New upstream release.
