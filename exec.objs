@@ -1,7 +1,7 @@
 # exec.objs - details of objects that go into bsd-games programs.
 # This file is used for automatic makefile generation.
 #
-# Copyright (c) 1998, 1999, 2000, 2001, 2003, 2004 Joseph Samuel Myers.
+# Copyright (c) 1998, 1999, 2000, 2001, 2003, 2004, 2005 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -32,7 +32,7 @@ adventure		crc.o data.o done.o init.o io.o main.o save.o subr.o \
 adventure/setup		setup.o
 arithmetic		arithmetic.o lib/getprogname.o
 atc			extern.o grammar.o graphics.o input.o lex.o list.o \
-	log.o main.o tunable.o update.o
+	log.o main.o tunable.o update.o lib/strlcpy.o
 backgammon/backgammon/backgammon	extra.o main.o move.o text.o \
 	version.o backgammon/common_source/allow.o \
 	backgammon/common_source/board.o backgammon/common_source/check.o \
@@ -102,7 +102,7 @@ pom			pom.o
 ppt			ppt.o
 primes			pattern.o pr_tbl.o primes.o
 quiz			quiz.o rxp.o lib/fgetln.o
-rain			rain.o
+rain			rain.o lib/getprogname.o
 random			random.o
 robots			auto.o extern.o flush_in.o init_field.o main.o \
 	make_level.o move.o move_robs.o play_level.o query.o rnd_pos.o score.o
@@ -112,7 +112,8 @@ rogue			hit.o init.o inventory.o level.o machdep.o main.o \
 	lib/strlcpy.o
 sail			assorted.o game.o globals.o dr_1.o dr_2.o dr_3.o \
 	dr_4.o dr_5.o dr_main.o lo_main.o main.o misc.o parties.o pl_1.o \
-	pl_2.o pl_3.o pl_4.o pl_5.o pl_6.o pl_7.o pl_main.o sync.o version.o
+	pl_2.o pl_3.o pl_4.o pl_5.o pl_6.o pl_7.o pl_main.o sync.o version.o \
+	lib/strlcpy.o
 snake/snake/snake	snake.o
 snake/snscore/snscore	snscore.o
 tetris			input.o scores.o screen.o shapes.o tetris.o

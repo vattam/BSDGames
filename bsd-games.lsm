@@ -1,7 +1,7 @@
 Begin4
 Title:		bsd-games
-Version:	2.16
-Entered-date:	2004-02-13
+Version:	2.17
+Entered-date:	2005-02-18
 Description:	Port of most of the games from NetBSD-current.  Games
 	included: adventure arithmetic atc backgammon banner battlestar
 	bcd boggle caesar canfield countmail cribbage dab dm factor fish
@@ -11,7 +11,7 @@ Description:	Port of most of the games from NetBSD-current.  Games
 Keywords:	games, NetBSD
 Maintained-by:	jsm@polyomino.org.uk (Joseph S. Myers)
 Primary-site:	ibiblio.org /pub/Linux/games
-		bsd-games-2.16.tar.gz
+		bsd-games-2.17.tar.gz
 Alternate-site:	tsx-11.mit.edu /pub/linux/sources/usr.games
 Original-site:	ftp.netbsd.org /pub/NetBSD/NetBSD-current/tar_files/src
 		games.tar.gz

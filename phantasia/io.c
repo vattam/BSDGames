@@ -1,10 +1,12 @@
-/*	$NetBSD: io.c,v 1.6 2004/02/08 00:32:07 jsm Exp $	*/
+/*	$NetBSD: io.c,v 1.9 2005/02/15 12:58:21 jsm Exp $	*/
 
 /*
  * io.c - input/output routines for Phantasia
  */
 
 #include "include.h"
+#undef bool
+#include <curses.h>
 
 void
 getstring(cp, mx)
@@ -154,7 +156,7 @@ interrupt()
 int
 getanswer(choices, def)
 	const char   *choices;
-	bool    def;
+	phbool  def;
 {
 	int     ch;		/* input */
 	volatile int	loop;	/* counter */

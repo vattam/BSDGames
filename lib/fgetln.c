@@ -1,6 +1,6 @@
 /* lib/fgetln.c - bsd-games implementation of fgetln.
  *
- * Copyright (c) 1997, 1998, 1999, 2000 Joseph Samuel Myers.
+ * Copyright (c) 1997, 1998, 1999, 2000, 2004 Joseph Samuel Myers.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@ fgetln(FILE *stream, size_t *len)
   res = fgets(buf, buflen, stream);
   if (res == NULL)
     return NULL;
-  while (buf[buflen - 1] == 0) { /* long line */
+  while (buf[buflen - 1] == 0 && buf[buflen - 2] != '\n') { /* long line */
     nbuf = realloc(buf, buflen * 2);
     if (nbuf == NULL)
       return NULL;

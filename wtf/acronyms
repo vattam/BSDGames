@@ -1,5 +1,6 @@
-$NetBSD: acronyms,v 1.135 2004/01/14 13:46:26 keihan Exp $
+$NetBSD: acronyms,v 1.145 2005/02/18 01:40:49 jsm Exp $
 
+AFAIC	as far as I'm concerned
 AFAICR	as far as I can recall
 AFAICT	as far as I can tell
 AFAIK	as far as I know
@@ -17,6 +18,7 @@ ASAP	as soon as possible
 ATM	at the moment
 AWOL	absent without official leave
 AYBABTU	all your base are belong to us
+AYT	are you there
 B/C	because
 B/S	bullshit
 B/W	between
@@ -42,6 +44,7 @@ BTW	by the way
 CMIIW	correct me if I'm wrong
 CNP	continued [in my] next post
 COB	close of business [day]
+COTS	commercial off-the-shelf
 CYA	see you around
 D/L	download
 DIY	do it yourself
@@ -105,9 +108,10 @@ ISAGN	I see a great need
 ISTM	it seems to me
 ISTR	I seem to recall
 ITYM	I think you mean
-IYSS	if you say so
 IWBNI	it would be nice if
+IYSS	if you say so
 J/K	just kidding
+JHD	just hit ``delete''
 JIC	just in case
 JK	just kidding
 JMO	just my opinion
@@ -117,6 +121,7 @@ KITA	kick in the ass
 KNF	kernel normal form
 L8R	later
 LART	luser attitude readjustment tool (ie, hammer)
+LBNL	last but not least
 LJBF	let's just be friends
 LMAO	laughing my ass off
 LMSO	laughing my socks off
@@ -157,6 +162,7 @@ PNG	persona non grata
 PNP	plug and pray
 POC	point of contact
 POLA	principle of least astonishment
+POLS	principle of least surprise
 POS	piece of shit
 PPL	pretty please
 PTV	parental tunnel vision
@@ -194,6 +200,7 @@ SOP	standard operating procedure
 SSIA	subject says it all
 STFA	search the fucking archives
 STFU	shut the fuck up
+STFW	search the fucking web
 SUS	stupid user syndrome
 SWAG	silly, wild-assed guess
 SWAHBI	silly, wild-assed hare-brained idea
@@ -210,7 +217,9 @@ TLA	three letter acronym
 TLB	translation lookaside buffer
 TMA	too many abbreviations
 TMI	too much information
+TNF	The NetBSD Foundation
 TOEFL	test of english as a foreign language
+TPTB	the powers that be
 TRT	the right thing
 TTBOMK	to the best of my knowledge
 TTFN	ta ta for now

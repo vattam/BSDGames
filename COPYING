@@ -387,7 +387,7 @@ insofar as they get compiled into the games; note that the include
 files are probably irrelevant for this purpose as it is unlikely they
 are significant enough to make any binary a derived work).
 
-   Copyright (c) 1997-2004 Joseph Samuel Myers.
+   Copyright (c) 1997-2005 Joseph Samuel Myers.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -434,7 +434,7 @@ the compilation copyright on the package as a whole; ***this has yet
 to be confirmed with Andy Tefft***:
 
    Copyright (c) 1993 Curt Olson, Andy Tefft.
-   Copyright (c) 1997-2004 Joseph Samuel Myers.
+   Copyright (c) 1997-2005 Joseph Samuel Myers.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without

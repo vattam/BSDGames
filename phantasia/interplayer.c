@@ -1,10 +1,12 @@
-/*	$NetBSD: interplayer.c,v 1.6 1999/09/18 19:38:52 jsm Exp $	*/
+/*	$NetBSD: interplayer.c,v 1.9 2005/02/15 12:58:21 jsm Exp $	*/
 
 /*
  * interplayer.c - player to player routines for Phantasia
  */
 
 #include "include.h"
+#undef bool
+#include <curses.h>
 
 void
 checkbattle()
@@ -537,7 +539,7 @@ tampered(what, arg1, arg2)
 
 void
 userlist(ingameflag)
-	bool    ingameflag;
+	phbool  ingameflag;
 {
 	int     numusers = 0;	/* number of users on file */
 

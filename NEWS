@@ -11,10 +11,18 @@ changes in installation instructions.  Packagers should also reread
 the PACKAGING file each version (or do a diff between the old and new
 versions of the package and read that).
 
+Version 2.17 (2005-02-18)
+============
+
+* Updated from NetBSD CVS of 2005-02-18.
+
+* Some bugs fixed (in particular, should now build with current GCC 4
+CVS), some backlogged.
+
 Version 2.16 (2004-02-13)
 ============
 
-* Updated from NetBSD CVS of 2004-02-12.  Includes a new game, dab
+* Updated from NetBSD CVS of 2004-02-13.  Includes a new game, dab
 (Dots and Boxes), written in C++.
 
 * Supplementary documentation for trek and rogue now installed

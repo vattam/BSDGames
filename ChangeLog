@@ -1,4 +1,206 @@
+2005-02-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.17.
+
+	* NEWS, bsd-games.lsm, bsd-games-non-free.lsm: Update.
+
+	* wtf/acronyms, wtf/acronyms.comp: Update from NetBSD CVS.
+
+2005-02-16  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/input.c, backgammon/backgammon/main.c,
+	backgammon/teachgammon/teach.c, cribbage/instr.c, fish/fish.c,
+	phantasia/gamesupport.c, phantasia/interplayer.c, phantasia/io.c,
+	phantasia/misc.c, phantasia/phantstruct.h, rogue/machdep.c,
+	rogue/rogue.h, trek/getpar.h, trek/trek.h, wump/wump.c: Update
+	from NetBSD CVS.
+
+2005-02-14  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hack/hack.termcap.c: Remove "static" from some variables.  Fix
+	from Andreas Jochens <aj@andaco.de> in Debian bug 284750.
+	* exec.objs: Include lib/strlcpy.o for atc and sail.
+	* atc/input.c, backgammon/backgammon/main.c,
+	backgammon/teachgammon/teach.c, cribbage/instr.c, fish/fish.c,
+	phantasia/misc.c, rogue/machdep.c, wump/wump.c: Cast last argument
+	of execl to char *.
+	* rogue/rogue.h: Avoid arrays of incomplete types.
+	* trek/trek.h: Likewise.  Don't declare Skitab and Lentab here.
+	* trek/getpar.h: Declare Skitab and Lentab here.
+	* phantasia/phantstruct.h: Define phbool.
+	* phantasia/gamesupport.c, phantasia/interplayer.c,
+	phantasia/io.c, phantasia/misc.c: Use phbool where necessary.
+
+	* .cvsignore, adventure/.cvsignore, arithmetic/.cvsignore,
+	atc/.cvsignore, backgammon/backgammon/.cvsignore,
+	backgammon/common_source/.cvsignore,
+	backgammon/teachgammon/.cvsignore, banner/.cvsignore,
+	battlestar/.cvsignore, bcd/.cvsignore, boggle/boggle/.cvsignore,
+	boggle/mkdict/.cvsignore, boggle/mkindex/.cvsignore,
+	caesar/.cvsignore, canfield/canfield/.cvsignore,
+	canfield/cfscores/.cvsignore, cribbage/.cvsignore, dab/.cvsignore,
+	dm/.cvsignore, factor/.cvsignore, fish/.cvsignore,
+	fortune/datfiles/.cvsignore, fortune/fortune/.cvsignore,
+	fortune/strfile/.cvsignore, fortune/unstr/.cvsignore,
+	gomoku/.cvsignore, hack/.cvsignore, hangman/.cvsignore,
+	hunt/hunt/.cvsignore, hunt/huntd/.cvsignore, include/.cvsignore,
+	lib/.cvsignore, mille/.cvsignore, monop/.cvsignore,
+	morse/.cvsignore, number/.cvsignore, phantasia/.cvsignore,
+	pig/.cvsignore, pom/.cvsignore, ppt/.cvsignore, primes/.cvsignore,
+	quiz/.cvsignore, quiz/datfiles/.cvsignore, rain/.cvsignore,
+	random/.cvsignore, robots/.cvsignore, rogue/.cvsignore,
+	sail/.cvsignore, snake/snake/.cvsignore, snake/snscore/.cvsignore,
+	tetris/.cvsignore, trek/.cvsignore, worm/.cvsignore,
+	worms/.cvsignore, wtf/.cvsignore, wump/.cvsignore: Remove as no
+	longer needed after move to Subversion.
+
+2005-01-30  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/datfiles/fortunes2: Update from NetBSD CVS.
+
+2005-01-30  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms, wtf/acronyms.comp: Update from NetBSD CVS.
+	* COPYING: Update copyright dates.
+
+2004-12-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* monop/malloc.c, phantasia/main.c, phantasia/setup.c: Update from
+	NetBSD CVS.
+
+2004-12-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* arithmetic/arithmetic.c, battlestar/getcom.c,
+	boggle/boggle/bog.c, boggle/boggle/mach.c,
+	canfield/canfield/canfield.c, cribbage/io.c, dm/dm.c,
+	fortune/fortune/fortune.c, gomoku/stoc.c, hack/hack.u_init.c,
+	hangman/getword.c, hunt/hunt/hunt.c, hunt/hunt/otto.c,
+	hunt/huntd/answer.c, mille/move.c, monop/getinp.c, monop/misc.c,
+	number/number.c, pig/pig.c, robots/main.c, sail/dr_1.c,
+	sail/misc.c, sail/pl_4.c, sail/pl_5.c, worms/Makefile.bsd,
+	wtf/acronyms, wtf/acronyms.comp: Update from NetBSD CVS.
+
+2004-10-31  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* lib/fgetln.c: Handle case of line just fitting in buffer
+	correctly.
+
+2004-10-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* dm/utmpentry.c: Update from NetBSD CVS.
+
+2004-09-15  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/fortune/fortune.6.in, fortune/strfile/strfile.8,
+	worms/worms.c: Update from NetBSD CVS.
+
+2004-09-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/log.c, sail/dr_1.c, sail/sync.c: Update from NetBSD CVS.
+
+2004-09-04  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2004-09-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* robots/auto.c, robots/move.c: Update from NetBSD CVS.
+
+2004-08-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/datfiles/fortunes: Update from NetBSD CVS.
+
+2004-07-16  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms.comp: Update from NetBSD CVS.
+
+2004-07-05  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2004-06-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms.comp: Update from NetBSD CVS.
+
+2004-06-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hack/hack.6.in: Update from NetBSD CVS.
+
+2004-05-24  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/datfiles/fortunes: Update from NetBSD CVS.
+
+2004-05-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms.comp: Update from NetBSD CVS.
+
+2004-05-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* rain/rain.c: Update from NetBSD CVS.
+	* exec.objs: Update.
+
+2004-04-30  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms.comp: Update from NetBSD CVS.
+
+2004-04-24  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/common_source/fancy.c, fortune/datfiles/farber:
+	Update from NetBSD CVS.
+
+2004-04-12  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* phantasia/fight.c, phantasia/gamesupport.c,
+	phantasia/interplayer.c, phantasia/io.c, phantasia/main.c,
+	phantasia/misc.c: Update from NetBSD CVS.
+
+2004-04-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* mille/move.c, phantasia/fight.c, phantasia/gamesupport.c,
+	phantasia/include.h, phantasia/interplayer.c, phantasia/io.c,
+	phantasia/main.c, phantasia/misc.c, phantasia/phantstruct.h,
+	phantasia/setup.c, worms/worms.c, wtf/acronyms, wtf/acronyms.comp:
+	Update from NetBSD CVS.
+
+2004-03-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/datfiles/fortunes2, fortune/datfiles/fortunes2-o.real,
+	hack/data, hack/rumors: Update from NetBSD CVS.
+
+2004-03-27  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms, wtf/acronyms.comp: Update from NetBSD CVS.
+
+2004-03-12  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms, wtf/acronyms.comp: Update from NetBSD CVS.
+
+2004-03-05  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2004-03-04  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms.comp: Update from NetBSD CVS.
+
+2004-02-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/datfiles/fortunes2: Update from NetBSD CVS.
+
+2004-02-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2004-02-14  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/datfiles/fortunes, fortune/datfiles/fortunes.sp.ok,
+	rogue/USD.doc/rogue.me: Update from NetBSD CVS.
+	* NEWS: Fix typo.
+	* ChangeLog: Mark properly for 2.16 release.
+
 2004-02-13  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.16.
 
 	* NEWS, bsd-games.lsm, bsd-games-non-free.lsm: Update.
 

@@ -1,4 +1,4 @@
-/*	$NetBSD: move.c,v 1.13 2003/08/07 09:37:25 agc Exp $	*/
+/*	$NetBSD: move.c,v 1.15 2004/11/05 21:30:32 dsl Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -34,11 +34,15 @@
 #if 0
 static char sccsid[] = "@(#)move.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: move.c,v 1.13 2003/08/07 09:37:25 agc Exp $");
+__RCSID("$NetBSD: move.c,v 1.15 2004/11/05 21:30:32 dsl Exp $");
 #endif
 #endif /* not lint */
 
 #include <termios.h>
+
+#ifdef DEBUG
+#include <sys/param.h>
+#endif
 
 #include	"mille.h"
 #ifndef	unctrl
@@ -60,6 +64,13 @@ domove()
 	bool	goodplay;
 
 	pp = &Player[Play];
+	for (i = 0, j = 0; i < HAND_SZ; i++)
+		if (pp->hand[i] != -1)
+			j++;
+	if (!j) {
+		nextplay();
+		return;
+	}
 	if (Play == PLAYER)
 		getmove();
 	else
@@ -356,9 +367,9 @@ getmove()
 		refresh();
 		while ((c = readch()) == killchar() || c == erasechar())
 			continue;
-		if (islower(c))
-			c = toupper(c);
-		if (isprint(c) && !isspace(c)) {
+		if (islower((unsigned char)c))
+			c = toupper((unsigned char)c);
+		if (isprint((unsigned char)c) && !isspace((unsigned char)c)) {
 			addch(c);
 			refresh();
 		}
@@ -426,10 +437,12 @@ getmove()
 		  case 'Z':		/* Debug code */
 			if (!Debug && outf == NULL) {
 				char	buf[MAXPATHLEN];
+				char	*sp;
 
 				prompt(FILEPROMPT);
 				leaveok(Board, FALSE);
 				refresh();
+over:
 				sp = buf;
 				while ((*sp = readch()) != '\n') {
 					if (*sp == killchar())
