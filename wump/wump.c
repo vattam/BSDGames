@@ -1,4 +1,4 @@
-/*	$NetBSD: wump.c,v 1.7 1998/09/13 15:27:31 hubertf Exp $	*/
+/*	$NetBSD: wump.c,v 1.14 2001/08/31 07:16:22 jsm Exp $	*/
 
 /*
  * Copyright (c) 1989, 1993
@@ -47,7 +47,7 @@ __COPYRIGHT("@(#) Copyright (c) 1989, 1993\n\
 #if 0
 static char sccsid[] = "@(#)wump.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: wump.c,v 1.7 1998/09/13 15:27:31 hubertf Exp $");
+__RCSID("$NetBSD: wump.c,v 1.14 2001/08/31 07:16:22 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -120,6 +120,7 @@ int	bats_nearby __P((void));
 void	cave_init __P((void));
 void	clear_things_in_cave __P((void));
 void	display_room_stats __P((void));
+int	gcd __P((int, int));
 int	getans __P((const char *));
 void	initialize_things_in_cave __P((void));
 void	instructions __P((void));
@@ -520,6 +521,18 @@ The arrow is weakly shot and can go no further!\n");
 	return(0);
 }
 
+int
+gcd(a, b)
+	int a, b;
+{
+	int r;
+
+	r = a % b;
+	if (r == 0)
+		return (b);
+	return (gcd(b, r));
+}
+
 void
 cave_init()
 {
@@ -542,8 +555,14 @@ cave_init()
 		for (j = 0; j < link_num ; ++j)
 			cave[i].tunnel[j] = -1;
 
-	/* choose a random 'hop' delta for our guaranteed link */
-	while (!(delta = random() % room_num));
+	/*
+	 * Choose a random 'hop' delta for our guaranteed link.
+	 * To keep the cave connected, we need the greatest common divisor
+	 * of (delta + 1) and room_num to be 1.
+	 */
+	do {
+		delta = (random() % (room_num - 1)) + 1;
+	} while (gcd(room_num, delta + 1) != 1);
 
 	for (i = 1; i <= room_num; ++i) {
 		link = ((i + delta) % room_num) + 1;	/* connection */
@@ -730,7 +749,7 @@ int_compare(a, b)
 void
 instructions()
 {
-	char *pager;
+	const char *pager;
 	pid_t pid;
 	int status;
 	int fd;
@@ -749,7 +768,7 @@ puff of greasy black smoke! (poof)\n");
 		return;
 	}
 
-	if (!isatty(1))
+	if (!isatty(STDOUT_FILENO))
 		pager = "cat";
 	else {
 		if (!(pager = getenv("PAGER")) || (*pager == 0))
@@ -759,7 +778,7 @@ puff of greasy black smoke! (poof)\n");
 	case 0: /* child */
 		if ((fd = open(_PATH_WUMPINFO, O_RDONLY)) == -1)
 			err(1, "open %s", _PATH_WUMPINFO);
-		if (dup2(fd, 0) == -1)
+		if (dup2(fd, STDIN_FILENO) == -1)
 			err(1, "dup2");
 		(void)execl("/bin/sh", "sh", "-c", pager, NULL);
 		err(1, "exec sh -c %s", pager);

@@ -1,4 +1,4 @@
-/*	$NetBSD: print.c,v 1.6 1997/10/12 00:54:24 lukem Exp $	*/
+/*	$NetBSD: print.c,v 1.10 2000/04/27 17:49:15 thorpej Exp $	*/
 
 /*
  * Copyright (c) 1982, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)print.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: print.c,v 1.6 1997/10/12 00:54:24 lukem Exp $");
+__RCSID("$NetBSD: print.c,v 1.10 2000/04/27 17:49:15 thorpej Exp $");
 #endif
 #endif /* not lint */
 
@@ -89,7 +89,7 @@ prboard()
 	pp = &Player[PLAYER];
 	for (i = 0; i < HAND_SZ; i++)
 		show_card(i + 6, temp, pp->hand[i], &pp->sh_hand[i]);
-	mvprintw(6, COMP_STRT + CARD_STRT, "%2d", Topcard - Deck);
+	mvprintw(6, COMP_STRT + CARD_STRT, "%2ld", (long)(Topcard - Deck));
 	show_card(8, COMP_STRT + CARD_STRT, Discard, &Sh_discard);
 	if (End == 1000) {
 		move(EXT_Y, EXT_X);
@@ -122,7 +122,11 @@ static char	Score_fmt[] = "%4d";
 
 void
 prscore(for_real)
-	bool	for_real; 
+#ifdef EXTRAP
+	bool	for_real;
+#else
+	bool	for_real __attribute__((__unused__));
+#endif
 {
 	PLAY	*pp;
 	int	x;

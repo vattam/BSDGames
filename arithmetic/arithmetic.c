@@ -1,4 +1,4 @@
-/*	$NetBSD: arithmetic.c,v 1.12 1998/09/14 09:13:46 hubertf Exp $	*/
+/*	$NetBSD: arithmetic.c,v 1.18 2002/03/31 04:07:22 hubertf Exp $	*/
 
 /*
  * Copyright (c) 1989, 1993
@@ -46,7 +46,7 @@ __COPYRIGHT("@(#) Copyright (c) 1989, 1993\n\
 #if 0
 static char sccsid[] = "@(#)arithmetic.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: arithmetic.c,v 1.12 1998/09/14 09:13:46 hubertf Exp $");
+__RCSID("$NetBSD: arithmetic.c,v 1.18 2002/03/31 04:07:22 hubertf Exp $");
 #endif
 #endif /* not lint */
 
@@ -94,7 +94,7 @@ int	main __P((int, char *[]));
 int	opnum __P((int));
 void	penalise __P((int, int, int));
 int	problem __P((void));
-void	showstats __P((void));
+void	showstats __P((int));
 void	usage __P((void)) __attribute__((__noreturn__));
 
 const char keylist[] = "+-x/";
@@ -105,6 +105,8 @@ int rangemax = 10;
 int nright, nwrong;
 time_t qtime;
 #define	NQUESTS	20
+
+extern char *__progname;	/* from crt0.o */
 
 /*
  * Select keys from +-x/ to be asked addition, subtraction, multiplication,
@@ -118,8 +120,6 @@ main(argc, argv)
 	int argc;
 	char **argv;
 {
-	extern char *optarg;
-	extern int optind;
 	int ch, cnt;
 
 	/* Revoke setgid privileges */
@@ -157,7 +157,7 @@ main(argc, argv)
 		for (cnt = NQUESTS; cnt--;)
 			if (problem() == EOF)
 				exit(0);
-		showstats();
+		showstats(0);
 	}
 	/* NOTREACHED */
 }
@@ -165,15 +165,16 @@ main(argc, argv)
 /* Handle interrupt character.  Print score and exit. */
 void
 intr(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
-	showstats();
+	showstats(1);
 	exit(0);
 }
 
 /* Print score.  Original `arithmetic' had a delay after printing it. */
 void
-showstats()
+showstats(bool_sigint)
+	int bool_sigint;
 {
 	if (nright + nwrong > 0) {
 		(void)printf("\n\nRights %d; Wrongs %d; Score %d%%",
@@ -181,6 +182,10 @@ showstats()
 		if (nright > 0)
 	(void)printf("\nTotal time %ld seconds; %.1f seconds per problem\n\n",
 			    (long)qtime, (float)qtime / nright);
+	}
+	if(!bool_sigint) {
+		(void)printf("Press RETURN to continue...\n");
+		while(!getchar()) ;
 	}
 	(void)printf("\n");
 }
@@ -388,9 +393,7 @@ opnum(op)
 void
 usage()
 {
-	extern char *__progname;	/* from crt0.o */
-
-	(void)fprintf(stderr, "usage: %s [-o +-x/] [-r range]\n",
+	(void)fprintf(stderr, "Usage: %s [-o +-x/] [-r range]\n",
 		__progname);
 	exit(1);
 }

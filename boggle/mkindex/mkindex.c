@@ -1,4 +1,4 @@
-/*	$NetBSD: mkindex.c,v 1.4 1998/09/11 13:16:05 hubertf Exp $	*/
+/* $NetBSD: mkindex.c,v 1.8 2000/07/31 11:29:48 simonb Exp $ */
 
 /*-
  * Copyright (c) 1993
@@ -36,17 +36,15 @@
  * SUCH DAMAGE.
  */
 
-#include <sys/cdefs.h>
 #ifndef lint
-__COPYRIGHT("@(#) Copyright (c) 1993\n\
-	The Regents of the University of California.  All rights reserved.\n");
-#endif /* not lint */
+static const char copyright[] __attribute__((__unused__)) = "@(#) Copyright (c) 1993\n\
+	The Regents of the University of California.  All rights reserved.\n";
 
-#ifndef lint
 #if 0
 static char sccsid[] = "@(#)mkindex.c	8.1 (Berkeley) 6/11/93";
 #else
-__RCSID("$NetBSD: mkindex.c,v 1.4 1998/09/11 13:16:05 hubertf Exp $");
+static const char rcsid[] __attribute__((__unused__)) =
+    "$NetBSD: mkindex.c,v 1.8 2000/07/31 11:29:48 simonb Exp $";
 #endif
 #endif /* not lint */
 
@@ -55,13 +53,13 @@ __RCSID("$NetBSD: mkindex.c,v 1.4 1998/09/11 13:16:05 hubertf Exp $");
 
 #include "bog.h"
 
-int main __P((void));
-char *nextword __P((FILE *, char *, int *, int *));
+int main(void);
+char *nextword(FILE *, char *, int *, int *);
 
 int
 main(void)
 {
-	int clen, rlen, prev;
+	int clen, rlen, prev, i;
 	long off, start;
 	char buf[MAXWORDLEN + 1];
 
@@ -69,14 +67,29 @@ main(void)
 	off = start = 0L;
 	while (nextword(stdin, buf, &clen, &rlen) != NULL) {
 		if (*buf != prev) {
+			/*
+			 * Boggle expects a full index even if the dictionary
+			 * had no words beginning with some letters.
+			 * So we write out entries for every letter from prev
+			 * to *buf.
+			 */
 			if (prev != '\0')
 				printf("%c %6ld %6ld\n", prev, start, off - 1);
+			for (i = (prev ? prev + 1 : 'a'); i < *buf; i++)
+				printf("%c %6ld %6ld\n", i, off, off - 1);
 			prev = *buf;
 			start = off;
 		}
 		off += clen + 1;
 	}
 	printf("%c %6ld %6ld\n", prev, start, off - 1);
+	for (i = prev + 1; i <= 'z'; i++)
+		printf("%c %6ld %6ld\n", i, off, off - 1);
+	fflush(stdout);
+	if (ferror(stdout)) {
+		perror("error writing standard output");
+		exit(1);
+	}
 	exit(0);
 }
 

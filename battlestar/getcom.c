@@ -1,4 +1,4 @@
-/*	$NetBSD: getcom.c,v 1.5 1997/10/11 02:07:21 lukem Exp $	*/
+/*	$NetBSD: getcom.c,v 1.10 2000/09/24 15:51:40 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)getcom.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: getcom.c,v 1.5 1997/10/11 02:07:21 lukem Exp $");
+__RCSID("$NetBSD: getcom.c,v 1.10 2000/09/24 15:51:40 jsm Exp $");
 #endif
 #endif				/* not lint */
 
@@ -53,6 +53,8 @@ getcom(buf, size, prompt, error)
 	for (;;) {
 		fputs(prompt, stdout);
 		if (fgets(buf, size, stdin) == 0) {
+			if (feof(stdin))
+				die();
 			clearerr(stdin);
 			continue;
 		}
@@ -62,6 +64,12 @@ getcom(buf, size, prompt, error)
 			break;
 		if (error)
 			puts(error);
+	}
+	/* If we didn't get to the end of the line, don't read it in next time. */
+	if (buf[strlen(buf) - 1] != '\n') {
+		int i;
+		while ((i = getchar()) != '\n' && i != EOF)
+			continue;
 	}
 	return (buf);
 }
@@ -76,6 +84,9 @@ getword(buf1, buf2, flag)
 	char   *buf1, *buf2;
 	int     flag;
 {
+	int cnt;
+
+	cnt = 1;
 	while (isspace(*buf1))
 		buf1++;
 	if (*buf1 != ',') {
@@ -83,24 +94,34 @@ getword(buf1, buf2, flag)
 			*buf2 = 0;
 			return (0);
 		}
-		while (*buf1 && !isspace(*buf1) && *buf1 != ',')
-			if (flag < 0)
-				if (isupper(*buf1))
+		while (cnt < WORDLEN && *buf1 && !isspace(*buf1) && *buf1 != ',')
+			if (flag < 0) {
+				if (isupper(*buf1)) {
 					*buf2++ = tolower(*buf1++);
-				else
+					cnt++;
+				} else {
 					*buf2++ = *buf1++;
-			else
-				if (flag > 0)
-					if (islower(*buf1))
-						*buf2++ = toupper(*buf1++);
-					else
-						*buf2++ = *buf1++;
-				else
+					cnt++;
+				}
+			} else if (flag > 0) {
+				if (islower(*buf1)) {
+					*buf2++ = toupper(*buf1++);
+					cnt++;
+				} else {
 					*buf2++ = *buf1++;
+					cnt++;
+				}
+			} else {
+				*buf2++ = *buf1++;
+				cnt++;
+			}
+		if (cnt == WORDLEN)
+			while (*buf1 && !isspace(*buf1))
+				buf1++;
 	} else
 		*buf2++ = *buf1++;
-	*buf2 = 0;
+	*buf2 = '\0';
 	while (isspace(*buf1))
 		buf1++;
-	return (*buf1 ? buf1 : 0);
+	return (*buf1 ? buf1 : NULL);
 }

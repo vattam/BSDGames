@@ -1,4 +1,4 @@
-/*	$NetBSD: deck.h,v 1.3 1995/03/23 08:34:36 cgd Exp $	*/
+/*	$NetBSD: deck.h,v 1.5 1999/08/21 10:40:03 simonb Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -35,16 +35,18 @@
  *	@(#)deck.h	8.1 (Berkeley) 5/31/93
  */
 
-# define	bool	char
+#include <sys/types.h>
 
-# define	CC_D	deck[0]
-# define	CH_D	deck[1]
+#define	bool	char
+
+#define	CC_D	deck[0]
+#define	CH_D	deck[1]
 
 struct dk_st {			/* deck description structure		*/
 	int	num_cards;		/* number of cards in deck	*/
 	int	last_card;		/* number of last card picked	*/
 	bool	gojf_used;		/* set if gojf card out of deck	*/
-	long	*offsets;		/* offests for start of cards	*/
+	u_int64_t	*offsets;	/* offsets for start of cards	*/
 };
 
 typedef struct dk_st	DECK;

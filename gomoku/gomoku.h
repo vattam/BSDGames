@@ -1,4 +1,4 @@
-/*	$NetBSD: gomoku.h,v 1.5 1998/09/13 15:27:28 hubertf Exp $	*/
+/*	$NetBSD: gomoku.h,v 1.7 1999/09/13 17:18:57 jsm Exp $	*/
 
 /*
  * Copyright (c) 1994

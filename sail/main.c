@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.6 1997/10/13 21:03:55 christos Exp $	*/
+/*	$NetBSD: main.c,v 1.20 2001/08/29 18:23:44 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -43,51 +43,57 @@ __COPYRIGHT("@(#) Copyright (c) 1983, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: main.c,v 1.6 1997/10/13 21:03:55 christos Exp $");
+__RCSID("$NetBSD: main.c,v 1.20 2001/08/29 18:23:44 jsm Exp $");
 #endif
 #endif /* not lint */
 
-#include "extern.h"
-#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <setjmp.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include <unistd.h>
+#include "extern.h"
+#include "restart.h"
 
-int main __P((int, char **));
-
-/*ARGSUSED*/
 int
-main(argc, argv)
-	int argc __attribute__((unused));
-	char **argv;
+main(int argc, char **argv)
 {
 	char *p;
-	int i;
+	int a,i;
+	int fd;
 
 	gid = getgid();
 	egid = getegid();
 	setegid(gid);
 
-	(void) srand(getpid());
+	fd = open("/dev/null", O_RDONLY);
+	if (fd < 3)
+		exit(1);
+	close(fd);
+
+	srandom((u_long)time(NULL));
+
 	if ((p = strrchr(*argv, '/')) != NULL)
 		p++;
 	else
 		p = *argv;
+
 	if (strcmp(p, "driver") == 0 || strcmp(p, "saildriver") == 0)
 		mode = MODE_DRIVER;
 	else if (strcmp(p, "sail.log") == 0)
 		mode = MODE_LOGGER;
 	else
 		mode = MODE_PLAYER;
-	while ((p = *++argv) && *p == '-')
-		switch (p[1]) {
+
+	while ((a = getopt(argc, argv, "dsxlb")) != -1)
+		switch (a) {
 		case 'd':
 			mode = MODE_DRIVER;
 			break;
 		case 's':
 			mode = MODE_LOGGER;
-			break;
-		case 'D':
-			debug++;
 			break;
 		case 'x':
 			randomize++;
@@ -102,12 +108,18 @@ main(argc, argv)
 			fprintf(stderr, "SAIL: Unknown flag %s.\n", p);
 			exit(1);
 		}
+
+	argc -= optind;
+	argv += optind;
+
 	if (*argv)
 		game = atoi(*argv);
 	else
 		game = -1;
+
 	if ((i = setjmp(restart)) != 0)
 		mode = i;
+
 	switch (mode) {
 	case MODE_PLAYER:
 		return pl_main();

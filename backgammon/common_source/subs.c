@@ -1,4 +1,4 @@
-/*	$NetBSD: subs.c,v 1.8 1998/09/13 15:19:35 hubertf Exp $	*/
+/*	$NetBSD: subs.c,v 1.13 1999/10/04 23:26:59 lukem Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)subs.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: subs.c,v 1.8 1998/09/13 15:19:35 hubertf Exp $");
+__RCSID("$NetBSD: subs.c,v 1.13 1999/10/04 23:26:59 lukem Exp $");
 #endif
 #endif /* not lint */
 
@@ -84,7 +84,7 @@ addbuf(c)
 		buffnum = 0;
 	}
 	outbuff[buffnum] = c;
-	return 0;
+	return (0);
 }
 
 void
@@ -325,7 +325,7 @@ getarg(arg)
 	 * the game is being recovered */
 
 	s = *arg;
-	while (s[0] != NULL && s[0][0] == '-') {
+	while (*s && s[0][0] == '-') {
 		switch (s[0][1]) {
 
 			/* don't ask if rules or instructions needed */
@@ -447,7 +447,7 @@ fixtty(t)
 
 void
 getout(dummy)
-	int     dummy __attribute__((unused));
+	int     dummy __attribute__((__unused__));
 {
 	/* go to bottom of screen */
 	if (tflag) {

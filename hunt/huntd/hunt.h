@@ -1,4 +1,4 @@
-/*	$NetBSD: hunt.h,v 1.5 1998/09/13 15:27:28 hubertf Exp $	*/
+/*	$NetBSD: hunt.h,v 1.7 2002/09/20 20:54:17 mycroft Exp $	*/
 
 /*
  *  Hunt
@@ -21,7 +21,7 @@
 # endif
 # include	<sys/types.h>
 # include	<sys/uio.h>
-# include	<sys/socket.h>
+# include	<sys/poll.h>
 # ifdef	INTERNET
 # include	<netinet/in.h>
 # include	<netdb.h>
@@ -82,6 +82,7 @@
 # define	MAXMON		1
 # else
 # define	MAXPL		17
+# define	MAXMON		0
 # endif
 # define	SHORTLEN	2		/* sizeof (network short) */
 # define	LONGLEN		4		/* sizeof (network long) */
@@ -348,8 +349,8 @@ extern char	Buf[BUFSIZ], Maze[HEIGHT][WIDTH2], Orig_maze[HEIGHT][WIDTH2];
 extern char	*Sock_name;
 extern const char	*Driver;
 
-extern int	Nplayer, Num_fds, Socket, Status;
-extern fd_set	Fds_mask, Have_inp;
+extern int	Nplayer, Socket, Status;
+extern struct	pollfd fdset[];
 
 # ifdef INTERNET
 extern u_short	Test_port;
@@ -393,8 +394,8 @@ extern FLAG	no_beep;
 
 void		add_shot __P((int, int, int, char, int, PLAYER *, int, char));
 int		answer __P((void));
-void		bad_con __P((void));
-void		bad_ver __P((void));
+void		bad_con __P((void)) __attribute__((__noreturn__));
+void		bad_ver __P((void)) __attribute__((__noreturn__));
 int		broadcast_vec __P((int, struct	sockaddr **));
 void		ce __P((PLAYER *));
 void		cgoto __P((PLAYER *, int, int));
@@ -453,6 +454,6 @@ char		translate __P((char));
 SIGNAL_TYPE	cleanup __P((int)) __attribute__((__noreturn__));
 SIGNAL_TYPE	intr __P((int));
 SIGNAL_TYPE	sigalrm __P((int));
-SIGNAL_TYPE	sigemt __P((int));
-SIGNAL_TYPE	sigterm __P((int));
+SIGNAL_TYPE	sigemt __P((int)) __attribute__((__noreturn__));
+SIGNAL_TYPE	sigterm __P((int)) __attribute__((__noreturn__));
 SIGNAL_TYPE	tstp __P((int));

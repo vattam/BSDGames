@@ -1,4 +1,4 @@
-/*	$NetBSD: pl_2.c,v 1.4 1997/10/13 19:45:01 christos Exp $	*/
+/*	$NetBSD: pl_2.c,v 1.10 2001/02/05 01:10:10 christos Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,14 +38,16 @@
 #if 0
 static char sccsid[] = "@(#)pl_2.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: pl_2.c,v 1.4 1997/10/13 19:45:01 christos Exp $");
+__RCSID("$NetBSD: pl_2.c,v 1.10 2001/02/05 01:10:10 christos Exp $");
 #endif
 #endif /* not lint */
 
+#include <signal.h>
+#include "extern.h"
 #include "player.h"
 
 void
-play()
+play(void)
 {
 	struct ship *sp;
 

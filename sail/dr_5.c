@@ -1,4 +1,4 @@
-/*	$NetBSD: dr_5.c,v 1.5 1997/10/13 19:43:47 christos Exp $	*/
+/*	$NetBSD: dr_5.c,v 1.11 2001/02/05 01:10:09 christos Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,17 +38,15 @@
 #if 0
 static char sccsid[] = "@(#)dr_5.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: dr_5.c,v 1.5 1997/10/13 19:43:47 christos Exp $");
+__RCSID("$NetBSD: dr_5.c,v 1.11 2001/02/05 01:10:09 christos Exp $");
 #endif
 #endif /* not lint */
 
+#include <sys/types.h>
 #include "extern.h"
 
 void
-subtract(from, totalfrom, crewfrom, fromcap, pcfrom)
-struct ship *from, *fromcap;
-int pcfrom;
-int  totalfrom, crewfrom[3];
+subtract(struct ship *from, struct ship *fromcap, int totalfrom, int *crewfrom, int pcfrom)
 {
 	int n;
 
@@ -62,19 +60,16 @@ int  totalfrom, crewfrom[3];
 				totalfrom = 0;
 			}
 		}
-		Write(W_CREW, from, 0, crewfrom[0], crewfrom[1], crewfrom[2], 0);
+		Write(W_CREW, from, crewfrom[0], crewfrom[1], crewfrom[2], 0);
 	} else if (totalfrom) {
 		pcfrom -= totalfrom;
 		pcfrom = pcfrom < 0 ? 0 : pcfrom;
-		Write(W_PCREW, from, 0, pcfrom, 0, 0, 0);
+		Write(W_PCREW, from, pcfrom, 0, 0, 0);
 	}
 }
 
 int
-mensent(from, to, crew, captured, pc, isdefense)
-struct ship *from, *to, **captured;
-int crew[3], *pc;
-char isdefense;
+mensent(struct ship *from, struct ship *to, int *crew, struct ship **captured, int *pc, int isdefense)
 {					/* returns # of crew squares sent */
 	int men = 0;
 	int n;

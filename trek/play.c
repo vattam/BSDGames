@@ -1,4 +1,4 @@
-/*	$NetBSD: play.c,v 1.4 1997/10/12 21:25:07 christos Exp $	*/
+/*	$NetBSD: play.c,v 1.7 2001/02/05 01:12:46 christos Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)play.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: play.c,v 1.4 1997/10/12 21:25:07 christos Exp $");
+__RCSID("$NetBSD: play.c,v 1.7 2001/02/05 01:12:46 christos Exp $");
 #endif
 #endif /* not lint */
 
@@ -58,7 +58,9 @@ __RCSID("$NetBSD: play.c,v 1.4 1997/10/12 21:25:07 christos Exp $");
 **	on how we are doing after the move.
 */
 
-struct cvntab	Comtab[] =
+extern jmp_buf env;
+
+const struct cvntab	Comtab[] =
 {
 	{ "abandon",		"",		abandon,	0 },
 	{ "ca",			"pture",	capture,	0 },
@@ -89,9 +91,8 @@ struct cvntab	Comtab[] =
 /*ARGSUSED*/
 void
 myreset(v)
-	int v __attribute__((unused));
+	int v __attribute__((__unused__));
 {
-	extern jmp_buf env;
 
 	longjmp(env, 1);
 }
@@ -99,7 +100,7 @@ myreset(v)
 void
 play()
 {
-	struct cvntab		*r;
+	const struct cvntab		*r;
 
 	while (1)
 	{

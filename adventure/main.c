@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.12 1998/09/14 09:29:08 hubertf Exp $	*/
+/*	$NetBSD: main.c,v 1.16 2000/07/03 03:57:39 matt Exp $	*/
 
 /*-
  * Copyright (c) 1991, 1993
@@ -48,7 +48,7 @@ __COPYRIGHT("@(#) Copyright (c) 1991, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 6/2/93";
 #else
-__RCSID("$NetBSD: main.c,v 1.12 1998/09/14 09:29:08 hubertf Exp $");
+__RCSID("$NetBSD: main.c,v 1.16 2000/07/03 03:57:39 matt Exp $");
 #endif
 #endif /* not lint */
 
@@ -58,6 +58,7 @@ __RCSID("$NetBSD: main.c,v 1.12 1998/09/14 09:29:08 hubertf Exp $");
 #include <err.h>
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include "hdr.h"
 #include "extern.h"
@@ -73,7 +74,7 @@ main(argc, argv)
 	int     rval, ll;
 	struct text *kk;
 
-	/* revoke setgid privileges */
+	/* revoke setgid privileges from dm */
 	setregid(getgid(), getgid());
 
 	init();		/* Initialize everything */
@@ -451,7 +452,7 @@ l4080:
 			printf(" %d minutes before continuing.", latncy);
 			if (!yes(200, 54, 54))
 				goto l2012;
-			datime(&saved, &savet);
+			datime(&saveday, &savet);
 			ciao();	/* Do we quit? */
 			continue;	/* Maybe not */
 		case 31:	/* hours=8310 */

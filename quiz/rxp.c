@@ -1,4 +1,4 @@
-/*	$NetBSD: rxp.c,v 1.6 1997/09/20 14:28:19 lukem Exp $	*/
+/*	$NetBSD: rxp.c,v 1.10 2002/12/06 01:54:55 thorpej Exp $	*/
 
 /*-
  * Copyright (c) 1991, 1993
@@ -42,7 +42,7 @@
 #if 0
 static char sccsid[] = "@(#)rxp.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: rxp.c,v 1.6 1997/09/20 14:28:19 lukem Exp $");
+__RCSID("$NetBSD: rxp.c,v 1.10 2002/12/06 01:54:55 thorpej Exp $");
 #endif
 #endif /* not lint */
 
@@ -68,6 +68,7 @@ __RCSID("$NetBSD: rxp.c,v 1.6 1997/09/20 14:28:19 lukem Exp $");
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include "quiz.h"
 					/* regexp tokens,	arg */
@@ -85,24 +86,24 @@ typedef short Rxp_t;			/* type for regexp tokens */
 static Rxp_t rxpbuf[RXP_LINE_SZ];	/* compiled regular expression buffer */
 char rxperr[128];			/* parser error message */
 
-static int	 rxp__compile __P((char *, int));
+static int	 rxp__compile __P((const char *, int));
 static char	*rxp__expand __P((int));
-static int	 rxp__match __P((char *, int, Rxp_t *, Rxp_t *, char *));
+static int	 rxp__match __P((const char *, int, Rxp_t *, Rxp_t *, const char *));
 
 int
 rxp_compile(s)
-	char *	s;
+	const char *	s;
 {
 	return (rxp__compile(s, TRUE));
 }
 
 static int
 rxp__compile(s, first)
-	char *s;
+	const char *s;
 	int first;
 {
 	static Rxp_t *rp;
-	static char *sp;
+	static const char *sp;
 	Rxp_t *grp_ptr;
 	Rxp_t *alt_ptr;
 	int esc, err;
@@ -196,24 +197,23 @@ rxp__compile(s, first)
  */
 int
 rxp_match(s)
-	char *	s;
+	const char *	s;
 {
 	return (rxp__match(s, TRUE, NULL, NULL, NULL));
 }
 
 static int
 rxp__match(s, first, j_succ, j_fail, sp_fail)
-	char *s;
+	const char *s;
 	int first;
 	Rxp_t *j_succ;		/* jump here on successful alt match */
 	Rxp_t *j_fail;		/* jump here on failed match */
-	char *sp_fail;		/* reset sp to here on failed match */
+	const char *sp_fail;		/* reset sp to here on failed match */
 {
 	static Rxp_t *rp;
-	static char *sp;
+	static const char *sp;
 	int ch;
 	Rxp_t *grp_end = NULL;
-	int err;
 
 	if (first) {
 		rp = rxpbuf;
@@ -227,7 +227,7 @@ rxp__match(s, first, j_succ, j_fail, sp_fail)
 			if (ch != *sp++) {
 				rp = j_fail;
 				sp = sp_fail;
-				return (TRUE);
+				return (FALSE);
 			}
 			rp++;
 			break;
@@ -247,16 +247,17 @@ rxp__match(s, first, j_succ, j_fail, sp_fail)
 			break;
 		case ALT_S:
 			rp++;
-			if ((err = rxp__match(sp,
-			    FALSE, grp_end, rxpbuf + *rp++, sp)) != TRUE)
-				return (err);
+			rxp__match(sp, FALSE, grp_end, rxpbuf + *rp++, sp);
 			break;
 		case ALT_E:
 			rp = j_succ;
 			return (TRUE);
 		case GRP_E:
-		default:
+			rp = j_fail;
+			sp = sp_fail;
 			return (FALSE);
+		default:
+			abort();
 		}
 	return (*rp != END ? FALSE : TRUE);
 }

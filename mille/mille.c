@@ -1,4 +1,4 @@
-/*	$NetBSD: mille.c,v 1.6 1997/10/12 00:54:07 lukem Exp $	*/
+/*	$NetBSD: mille.c,v 1.12 2001/12/06 12:12:34 blymn Exp $	*/
 
 /*
  * Copyright (c) 1982, 1993
@@ -43,15 +43,12 @@ __COPYRIGHT("@(#) Copyright (c) 1982, 1993\n\
 #if 0
 static char sccsid[] = "@(#)mille.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: mille.c,v 1.6 1997/10/12 00:54:07 lukem Exp $");
+__RCSID("$NetBSD: mille.c,v 1.12 2001/12/06 12:12:34 blymn Exp $");
 #endif
 #endif /* not lint */
 
 # include	"mille.h"
 # include	<signal.h>
-# ifdef attron
-#	include	<term.h>
-# endif	attron
 
 /*
  * @(#)mille.c	1.3 (Berkeley) 5/10/83
@@ -81,7 +78,7 @@ main(ac, av)
 		break;
 	  default:
 		printf("usage: milles [ restore_file ]\n");
-		exit(-1);
+		exit(1);
 		/* NOTREACHED */
 	}
 	Play = PLAYER;
@@ -103,7 +100,7 @@ main(ac, av)
 # else
 	srandom(0);
 # endif
-	crmode();
+	cbreak();
 	noecho();
 	signal(SIGINT, rub);
 	for (;;) {
@@ -146,7 +143,7 @@ main(ac, av)
  */
 void
 rub(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
 	(void)signal(SIGINT, SIG_IGN);
 	if (getyn(REALLYPROMPT))

@@ -1,4 +1,4 @@
-/*	$NetBSD: init.c,v 1.6 1997/10/14 00:53:31 lukem Exp $	*/
+/*	$NetBSD: init.c,v 1.7 1999/02/10 12:29:48 hubertf Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)init.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: init.c,v 1.6 1997/10/14 00:53:31 lukem Exp $");
+__RCSID("$NetBSD: init.c,v 1.7 1999/02/10 12:29:48 hubertf Exp $");
 #endif
 #endif /* not lint */
 
@@ -67,7 +67,7 @@ int     tflag = 0;		/* cursor addressing flag */
 int     iroll = 0;		/* special flag for inputting rolls */
 int     rfl = 0;
 
-const char *const color[] = {"White", "Red", "white", "red"};
+const char   *const color[] = {"White", "Red", "white", "red"};
 
 
 const char	*const *Colorptr;

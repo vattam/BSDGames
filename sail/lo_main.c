@@ -1,4 +1,4 @@
-/*	$NetBSD: lo_main.c,v 1.5 1997/10/13 19:44:24 christos Exp $	*/
+/*	$NetBSD: lo_main.c,v 1.11 2001/02/05 01:10:10 christos Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)lo_main.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: lo_main.c,v 1.5 1997/10/13 19:44:24 christos Exp $");
+__RCSID("$NetBSD: lo_main.c,v 1.11 2001/02/05 01:10:10 christos Exp $");
 #endif
 #endif /* not lint */
 
@@ -47,19 +47,21 @@ __RCSID("$NetBSD: lo_main.c,v 1.5 1997/10/13 19:44:24 christos Exp $");
  *
  * -l force a long listing (print out real usernames)
  */
-#include <sys/types.h>
+
+#include <stdio.h>
+#include <stdlib.h>
 #include <pwd.h>
 #include "extern.h"
 #include "pathnames.h"
 
-char *title[] = {
+const char *const title[] = {
 	"Admiral", "Commodore", "Captain", "Captain",
 	"Captain", "Captain", "Captain", "Commander",
 	"Commander", "Lieutenant"
 };
 
 int
-lo_main()
+lo_main(void)
 {
 	FILE *fp;
 	char sbuf[32];
@@ -85,10 +87,9 @@ lo_main()
 	while (fread((char *)&log, sizeof log, 1, fp) == 1 &&
 	       log.l_name[0] != '\0') {
 		if (longfmt && (pass = getpwuid(log.l_uid)) != NULL)
-			(void) sprintf(sbuf, "%10.10s (%s)",
-				log.l_name, pass->pw_name);
+			sprintf(sbuf, "%10.10s (%s)", log.l_name, pass->pw_name);
 		else
-			(void) sprintf(sbuf, "%20.20s", log.l_name);
+			sprintf(sbuf, "%20.20s", log.l_name);
 		ship = &scene[log.l_gamenum].ship[log.l_shipnum];
 		printf("%-10s %21s of the %15s %3d points, %5.2f equiv\n",
 			title[n++], sbuf, ship->shipname, log.l_netpoints,

@@ -1,4 +1,4 @@
-/*	$NetBSD: execute.c,v 1.5 1998/09/11 13:54:08 hubertf Exp $	*/
+/*	$NetBSD: execute.c,v 1.8 2001/08/29 18:23:44 jsm Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)execute.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: execute.c,v 1.5 1998/09/11 13:54:08 hubertf Exp $");
+__RCSID("$NetBSD: execute.c,v 1.8 2001/08/29 18:23:44 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -49,8 +49,9 @@ __RCSID("$NetBSD: execute.c,v 1.5 1998/09/11 13:54:08 hubertf Exp $");
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <time.h>
 
-# define	SEGSIZE	8192
+#define	SEGSIZE	8192
 
 typedef	struct stat	STAT;
 typedef	struct tm	TIME;
@@ -66,9 +67,8 @@ static void show_move __P((void));
  */
 void
 execute(com_num)
-int	com_num; 
+	int com_num; 
 {
-
 	new_play = FALSE;	/* new_play is true if fixing	*/
 	(*func[com_num])();
 	notify();
@@ -78,15 +78,15 @@ int	com_num;
 	else if (num_doub)
 		printf("%s rolled doubles.  Goes again\n", cur_p->name);
 }
+
 /*
  *	This routine moves a piece around.
  */
 void
 do_move() 
 {
-
-	int		r1, r2;
-	bool	was_jail;
+	int r1, r2;
+	bool was_jail;
 
 	new_play = was_jail = FALSE;
 	printf("roll is %d, %d\n", r1=roll(1, 6), r2=roll(1, 6));
@@ -111,15 +111,15 @@ do_move()
 ret:
 	return;
 }
+
 /*
  *	This routine moves a normal move
  */
 void
 move(rl)
-int	rl; 
+	int rl; 
 {
-
-	int	old_loc;
+	int old_loc;
 
 	old_loc = cur_p->loc;
 	cur_p->loc = (cur_p->loc + rl) % N_SQRS;
@@ -129,14 +129,14 @@ int	rl;
 	}
 	show_move();
 }
+
 /*
  *	This routine shows the results of a move
  */
 static void
 show_move() 
 {
-
-	SQUARE	*sqp;
+	SQUARE *sqp;
 
 	sqp = &board[cur_p->loc];
 	printf("That puts you on %s\n", sqp->name);
@@ -172,18 +172,18 @@ show_move()
 			rent(sqp);
 	}
 }
+
 /*
  *	This routine saves the current game for use at a later date
  */
 void
 save() 
 {
-
-	char	*sp;
-	int		outf, num;
-	time_t		t;
-	struct stat	sb;
-	char 		*start, *end;
+	char *sp;
+	int outf, num;
+	time_t t;
+	struct stat sb;
+	char *start, *end;
 
 	printf("Which file do you wish to save it in? ");
 	sp = buf;
@@ -219,14 +219,14 @@ save()
 	close(outf);
 	printf("[%s]\n", buf);
 }
+
 /*
  *	This routine restores an old game from a file
  */
 void
 restore() 
 {
-
-	char	*sp;
+	char *sp;
 
 	printf("Which file do you wish to restore from? ");
 	for (sp = buf; (*sp=getchar()) != '\n'; sp++)
@@ -234,20 +234,20 @@ restore()
 	*sp = '\0';
 	rest_f(buf);
 }
+
 /*
  *	This does the actual restoring.  It returns TRUE if the
  * backup was successful, else false.
  */
 int
 rest_f(file)
-char	*file; 
+	const char *file; 
 {
-
-	char	*sp;
-	int		inf, num;
-	char		buf[80];
-	char 		*start, *end;
-	STAT		sbuf;
+	char *sp;
+	int inf, num;
+	char buf[80];
+	char *start, *end;
+	STAT sbuf;
 
 	if ((inf=open(file, O_RDONLY)) < 0) {
 		perror(file);

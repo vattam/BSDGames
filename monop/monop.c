@@ -1,4 +1,4 @@
-/*	$NetBSD: monop.c,v 1.5 1998/09/11 13:54:08 hubertf Exp $	*/
+/*	$NetBSD: monop.c,v 1.12 2001/09/18 18:15:49 wiz Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1980, 1993\n\
 #if 0
 static char sccsid[] = "@(#)monop.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: monop.c,v 1.5 1998/09/11 13:54:08 hubertf Exp $");
+__RCSID("$NetBSD: monop.c,v 1.12 2001/09/18 18:15:49 wiz Exp $");
 #endif
 #endif /* not lint */
 
@@ -64,9 +64,9 @@ static void do_quit __P((int));
  */
 int
 main(ac, av)
-int		ac;
-char	*av[]; {
-
+	int ac;
+	char *av[];
+{
 	/* Revoke setgid privileges */
 	setregid(getgid(), getgid());
 
@@ -95,20 +95,20 @@ char	*av[]; {
 /*ARGSUSED*/
 static void
 do_quit(n)
-	int n __attribute__((unused));
+	int n __attribute__((__unused__));
 {
 	quit();
 }
+
 /*
  *	This routine gets the names of the players
  */
 static void
 getplayers()
 {
-
-	char	*sp;
-	int		i, j;
-	char		buf[257];
+	char *sp;
+	int i, j;
+	char buf[257];
 
 blew_it:
 	for (;;) {
@@ -119,6 +119,8 @@ blew_it:
 			break;
 	}
 	cur_p = play = (PLAY *) calloc(num_play, sizeof (PLAY));
+	if (play == NULL)
+		err(1, NULL);
 	for (i = 0; i < num_play; i++) {
 over:
 		printf("Player %d's name: ", i + 1);
@@ -127,7 +129,10 @@ over:
 		if (sp == buf)
 			goto over;
 		*sp++ = '\0';
-		strcpy(name_list[i]=play[i].name=(char *)calloc(1,sp-buf),buf);
+		name_list[i] = play[i].name = (char *)calloc(1, sp - buf);
+		if (name_list[i] == NULL)
+			err(1, NULL);
+		strcpy(play[i].name, buf);
 		play[i].money = 1500;
 	}
 	name_list[i++] = "done";
@@ -136,25 +141,28 @@ over:
 		for (j = i + 1; j < num_play; j++)
 			if (strcasecmp(name_list[i], name_list[j]) == 0) {
 				if (i != num_play - 1)
-					printf("Hey!!! Some of those are IDENTICAL!!  Let's try that again....\n");
+					printf("Hey!!! Some of those are "
+					    "IDENTICAL!!  Let's try that "
+					    "again....\n");
 				else
-					printf("\"done\" is a reserved word.  Please try again\n");
+					printf("\"done\" is a reserved word.  "
+					    "Please try again\n");
 				for (i = 0; i < num_play; i++)
 					free(play[i].name);
 				free(play);
 				goto blew_it;
 			}
 }
+
 /*
  *	This routine figures out who goes first
  */
 static void
 init_players()
 {
-
-	int	i, rl, cur_max;
-	bool	over = 0;
-	int	max_pl = 0;
+	int i, rl, cur_max;
+	bool over = 0;
+	int max_pl = 0;
 
 again:
 	putchar('\n');
@@ -177,15 +185,15 @@ again:
 	cur_p = &play[max_pl];
 	printf("%s (%d) goes first\n", cur_p->name, max_pl + 1);
 }
+
 /*
- *	This routine initalizes the monopoly structures.
+ *	This routine initializes the monopoly structures.
  */
 static void
 init_monops() 
 {
-
-	MON	*mp;
-	int	i;
+	MON *mp;
+	int i;
 
 	for (mp = mon; mp < &mon[N_MON]; mp++) {
 		mp->name = mp->not_m;

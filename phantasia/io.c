@@ -1,4 +1,4 @@
-/*	$NetBSD: io.c,v 1.3 1997/10/13 02:18:25 lukem Exp $	*/
+/*	$NetBSD: io.c,v 1.5 1999/09/08 21:45:29 jsm Exp $	*/
 
 /*
  * io.c - input/output routines for Phantasia
@@ -153,7 +153,7 @@ interrupt()
 
 int
 getanswer(choices, def)
-	char   *choices;
+	const char   *choices;
 	bool    def;
 {
 	int     ch;		/* input */
@@ -238,7 +238,7 @@ getanswer(choices, def)
 
 void
 catchalarm(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
 	longjmp(Timeoenv, 1);
 }

@@ -1,4 +1,4 @@
-/*	$NetBSD: player.h,v 1.6 1998/03/29 04:57:20 mrg Exp $	*/
+/*	$NetBSD: player.h,v 1.10 2001/01/04 05:34:56 jwise Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -34,9 +34,6 @@
  *
  *	@(#)player.h	8.2 (Berkeley) 5/3/95
  */
-
-#include <curses.h>
-#include "extern.h"
 
 /* sizes and coordinates for the screen */
 
@@ -92,28 +89,16 @@
 #define SLOT_B		VIEW_B
 #define SLOT_R		(SLOT_L+SLOT_X-1)
 
-#ifdef SIGTSTP
-#define SCREENTEST()	(initscr() != NULL && signal(SIGTSTP, SIG_DFL) != SIG_ERR && STAT_R < COLS && SCROLL_Y > 0)
-#else
-#define SCREENTEST()	(initscr() != NULL && STAT_R < COLS && SCROLL_Y > 0)
-#endif
-
-WINDOW *view_w;
-WINDOW *slot_w;
-WINDOW *scroll_w;
-WINDOW *stat_w;
-WINDOW *turn_w;
-
-char done_curses;
-char loaded, fired, changed, repaired;
-char dont_adjust;
-int viewrow, viewcol;
-char movebuf[sizeof SHIP(0)->file->movebuf];
+extern int done_curses;
+extern int loaded, fired, changed, repaired;
+extern int dont_adjust;
+extern int viewrow, viewcol;
+extern char movebuf[sizeof SHIP(0)->file->movebuf];
 extern char version[];
-int player;
-struct ship *ms;		/* memorial structure, &cc->ship[player] */
-struct File *mf;		/* ms->file */
-struct shipspecs *mc;		/* ms->specs */
+extern int player;
+extern struct ship *ms;		/* memorial structure, &cc->ship[player] */
+extern struct File *mf;		/* ms->file */
+extern struct shipspecs *mc;	/* ms->specs */
 
 /* condition codes for leave() */
 #define LEAVE_QUIT	0

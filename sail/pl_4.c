@@ -1,4 +1,4 @@
-/*	$NetBSD: pl_4.c,v 1.6 1997/10/13 21:04:17 christos Exp $	*/
+/*	$NetBSD: pl_4.c,v 1.13 2001/02/05 01:10:11 christos Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,14 +38,17 @@
 #if 0
 static char sccsid[] = "@(#)pl_4.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: pl_4.c,v 1.6 1997/10/13 21:04:17 christos Exp $");
+__RCSID("$NetBSD: pl_4.c,v 1.13 2001/02/05 01:10:11 christos Exp $");
 #endif
 #endif /* not lint */
 
+#include <sys/types.h>
+#include <ctype.h>
+#include "extern.h"
 #include "player.h"
 
 void
-changesail()
+changesail(void)
 {
 	int rig, full;
 
@@ -58,12 +61,12 @@ changesail()
 			if (sgetch("Increase to Full sails? ",
 				(struct ship *)0, 1) == 'y') {
 				changed = 1;
-				Write(W_FS, ms, 0, 1, 0, 0, 0);
+				Write(W_FS, ms, 1, 0, 0, 0);
 			}
 		} else {
 			if (sgetch("Reduce to Battle sails? ",
 				(struct ship *)0, 1) == 'y') {
-				Write(W_FS, ms, 0, 0, 0, 0, 0);
+				Write(W_FS, ms, 0, 0, 0, 0);
 				changed = 1;
 			}
 		}
@@ -72,7 +75,7 @@ changesail()
 }
 
 void
-acceptsignal()
+acceptsignal(void)
 {
 	char buf[60];
 	char *p = buf;
@@ -83,11 +86,11 @@ acceptsignal()
 		;
 	p[-1] = '"';
 	*p = 0;
-	Write(W_SIGNAL, ms, 1, (long)buf, 0, 0, 0);
+	Writestr(W_SIGNAL, ms, buf);
 }
 
 void
-lookout()
+lookout(void)
 {
 	struct ship *sp;
 	char buf[3];
@@ -104,10 +107,8 @@ lookout()
 	}
 }
 
-char *
-saywhat(sp, flag)
-struct ship *sp;
-char flag;
+const char *
+saywhat(struct ship *sp, int flag)
 {
 	if (sp->file->captain[0])
 		return sp->file->captain;
@@ -122,8 +123,7 @@ char flag;
 }
 
 void
-eyeball(ship)
-struct ship *ship;
+eyeball(struct ship *ship)
 {
 	int i;
 

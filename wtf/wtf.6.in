@@ -1,4 +1,4 @@
-.\"	$NetBSD: wtf.6,v 1.3 1999/07/25 20:29:04 briggs Exp $
+.\"	$NetBSD: wtf.6,v 1.5 2002/09/26 16:12:44 wiz Exp $
 .\"
 .\" Public Domain
 .\"
@@ -15,8 +15,9 @@
 .Sh DESCRIPTION
 The
 .Nm
-utility displays the expansion of the acronyms 
-specified on the command line.  If the acronym is unknown,
+utility displays the expansion of the acronyms
+specified on the command line.
+If the acronym is unknown,
 .Nm
 will check to see if the acronym is known by the
 .Xr whatis 1
@@ -25,7 +26,7 @@ command.
 If
 .Dq is
 is specified on the command line, it will be ignored, allowing the
-fairly natural 
+fairly natural
 .Dq wtf is WTF
 usage.
 .Sh ENVIRONMENT

@@ -1,4 +1,4 @@
-/*	$NetBSD: fight.c,v 1.4 1998/08/30 09:19:39 veego Exp $	*/
+/*	$NetBSD: fight.c,v 1.7 2000/04/27 00:30:53 jdc Exp $	*/
 
 /*
  * fight.c   Phantasia monster fighting routines
@@ -10,17 +10,13 @@ void
 encounter(particular)
 	int     particular;
 {
-	bool    firsthit = Player.p_blessing;	/* set if player gets the
-						 * first hit */
-	int     flockcnt = 1;	/* how many time flocked */
+	volatile bool    firsthit = Player.p_blessing;	/* set if player gets
+							 * the first hit */
+	volatile int     flockcnt = 1;	/* how many time flocked */
 
 	/* let others know what we are doing */
 	Player.p_status = S_MONSTER;
 	writerecord(&Player, Fileloc);
-
-#if __GNUC__
-	(void)&firsthit;	/* XXX shut up gcc */
-#endif
 
 #ifdef SYS5
 	flushinp();
@@ -396,7 +392,7 @@ monsthits()
 			/* takes some of the player's strength */
 			inflict = ROLL(1.0, (Circle - 1.0) / 2.0);
 			inflict = MIN(Player.p_strength, inflict);
-			mvprintw(Lines++, 0, "%s sapped %0.f of your strength!",
+			mvprintw(Lines++, 0, "%s sapped %.0f of your strength!",
 			    Enemyname, inflict);
 			Player.p_strength -= inflict;
 			Player.p_might -= inflict;
@@ -549,7 +545,7 @@ monsthits()
 			mvprintw(Lines++, 0,
 			    "%s flew away, and left you to contend with one of its friends.",
 			    Enemyname);
-			Whichmonster = 55 + (drandom() > 0.5) ? 22 : 0;
+			Whichmonster = 55 + ((drandom() > 0.5) ? 22 : 0);
 			longjmp(Fightenv, 0);
 			/* NOTREACHED */
 
@@ -844,7 +840,7 @@ callmonster(which)
 	which = MIN(which, 99);	/* make sure within range */
 
 	/* fill structure */
-	fseek(Monstfp, (long) which * (long) SZ_MONSTERSTRUCT, 0);
+	fseek(Monstfp, (long) which * (long) SZ_MONSTERSTRUCT, SEEK_SET);
 	fread((char *) &Curmonster, SZ_MONSTERSTRUCT, 1, Monstfp);
 
 	/* handle some special monsters */
@@ -869,7 +865,7 @@ callmonster(which)
 			Curmonster.m_energy = Player.p_might * 30.0;
 			Curmonster.m_type = SM_MORGOTH;
 			Curmonster.m_speed = Player.p_speed * 1.1
-			    + (Player.p_specialtype == SC_EXVALAR) ? Player.p_speed : 0.0;
+			    + ((Player.p_specialtype == SC_EXVALAR) ? Player.p_speed : 0.0);
 			Curmonster.m_flock = 0.0;
 			Curmonster.m_treasuretype = 0;
 			Curmonster.m_experience = 0.0;
@@ -879,7 +875,7 @@ callmonster(which)
 			/* pick another name */
 		{
 			which = (int) ROLL(0.0, 100.0);
-			fseek(Monstfp, (long) which * (long) SZ_MONSTERSTRUCT, 0);
+			fseek(Monstfp, (long) which * (long) SZ_MONSTERSTRUCT, SEEK_SET);
 			fread(&Othermonster, SZ_MONSTERSTRUCT, 1, Monstfp);
 			strcpy(Curmonster.m_name, Othermonster.m_name);
 		}

@@ -1,4 +1,4 @@
-/*	$NetBSD: ppt.c,v 1.5 1997/10/10 16:48:39 lukem Exp $	*/
+/*	$NetBSD: ppt.c,v 1.14 2002/11/26 23:07:36 atatat Exp $	*/
 
 /*
  * Copyright (c) 1988, 1993
@@ -43,35 +43,94 @@ __COPYRIGHT("@(#) Copyright (c) 1988, 1993\n\
 #if 0
 static char sccsid[] = "@(#)ppt.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: ppt.c,v 1.5 1997/10/10 16:48:39 lukem Exp $");
+__RCSID("$NetBSD: ppt.c,v 1.14 2002/11/26 23:07:36 atatat Exp $");
 #endif
 #endif /* not lint */
 
+#include <err.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
+#define	EDGE	"___________"
+
+       void	usage __P((void));
 	int	main __P((int, char *[]));
 static void	putppt __P((int));
+	int	getppt __P((const char *));
+
+void
+usage(void)
+{
+	extern char *__progname;
+	fprintf(stderr, "usage: %s [-d] [string ...]\n", __progname);
+	exit(1);
+}
 
 int
 main(argc, argv)
 	int argc;
 	char **argv;
 {
-	int c;
-	char *p;
+	char *p, buf[132];
+	int c, start, neednl, dflag;
 
 	/* Revoke setgid privileges */
 	setregid(getgid(), getgid());
 
-	(void) puts("___________");
-	if (argc > 1)
-		while ((p = *++argv) != NULL)
-			for (; *p; ++p)
-				putppt((int)*p);
-	else while ((c = getchar()) != EOF)
-		putppt(c);
-	(void) puts("___________");
+	dflag = 0;
+	while ((c = getopt(argc, argv, "dh")) != -1)
+		switch(c) {
+		case 'd':
+			dflag = 1;
+			break;
+		case 'h':
+		case '?':
+		default:
+			usage();
+		}
+	argc -= optind;
+	argv += optind;
+
+	if (dflag) {
+		if (argc > 0)
+			usage();
+
+		start = 0;
+		neednl = 0;
+		while (fgets(buf, sizeof(buf), stdin) != NULL) {
+			c = getppt(buf);
+			if (c < 0) {
+				if (start) {
+					/* lost sync? */
+					if (neednl)
+						putchar('\n');
+					exit(0);
+				} else
+					continue;
+			}
+			start = 1;
+			putchar(c);
+			neednl = (c != '\n');
+		}
+		if (!feof(stdin))
+			err(1, "fgets");
+		if (neednl)
+			putchar('\n');
+	} else {
+		(void) puts(EDGE);
+		if (argc > 0)
+			while ((p = *argv++)) {
+				for (; *p; ++p)
+					putppt((int)*p);
+				if ((*(argv)))
+					putppt((int)' ');
+			}
+		else while ((c = getchar()) != EOF)
+			putppt(c);
+		(void) puts(EDGE);
+	}
 	exit(0);
 }
 
@@ -92,4 +151,34 @@ putppt(c)
 	}
 	(void) putchar('|');
 	(void) putchar('\n');
+}
+
+int
+getppt(const char *buf)
+{
+	const char *p = strchr(buf, '.');
+	int c;
+
+	if (p == NULL)
+		return (-1);
+
+	c = 0;
+	if (p[ 3] != ' ')
+		c |= 0001;
+	if (p[ 2] != ' ')
+		c |= 0002;
+	if (p[ 1] != ' ')
+		c |= 0004;
+	if (p[-1] != ' ')
+		c |= 0010;
+	if (p[-2] != ' ')
+		c |= 0020;
+	if (p[-3] != ' ')
+		c |= 0040;
+	if (p[-4] != ' ')
+		c |= 0100;
+	if (p[-5] != ' ')
+		c |= 0200;
+
+	return (c);
 }

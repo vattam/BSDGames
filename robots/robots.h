@@ -1,4 +1,4 @@
-/*	$NetBSD: robots.h,v 1.8 1998/09/13 15:27:29 hubertf Exp $	*/
+/*	$NetBSD: robots.h,v 1.15 2002/01/31 17:35:52 christos Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -41,6 +41,7 @@
 # include	<err.h>
 # include	<errno.h>
 # include	<fcntl.h>
+# include	<netinet/in.h>
 # include	<pwd.h>
 # include	<setjmp.h>
 # include	<signal.h>
@@ -87,9 +88,11 @@ typedef struct {
 } COORD;
 
 typedef struct {
-	int	s_uid;
-	int	s_score;
-	char	s_name[MAXNAME];
+	u_int32_t	s_uid;
+	u_int32_t	s_score;
+	u_int32_t	s_auto;
+	u_int32_t	s_level;
+	char		s_name[MAXNAME];
 } SCORE;
 
 typedef struct passwd	PASSWD;
@@ -99,19 +102,21 @@ typedef struct passwd	PASSWD;
  */
 
 extern bool	Dead, Full_clear, Jump, Newscore, Real_time, Running,
-		Teleport, Waiting, Was_bonus;
+		Teleport, Waiting, Was_bonus, Auto_bot;
 
 #ifdef	FANCY
 extern bool	Pattern_roll, Stand_still;
 #endif
 
-extern char	Cnt_move, Field[Y_FIELDSIZE][X_FIELDSIZE], *Next_move,
-		*Move_list, Run_ch;
+extern char	Cnt_move, Field[Y_FIELDSIZE][X_FIELDSIZE], Run_ch;
+extern const char *Next_move, *Move_list;
 
-extern int	Count, Level, Num_robots, Num_scores, Score,
-		Start_level, Wait_bonus;
+extern int	Count, Level, Num_robots, Num_scrap, Num_scores,
+		Start_level, Wait_bonus, Num_games;
 
-extern COORD	Max, Min, My_pos, Robots[];
+extern u_int32_t	Score;
+
+extern COORD	Max, Min, My_pos, Robots[], Scrap[];
 
 extern jmp_buf	End_move;
 
@@ -121,9 +126,10 @@ extern jmp_buf	End_move;
 
 void	add_score __P((int));
 bool	another __P((void));
+char	automove __P((void));
 int	cmp_sc __P((const void *, const void *));
 bool	do_move __P((int, int));
-bool	eaten __P((COORD *));
+bool	eaten __P((const COORD *));
 void	flush_in __P((void));
 void	get_move __P((void));
 void	init_field __P((void));
@@ -132,7 +138,7 @@ void	make_level __P((void));
 void	move_robots __P((int));
 bool	must_telep __P((void));
 void	play_level __P((void));
-int	query __P((char *));
+int	query __P((const char *));
 void	quit __P((int)) __attribute__((__noreturn__));
 void	reset_count __P((void));
 int	rnd __P((int));
@@ -141,3 +147,4 @@ void	score __P((int));
 void	set_name __P((SCORE *));
 void	show_score __P((void));
 int	sign __P((int));
+void	telmsg __P((int));

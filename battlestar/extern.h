@@ -1,4 +1,4 @@
-/*	$NetBSD: extern.h,v 1.9 1998/09/13 15:27:26 hubertf Exp $ */
+/*	$NetBSD: extern.h,v 1.28 2000/09/25 19:37:59 jsm Exp $ */
 
 /*
  * Copyright (c) 1983, 1993
@@ -35,8 +35,6 @@
  *	@(#)externs.h	8.1 (Berkeley) 5/31/93
  */
 
-#include <sys/time.h>
-
 #include <ctype.h>
 #include <err.h>
 #include <pwd.h>
@@ -44,6 +42,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 
 #define BITS (8 * sizeof (int))
@@ -188,6 +187,10 @@
 #define BURY	1050
 #define JUMP	1051
 #define KICK	1052
+#define OPEN	1053
+#define VERBOSE	1054
+#define BRIEF	1055
+#define AUXVERB	1056
 
  /* injuries */
 #define ARM	6		/* broken arm */
@@ -207,6 +210,9 @@
 #define DUG		5
 #define NUMOFNOTES	6
 
+/* Number of times room description shown. */
+#define ROOMDESC	3
+
  /* fundamental constants */
 #define NUMOFROOMS	275
 #define NUMOFWORDS	((NUMOFOBJECTS + BITS - 1) / BITS)
@@ -221,6 +227,19 @@
 #define TORPEDOES	10
 #define MAXWEIGHT	60
 #define MAXCUMBER	10
+
+/*
+ * These are flags for objects in the objflags array.  OBJ_PLURAL means
+ * that the object short name is plural; OBJ_AN that it begins with a
+ * vowel sound so should be preceded by "an" instead of "a"; OBJ_PERSON
+ * that it is a living person; OBJ_NONOBJ that it is not an object (to
+ * which any game action can be applied) at all (e.g. footsteps, asteroids).
+ * Any individual object has at most one of OBJ_PERSON and OBJ_NONOBJ.
+ */
+#define OBJ_PLURAL	1
+#define OBJ_AN		2
+#define OBJ_PERSON	4
+#define OBJ_NONOBJ	8
 
 struct room {
 	const char   *name;
@@ -238,7 +257,7 @@ struct room {
 };
 extern struct room dayfile[];
 extern struct room nightfile[];
-struct room *location;
+extern struct room *location;
 
  /* object characteristics */
 extern const char   *const objdes[NUMOFOBJECTS];
@@ -246,55 +265,62 @@ extern const char   *const objsht[NUMOFOBJECTS];
 extern const char   *const ouch[NUMOFINJURIES];
 extern const int     objwt[NUMOFOBJECTS];
 extern const int     objcumber[NUMOFOBJECTS];
+extern const int     objflags[NUMOFOBJECTS];
+#define is_plural_object(n)	(objflags[(n)] & OBJ_PLURAL)
+/*
+ * These macros yield words to use with objects (followed but not preceded
+ * by spaces, or with no spaces if the expansion is the empty string).
+ */
+#define A_OR_AN(n)		(objflags[(n)] & OBJ_AN ? "an " : "a ")
+#define A_OR_AN_OR_THE(n)	(is_plural_object((n)) ? "the " : A_OR_AN((n)))
+#define A_OR_AN_OR_BLANK(n)	(is_plural_object((n)) ? "" : A_OR_AN((n)))
+#define IS_OR_ARE(n)		(is_plural_object((n)) ? "are " : "is ")
 
  /* current input line */
+#define WORDLEN	15
 #define NWORD	20		/* words per line */
-char    words[NWORD][15];
-int     wordvalue[NWORD];
-int     wordtype[NWORD];
-int     wordcount, wordnumber;
+extern char    words[NWORD][WORDLEN];
+extern int     wordvalue[NWORD];
+extern int     wordtype[NWORD];
+extern int     wordcount, wordnumber;
 
  /* state of the game */
-int     ourtime;
-int     position;
-int     direction;
-int     left, right, ahead, back;
-int     ourclock, fuel, torps;
-int     carrying, encumber;
-int     rythmn;
+extern int     ourtime;
+extern int     position;
+extern int     direction;
+extern int     left, right, ahead, back;
+extern int     ourclock, fuel, torps;
+extern int     carrying, encumber;
+extern int     rythmn;
 extern int     followfight;
-int     ate;
-int     snooze;
-int     meetgirl;
+extern int     ate;
+extern int     snooze;
+extern int     meetgirl;
 extern int     followgod;
-int     godready;
+extern int     godready;
 extern int     win;
-int     wintime;
-int     wiz;
-int     tempwiz;
-int     matchlight;
-extern int matchcount;
-int     loved;
-int     pleasure, power, ego;
+extern int     wintime;
+extern int     wiz;
+extern int     tempwiz;
+extern int     matchlight, matchcount;
+extern int     loved;
+extern int     pleasure, power, ego;
 extern int     WEIGHT;
 extern int     CUMBER;
-int     notes[NUMOFNOTES];
-unsigned int inven[NUMOFWORDS];
-unsigned int wear[NUMOFWORDS];
-char    beenthere[NUMOFROOMS + 1];
-char    injuries[NUMOFINJURIES];
+extern int     notes[NUMOFNOTES];
+extern unsigned int inven[NUMOFWORDS];
+extern unsigned int wear[NUMOFWORDS];
+extern char    beenthere[NUMOFROOMS + 1];
+extern char    injuries[NUMOFINJURIES];
+extern int     verbose;
 
-char    username[9];
+extern const char *username;
 
 struct wlist {
 	const char   *string;
 	int     value, article;
 	struct wlist *next;
 };
-#define HASHSIZE	256
-#define HASHMUL		81
-#define HASHMASK	(HASHSIZE - 1)
-struct wlist *hashtab[HASHSIZE];
 extern struct wlist wlist[];
 
 struct objs {
@@ -306,10 +332,8 @@ extern const struct objs nightobjs[];
 
 #define DEFAULT_SAVE_FILE	".Bstar"
 
-void blast __P((void));
 void bury __P((void));
 int card __P((const char *, int));
-int checkout __P((const char *));
 void chime __P((void));
 void convert __P((int));
 void crash __P((void));
@@ -317,19 +341,18 @@ int cypher __P((void));
 void die __P((void)) __attribute__((__noreturn__));
 void diesig __P((int)) __attribute__((__noreturn__));
 void dig __P((void));
+void dooropen __P((void));
 int draw __P((void));
 void drink __P((void));
 int drive __P((void));
 int drop __P((const char *));
 int eat __P((void));
-void endfly __P((void));
 int fight __P((int, int));
 int follow __P((void));
-void getutmp __P((char *));
+char *getcom __P((char *, int, const char *, const char *));
+char *getword __P((char *, char *, int));
 int give __P((void));
-int hash __P((const char *));
 void initialize __P((const char *));
-void install __P((struct wlist *));
 int jump __P((void));
 void kiss __P((void));
 int land __P((void));
@@ -337,40 +360,32 @@ int launch __P((void));
 void light __P((void));
 void live __P((void)) __attribute__((__noreturn__));
 void love __P((void));
-int move __P((int, int));
-void moveenemy __P((int));
+int moveplayer __P((int, int));
 void murder __P((void));
 void news __P((void));
 void newway __P((int));
-void notarget __P((void));
 void open_score_file __P((void));
 void parse __P((void));
 void post __P((char));
 void printobjs __P((void));
 int put __P((void));
 int puton __P((void));
+const char *rate __P((void));
 void ravage __P((void));
-void restore __P((const char *, size_t));
+void restore __P((const char *));
 int ride __P((void));
-void save __P((const char *, size_t));
-void screen __P((void));
+void save __P((const char *));
+char *save_file_name __P((const char *, size_t));
 int shoot __P((void));
-void succumb __P((int));
 int take __P((unsigned int[]));
 int takeoff __P((void));
-void target __P((void));
 int throw __P((const char *));
+const char *truedirec __P((int, char));
 int ucard __P((const unsigned int *));
 int use __P((void));
 int visual __P((void));
 int wearit __P((void));
 void whichway __P((struct room));
-int wizard __P((const char *));
 void wordinit __P((void));
 void writedes __P((void));
 int zzz __P((void));
-char   *getcom __P((char *, int, const char *, const char *));
-char   *getword __P((char *, char *, int));
-const char   *rate __P((void));
-const char   *truedirec __P((int, char));
-struct wlist *lookup __P((const char *));

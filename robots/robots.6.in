@@ -1,4 +1,4 @@
-.\"	$NetBSD: robots.6,v 1.6 1997/10/12 14:10:03 lukem Exp $
+.\"	$NetBSD: robots.6,v 1.11 2002/09/26 18:32:04 wiz Exp $
 .\"
 .\" Copyright (c) 1991, 1993
 .\"	The Regents of the University of California.  All rights reserved.
@@ -37,11 +37,11 @@
 .Dt ROBOTS 6
 .Os
 .Sh NAME
-.Nm robots 
+.Nm robots
 .Nd fight off villainous robots
 .Sh SYNOPSIS
 .Nm
-.Op Fl sjta
+.Op Fl Asjtan
 .Op Ar scorefile
 .Sh DESCRIPTION
 .Nm
@@ -61,7 +61,7 @@ you start on the next field.
 This keeps up until they finally get you.
 .Pp
 Robots are represented on the screen by a
-.Sq \+ ,
+.Sq \&+ ,
 the junk heaps from their collisions by a
 .Sq \(** ,
 and you
@@ -91,7 +91,7 @@ move one square down and right
 (also space) do nothing for one turn
 .It Ic HJKLBNYU
 run as far as possible in the given direction
-.It Ic \>
+.It Ic \*[Gt]
 do nothing for as long as possible
 .It Ic t
 teleport to a random location
@@ -106,7 +106,7 @@ redraw the screen
 All commands can be preceded by a count.
 .Pp
 If you use the
-.Sq Ic w 
+.Sq Ic w
 command and survive to the next level, you will get a bonus of 10%
 for each robot which died after you decided to wait.
 If you die, however, you get nothing.
@@ -138,9 +138,15 @@ This is a little disconcerting until you get used to it, and then it is
 very nice.
 .It Fl a
 Advance into the higher levels directly, skipping the lower, easier levels.
+.It Fl A
+Auto-bot mode.
+Lets the game play itself.
+.It Fl n
+Increase the number of games played by one.
 .El
 .Sh AUTHOR
 Ken Arnold
+Christos Zoulas	(autobot mode)
 .Sh FILES
 .Bl -tag -width @robots_scorefile@ -compact
 .It Pa @robots_scorefile@

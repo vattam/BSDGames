@@ -1,4 +1,4 @@
-/*	$NetBSD: phaser.c,v 1.5 1997/10/12 21:25:06 christos Exp $	*/
+/*	$NetBSD: phaser.c,v 1.8 2000/07/10 10:19:27 itojun Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)phaser.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: phaser.c,v 1.5 1997/10/12 21:25:06 christos Exp $");
+__RCSID("$NetBSD: phaser.c,v 1.8 2000/07/10 10:19:27 itojun Exp $");
 #endif
 #endif /* not lint */
 
@@ -99,7 +99,7 @@ struct banks
 /*ARGSUSED*/
 void
 phaser(v)
-	int v __attribute__((unused));
+	int v __attribute__((__unused__));
 {
 	int		i;
 	int		j;
@@ -113,7 +113,7 @@ phaser(v)
 	int		n;
 	int		hitreqd[NBANKS];
 	struct banks	bank[NBANKS];
-	struct cvntab	*ptr;
+	const struct cvntab	*ptr;
 
 	if (Ship.cond == DOCKED) {
 		printf("Phasers cannot fire through starbase shields\n");
@@ -140,13 +140,13 @@ phaser(v)
 	{
 		if (damaged(COMPUTER))
 		{
-			printf(Device[COMPUTER].name);
+			printf("%s", Device[COMPUTER].name);
 			manual++;
 		}
 		else
 			if (damaged(SRSCAN))
 			{
-				printf(Device[SRSCAN].name);
+				printf("%s", Device[SRSCAN].name);
 				manual++;
 			}
 		if (manual)

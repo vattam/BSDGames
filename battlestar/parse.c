@@ -1,4 +1,4 @@
-/*	$NetBSD: parse.c,v 1.6 1997/10/11 02:07:33 lukem Exp $	*/
+/*	$NetBSD: parse.c,v 1.12 2001/06/19 13:42:09 wiz Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,11 +38,21 @@
 #if 0
 static char sccsid[] = "@(#)parse.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: parse.c,v 1.6 1997/10/11 02:07:33 lukem Exp $");
+__RCSID("$NetBSD: parse.c,v 1.12 2001/06/19 13:42:09 wiz Exp $");
 #endif
 #endif				/* not lint */
 
 #include "extern.h"
+
+#define HASHSIZE	256
+#define HASHMUL		81
+#define HASHMASK	(HASHSIZE - 1)
+
+static int hash __P((const char *));
+static void install __P((struct wlist *));
+static struct wlist *lookup __P((const char *));
+
+static struct wlist *hashtab[HASHSIZE];
 
 void
 wordinit()
@@ -53,7 +63,7 @@ wordinit()
 		install(w);
 }
 
-int
+static int
 hash(s)
 	const char   *s;
 {
@@ -67,7 +77,7 @@ hash(s)
 	return hashval;
 }
 
-struct wlist *
+static struct wlist *
 lookup(s)
 	const char   *s;
 {
@@ -79,7 +89,7 @@ lookup(s)
 	return NULL;
 }
 
-void
+static void
 install(wp)
 	struct wlist *wp;
 {
@@ -98,6 +108,7 @@ parse()
 {
 	struct wlist *wp;
 	int     n;
+	int     flag;
 
 	wordnumber = 0;		/* for cypher */
 	for (n = 0; n <= wordcount; n++) {
@@ -108,5 +119,73 @@ parse()
 			wordvalue[n] = wp->value;
 			wordtype[n] = wp->article;
 		}
+	}
+	/* We never use adjectives for anything, so yank them all. */
+	for (n = 1; n < wordcount; n++)
+		if (wordtype[n] == ADJS) {
+			int i;
+			for (i = n + 1; i < wordcount; i++) {
+				wordtype[i - 1] = wordtype[i];
+				wordvalue[i - 1] = wordvalue[i];
+				strcpy(words[i - 1], words[i]);
+			}
+			wordcount--;
+		}
+	/* Don't let a comma mean AND if followed by a verb. */
+	for (n = 0; n < wordcount; n++)
+		if (wordvalue[n] == AND && words[n][0] == ','
+		    && wordtype[n + 1] == VERB) {
+			wordvalue[n] = -1;
+			wordtype[n] = -1;
+		}
+	/* Trim "AND AND" which can happen naturally at the end of a
+	 * comma-delimited list.
+	 */
+	for (n = 1; n < wordcount; n++)
+		if (wordvalue[n - 1] == AND && wordvalue[n] == AND) {
+			int i;
+			for (i = n + 1; i < wordcount; i++) {
+				wordtype[i - 1] = wordtype[i];
+				wordvalue[i - 1] = wordvalue[i];
+				strcpy(words[i - 1], words[i]);
+			}
+			wordcount--;
+		}
+
+	/* If there is a sequence (NOUN | OBJECT) AND EVERYTHING
+	 * then move all the EVERYTHINGs to the beginning, since that's where
+	 * they're expected.  We can't get rid of the NOUNs and OBJECTs in
+	 * case they aren't in EVERYTHING (i.e. not here or nonexistent).
+	 */
+	flag = 1;
+	while (flag) {
+		flag = 0;
+		for (n = 1; n < wordcount; n++)
+			if ((wordtype[n - 1] == NOUNS || wordtype[n - 1] == OBJECT) &&
+			    wordvalue[n] == AND && wordvalue[n + 1] == EVERYTHING) {
+				char tmpword[WORDLEN];
+				wordvalue[n + 1] = wordvalue[n - 1];
+				wordvalue[n - 1] = EVERYTHING;
+				wordtype[n + 1] = wordtype[n - 1];
+				wordtype[n - 1] = OBJECT;
+				strcpy(tmpword, words[n - 1]);
+				strcpy(words[n - 1], words[n + 1]);
+				strcpy(words[n + 1], tmpword);
+				flag = 1;
+		}
+		/* And trim EVERYTHING AND EVERYTHING. */
+		for (n = 1; n < wordcount; n++)
+			if (wordvalue[n - 1] == EVERYTHING &&
+			    wordvalue[n] == AND && wordvalue[n + 1] == EVERYTHING) {
+				int i;
+				for (i = n + 1; i < wordcount; i++) {
+					wordtype[i - 1] = wordtype[i + 1];
+					wordvalue[i - 1] = wordvalue[i + 1];
+					strcpy(words[i - 1], words[i + 1]);
+				}
+				wordcount--;
+				wordcount--;
+				flag = 1;
+			}
 	}
 }

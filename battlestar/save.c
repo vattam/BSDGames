@@ -1,4 +1,4 @@
-/*	$NetBSD: save.c,v 1.8 1998/09/13 15:24:41 hubertf Exp $	*/
+/*	$NetBSD: save.c,v 1.10 2000/01/09 17:17:20 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,51 +38,24 @@
 #if 0
 static char sccsid[] = "@(#)save.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: save.c,v 1.8 1998/09/13 15:24:41 hubertf Exp $");
+__RCSID("$NetBSD: save.c,v 1.10 2000/01/09 17:17:20 jsm Exp $");
 #endif
 #endif				/* not lint */
 
 #include "extern.h"
 
 void
-restore(filename, len)
+restore(filename)
 	const char *filename;
-	size_t len;
 {
-	char   *home;
-	char   *home1;
 	int     n;
 	int     tmp;
-	size_t	tmpl;
 	FILE   *fp;
 
-	if (memchr(filename, '/', len)) {
-		home1 = malloc(len + 1);
-		if (home1 == NULL)
-			errx(1, "out of memory");
-		memcpy(home1, filename, len);
-		home1[len] = 0;
-	} else {
-		home = getenv("HOME");
-		if (home != NULL) {
-			tmpl = strlen(home);
-			home1 = malloc(tmpl + len + 2);
-			if (home1 == NULL)
-				errx(1, "out of memory");
-			memcpy(home1, home, tmpl);
-			home1[tmpl] = '/';
-			memcpy(home1 + tmpl + 1, filename, len);
-			home1[tmpl + len + 1] = 0;
-		} else {
-			home1 = malloc(len + 1);
-			if (home1 == NULL)
-				errx(1, "out of memory");
-			memcpy(home1, filename, len);
-			home1[len] = 0;
-		}
-	}
-	if ((fp = fopen(home1, "r")) == 0) {
-		err(1, "fopen %s", home1);
+	if (filename == NULL)
+		exit(1); /* Error determining save file name.  */
+	if ((fp = fopen(filename, "r")) == 0) {
+		err(1, "fopen %s", filename);
 	}
 	fread(&WEIGHT, sizeof WEIGHT, 1, fp);
 	fread(&CUMBER, sizeof CUMBER, 1, fp);
@@ -120,54 +93,25 @@ restore(filename, len)
 	fread(&power, sizeof power, 1, fp);
 	/* We must check the last read, to catch truncated save files */
 	if (fread(&ego, sizeof ego, 1, fp) < 1)
-		errx(1, "save file %s too short", home1);
+		errx(1, "save file %s too short", filename);
 	fclose(fp);
-	free(home1);
 }
 
 void
-save(filename, len)
+save(filename)
 	const char *filename;
-	size_t len;
 {
-	char   *home;
-	char   *home1;
 	int     n;
 	int     tmp;
-	size_t	tmpl;
 	FILE   *fp;
 
-	if (memchr(filename, '/', len)) {
-		home1 = malloc(len + 1);
-		if (home1 == NULL)
-			errx(1, "out of memory");
-		memcpy(home1, filename, len);
-		home1[len] = 0;
-	} else {
-		home = getenv("HOME");
-		if (home != NULL) {
-			tmpl = strlen(home);
-			home1 = malloc(tmpl + len + 2);
-			if (home1 == NULL)
-				errx(1, "out of memory");
-			memcpy(home1, home, tmpl);
-			home1[tmpl] = '/';
-			memcpy(home1 + tmpl + 1, filename, len);
-			home1[tmpl + len + 1] = 0;
-		} else {
-			home1 = malloc(len + 1);
-			if (home1 == NULL)
-				errx(1, "out of memory");
-			memcpy(home1, filename, len);
-			home1[len] = 0;
-		}
-	}
-
-	if ((fp = fopen(home1, "w")) == NULL) {
-		warn("fopen %s", home1);
+	if (filename == NULL)
+		return; /* Error determining save file name.  */
+	if ((fp = fopen(filename, "w")) == NULL) {
+		warn("fopen %s", filename);
 		return;
 	}
-	printf("Saved in %s.\n", home1);
+	printf("Saved in %s.\n", filename);
 	fwrite(&WEIGHT, sizeof WEIGHT, 1, fp);
 	fwrite(&CUMBER, sizeof CUMBER, 1, fp);
 	fwrite(&ourclock, sizeof ourclock, 1, fp);
@@ -205,7 +149,55 @@ save(filename, len)
 	fwrite(&ego, sizeof ego, 1, fp);
 	fflush(fp);
 	if (ferror(fp))
-		warn("fwrite %s", home1);
+		warn("fwrite %s", filename);
 	fclose(fp);
-	free(home1);
+}
+
+/*
+ * Given a save file name (possibly from fgetln, so without terminating NUL),
+ * determine the name of the file to be saved to by adding the HOME
+ * directory if the name does not contain a slash.  Name will be allocated
+ * with malloc(3).
+ */
+char *
+save_file_name(filename, len)
+	const char *filename;
+	size_t len;
+{
+	char   *home;
+	char   *newname;
+	size_t	tmpl;
+
+	if (memchr(filename, '/', len)) {
+		newname = malloc(len + 1);
+		if (newname == NULL) {
+			warn(NULL);
+			return NULL;
+		}
+		memcpy(newname, filename, len);
+		newname[len] = 0;
+	} else {
+		home = getenv("HOME");
+		if (home != NULL) {
+			tmpl = strlen(home);
+			newname = malloc(tmpl + len + 2);
+			if (newname == NULL) {
+				warn(NULL);
+				return NULL;
+			}
+			memcpy(newname, home, tmpl);
+			newname[tmpl] = '/';
+			memcpy(newname + tmpl + 1, filename, len);
+			newname[tmpl + len + 1] = 0;
+		} else {
+			newname = malloc(len + 1);
+			if (newname == NULL) {
+				warn(NULL);
+				return NULL;
+			}
+			memcpy(newname, filename, len);
+			newname[len] = 0;
+		}
+	}
+	return newname;
 }

@@ -1,4 +1,4 @@
-/*	$NetBSD: cribbage.h,v 1.4 1998/09/13 15:27:27 hubertf Exp $	*/
+/*	$NetBSD: cribbage.h,v 1.8 2002/12/06 01:48:24 thorpej Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -59,9 +59,10 @@ extern  BOOLEAN		rflag;			/* if all cuts random */
 extern  BOOLEAN		quiet;			/* if suppress random mess */
 extern	BOOLEAN		playing;		/* currently playing game */
 
-extern  char		expl[];			/* string for explanation */
+extern  char		explan[];		/* string for explanation */
 
-void	 addmsg __P((const char *, ...));
+void	 addmsg __P((const char *, ...))
+    __attribute__((__format__(__printf__, 1, 2)));
 int	 adjust __P((const CARD [], CARD));
 int	 anymove __P((const CARD [], int, int));
 int	 anysumto __P((const CARD [], int, int, int));
@@ -89,7 +90,8 @@ int	 is_one __P((CARD, const CARD [], int));
 void	 makeboard __P((void));
 void	 makedeck __P((CARD []));
 void	 makeknown __P((const CARD [], int));
-void	 msg __P((const char *, ...));
+void	 msg __P((const char *, ...))
+    __attribute__((__format__(__printf__, 1, 2)));
 int	 msgcard __P((CARD, BOOLEAN));
 int	 msgcrd __P((CARD, BOOLEAN, const char *, BOOLEAN));
 int	 number __P((int, int, const char *));

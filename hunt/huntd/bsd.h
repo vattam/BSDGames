@@ -1,4 +1,4 @@
-/*	$NetBSD: bsd.h,v 1.2 1998/01/09 08:03:40 perry Exp $	*/
+/*	$NetBSD: bsd.h,v 1.3 2002/09/20 21:00:02 mycroft Exp $	*/
 
 /*
  *  Hunt
@@ -9,13 +9,7 @@
 # if defined(BSD_RELEASE) && BSD_RELEASE >= 43
 # define	BROADCAST
 # define	SYSLOG_43
-#ifdef __linux__
-#define TALK_42 /* Kludge around broken <protocols/talkd.h> */
-#else
-# define	TALK_43
-#endif
 # endif
 # if defined(BSD_RELEASE) && BSD_RELEASE == 42
 # define	SYSLOG_42
-# define	TALK_42
 # endif

@@ -1,4 +1,4 @@
-/*	$NetBSD: extern.c,v 1.4 1997/10/12 14:09:56 lukem Exp $	*/
+/*	$NetBSD: extern.c,v 1.7 1999/09/18 19:38:53 jsm Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)extern.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: extern.c,v 1.4 1997/10/12 14:09:56 lukem Exp $");
+__RCSID("$NetBSD: extern.c,v 1.7 1999/09/18 19:38:53 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -52,6 +52,7 @@ bool	Newscore;		/* There was a new score added */
 bool	Pattern_roll = FALSE;	/* Auto play for YHBJNLUK pattern */
 #endif
 bool	Real_time = FALSE;	/* Play in real time? */
+bool	Auto_bot = FALSE;	/* Automatic mover */
 bool	Running = FALSE;	/* Currently in the middle of a run */
 #ifdef	FANCY
 bool	Stand_still = FALSE;	/* Auto play for standing still pattern */
@@ -62,15 +63,17 @@ bool	Was_bonus = FALSE;	/* Was a bonus last level */
 
 char	Cnt_move;		/* Command which has preceded the count */
 char	Field[Y_FIELDSIZE][X_FIELDSIZE];	/* the playing field itslef */
-char	*Next_move;		/* Next move to be used in the pattern */
-char	*Move_list = "YHBJNLUK";/* List of moves in the pattern */
+const char	*Next_move;	/* Next move to be used in the pattern */
+const char	*Move_list = "YHBJNLUK";/* List of moves in the pattern */
 char	Run_ch;			/* Character for the direction we are running */
 
 int	Count = 0;		/* Command count */
 int	Level;			/* Current level */
 int	Num_robots;		/* Number of robots left */
+int	Num_scrap;		/* Number of scrap heaps */
 int	Num_scores;		/* Number of scores posted */
-int	Score;			/* Current score */
+int	Num_games;		/* Number of games to play */
+u_int32_t	Score;		/* Current score */
 int	Start_level = 1;	/* Level on which to start */
 int	Wait_bonus;		/* bonus for waiting */
 
@@ -78,5 +81,6 @@ COORD	Max;			/* Max area robots take up */
 COORD	Min;			/* Min area robots take up */
 COORD	My_pos;			/* Player's current position */
 COORD	Robots[MAXROBOTS];	/* Robots' current positions */
+COORD	Scrap[MAXROBOTS];	/* ScrapHeap' current position */
 
 jmp_buf	End_move;		/* Jump to on Real_time */

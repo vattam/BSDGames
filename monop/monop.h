@@ -1,4 +1,4 @@
-/*	$NetBSD: monop.h,v 1.6 1997/10/12 17:45:20 christos Exp $	*/
+/*	$NetBSD: monop.h,v 1.10 1999/09/30 18:01:32 jsm Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -35,48 +35,49 @@
  *	@(#)monop.h	8.1 (Berkeley) 5/31/93
  */
 
-# include	<stdio.h>
-# include	<stdlib.h>
-# include	<string.h>
+#include <err.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-# define	bool	char
+#define	bool	char
 
-# define	TRUE	(1)
-# define	FALSE	(0)
+#define	TRUE	(1)
+#define	FALSE	(0)
 
-# define	N_MON	8	/* number of monopolies			*/
-# define	N_PROP	22	/* number of normal property squares	*/
-# define	N_RR	4	/* number of railroads			*/
-# define	N_UTIL	2	/* number of utilities			*/
-# define	N_SQRS	40	/* number of squares on board		*/
-# define	MAX_PL	9	/* maximum number of players		*/
-# define	MAX_PRP	(N_PROP+N_RR+N_UTIL) /* max # ownable property	*/
+#define	N_MON	8	/* number of monopolies			*/
+#define	N_PROP	22	/* number of normal property squares	*/
+#define	N_RR	4	/* number of railroads			*/
+#define	N_UTIL	2	/* number of utilities			*/
+#define	N_SQRS	40	/* number of squares on board		*/
+#define	MAX_PL	9	/* maximum number of players		*/
+#define	MAX_PRP	(N_PROP+N_RR+N_UTIL) /* max # ownable property	*/
 
 				/* square type numbers			*/
-# define	PRPTY	0	/* normal property			*/
-# define	RR	1	/* railroad				*/
-# define	UTIL	2	/* water works - electric co		*/
-# define	SAFE	3	/* safe spot				*/
-# define	CC	4	/* community chest			*/
-# define	CHANCE	5	/* chance (surprise!!!)			*/
-# define	INC_TAX	6	/* Income tax */
-# define	GOTO_J	7	/* Go To Jail! */
-# define	LUX_TAX	8	/* Luxury tax */
-# define	IN_JAIL	9	/* In jail */
+#define	PRPTY	0	/* normal property			*/
+#define	RR	1	/* railroad				*/
+#define	UTIL	2	/* water works - electric co		*/
+#define	SAFE	3	/* safe spot				*/
+#define	CC	4	/* community chest			*/
+#define	CHANCE	5	/* chance (surprise!!!)			*/
+#define	INC_TAX	6	/* Income tax */
+#define	GOTO_J	7	/* Go To Jail! */
+#define	LUX_TAX	8	/* Luxury tax */
+#define	IN_JAIL	9	/* In jail */
 
-# define	JAIL	40	/* JAIL square number			*/
+#define	JAIL	40	/* JAIL square number			*/
 
-# define	lucky(str)	printf("%s%s\n",str,lucky_mes[roll(1,num_luck)-1])
-# define	printline()	printf("------------------------------\n")
-# define	sqnum(sqp)	(sqp - board)
-# define	swap(A1,A2)	if ((A1) != (A2)) { \
+#define	lucky(str)	printf("%s%s\n",str,lucky_mes[roll(1,num_luck)-1])
+#define	printline()	printf("------------------------------\n")
+#define	sqnum(sqp)	(sqp - board)
+#define	swap(A1,A2)	if ((A1) != (A2)) { \
 					(A1) ^= (A2); \
 					(A2) ^= (A1); \
 					(A1) ^= (A2); \
 				}
 
 struct sqr_st {			/* structure for square			*/
-	char	*name;			/* place name			*/
+	const char	*name;		/* place name			*/
 	short	owner;			/* owner number			*/
 	short	type;			/* place type			*/
 	struct prp_st	*desc;		/* description struct		*/
@@ -86,13 +87,13 @@ struct sqr_st {			/* structure for square			*/
 typedef struct sqr_st	SQUARE;
 
 struct mon_st {			/* monopoly description structure	*/
-	char	*name;			/* monop. name (color)		*/
+	const char	*name;		/* monop. name (color)		*/
 	short	owner;			/* owner of monopoly		*/
 	short	num_in;			/* # in monopoly		*/
 	short	num_own;		/* # owned (-1: not poss. monop)*/
 	short	h_cost;			/* price of houses		*/
-	char	*not_m;			/* name if not monopoly		*/
-	char	*mon_n;			/* name if a monopoly		*/
+	const char	*not_m;		/* name if not monopoly		*/
+	const char	*mon_n;		/* name if a monopoly		*/
 	unsigned char	sqnums[3];	/* Square numbers (used to init)*/
 	SQUARE	*sq[3];			/* list of squares in monop	*/
 };
@@ -146,10 +147,10 @@ void do_move __P((void));
 void move __P((int));
 void save __P((void));
 void restore __P((void));
-int rest_f __P((char *));
+int rest_f __P((const char *));
 
 /* getinp.c */
-int getinp __P((char *, char *[]));
+int getinp __P((const char *, const char *const []));
 
 /* houses.c */
 void buy_houses __P((void));
@@ -163,10 +164,10 @@ int move_jail __P((int, int ));
 void printturn __P((void));
 
 /* misc.c */
-int getyn __P((char *));
+int getyn __P((const char *));
 void notify __P((void));
 void next_play __P((void));
-int get_int __P((char *));
+int get_int __P((const char *));
 void set_ownlist __P((int));
 void is_monop __P((MON *, int));
 void is_not_monop __P((MON *));

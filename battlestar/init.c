@@ -1,4 +1,4 @@
-/*	$NetBSD: init.c,v 1.7 1997/10/11 02:07:25 lukem Exp $	*/
+/*	$NetBSD: init.c,v 1.12 2000/09/09 09:37:58 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,26 +38,31 @@
 #if 0
 static char sccsid[] = "@(#)init.c	8.4 (Berkeley) 4/30/95";
 #else
-__RCSID("$NetBSD: init.c,v 1.7 1997/10/11 02:07:25 lukem Exp $");
+__RCSID("$NetBSD: init.c,v 1.12 2000/09/09 09:37:58 jsm Exp $");
 #endif
 #endif				/* not lint */
 
 #include "extern.h"
 
+static int checkout __P((const char *));
+static const char *getutmp __P((void));
+static int wizard __P((const char *));
+
 void
-initialize(startup)
-	const char   *startup;
+initialize(filename)
+	const char   *filename;
 {
 	const struct objs *p;
+	char *savefile;
 
 	puts("Version 4.2, fall 1984.");
 	puts("First Adventure game written by His Lordship, the honorable");
 	puts("Admiral D.W. Riggle\n");
 	location = dayfile;
 	srand(getpid());
-	getutmp(username);
+	username = getutmp();
 	wordinit();
-	if (startup == NULL) {
+	if (filename == NULL) {
 		direction = NORTH;
 		ourtime = 0;
 		snooze = CYCLE * 1.5;
@@ -67,23 +72,29 @@ initialize(startup)
 		torps = TORPEDOES;
 		for (p = dayobjs; p->room != 0; p++)
 			setbit(location[p->room].objects, p->obj);
-	} else
-		restore(startup, strlen(startup));
+	} else {
+		savefile = save_file_name(filename, strlen(filename));
+		restore(savefile);
+		free(savefile);
+	}
 	wiz = wizard(username);
 	signal(SIGINT, diesig);
 }
 
-void
-getutmp(uname)
-	char   *uname;
+static const char *
+getutmp()
 {
 	struct passwd *ptr;
 
 	ptr = getpwuid(getuid());
-	strncpy(uname, ptr ? ptr->pw_name : "", 8);
+	if (ptr == NULL)
+		return "";
+	else
+		return strdup(ptr->pw_name);
 }
 
-const char   *const list[] = {		/* hereditary wizards */
+/* Hereditary wizards.  A configuration file might make more sense. */
+static const char *const list[] = {
 	"riggle",
 	"chris",
 	"edward",
@@ -94,14 +105,14 @@ const char   *const list[] = {		/* hereditary wizards */
 	0
 };
 
-const char   *const badguys[] = {
+static const char *const badguys[] = {
 	"wnj",
 	"root",
 	"ted",
 	0
 };
 
-int
+static int
 wizard(uname)
 	const char   *uname;
 {
@@ -112,7 +123,7 @@ wizard(uname)
 	return flag;
 }
 
-int
+static int
 checkout(uname)
 	const char   *uname;
 {

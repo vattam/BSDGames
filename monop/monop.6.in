@@ -1,4 +1,4 @@
-.\"	$NetBSD: monop.6,v 1.8 1995/03/23 08:34:50 cgd Exp $
+.\"	$NetBSD: monop.6,v 1.13 2002/09/26 18:32:03 wiz Exp $
 .\"
 .\" Copyright (c) 1980 The Regents of the University of California.
 .\" All rights reserved.
@@ -40,10 +40,10 @@
 .Nm monop
 .Nd Monopoly game
 .Sh SYNOPSIS
-.Nm @gamesdir@/monop
+.Nm
 .Op Ar file
 .Sh DESCRIPTION
-.Nm Monop
+.Nm
 is reminiscent of the Parker Brother's game Monopoly, and
 monitors a game between 1 to 9 users.
 It is assumed that the rules of Monopoly are known.
@@ -53,8 +53,7 @@ no auction is held and the property remains unowned.
 .Nm
 The game, in effect, lends the player money,
 so it is possible to buy something which you cannot afford.
-However, as soon as a person goes into debt,
-he must 
+However, as soon as a person goes into debt, he must
 .Dq fix the problem ,
 .Em i.e. ,
 make himself solvent, before play can continue.
@@ -65,7 +64,7 @@ which puts the property back on the board, unowned.
 .Pp
 Any time that the response to a question is a
 .Em string ,
-e.g., a name, place or person, you can type 
+e.g., a name, place or person, you can type
 .Sq Ic ?
 to get a list of valid answers.
 It is not possible to input a negative number, nor is it ever necessary.
@@ -73,7 +72,8 @@ It is not possible to input a negative number, nor is it ever necessary.
 .Em A Summary of Commands :
 .Bl -tag -width item
 .It Ic quit
-quit game: This allows you to quit the game.  It asks you if you're sure.
+quit game: This allows you to quit the game.
+It asks you if you're sure.
 .It Ic print
 print board: This prints out the current board.
 The columns have the following meanings (column headings are the same for the
@@ -87,13 +87,13 @@ commands):
 .It Name
 The first ten characters of the name of the square
 .It Own
-The 
+The
 .Em number
 of the owner of the property.
 .It Price
 The cost of the property (if any)
 .It Mg
-This field has a 
+This field has a
 .Sq *
 in it if the property is mortgaged
 .It \&#
@@ -101,11 +101,14 @@ If the property is a Utility or Railroad, this is the number
 of such owned by the owner.
 If the property is land, this is the number of houses on it.
 .It Rent
-Current rent on the property.  If it is not owned, there is no rent.
+Current rent on the property.
+If it is not owned, there is no rent.
 .El
 .It Ic where
 where players are: Tells you where all the players are.
-A `*' indicates the current player.
+A
+.Sq *
+indicates the current player.
 .It Ic own holdings
 List your own holdings,
 .Em i.e. ,
@@ -113,7 +116,7 @@ money, get-out-of-jail-free cards, and property.
 .It Ic holdings
 holdings list: Look at anyone's holdings.
 It will ask you whose holdings you wish to look at.
-When you are finished, type 
+When you are finished, type
 .Sq Ic done .
 .It Ic mortgage
 mortgage property:
@@ -134,7 +137,7 @@ it asks you to re-input things.
 sell houses:
 Sets up a list of monopolies from which you can sell houses.
 It operates in an analogous manner to
-.Ic buy.
+.Ic buy .
 .It Ic card
 card for jail:
 Use a get-out-of-jail-free card to get out of jail.
@@ -158,7 +161,7 @@ save game:
 Save the current game in a file for later play.
 You can continue play after saving,
 either by adding the file in which you saved the game after the
-.Nm monop
+.Nm
 command, or by using the
 .Ic restore
 command (see below).
@@ -169,13 +172,14 @@ restore game:
 Read in a previously saved game from a file.
 It leaves the file intact.
 .It Ic roll
-Roll the dice and move forward to your new location.  
-If you simply hit the <RETURN> key instead of a command,
-it is the same as typing
+Roll the dice and move forward to your new location.
+If you simply hit the
+.Aq RETURN
+key instead of a command, it is the same as typing
 .Ic roll .
 .El
 .Sh AUTHOR
-Ken Arnold
+.An Ken Arnold
 .Sh FILES
 .Bl -tag -width @monop_cardsfile@ -compact
 .It Pa @monop_cardsfile@

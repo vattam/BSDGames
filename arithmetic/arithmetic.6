@@ -1,4 +1,4 @@
-.\"	$NetBSD: arithmetic.6,v 1.6 1998/04/28 07:19:28 fair Exp $
+.\"	$NetBSD: arithmetic.6,v 1.9 2002/09/26 18:31:58 wiz Exp $
 .\"
 .\" Copyright (c) 1989, 1993
 .\"	The Regents of the University of California.  All rights reserved.
@@ -38,7 +38,7 @@
 .\"
 .Dd May 31, 1993
 .Dt ARITHMETIC 6
-.Os BSD 4
+.Os
 .Sh NAME
 .Nm arithmetic
 .Nd quiz on simple arithmetic
@@ -54,7 +54,7 @@ After every 20 problems, it prints the score so far and the time taken.
 You can quit at any time by typing the interrupt or end-of-file character.
 .Pp
 The options are as follows:
-.Bl -tag -width indent 
+.Bl -tag -width indent
 .It Fl o
 By default,
 .Nm
@@ -81,7 +81,8 @@ divide by or subtract will be between 0 and
 .Ar range .
 (Of course,
 .Nm
-will not ask you to divide by 0.)  The default
+will not ask you to divide by 0.)
+The default
 .I range
 is 10.
 .El

@@ -1,4 +1,4 @@
-.\"	$NetBSD: tetris.6,v 1.4 1997/09/01 23:26:11 mikel Exp $
+.\"	$NetBSD: tetris.6,v 1.9 2002/09/26 18:32:05 wiz Exp $
 .\"
 .\" Copyright (c) 1992, 1993
 .\"	The Regents of the University of California.  All rights reserved.
@@ -44,7 +44,7 @@
 .Nd the game of tetris
 .Sh SYNOPSIS
 .Nm
-.Op Fl s
+.Op Fl ps
 .Op Fl k Ar keys
 .Op Fl l Ar level
 .Sh DESCRIPTION
@@ -60,14 +60,14 @@ The default level of play is 2.
 .Pp
 The default control keys are as follows:
 .Pp
-.Bl -tag -width "<space>" -compact -offset indent
+.Bl -tag -width "xxspacexx" -compact -offset indent
 .It j
 move left
 .It k
 rotate 1/4 turn counterclockwise
 .It l
 move right
-.It <space>
+.It Aq space
 drop
 .It p
 pause
@@ -97,6 +97,8 @@ during play.
 Select a level of play.
 .It Fl s
 Display the top scores.
+.It Fl p
+Switch on previewing of the shape that will appear next.
 .El
 .Pp
 .Sh PLAY
@@ -108,7 +110,7 @@ at level 9, they fall 9 times per second.
 (As the game goes on, things speed up,
 no matter what your initial selection.)
 When this shape
-.Dq "touches down"
+.Dq touches down
 on the bottom of the field, another will appear at the top.
 .Pp
 You can move shapes to the left or right, rotate them counterclockwise,
@@ -155,3 +157,5 @@ Chris Torek and Darren F. Provine.
 .Pp
 Manual adapted from the original entry written by Nancy L. Tinkham and
 Darren F. Provine.
+.Pp
+Code for previewing next shape added by Hubert Feyrer in 1999.

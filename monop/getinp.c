@@ -1,4 +1,4 @@
-/*	$NetBSD: getinp.c,v 1.6 1997/10/12 17:45:10 christos Exp $	*/
+/*	$NetBSD: getinp.c,v 1.10 2003/01/06 13:04:55 wiz Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)getinp.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: getinp.c,v 1.6 1997/10/12 17:45:10 christos Exp $");
+__RCSID("$NetBSD: getinp.c,v 1.10 2003/01/06 13:04:55 wiz Exp $");
 #endif
 #endif /* not lint */
 
@@ -47,27 +47,26 @@ __RCSID("$NetBSD: getinp.c,v 1.6 1997/10/12 17:45:10 christos Exp $");
 #include <ctype.h>
 #include "monop.ext"
 
-# define	LINE	70
+#define	LINE	70
 
 static char	buf[257];
 
-static int comp __P((char *));
+static int comp __P((const char *));
 
 int
 getinp(prompt, list)
-char	*prompt, *list[]; 
+	const char *prompt, *const list[]; 
 {
-
-	int	i, n_match, match = 0;
-	char	*sp;
-	int	c;
+	int i, n_match, match = 0;
+	char *sp;
+	int c;
 
 	for (;;) {
 inter:
-		printf(prompt);
+		printf("%s", prompt);
 		for (sp = buf; (c=getchar()) != '\n'; ) {
 			*sp = c;
-			if (c == -1)	/* check for interupted system call */
+			if (c == -1)	/* check for interrupted system call */
 				goto inter;
 			else if (sp != buf || *sp != ' ')
 				sp++;
@@ -85,7 +84,7 @@ inter:
 					printf("<RETURN>");
 				}
 				else
-					printf(list[i]);
+					printf("%s", list[i]);
 				if (list[i+1])
 					printf(", ");
 				else
@@ -106,16 +105,17 @@ inter:
 		if (n_match == 1)
 			return match;
 		else if (buf[0] != '\0')
-			printf("Illegal response: \"%s\".  Use '?' to get list of valid answers\n", buf);
+			printf("Illegal response: \"%s\".  "
+			    "Use '?' to get list of valid answers\n", buf);
 	}
 }
 
 static int
 comp(s1)
-char	*s1;
+	const char *s1;
 {
-
-	char	*sp, *tsp, c;
+	const char *sp, *tsp;
+	char c;
 
 	if (buf[0] != '\0')
 		for (sp = buf, tsp = s1; *sp; ) {

@@ -1,4 +1,4 @@
-/*	$NetBSD: back.h,v 1.9 1998/09/13 15:31:07 hubertf Exp $	*/
+/*	$NetBSD: back.h,v 1.12 1999/10/04 23:26:59 lukem Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -146,7 +146,7 @@ void	cline __P((void));
 int	count __P((void));
 void	curmove __P((int, int));
 int	dotable __P((char, int));
-void	errexit __P((const char *));
+void	errexit __P((const char *)) __attribute__((__noreturn__));
 void	fancyc __P((int));
 void	fboard __P((void));
 void	fixcol __P((int, int, int, int, int));
@@ -168,7 +168,7 @@ int	movokay __P((int));
 void	newline __P((void));
 void	newpos __P((void));
 void	nexturn __P((void));
-void	norec __P((const char *));
+void	norec __P((const char *)) __attribute__((__noreturn__));
 void	odds __P((int, int, int));
 void	proll __P((void));
 int	quit __P((void));

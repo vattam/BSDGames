@@ -1,4 +1,4 @@
-/*	$NetBSD: pickmove.c,v 1.5 1997/10/10 13:36:06 lukem Exp $	*/
+/*	$NetBSD: pickmove.c,v 1.9 1999/09/18 19:38:51 jsm Exp $	*/
 
 /*
  * Copyright (c) 1994
@@ -41,18 +41,14 @@
 #if 0
 static char sccsid[] = "@(#)pickmove.c	8.2 (Berkeley) 5/3/95";
 #else
-__RCSID("$NetBSD: pickmove.c,v 1.5 1997/10/10 13:36:06 lukem Exp $");
+__RCSID("$NetBSD: pickmove.c,v 1.9 1999/09/18 19:38:51 jsm Exp $");
 #endif
 #endif /* not lint */
 
 #include <stdlib.h>
 #include <string.h>
 #include <curses.h>
-#ifndef __linux__
-#include <machine/limits.h>
-#else
 #include <limits.h>
-#endif
 
 #include "gomoku.h"
 
@@ -1058,7 +1054,7 @@ updatecombo(cbp, color)
 void
 appendcombo(cbp, color)
 	struct combostr *cbp;
-	int color __attribute__((unused));
+	int color __attribute__((__unused__));
 {
 	struct combostr *pcbp, *ncbp;
 

@@ -1,4 +1,4 @@
-/*	$NetBSD: cards.c,v 1.5 1998/08/30 09:19:39 veego Exp $	*/
+/*	$NetBSD: cards.c,v 1.12 2002/08/12 02:38:13 itojun Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,24 +38,26 @@
 #if 0
 static char sccsid[] = "@(#)cards.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: cards.c,v 1.5 1998/08/30 09:19:39 veego Exp $");
+__RCSID("$NetBSD: cards.c,v 1.12 2002/08/12 02:38:13 itojun Exp $");
 #endif
 #endif /* not lint */
 
-# include	"monop.ext"
-# include	"pathnames.h"
+#include <sys/types.h>
+#include <sys/endian.h>
+#include "monop.ext"
+#include "pathnames.h"
 
 /*
  *	These routine deal with the card decks
  */
 
-# define	GOJF	'F'	/* char for get-out-of-jail-free cards	*/
+#define	GOJF	'F'	/* char for get-out-of-jail-free cards	*/
 
-# ifndef DEV
-static char	*cardfile	= _PATH_CARDS;
-# else
-static char	*cardfile	= "cards.pck";
-# endif
+#ifndef DEV
+static const char	*cardfile	= _PATH_CARDS;
+#else
+static const char	*cardfile	= "cards.pck";
+#endif
 
 static FILE	*deckf;
 
@@ -69,36 +71,51 @@ static void printmes __P((void));
 void
 init_decks()
 {
+	int32_t nc;
 
 	if ((deckf=fopen(cardfile, "r")) == NULL) {
 file_err:
 		perror(cardfile);
 		exit(1);
 	}
-	if (fread(deck, sizeof (DECK), 2, deckf) != 2)
+
+	/* read number of community chest cards... */
+	if (fread(&nc, sizeof(nc), 1, deckf) != 1)
 		goto file_err;
+	CC_D.num_cards = be32toh(nc);
+	/* ... and number of community chest cards. */
+	if (fread(&nc, sizeof(nc), 1, deckf) != 1)
+		goto file_err;
+	CH_D.num_cards = be32toh(nc);
 	set_up(&CC_D);
 	set_up(&CH_D);
 }
+
 /*
  *	This routine sets up the offset pointers for the given deck.
  */
 static void
 set_up(dp)
-DECK	*dp; {
+	DECK *dp;
+{
+	int r1, r2;
+	int i;
 
-	int	r1, r2;
-	int	i;
-
-	dp->offsets = (long *) calloc(sizeof (long), dp->num_cards);
-	if (fread(dp->offsets, sizeof(long), dp->num_cards, deckf) != (size_t)dp->num_cards) {
+	dp->offsets = (u_int64_t *) calloc(dp->num_cards, sizeof (u_int64_t));
+	if (dp->offsets == NULL)
+		err(1, NULL);
+	if (fread(dp->offsets, sizeof(u_int64_t), dp->num_cards, deckf) !=
+	    (size_t)dp->num_cards) {
 		perror(cardfile);
 		exit(1);
 	}
+	/* convert offsets from big-endian byte order */
+	for (i = 0; i < dp->num_cards; i++)
+		BE64TOH(dp->offsets[i]);
 	dp->last_card = 0;
 	dp->gojf_used = FALSE;
 	for (i = 0; i < dp->num_cards; i++) {
-		long	temp;
+		u_int64_t	temp;
 
 		r1 = roll(1, dp->num_cards) - 1;
 		r2 = roll(1, dp->num_cards) - 1;
@@ -107,26 +124,26 @@ DECK	*dp; {
 		dp->offsets[r1] = temp;
 	}
 }
+
 /*
  *	This routine draws a card from the given deck
  */
 void
 get_card(dp)
-DECK	*dp;
+	DECK *dp;
 {
-
-	char	type_maj, type_min;
-	int		num;
-	int		i, per_h, per_H, num_h, num_H;
-	OWN		*op;
+	char type_maj, type_min;
+	int num;
+	int i, per_h, per_H, num_h, num_H;
+	OWN *op;
 
 	do {
-		fseek(deckf, dp->offsets[dp->last_card], 0);
+		fseek(deckf, dp->offsets[dp->last_card], SEEK_SET);
 		dp->last_card = ++(dp->last_card) % dp->num_cards;
 		type_maj = getc(deckf);
 	} while (dp->gojf_used && type_maj == GOJF);
 	type_min = getc(deckf);
-	num = getw(deckf);
+	num = ntohl(getw(deckf));
 	printmes();
 	switch (type_maj) {
 	  case '+':		/* get money		*/
@@ -195,7 +212,9 @@ DECK	*dp;
 					num_h += op->sqr->desc->houses;
 			}
 		num = per_h * num_h + per_H * num_H;
-		printf("You had %d Houses and %d Hotels, so that cost you $%d\n", num_h, num_H, num);
+		printf(
+		    "You had %d Houses and %d Hotels, so that cost you $%d\n",
+		    num_h, num_H, num);
 		if (num == 0)
 			lucky("");
 		else
@@ -213,9 +232,9 @@ DECK	*dp;
  *	This routine prints out the message on the card
  */
 static void
-printmes() {
-
-	char	c;
+printmes()
+{
+	char c;
 
 	printline();
 	fflush(stdout);

@@ -1,4 +1,4 @@
-/*	$NetBSD: dayobjs.c,v 1.6 1997/10/11 02:07:16 lukem Exp $	*/
+/*	$NetBSD: dayobjs.c,v 1.8 1999/09/18 16:42:29 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)dayobjs.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: dayobjs.c,v 1.6 1997/10/11 02:07:16 lukem Exp $");
+__RCSID("$NetBSD: dayobjs.c,v 1.8 1999/09/18 16:42:29 jsm Exp $");
 #endif
 #endif				/* not lint */
 

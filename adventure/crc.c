@@ -1,4 +1,4 @@
-/*	$NetBSD: crc.c,v 1.6 1998/09/13 00:07:24 hubertf Exp $	*/
+/*	$NetBSD: crc.c,v 1.7 1999/02/10 00:29:21 hubertf Exp $	*/
 
 /*-
  * Copyright (c) 1993
@@ -42,7 +42,7 @@
 static char sccsid[] = "@(#)crc.c	8.1 (Berkeley) 5/31/93";
 static char ORIGINAL_sccsid[] = "@(#)crc.c	5.2 (Berkeley) 4/4/91";
 #else
-__RCSID("$NetBSD: crc.c,v 1.6 1998/09/13 00:07:24 hubertf Exp $");
+__RCSID("$NetBSD: crc.c,v 1.7 1999/02/10 00:29:21 hubertf Exp $");
 #endif
 #endif /* not lint */
 

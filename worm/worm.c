@@ -1,4 +1,4 @@
-/*	$NetBSD: worm.c,v 1.9 1998/09/13 15:27:30 hubertf Exp $	*/
+/*	$NetBSD: worm.c,v 1.23 2001/12/06 12:24:00 blymn Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1980, 1993\n\
 #if 0
 static char sccsid[] = "@(#)worm.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: worm.c,v 1.9 1998/09/13 15:27:30 hubertf Exp $");
+__RCSID("$NetBSD: worm.c,v 1.23 2001/12/06 12:24:00 blymn Exp $");
 #endif
 #endif /* not lint */
 
@@ -54,6 +54,7 @@ __RCSID("$NetBSD: worm.c,v 1.9 1998/09/13 15:27:30 hubertf Exp $");
 
 #include <ctype.h>
 #include <curses.h>
+#include <err.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <termios.h>
@@ -79,20 +80,20 @@ int running = 0;
 int slow = 0;
 int score = 0;
 int start_len = LENGTH;
-char lastch;
+int visible_len;
+int lastch;
 char outbuf[BUFSIZ];
 
 void	crash __P((void)) __attribute__((__noreturn__));
-void	display __P((struct body *, char));
+void	display __P((const struct body *, char));
 int	main __P((int, char **));
 void	leave __P((int)) __attribute__((__noreturn__));
 void	life __P((void));
 void	newpos __P((struct body *));
-void	process __P((char));
+void	process __P((int));
 void	prize __P((void));
 int	rnd __P((int));
 void	setup __P((void));
-void	suspend __P((int));
 void	wake __P((int));
 
 int
@@ -100,26 +101,36 @@ main(argc, argv)
 	int argc;
 	char **argv;
 {
-	char ch;
 
 	/* Revoke setgid privileges */
 	setregid(getgid(), getgid());
 
-	if (argc == 2)
-		start_len = atoi(argv[1]);
-	if ((start_len <= 0) || (start_len > 500))
-		start_len = LENGTH;
 	setbuf(stdout, outbuf);
 	srand(getpid());
 	signal(SIGALRM, wake);
 	signal(SIGINT, leave);
 	signal(SIGQUIT, leave);
-	signal(SIGTSTP, suspend);	/* process control signal */
 	initscr();
-	crmode();
+	cbreak();
 	noecho();
+#ifdef KEY_LEFT
+	keypad(stdscr, TRUE);
+#endif
 	slow = (baudrate() <= 1200);
 	clear();
+	if (COLS < 18 || LINES < 5) {
+		/*
+		 * Insufficient room for the line with " Worm" and the
+		 * score if fewer than 18 columns; insufficient room for
+		 * anything much if fewer than 5 lines.
+		 */
+		endwin();
+		errx(1, "screen too small");
+	}
+	if (argc == 2)
+		start_len = atoi(argv[1]);
+	if ((start_len <= 0) || (start_len > ((LINES-3) * (COLS-2)) / 3))
+		start_len = LENGTH;
 	stw = newwin(1, COLS-1, 0, 0);
 	tv = newwin(LINES-1, COLS-1, 1, 0);
 	box(tv, '*', '*');
@@ -142,8 +153,7 @@ main(argc, argv)
 		else
 		{
 		    fflush(stdout);
-		    if (read(0, &ch, 1) >= 0)
-			process(ch);
+		    process(getch());
 		}
 	}
 }
@@ -152,29 +162,40 @@ void
 life()
 {
 	struct body *bp, *np;
-	int i;
+	int i, j = 1;
 
 	np = NULL;
 	head = newlink();
-	head->x = start_len+2;
-	head->y = 12;
+	if (head == NULL)
+		err(1, NULL);
+	head->x = start_len % (COLS-5) + 2;
+	head->y = LINES / 2;
 	head->next = NULL;
 	display(head, HEAD);
 	for (i = 0, bp = head; i < start_len; i++, bp = np) {
 		np = newlink();
+		if (np == NULL)
+			err(1, NULL);
 		np->next = bp;
 		bp->prev = np;
-		np->x = bp->x - 1;
-		np->y = bp->y;
+		if (((bp->x <= 2) && (j == 1)) || ((bp->x >= COLS-4) && (j == -1))) {
+			j *= -1;
+			np->x = bp->x;
+			np->y = bp->y + 1;
+		} else {
+			np->x = bp->x - j;
+			np->y = bp->y;
+		}
 		display(np, BODY);
 	}
 	tail = np;
 	tail->prev = NULL;
+	visible_len = start_len + 1;
 }
 
 void
 display(pos, chr)
-	struct body *pos;
+	const struct body *pos;
 	char chr;
 {
 	wmove(tv, pos->y, pos->x);
@@ -183,15 +204,20 @@ display(pos, chr)
 
 void
 leave(dummy)
-	int dummy __attribute__((unused));
+	int dummy;
 {
 	endwin();
+
+	if (dummy == 0){	/* called via crash() */
+		printf("\nWell, you ran into something and the game is over.\n");
+		printf("Your final score was %d\n\n", score);
+	}
 	exit(0);
 }
 
 void
 wake(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
 	signal(SIGALRM, wake);
 	fflush(stdout);
@@ -209,8 +235,15 @@ void
 newpos(bp)
 	struct body * bp;
 {
+	if (visible_len == (LINES-3) * (COLS-3) - 1) {
+		endwin();
+
+		printf("\nYou won!\n");
+		printf("Your final score was %d\n\n", score);
+		exit(0);
+	}
 	do {
-		bp->y = rnd(LINES-3)+ 2;
+		bp->y = rnd(LINES-3)+ 1;
 		bp->x = rnd(COLS-3) + 1;
 		wmove(tv, bp->y, bp->x);
 	} while(winch(tv) != ' ');
@@ -229,7 +262,7 @@ prize()
 
 void
 process(ch)
-	char ch;
+	int ch;
 {
 	int x,y;
 	struct body *nh;
@@ -239,18 +272,42 @@ process(ch)
 	y = head->y;
 	switch(ch)
 	{
-		case 'h': x--; break;
-		case 'j': y++; break;
-		case 'k': y--; break;
-		case 'l': x++; break;
+#ifdef KEY_LEFT
+		case KEY_LEFT:
+#endif
+		case 'h':
+			x--; break;
+
+#ifdef KEY_DOWN
+		case KEY_DOWN:
+#endif
+		case 'j':
+			y++; break;
+
+#ifdef KEY_UP
+		case KEY_UP:
+#endif
+		case 'k':
+			y--; break;
+
+#ifdef KEY_RIGHT
+		case KEY_RIGHT:
+#endif
+		case 'l':
+			x++; break;
+
 		case 'H': x--; running = RUNLEN; ch = tolower(ch); break;
 		case 'J': y++; running = RUNLEN/2; ch = tolower(ch); break;
 		case 'K': y--; running = RUNLEN/2; ch = tolower(ch); break;
 		case 'L': x++; running = RUNLEN; ch = tolower(ch); break;
 		case '\f': setup(); return;
-		case CNTRL('Z'): suspend(0); return;
-		case CNTRL('C'): crash(); return;
-		case CNTRL('D'): crash(); return;
+
+		case ERR:
+		case CNTRL('C'):
+		case CNTRL('D'):
+			crash();
+			return;
+
 		default: if (! running) alarm(1);
 			   return;
 	}
@@ -262,6 +319,7 @@ process(ch)
 		nh = tail->next;
 		free(tail);
 		tail = nh;
+		visible_len--;
 	}
 	else growing--;
 	display(head, BODY);
@@ -272,12 +330,14 @@ process(ch)
 		prize();
 		score += growing;
 		running = 0;
-		wmove(stw, 0, 68);
+		wmove(stw, 0, COLS - 12);
 		wprintw(stw, "Score: %3d", score);
 		wrefresh(stw);
 	}
 	else if(ch != ' ') crash();
 	nh = newlink();
+	if (nh == NULL)
+		err(1, NULL);
 	nh->next = NULL;
 	nh->prev = head;
 	head->next = nh;
@@ -285,6 +345,7 @@ process(ch)
 	nh->x = x;
 	display(nh, HEAD);
 	head = nh;
+	visible_len++;
 	if (!(slow && running))
 	{
 		wmove(tv, head->y, head->x);
@@ -297,28 +358,7 @@ process(ch)
 void
 crash()
 {
-	sleep(2);
-	clear();
-	move(23, 0);
-	refresh();
-	printf("Well, you ran into something and the game is over.\n");
-	printf("Your final score was %d\n", score);
 	leave(0);
-}
-
-void
-suspend(dummy)
-	int dummy __attribute__((unused));
-{
-	move(LINES-1, 0);
-	refresh();
-	endwin();
-	fflush(stdout);
-	kill(getpid(), SIGTSTP);
-	signal(SIGTSTP, suspend);
-	crmode();
-	noecho();
-	setup();
 }
 
 void

@@ -1,4 +1,4 @@
-/*	$NetBSD: snscore.c,v 1.8 1998/09/11 14:25:22 hubertf Exp $	*/
+/*	$NetBSD: snscore.c,v 1.13 2000/05/08 07:56:05 mycroft Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1980, 1993\n\
 #if 0
 static char sccsid[] = "@(#)snscore.c	8.1 (Berkeley) 7/19/93";
 #else
-__RCSID("$NetBSD: snscore.c,v 1.8 1998/09/11 14:25:22 hubertf Exp $");
+__RCSID("$NetBSD: snscore.c,v 1.13 2000/05/08 07:56:05 mycroft Exp $");
 #endif
 #endif /* not lint */
 
@@ -56,7 +56,7 @@ __RCSID("$NetBSD: snscore.c,v 1.8 1998/09/11 14:25:22 hubertf Exp $");
 #include <unistd.h>
 #include "pathnames.h"
 
-char *recfile = _PATH_RAWSCORES;
+const char *recfile = _PATH_RAWSCORES;
 #define MAXPLAYERS 65534
 
 struct	player	{
@@ -105,8 +105,9 @@ main()
 			if (p == NULL)
 				continue;
 			q = p -> pw_name;
-			players[noplayers].name = malloc(strlen(q) + 1);
-			strcpy(players[noplayers].name, q);
+			players[noplayers].name = strdup(q);
+			if (players[noplayers].name == NULL)
+				err(1, NULL);
 			noplayers++;
 		}
 	}

@@ -1,4 +1,4 @@
-/*	$NetBSD: parties.c,v 1.5 1997/10/13 19:44:47 christos Exp $	*/
+/*	$NetBSD: parties.c,v 1.10 2001/02/05 01:10:10 christos Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,16 +38,15 @@
 #if 0
 static char sccsid[] = "@(#)parties.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: parties.c,v 1.5 1997/10/13 19:44:47 christos Exp $");
+__RCSID("$NetBSD: parties.c,v 1.10 2001/02/05 01:10:10 christos Exp $");
 #endif
 #endif /* not lint */
 
+#include <sys/types.h>
 #include "extern.h"
 
 int
-meleeing(from, to)
-struct ship *from;
-struct ship *to;
+meleeing(struct ship *from, struct ship *to)
 {
 	struct BP *p = from->file->OBP;
 	struct BP *q = p + NBP;
@@ -59,9 +58,7 @@ struct ship *to;
 }
 
 int
-boarding(from, isdefense)
-struct ship *from;
-char isdefense;
+boarding(struct ship *from, int isdefense)
 {
 	struct BP *p = isdefense ? from->file->DBP : from->file->OBP;
 	struct BP *q = p + NBP;
@@ -73,14 +70,12 @@ char isdefense;
 }
 
 void
-unboard(ship, to, isdefense)
-struct ship *ship, *to;
-char isdefense;
+unboard(struct ship *ship, struct ship *to, int isdefense)
 {
 	struct BP *p = isdefense ? ship->file->DBP : ship->file->OBP;
 	int n;
 
 	for (n = 0; n < NBP; p++, n++)
 		if (p->turnsent && (p->toship == to || isdefense || ship == to))
-			Write(isdefense ? W_DBP : W_OBP, ship, 0, n, 0, 0, 0);
+			Write(isdefense ? W_DBP : W_OBP, ship, n, 0, 0, 0);
 }

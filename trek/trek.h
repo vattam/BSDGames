@@ -1,4 +1,4 @@
-/*	$NetBSD: trek.h,v 1.5 1997/10/12 21:25:23 christos Exp $	*/
+/*	$NetBSD: trek.h,v 1.8 1999/09/17 17:06:08 jsm Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -45,12 +45,6 @@
 **
 **	So far as I know, nothing in here must be preinitialized to
 **	zero.
-**
-**	You may have problems from the loader if you move this to a
-**	different machine.  These things actually get allocated in each
-**	source file, which UNIX allows; however, you may (on other
-**	systems) have to change everything in here to be "extern" and
-**	actually allocate stuff in "externs.c"
 */
 
 /* external function definitions */
@@ -90,10 +84,10 @@ struct quad		/* definition for each quadrant */
 */
 
 /* ascii names of systems */
-extern char	*Systemname[NINHAB];
+extern const char	*const Systemname[NINHAB];
 
 /* quadrant definition */
-struct quad	Quad[NQUADS][NQUADS];
+extern struct quad	Quad[NQUADS][NQUADS];
 
 /* defines for sector map  (below) */
 # define	EMPTY		'.'
@@ -106,7 +100,7 @@ struct quad	Quad[NQUADS][NQUADS];
 # define	HOLE		' '
 
 /* current sector map */
-char	Sect[NSECTS][NSECTS];
+extern char	Sect[NSECTS][NSECTS];
 
 
 
@@ -133,11 +127,11 @@ char	Sect[NSECTS][NSECTS];
 /* device names */
 struct device
 {
-	char	*name;		/* device name */
-	char	*person;	/* the person who fixes it */
+	const char	*name;		/* device name */
+	const char	*person;	/* the person who fixes it */
 };
 
-struct device	Device[NDEV];
+extern const struct device	Device[NDEV];
 
 /***************************  EVENTS  ****************************/
 
@@ -177,7 +171,7 @@ struct event
 
 # define	MAXEVENTS	25	/* max number of concurrently pending events */
 
-struct event	Event[MAXEVENTS];	/* dynamic event list; one entry per pending event */
+extern struct event	Event[MAXEVENTS];	/* dynamic event list; one entry per pending event */
 
 /*****************************  KLINGONS  *******************************/
 
@@ -215,8 +209,8 @@ struct xy
 };
 
 
-extern struct cvntab	Skitab[];
-extern struct cvntab	Lentab[];
+extern const struct cvntab	Skitab[];
+extern const struct cvntab	Lentab[];
 
 /*
  *	note that much of the stuff in the following structs CAN NOT
@@ -225,7 +219,7 @@ extern struct cvntab	Lentab[];
 
 
 /* information regarding the state of the starship */
-struct
+struct Ship_struct
 {
 	double	warp;		/* warp factor */
 	double	warp2;		/* warp factor squared */
@@ -245,15 +239,16 @@ struct
 	int	secty;		/* sector y coord */
 	unsigned char	cond;	/* condition code */
 	char	sinsbad;	/* Space Inertial Navigation System condition */
-	char	*shipname;	/* name of current starship */
+	const char *shipname;	/* name of current starship */
 	char	ship;		/* current starship */
 	int	distressed;	/* number of distress calls */
-}	Ship;
+};
+extern struct Ship_struct Ship;
 
 /* sinsbad is set if SINS is working but not calibrated */
 
 /* game related information, mostly scoring */
-struct
+struct Game_struct
 {
 	int	killk;		/* number of klingons killed */
 	int	deaths;		/* number of deaths onboard Enterprise */
@@ -269,10 +264,11 @@ struct
 	char	snap;		/* set if snapshot taken */
 	char	helps;		/* number of help calls */
 	int	captives;	/* total number of captives taken */
-}	Game;
+};
+extern struct Game_struct Game;
 
 /* per move information */
-struct
+struct Move_struct
 {
 	char	free;		/* set if a move is free */
 	char	endgame;	/* end of game flag */
@@ -280,10 +276,11 @@ struct
 	char	newquad;	/* set if just entered this quadrant */
 	char	resting;	/* set if this move is a rest */
 	double	time;		/* time used this move */
-}	Move;
+};
+extern struct Move_struct Move;
 
 /* parametric information */
-struct
+struct Param_struct
 {
 	unsigned char	bases;	/* number of starbases */
 	char	klings;		/* number of klingons */
@@ -314,12 +311,13 @@ struct
 	int	klingcrew;	/* number of Klingons in a crew */
 	double	srndrprob;	/* surrender probability */
 	int	energylow;	/* low energy mark (cond YELLOW) */
-}	Param;
+};
+extern struct Param_struct Param;
 
 /* Sum of damage probabilities must add to 1000 */
 
 /* other information kept in a snapshot */
-struct
+struct Now_struct
 {
 	unsigned char	bases;	/* number of starbases */
 	char	klings;		/* number of klingons */
@@ -329,10 +327,11 @@ struct
 	char	distressed;	/* number of currently distressed quadrants */
 	struct event	*eventptr[NEVENTS];	/* pointer to event structs */
 	struct xy	base[MAXBASES];		/* locations of starbases */
-}	Now;
+};
+extern struct Now_struct Now;
 
 /* Other stuff, not dumped in a snapshot */
-struct
+struct Etc_struct
 {
 	struct kling	klingon[MAXKLQUAD];	/* sorted Klingon list */
 	short		nkling;			/* number of Klingons in this sector */
@@ -341,7 +340,8 @@ struct
 	struct xy	starbase;	/* starbase in current quadrant */
 	char		snapshot[sizeof Quad + sizeof Event + sizeof Now];	/* snapshot for time warp */
 	char		statreport;		/* set to get a status report on a srscan */
-}	Etc;
+};
+extern struct Etc_struct Etc;
 
 /*
  *	eventptr is a pointer to the event[] entry of the last
@@ -375,7 +375,7 @@ struct
 
 /* Trace info */
 # define	xTRACE		1
-int	Trace;
+extern int	Trace;
 
 /* abandon.c */
 void abandon __P((int));
@@ -459,7 +459,7 @@ void killd __P((int, int , int));
 void klmove __P((int));
 
 /* lose.c */
-void lose __P((int));
+void lose __P((int)) __attribute__((__noreturn__));
 
 /* lrscan.c */
 void lrscan __P((int));
@@ -477,8 +477,8 @@ void out __P((int));
 void phaser __P((int));
 
 /* play.c */
-void myreset __P((int));
-void play __P((void));
+void myreset __P((int)) __attribute__((__noreturn__));
+void play __P((void)) __attribute__((__noreturn__));
 
 /* ram.c */
 void ram __P((int, int ));
@@ -516,7 +516,7 @@ void snova __P((int, int ));
 void srscan __P((int));
 
 /* systemname.c */
-char *systemname __P((struct quad *));
+const char *systemname __P((const struct quad *));
 
 /* torped.c */
 void torped __P((int));
@@ -529,4 +529,4 @@ void dowarp __P((int));
 void warp __P((int, int, double));
 
 /* win.c */
-void win __P((void));
+void win __P((void)) __attribute__((__noreturn__));

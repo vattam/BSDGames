@@ -1,4 +1,4 @@
-/*	$NetBSD: houses.c,v 1.4 1997/10/12 17:45:11 christos Exp $	*/
+/*	$NetBSD: houses.c,v 1.6 1999/09/08 21:17:51 jsm Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,14 +38,14 @@
 #if 0
 static char sccsid[] = "@(#)houses.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: houses.c,v 1.4 1997/10/12 17:45:11 christos Exp $");
+__RCSID("$NetBSD: houses.c,v 1.6 1999/09/08 21:17:51 jsm Exp $");
 #endif
 #endif /* not lint */
 
 #include "monop.ext"
 
-static char	*names[N_MON+2],
-		cur_prop[80];
+static const char	*names[N_MON+2];
+static char	cur_prop[80];
 
 static MON	*monops[N_MON];
 
@@ -58,12 +58,11 @@ static void list_cur __P((MON *));
 void
 buy_houses()
 {
-
 	int num_mon;
-	MON	*mp;
-	OWN	*op;
-	bool	good,got_morg;
-	int	i,p;
+	MON *mp;
+	OWN *op;
+	bool good,got_morg;
+	int i,p;
 
 over:
 	num_mon = 0;
@@ -103,7 +102,9 @@ over:
 	else {
 		names[num_mon++] = "done";
 		names[num_mon--] = 0;
-		if ((p=getinp("Which property do you wish to buy houses for? ", names)) == num_mon)
+		if ((p = getinp(
+		    "Which property do you wish to buy houses for? ",
+		    names)) == num_mon)
 			return;
 		buy_h(monops[p]);
 		goto over;
@@ -112,15 +113,14 @@ over:
 
 static void
 buy_h(mnp)
-MON	*mnp;
+	MON *mnp;
 {
-
-	int	i;
-	MON	*mp;
-	int	price;
-	short	input[3],temp[3];
-	int	tot;
-	PROP	*pp;
+	int i;
+	MON *mp;
+	int price;
+	short input[3],temp[3];
+	int tot;
+	PROP *pp;
 
 	mp = mnp;
 	price = mp->h_cost * 50;
@@ -172,12 +172,11 @@ err:		printf("That makes the spread too wide.  Try again\n");
 void
 sell_houses()
 {
-
-	int	num_mon;
-	MON	*mp;
-	OWN	*op;
-	bool	good;
-	int	p;
+	int num_mon;
+	MON *mp;
+	OWN *op;
+	bool good;
+	int p;
 
 over:
 	num_mon = 0;
@@ -205,7 +204,9 @@ over:
 	else {
 		names[num_mon++] = "done";
 		names[num_mon--] = 0;
-		if ((p=getinp("Which property do you wish to sell houses from? ", names)) == num_mon)
+		if ((p = getinp(
+		    "Which property do you wish to sell houses from? ",
+		    names)) == num_mon)
 			return;
 		sell_h(monops[p]);
 		notify();
@@ -215,15 +216,14 @@ over:
 
 static void
 sell_h(mnp)
-MON	*mnp;
+	MON *mnp;
 {
-
-	int	i;
-	MON	*mp;
-	int	price;
-	short	input[3],temp[3];
-	int	tot;
-	PROP	*pp;
+	int i;
+	MON *mp;
+	int price;
+	short input[3],temp[3];
+	int tot;
+	PROP *pp;
 
 	mp = mnp;
 	price = mp->h_cost * 25;
@@ -247,7 +247,9 @@ over:
 		input[i] = get_int(cur_prop);
 		temp[i] = pp->houses - input[i];
 		if (temp[i] < 0) {
-			printf("That's too many.  The most you can sell is %d\n", pp->houses);
+			printf(
+			    "That's too many.  The most you can sell is %d\n",
+			    pp->houses);
 				goto over;
 			}
 	}
@@ -272,11 +274,10 @@ err:		printf("That makes the spread too wide.  Try again\n");
 
 static void
 list_cur(mp)
-MON	*mp;
+	MON *mp;
 {
-
-	int		i;
-	SQUARE	*sqp;
+	int i;
+	SQUARE *sqp;
 
 	for (i = 0; i < mp->num_in; i++) {
 		sqp = mp->sq[i];

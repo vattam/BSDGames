@@ -1,4 +1,4 @@
-/*	$NetBSD: getpar.c,v 1.6 1997/10/13 22:12:01 cjs Exp $	*/
+/*	$NetBSD: getpar.c,v 1.10 2002/10/18 14:12:14 itojun Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,11 +38,12 @@
 #if 0
 static char sccsid[] = "@(#)getpar.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: getpar.c,v 1.6 1997/10/13 22:12:01 cjs Exp $");
+__RCSID("$NetBSD: getpar.c,v 1.10 2002/10/18 14:12:14 itojun Exp $");
 #endif
 #endif /* not lint */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "getpar.h"
 #include "trek.h"
@@ -55,7 +56,7 @@ static int testterm __P((void));
 
 int
 getintpar(s)
-char	*s;
+	const char	*s;
 {
 	int	i;
 	int		n;
@@ -79,7 +80,7 @@ char	*s;
  **/
 
 double getfltpar(s)
-char	*s;
+	const char	*s;
 {
 	int		i;
 	double			d;
@@ -102,7 +103,7 @@ char	*s;
  **	get yes/no parameter
  **/
 
-struct cvntab	Yntab[] =
+const struct cvntab	Yntab[] =
 {
 	{ "y",	"es",	(cmdfun)1,	1 },
 	{ "n",	"o",	(cmdfun)0,	0 },
@@ -111,9 +112,9 @@ struct cvntab	Yntab[] =
 
 int
 getynpar(s)
-char	*s;
+	const char	*s;
 {
-	struct cvntab		*r;
+	const struct cvntab	*r;
 
 	r = getcodpar(s, Yntab);
 	return r->value2;
@@ -124,14 +125,14 @@ char	*s;
  **	get coded parameter
  **/
 
-struct cvntab *getcodpar(s, tab)
-char		*s;
-struct cvntab	tab[];
+const struct cvntab *getcodpar(s, tab)
+	const char		*s;
+	const struct cvntab	tab[];
 {
 	char				input[100];
-	struct cvntab		*r;
+	const struct cvntab		*r;
 	int				flag;
-	char			*p, *q;
+	const char			*p, *q;
 	int				c;
 	int				f;
 
@@ -144,7 +145,7 @@ struct cvntab	tab[];
 		if (f)
 			cgetc(0);		/* throw out the newline */
 		scanf("%*[ \t;]");
-		if ((c = scanf("%[^ \t;\n]", input)) < 0)
+		if ((c = scanf("%99[^ \t;\n]", input)) < 0)
 			exit(1);
 		if (c == 0)
 			continue;
@@ -204,10 +205,10 @@ struct cvntab	tab[];
 
 void
 getstrpar(s, r, l, t)
-char	*s;
-char	*r;
-int	l;
-char	*t;
+	const char	*s;
+	char	*r;
+	int	l;
+	const char	*t;
 {
 	int	i;
 	char		format[20];
@@ -290,7 +291,7 @@ testterm()
 
 
 /*
-**  TEST FOR SPECIFIED DELIMETER
+**  TEST FOR SPECIFIED DELIMITER
 **
 **	The standard input is scanned for the parameter.  If found,
 **	it is thrown away and non-zero is returned.  If not found,

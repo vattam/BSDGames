@@ -1,4 +1,4 @@
-/*	$NetBSD: tutor.h,v 1.5 1998/09/13 15:27:26 hubertf Exp $	*/
+/*	$NetBSD: tutor.h,v 1.6 1999/02/10 12:29:48 hubertf Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -58,9 +58,9 @@ extern	const char	*const lastch[];
 extern	const char	*const list[];
 extern	int	 maxmoves;
 extern	const char	*const moves[];
-extern	const char	*opts;
+extern	const char	*const opts;
 extern	const char	*const prog[];
-extern	const char	*prompt;
+extern	const char	*const prompt;
 extern	const char	*const removepiece[];
 extern	const char	*const stragy[];
 extern	const struct situatn	test[];

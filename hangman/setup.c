@@ -1,4 +1,4 @@
-/*	$NetBSD: setup.c,v 1.5 1997/10/11 08:01:06 lukem Exp $	*/
+/*	$NetBSD: setup.c,v 1.9 2001/12/06 12:07:37 blymn Exp $	*/
 
 /*-
  * Copyright (c) 1983, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)setup.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: setup.c,v 1.5 1997/10/11 08:01:06 lukem Exp $");
+__RCSID("$NetBSD: setup.c,v 1.9 2001/12/06 12:07:37 blymn Exp $");
 #endif
 #endif				/* not lint */
 
@@ -57,7 +57,7 @@ setup()
 	static struct stat sbuf;
 
 	noecho();
-	crmode();
+	cbreak();
 
 	mvaddstr(PROMPTY, PROMPTX, "Guess:");
 	mvaddstr(GUESSY, GUESSX, "Guessed:");
@@ -72,9 +72,9 @@ setup()
 	}
 
 	srand(time(NULL) + getpid());
-	if ((Dict = fopen(_PATH_DICT, "r")) == NULL) {
+	if ((Dict = fopen(Dict_name, "r")) == NULL) {
 		endwin();
-		err(1, "fopen %s", _PATH_DICT);
+		err(1, "fopen %s", Dict_name);
 	}
 	fstat(fileno(Dict), &sbuf);
 	Dict_size = sbuf.st_size;

@@ -1,4 +1,4 @@
-/*	$NetBSD: computer.c,v 1.5 1997/10/12 21:24:34 christos Exp $	*/
+/*	$NetBSD: computer.c,v 1.8 2000/07/03 03:57:44 matt Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,11 +38,12 @@
 #if 0
 static char sccsid[] = "@(#)computer.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: computer.c,v 1.5 1997/10/12 21:24:34 christos Exp $");
+__RCSID("$NetBSD: computer.c,v 1.8 2000/07/03 03:57:44 matt Exp $");
 #endif
 #endif /* not lint */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include "trek.h"
 #include "getpar.h"
@@ -113,12 +114,12 @@ static void prkalc __P((int, double));
 /*ARGSUSED*/
 void
 computer(v)
-	int v __attribute__((unused));
+	int v __attribute__((__unused__));
 {
 	int		ix, iy;
 	int		i, j;
 	int		tqx, tqy;
-	struct cvntab	*r;
+	const struct cvntab	*r;
 	int		cost;
 	int		course;
 	double		dist, time;

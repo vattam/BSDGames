@@ -1,4 +1,4 @@
-/*	$NetBSD: bcd.c,v 1.7 1997/10/10 09:54:18 lukem Exp $	*/
+/*	$NetBSD: bcd.c,v 1.11 2000/07/03 03:57:40 matt Exp $	*/
 
 /*
  * Copyright (c) 1989, 1993
@@ -46,7 +46,7 @@ __COPYRIGHT("@(#) Copyright (c) 1989, 1993\n\
 #if 0
 static char sccsid[] = "@(#)bcd.c	8.2 (Berkeley) 3/20/94";
 #else
-__RCSID("$NetBSD: bcd.c,v 1.7 1997/10/10 09:54:18 lukem Exp $");
+__RCSID("$NetBSD: bcd.c,v 1.11 2000/07/03 03:57:40 matt Exp $");
 #endif
 #endif /* not lint */
 
@@ -83,6 +83,7 @@ __RCSID("$NetBSD: bcd.c,v 1.7 1997/10/10 09:54:18 lukem Exp $");
 #include <sys/types.h>
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
@@ -128,7 +129,7 @@ const u_short holes[256] = {
 #define	bit(w,i)	((w)&(1<<(i)))
 
 int	main __P((int, char *[]));
-void	printcard __P((char *));
+void	printcard __P((unsigned char *));
 
 int
 main(argc, argv)
@@ -147,10 +148,10 @@ main(argc, argv)
 
 	if (argc > 1) {
 		while (--argc)
-			printcard(*++argv);
+			printcard((unsigned char *)*++argv);
 	} else
 		while (fgets(cardline, sizeof(cardline), stdin))
-			printcard(cardline);
+			printcard((unsigned char *)cardline);
 	exit(0);
 }
 
@@ -158,17 +159,17 @@ main(argc, argv)
 
 void
 printcard(str)
-	char *str;
+	unsigned char *str;
 {
 	static const char rowchars[] = "   123456789";
 	int i, row;
 	unsigned char *p;
 
 	/* ruthlessly remove newlines and truncate at 48 characters. */
-	if ((p = strchr(str, '\n')))
+	if ((p = (unsigned char *)strchr((char *)str, '\n')))
 		*p = '\0';
 
-	if (strlen(str) > COLUMNS)
+	if (strlen((char *)str) > COLUMNS)
 		str[COLUMNS] = '\0';
 
 	/* make string upper case. */

@@ -1,4 +1,4 @@
-/*	$NetBSD: crib.c,v 1.10 1998/08/30 09:19:37 veego Exp $	*/
+/*	$NetBSD: crib.c,v 1.16 2001/12/06 11:59:45 blymn Exp $	*/
 
 /*-
  * Copyright (c) 1980, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1980, 1993\n\
 #if 0
 static char sccsid[] = "@(#)crib.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: crib.c,v 1.10 1998/08/30 09:19:37 veego Exp $");
+__RCSID("$NetBSD: crib.c,v 1.16 2001/12/06 11:59:45 blymn Exp $");
 #endif
 #endif /* not lint */
 
@@ -76,6 +76,8 @@ main(argc, argv)
 	f = fopen(_PATH_LOG, "a");
 	if (f == NULL)
 		warn("fopen %s", _PATH_LOG);
+	if (f != NULL && fileno(f) < 3)
+		exit(1);
 
 	/* Revoke setgid privileges */
 	setregid(getgid(), getgid());
@@ -110,7 +112,7 @@ main(argc, argv)
 
 	initscr();
 	(void)signal(SIGINT, rint);
-	crmode();
+	cbreak();
 	noecho();
 
 	Playwin = subwin(stdscr, PLAY_Y, PLAY_X, 0, 0);
@@ -130,7 +132,7 @@ main(argc, argv)
 			mvcur(0, COLS - 1, LINES - 1, 0);
 			fflush(stdout);
 			instructions();
-			crmode();
+			cbreak();
 			noecho();
 			clear();
 			refresh();
@@ -194,8 +196,6 @@ makeboard()
 void
 gamescore()
 {
-	extern int Lastscore[];
-
 	if (pgames || cgames) {
 		mvprintw(SCORE_Y + 1, SCORE_X + 28, "Games: %3d", pgames);
 		mvprintw(SCORE_Y + 7, SCORE_X + 28, "Games: %3d", cgames);

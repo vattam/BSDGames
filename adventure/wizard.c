@@ -1,4 +1,4 @@
-/*	$NetBSD: wizard.c,v 1.8 1998/08/24 22:07:37 hubertf Exp $	*/
+/*	$NetBSD: wizard.c,v 1.10 1999/07/16 01:38:20 hubertf Exp $	*/
 
 /*-
  * Copyright (c) 1991, 1993
@@ -43,7 +43,7 @@
 #if 0
 static char sccsid[] = "@(#)wizard.c	8.1 (Berkeley) 6/2/93";
 #else
-__RCSID("$NetBSD: wizard.c,v 1.8 1998/08/24 22:07:37 hubertf Exp $");
+__RCSID("$NetBSD: wizard.c,v 1.10 1999/07/16 01:38:20 hubertf Exp $");
 #endif
 #endif				/* not lint */
 
@@ -91,7 +91,7 @@ Start()
 	int     d, t, delay;
 
 	datime(&d, &t);
-	delay = (d - saved) * 1440 + (t - savet);	/* good for about a
+	delay = (d - saveday) * 1440 + (t - savet);	/* good for about a
 							 * month     */
 
 	if (delay >= latncy) {
@@ -137,7 +137,7 @@ ciao()
 
 	printf("What would you like to call the saved version?\n");
 	/* XXX - should use fgetln to avoid arbitrary limit */
-	for (c = fname;; c++) {
+	for (c = fname; c < fname + sizeof fname - 1; c++) {
 		int ch;
 		ch = getchar();
 		if (ch == '\n' || ch == EOF)

@@ -1,4 +1,4 @@
-/*	$NetBSD: cypher.c,v 1.7 1998/08/24 00:25:32 hubertf Exp $	*/
+/*	$NetBSD: cypher.c,v 1.21 2000/09/25 19:37:58 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)cypher.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: cypher.c,v 1.7 1998/08/24 00:25:32 hubertf Exp $");
+__RCSID("$NetBSD: cypher.c,v 1.21 2000/09/25 19:37:58 jsm Exp $");
 #endif
 #endif				/* not lint */
 
@@ -51,64 +51,82 @@ cypher()
 	int     junk;
 	int     lflag = -1;
 	char    buffer[10];
-	char   *filename;
+	char   *filename, *rfilename;
 	size_t	filename_len;
 
-	while (wordtype[wordnumber] == ADJS)
-		wordnumber++;
 	while (wordnumber <= wordcount) {
+		if (wordtype[wordnumber] != VERB &&
+		    !(wordtype[wordnumber] == OBJECT && wordvalue[wordnumber] == KNIFE)) {
+			printf("%s: How's that?\n",
+			    (wordnumber == wordcount) ? words[0] : words[wordnumber]);
+			return (-1);
+		}
+
 		switch (wordvalue[wordnumber]) {
+
+		case AUXVERB:
+			/*
+			 * Take the following word as the verb (e.g.
+			 * "make love", "climb up").
+			 */
+			wordnumber++;
+			continue;
 
 		case UP:
 			if (location[position].access || wiz || tempwiz) {
 				if (!location[position].access)
 					puts("Zap!  A gust of wind lifts you up.");
-				if (!move(location[position].up, AHEAD))
+				if (!moveplayer(location[position].up, AHEAD))
 					return (-1);
 			} else {
-				puts("There is no way up");
+				puts("There is no way up.");
 				return (-1);
 			}
 			lflag = 0;
 			break;
 
 		case DOWN:
-			if (!move(location[position].down, AHEAD))
+			if (!moveplayer(location[position].down, AHEAD))
 				return (-1);
 			lflag = 0;
 			break;
 
 		case LEFT:
-			if (!move(left, LEFT))
+			if (!moveplayer(left, LEFT))
 				return (-1);
 			lflag = 0;
 			break;
 
 		case RIGHT:
-			if (!move(right, RIGHT))
+			if (!moveplayer(right, RIGHT))
 				return (-1);
 			lflag = 0;
 			break;
 
 		case AHEAD:
-			if (!move(ahead, AHEAD))
+			if (!moveplayer(ahead, AHEAD))
 				return (-1);
 			lflag = 0;
 			break;
 
 		case BACK:
-			if (!move(back, BACK))
+			if (!moveplayer(back, BACK))
 				return (-1);
 			lflag = 0;
 			break;
 
 		case SHOOT:
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(location[position].objects, n) && objsht[n]) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						wordnumber = shoot();
 					}
+				if (!things)
+					puts("Nothing to shoot at!");
 				wordnumber++;
 				wordnumber++;
 			} else
@@ -117,8 +135,11 @@ cypher()
 
 		case TAKE:
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(location[position].objects, n) && objsht[n]) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						/* Some objects (type NOUNS)
 						 * have special treatment in
@@ -138,6 +159,7 @@ cypher()
 						switch(n) {
 						case BATHGOD:
 							wordvalue[wordnumber + 1] = NORMGOD;
+							/* FALLTHROUGH */
 						case NORMGOD:
 						case AMULET:
 						case MEDALION:
@@ -154,111 +176,138 @@ cypher()
 					}
 				wordnumber++;
 				wordnumber++;
+				if (!things)
+					puts("Nothing to take!");
 			} else
 				take(location[position].objects);
 			break;
 
 		case DROP:
-
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(inven, n)) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						wordnumber = drop("Dropped");
 					}
 				wordnumber++;
 				wordnumber++;
+				if (!things)
+					puts("Nothing to drop!");
 			} else
 				drop("Dropped");
 			break;
 
-
 		case KICK:
 		case THROW:
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things, wv;
+				things = 0;
+				wv = wordvalue[wordnumber];
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(inven, n) ||
 					    (testbit(location[position].objects, n) && objsht[n])) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						wordnumber = throw(wordvalue[wordnumber] == KICK ? "Kicked" : "Thrown");
 					}
 				wordnumber += 2;
+				if (!things)
+					printf("Nothing to %s!\n", wv == KICK ? "kick" : "throw");
 			} else
 				throw(wordvalue[wordnumber] == KICK ? "Kicked" : "Thrown");
 			break;
 
 		case TAKEOFF:
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(wear, n)) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						wordnumber = takeoff();
 					}
 				wordnumber += 2;
+				if (!things)
+					puts("Nothing to take off!");
 			} else
 				takeoff();
 			break;
 
-
 		case DRAW:
-
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(wear, n)) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						wordnumber = draw();
 					}
 				wordnumber += 2;
+				if (!things)
+					puts("Nothing to draw!");
 			} else
 				draw();
 			break;
 
-
 		case PUTON:
-
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(location[position].objects, n) && objsht[n]) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						wordnumber = puton();
 					}
 				wordnumber += 2;
+				if (!things)
+					puts("Nothing to put on!");
 			} else
 				puton();
 			break;
 
 		case WEARIT:
-
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(inven, n)) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						wordnumber = wearit();
 					}
 				wordnumber += 2;
+				if (!things)
+					puts("Nothing to wear!");
 			} else
 				wearit();
 			break;
 
-
 		case EAT:
-
 			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(inven, n)) {
+						things++;
 						wordvalue[wordnumber + 1] = n;
 						wordnumber = eat();
 					}
 				wordnumber += 2;
+				if (!things)
+					puts("Nothing to eat!");
 			} else
 				eat();
 			break;
 
-
 		case PUT:
 			put();
 			break;
-
 
 		case INVEN:
 			if (ucard(inven)) {
@@ -266,8 +315,21 @@ cypher()
 				for (n = 0; n < NUMOFOBJECTS; n++)
 					if (testbit(inven, n))
 						printf("\t%s\n", objsht[n]);
-				printf("\n= %d kilogram%s (%d%%)\n", carrying, (carrying == 1 ? "." : "s."), (WEIGHT ? carrying * 100 / WEIGHT : -1));
-				printf("Your arms are %d%% full.\n", encumber * 100 / CUMBER);
+				if (WEIGHT == 0)
+					printf("\n= %d kilogram%s (can't lift any weight%s)\n",
+					    carrying,
+					    (carrying == 1 ? "." : "s."),
+					    (carrying ? " or move with what you have" : ""));
+				else
+					printf("\n= %d kilogram%s (%d%%)\n",
+					    carrying,
+					    (carrying == 1 ? "." : "s."),
+					    carrying * 100 / WEIGHT);
+				if (CUMBER == 0)
+					printf("Your arms can't pick anything up.\n");
+				else
+					printf("Your arms are %d%% full.\n",
+					    encumber * 100 / CUMBER);
 			} else
 				puts("You aren't carrying anything.");
 
@@ -286,10 +348,28 @@ cypher()
 				printf("\nYou can still carry up to %d kilogram%s\n", WEIGHT, (WEIGHT == 1 ? "." : "s."));
 			} else
 				puts("\nYou are in perfect health.");
+			wordnumber++;
 			break;
 
 		case USE:
 			lflag = use();
+			break;
+
+		case OPEN:
+			if (wordnumber < wordcount && wordvalue[wordnumber + 1] == EVERYTHING) {
+				int things;
+				things = 0;
+				for (n = 0; n < NUMOFOBJECTS; n++)
+					if (testbit(inven, n)) {
+						things++;
+						wordvalue[wordnumber + 1] = n;
+						dooropen();
+					}
+				wordnumber += 2;
+				if (!things)
+					puts("Nothing to open!");
+			} else
+				dooropen();
 			break;
 
 		case LOOK:
@@ -369,18 +449,31 @@ cypher()
 			break;
 
 		case SAVE:
-			printf("\nSave file name (default %s) ",
+			printf("\nSave file name (default %s): ",
 			       DEFAULT_SAVE_FILE);
 			filename = fgetln(stdin, &filename_len);
 			if (filename_len == 0
 			    || (filename_len == 1 && filename[0] == '\n'))
-				save(DEFAULT_SAVE_FILE,
-				     strlen(DEFAULT_SAVE_FILE));
+				rfilename = save_file_name(DEFAULT_SAVE_FILE,
+				    strlen(DEFAULT_SAVE_FILE));
 			else {
 				if (filename[filename_len - 1] == '\n')
 					filename_len--;
-				save(filename, filename_len);
+				rfilename = save_file_name(filename,
+							   filename_len);
 			}
+			save(rfilename);
+			free(rfilename);
+			break;
+
+		case VERBOSE:
+			verbose = 1;
+			printf("[Maximum verbosity]\n");
+			break;
+
+		case BRIEF:
+			verbose = 0;
+			printf("[Standard verbosity]\n");
 			break;
 
 		case FOLLOW:
@@ -460,7 +553,6 @@ cypher()
 			puts("How's that?");
 			return (-1);
 			break;
-
 
 		}
 		if (wordnumber < wordcount && *words[wordnumber++] == ',')

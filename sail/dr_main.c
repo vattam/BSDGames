@@ -1,4 +1,4 @@
-/*	$NetBSD: dr_main.c,v 1.5 1997/10/13 19:43:54 christos Exp $	*/
+/*	$NetBSD: dr_main.c,v 1.11 2001/02/05 01:10:09 christos Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,25 +38,28 @@
 #if 0
 static char sccsid[] = "@(#)dr_main.c	8.2 (Berkeley) 4/16/94";
 #else
-__RCSID("$NetBSD: dr_main.c,v 1.5 1997/10/13 19:43:54 christos Exp $");
+__RCSID("$NetBSD: dr_main.c,v 1.11 2001/02/05 01:10:09 christos Exp $");
 #endif
 #endif /* not lint */
 
-#include "driver.h"
+#include <signal.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "extern.h"
+#include "driver.h"
 
 int
-dr_main()
+dr_main(void)
 {
 	int n;
 	struct ship *sp;
 	int nat[NNATION];
 	int value = 0;
 
-	(void) signal(SIGINT, SIG_IGN);
-	(void) signal(SIGQUIT, SIG_IGN);
-	(void) signal(SIGTSTP, SIG_IGN);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
 	if (game < 0 || game >= NSCENE) {
 		fprintf(stderr, "DRIVER: Bad game number %d\n", game);
 		exit(1);
@@ -72,7 +75,7 @@ dr_main()
 	foreachship(sp) {
 		if (sp->file == NULL &&
 		    (sp->file = (struct File *)calloc(1, sizeof (struct File))) == NULL) {
-			(void) fprintf(stderr, "DRIVER: Out of memory.\n");
+			fprintf(stderr, "DRIVER: Out of memory.\n");
 			exit(1);
 		}
 		sp->file->index = sp - SHIP(0);

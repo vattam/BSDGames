@@ -1,4 +1,4 @@
-/*	$NetBSD: assorted.c,v 1.6 1997/10/13 21:02:57 christos Exp $	*/
+/*	$NetBSD: assorted.c,v 1.14 2001/02/05 01:10:08 christos Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,21 +38,18 @@
 #if 0
 static char sccsid[] = "@(#)assorted.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: assorted.c,v 1.6 1997/10/13 21:02:57 christos Exp $");
+__RCSID("$NetBSD: assorted.c,v 1.14 2001/02/05 01:10:08 christos Exp $");
 #endif
 #endif /* not lint */
 
-#include "extern.h"
 #include <stdlib.h>
-#include <unistd.h>
 #include <err.h>
+#include "extern.h"
 
-static void strike __P((struct ship *, struct ship *));
+static void	strike (struct ship *, struct ship *);
 
 void
-table(rig, shot, hittable, on, from, roll)
-struct ship *on, *from;
-int rig, shot, hittable, roll;
+table(struct ship *from, struct ship *on, int rig, int shot, int hittable, int roll)
 {
 	int hhits = 0, chits = 0, ghits = 0, rhits = 0;
 	int Ghit = 0, Hhit = 0, Rhit = 0, Chit = 0;
@@ -60,8 +57,8 @@ int rig, shot, hittable, roll;
 	int crew[3];
 	int n;
 	int rigg[4];
-	char *message;
-	struct Tables *tp;
+	const char *message;
+	const struct Tables *tp;
 
 	pc = on->file->pcrew;
 	hull = on->specs->hull;
@@ -139,17 +136,17 @@ int rig, shot, hittable, roll;
 	hull -= ghits;
 	if (Ghit)
 		Write(portside(from, on, 0) ? W_GUNR : W_GUNL,
-			on, 0, guns, car, 0, 0);
+			on, guns, car, 0, 0);
 	hull -= hhits;
 	hull = hull < 0 ? 0 : hull;
 	if (on->file->captured != 0 && Chit)
-		Write(W_PCREW, on, 0, pc, 0, 0, 0);
+		Write(W_PCREW, on, pc, 0, 0, 0);
 	if (Hhit)
-		Write(W_HULL, on, 0, hull, 0, 0, 0);
+		Write(W_HULL, on, hull, 0, 0, 0);
 	if (Chit)
-		Write(W_CREW, on, 0, crew[0], crew[1], crew[2], 0);
+		Write(W_CREW, on, crew[0], crew[1], crew[2], 0);
 	if (Rhit)
-		Write(W_RIGG, on, 0, rigg[0], rigg[1], rigg[2], rigg[3]);
+		Write(W_RIGG, on, rigg[0], rigg[1], rigg[2], rigg[3]);
 	switch (shot) {
 	case L_ROUND:
 		message = "firing round shot on $$";
@@ -217,7 +214,7 @@ int rig, shot, hittable, roll;
 			break;
 		case 5:
 			message = "rudder cables shot through";
-			Write(W_TA, on, 0, 0, 0, 0, 0);
+			Write(W_TA, on, 0, 0, 0, 0);
 			break;
 		case 6:
 			message = "shot holes below the water line";
@@ -233,10 +230,10 @@ int rig, shot, hittable, roll;
 		if (on->specs->qual <= 0) {
 			makemsg(on, "crew mutinying!");
 			on->specs->qual = 5;
-			Write(W_CAPTURED, on, 0, on->file->index, 0, 0, 0);
+			Write(W_CAPTURED, on, on->file->index, 0, 0, 0);
 		} else 
 			makemsg(on, "crew demoralized");
-		Write(W_QUAL, on, 0, on->specs->qual, 0, 0, 0);
+		Write(W_QUAL, on, on->specs->qual, 0, 0, 0);
 	}
 	*/
 	if (!hull)
@@ -244,17 +241,15 @@ int rig, shot, hittable, roll;
 }
 
 void
-Cleansnag(from, to, all, flag)
-struct ship *from, *to;
-char all, flag;
+Cleansnag(struct ship *from, struct ship *to, int all, int flag)
 {
 	if (flag & 1) {
-		Write(W_UNGRAP, from, 0, to->file->index, all, 0, 0);
-		Write(W_UNGRAP, to, 0, from->file->index, all, 0, 0);
+		Write(W_UNGRAP, from, to->file->index, all, 0, 0);
+		Write(W_UNGRAP, to, from->file->index, all, 0, 0);
 	}
 	if (flag & 2) {
-		Write(W_UNFOUL, from, 0, to->file->index, all, 0, 0);
-		Write(W_UNFOUL, to, 0, from->file->index, all, 0, 0);
+		Write(W_UNFOUL, from, to->file->index, all, 0, 0);
+		Write(W_UNFOUL, to, from->file->index, all, 0, 0);
 	}
 	if (!snagged2(from, to)) {
 		if (!snagged(from)) {
@@ -271,27 +266,26 @@ char all, flag;
 }
 
 static void
-strike(ship, from)
-struct ship *ship, *from;
+strike(struct ship *ship, struct ship *from)
 {
 	int points;
 
 	if (ship->file->struck)
 		return;
-	Write(W_STRUCK, ship, 0, 1, 0, 0, 0);
+	Write(W_STRUCK, ship, 1, 0, 0, 0);
 	points = ship->specs->pts + from->file->points;
-	Write(W_POINTS, from, 0, points, 0, 0, 0);
+	Write(W_POINTS, from, points, 0, 0, 0);
 	unboard(ship, ship, 0);		/* all offense */
 	unboard(ship, ship, 1);		/* all defense */
-	switch (die()) {
+	switch (dieroll()) {
 	case 3:
 	case 4:		/* ship may sink */
-		Write(W_SINK, ship, 0, 1, 0, 0, 0);
+		Write(W_SINK, ship, 1, 0, 0, 0);
 		break;
 	case 5:
 	case 6:		/* ship may explode */
-		Write(W_EXPLODE, ship, 0, 1, 0, 0, 0);
+		Write(W_EXPLODE, ship, 1, 0, 0, 0);
 		break;
 	}
-	Write(W_SIGNAL, ship, 1, (int) "striking her colours!", 0, 0, 0);
+	Writestr(W_SIGNAL, ship, "striking her colours!");
 }

@@ -1,4 +1,5 @@
-/*	$NetBSD: dm.c,v 1.11 1998/09/13 15:27:27 hubertf Exp $	*/
+/*	$NetBSD: dm.c,v 1.17 2002/08/02 03:06:24 christos Exp $	*/
+/* For Linux: still using old utmp interface from version 1.16.  */
 
 /*
  * Copyright (c) 1987, 1993
@@ -43,7 +44,7 @@ __COPYRIGHT("@(#) Copyright (c) 1987, 1993\n\
 #if 0
 static char sccsid[] = "@(#)dm.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: dm.c,v 1.11 1998/09/13 15:27:27 hubertf Exp $");
+__RCSID("$NetBSD: dm.c,v 1.17 2002/08/02 03:06:24 christos Exp $");
 #endif
 #endif /* not lint */
 
@@ -83,7 +84,7 @@ int	users __P((void));
 
 int
 main(argc, argv)
-	int argc __attribute__((unused));
+	int argc __attribute__((__unused__));
 	char *argv[];
 {
 	char *cp;
@@ -116,10 +117,7 @@ play(args)
 {
 	char pbuf[MAXPATHLEN];
 
-	(void)strncpy(pbuf, _PATH_HIDE, sizeof(pbuf) - 1);
-	(void)strncpy(pbuf + sizeof(_PATH_HIDE) - 1, game,
-	    sizeof(pbuf) - sizeof(_PATH_HIDE) - 1);
-	pbuf[sizeof(pbuf) - 1] = '\0';
+	snprintf(pbuf, sizeof(pbuf), "%s%s", _PATH_HIDE, game);
 	if (priority > 0)	/* < 0 requires root */
 		(void)setpriority(PRIO_PROCESS, 0, priority);
 	execv(pbuf, args);

@@ -1,4 +1,4 @@
-/*	$NetBSD: pl_3.c,v 1.6 1998/08/30 09:19:40 veego Exp $	*/
+/*	$NetBSD: pl_3.c,v 1.16 2001/02/05 01:10:10 christos Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,15 +38,17 @@
 #if 0
 static char sccsid[] = "@(#)pl_3.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: pl_3.c,v 1.6 1998/08/30 09:19:40 veego Exp $");
+__RCSID("$NetBSD: pl_3.c,v 1.16 2001/02/05 01:10:10 christos Exp $");
 #endif
 #endif /* not lint */
 
-#include "player.h"
+#include <signal.h>
 #include <stdlib.h>
+#include "extern.h"
+#include "player.h"
 
 void
-acceptcombat()
+acceptcombat(void)
 {
 	int men = 0;
 	int target, temp;
@@ -177,11 +179,11 @@ acceptcombat()
 		if (windspeed == 6 && temp <= 3)
 			hit--;
 		if (hit >= 0) {
-			roll = die();
+			roll = dieroll();
 			if (load == L_GRAPE)
 				chits = hit;
 			else {
-				struct Tables *t;
+				const struct Tables *t;
 				if (hit > 10)
 					hit = 10;
 				t = &(shootat == RIGGING ? RigTable : HullTable)
@@ -197,7 +199,7 @@ acceptcombat()
 					hhits = 0;
 				}
 			}
-			table(shootat, load, hit, closest, ms, roll);
+			table(ms, closest, shootat, load, hit, roll);
 		}
 		Msg("Damage inflicted on the %s:", closest->shipname);
 		Msg("\t%d HULL, %d GUNS, %d CREW, %d RIGGING",
@@ -219,7 +221,7 @@ acceptcombat()
 }
 
 void
-grapungrap()
+grapungrap(void)
 {
 	struct ship *sp;
 	int i;
@@ -232,10 +234,10 @@ grapungrap()
 		switch (sgetch("Attempt to grapple or ungrapple $$: ",
 			sp, 1)) {
 		case 'g':
-			if (die() < 3
+			if (dieroll() < 3
 			    || ms->nationality == capship(sp)->nationality) {
-				Write(W_GRAP, ms, 0, sp->file->index, 0, 0, 0);
-				Write(W_GRAP, sp, 0, player, 0, 0, 0);
+				Write(W_GRAP, ms, sp->file->index, 0, 0, 0);
+				Write(W_GRAP, sp, player, 0, 0, 0);
 				Msg("Attempt succeeds!");
 				makesignal(ms, "grappled with $$", sp);
 			} else
@@ -245,7 +247,7 @@ grapungrap()
 			for (i = grappled2(ms, sp); --i >= 0;) {
 				if (ms->nationality
 					== capship(sp)->nationality
-				    || die() < 3) {
+				    || dieroll() < 3) {
 					cleangrapple(ms, sp, 0);
 					Msg("Attempt succeeds!");
 					makesignal(ms, "ungrappling with $$",
@@ -259,7 +261,7 @@ grapungrap()
 }
 
 void
-unfoulplayer()
+unfoulplayer(void)
 {
 	struct ship *to;
 	int i;
@@ -270,7 +272,7 @@ unfoulplayer()
 		if (sgetch("Attempt to unfoul with the $$? ", to, 1) != 'y')
 			continue;
 		for (i = fouled2(ms, to); --i >= 0;) {
-			if (die() <= 2) {
+			if (dieroll() <= 2) {
 				cleanfoul(ms, to, 0);
 				Msg("Attempt succeeds!");
 				makesignal(ms, "Unfouling $$", to);

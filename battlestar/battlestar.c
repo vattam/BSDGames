@@ -1,4 +1,4 @@
-/*	$NetBSD: battlestar.c,v 1.6 1997/10/11 02:06:55 lukem Exp $	*/
+/*	$NetBSD: battlestar.c,v 1.12 2000/09/21 17:44:34 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1983, 1993\n\
 #if 0
 static char sccsid[] = "@(#)battlestar.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: battlestar.c,v 1.6 1997/10/11 02:06:55 lukem Exp $");
+__RCSID("$NetBSD: battlestar.c,v 1.12 2000/09/21 17:44:34 jsm Exp $");
 #endif
 #endif				/* not lint */
 
@@ -70,12 +70,16 @@ main(argc, argv)
 	open_score_file();
 	setregid(getgid(), getgid());
 
-	initialize((argc < 2) ? NULL : (strcmp(argv[1], "-r") ? argv[1]
-					: (argv[2] ? argv[2]
-					   : DEFAULT_SAVE_FILE)));
+	if (argc < 2)
+		initialize(NULL);
+	else if (strcmp(argv[1], "-r") == 0)
+		initialize((argc > 2) ? argv[2] : DEFAULT_SAVE_FILE);
+	else
+		initialize(argv[1]);
 start:
 	news();
-	beenthere[position]++;
+	if (beenthere[position] <= ROOMDESC)
+		beenthere[position]++;
 	if (notes[LAUNCHED])
 		crash();	/* decrements fuel & crash */
 	if (matchlight) {
@@ -92,7 +96,7 @@ start:
 run:
 	next = getcom(mainbuf, sizeof mainbuf, ">-: ",
 	    "Please type in something.");
-	for (wordcount = 0; next && wordcount < 20; wordcount++)
+	for (wordcount = 0; next && wordcount < NWORD - 1; wordcount++)
 		next = getword(next, words[wordcount], -1);
 	parse();
 	switch (cypher()) {
@@ -101,6 +105,6 @@ run:
 	case 0:
 		goto start;
 	default:
-		exit(1); /* Shouldn't happen */
+		errx(1, "bad return from cypher(): please submit a bug report");
 	}
 }

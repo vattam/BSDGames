@@ -1,4 +1,4 @@
-/*	$NetBSD: fancy.c,v 1.7 1998/09/13 15:19:35 hubertf Exp $	*/
+/*	$NetBSD: fancy.c,v 1.10 1999/07/26 18:39:06 hubertf Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -38,14 +38,14 @@
 #if 0
 static char sccsid[] = "@(#)fancy.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: fancy.c,v 1.7 1998/09/13 15:19:35 hubertf Exp $");
+__RCSID("$NetBSD: fancy.c,v 1.10 1999/07/26 18:39:06 hubertf Exp $");
 #endif
 #endif /* not lint */
 
 #include "back.h"
 
-char    PC;			/* padding character */
-char   *BC;			/* backspace sequence */
+extern char    PC;		/* padding character */
+extern char   *BC;		/* backspace sequence */
 char   *CD;			/* clear to end of screen sequence */
 char   *CE;			/* clear to end of line sequence */
 char   *CL;			/* clear screen sequence */
@@ -54,7 +54,7 @@ char   *HO;			/* home cursor sequence */
 char   *MC;			/* column cursor movement map */
 char   *ML;			/* row cursor movement map */
 char   *ND;			/* forward cursor sequence */
-char   *UP;			/* up cursor sequence */
+extern char   *UP;		/* up cursor sequence */
 
 int     lHO;			/* length of HO */
 int     lBC;			/* length of BC */
