@@ -1,3 +1,11 @@
+bsdgames (2.14-8) unstable; urgency=low
+
+  * Update for POSIX chown. Closes: #214043
+  * atc: Note in man page that pressing return will do an immediate update.
+    Closes: #216980
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 25 Oct 2003 18:16:33 -0400
+
 bsdgames (2.14-7) unstable; urgency=low
 
   * Fix left/right confusion on worm man page. Closes: #209034
