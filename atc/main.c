@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.7 1998/09/13 15:20:31 hubertf Exp $	*/
+/*	$NetBSD: main.c,v 1.12 2001/02/05 00:22:52 christos Exp $	*/
 
 /*-
  * Copyright (c) 1990, 1993
@@ -55,24 +55,25 @@ __COPYRIGHT("@(#) Copyright (c) 1990, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: main.c,v 1.7 1998/09/13 15:20:31 hubertf Exp $");
+__RCSID("$NetBSD: main.c,v 1.12 2001/02/05 00:22:52 christos Exp $");
 #endif
 #endif /* not lint */
 
 #include "include.h"
 #include "pathnames.h"
 
+extern FILE	*yyin;
 
 int
 main(ac, av)
-	int	 ac __attribute__((unused));
+	int	 ac;
 	char	*av[];
 {
 	int			seed;
 	int			f_usage = 0, f_list = 0, f_showscore = 0;
 	int			f_printpath = 0;
 	const char		*file = NULL;
-	char			*name, *ptr;
+	int			ch;
 	struct sigaction	sa;
 #ifdef BSD
 	struct itimerval	itv;
@@ -82,56 +83,42 @@ main(ac, av)
 	open_score_file();
 	setregid(getgid(), getgid());
 
-	start_time = seed = time(0);
+	start_time = seed = time(NULL);
 
-	name = *av++;
-	while (*av) {
-#ifndef SAVEDASH
-		if (**av == '-') 
-			++*av;
-		else
+	while ((ch = getopt(ac, av, "ulstpg:f:r:")) != -1) {
+		switch (ch) {
+		case '?':
+		case 'u':
+		default: 
+			f_usage++;
 			break;
-#endif
-		ptr = *av++;
-		while (*ptr) {
-			switch (*ptr) {
-			case '?':
-			case 'u':
-				f_usage++;
-				break;
-			case 'l':
-				f_list++;
-				break;
-			case 's':
-			case 't':
-				f_showscore++;
-				break;
-			case 'p':
-				f_printpath++;
-				break;
-			case 'r':
-				seed = atoi(*av);
-				av++;
-				break;
-			case 'f':
-			case 'g':
-				file = *av;
-				av++;
-				break;
-			default: 
-				warnx("unknown option '%c'\n", *ptr);
-				f_usage++;
-				break;
-			}
-			ptr++;
+		case 'l':
+			f_list++;
+			break;
+		case 's':
+		case 't':
+			f_showscore++;
+			break;
+		case 'p':
+			f_printpath++;
+			break;
+		case 'r':
+			seed = atoi(optarg);
+			break;
+		case 'f':
+		case 'g':
+			file = optarg;
+			break;
 		}
 	}
+	if (optind < ac)
+		f_usage++;
 	srandom(seed);
 
 	if (f_usage)
 		fprintf(stderr, 
 		    "Usage: %s -[u?lstp] [-[gf] game_name] [-r random seed]\n",
-			name);
+			av[0]);
 	if (f_showscore)
 		log_score(1);
 	if (f_list)
@@ -228,7 +215,6 @@ int
 read_file(s)
 	const char	*s;
 {
-	extern FILE	*yyin;
 	int		retval;
 
 	file = s;

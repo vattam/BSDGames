@@ -1,4 +1,4 @@
-/*	$NetBSD: otto.c,v 1.2 1997/10/10 16:32:39 lukem Exp $	*/
+/*	$NetBSD: otto.c,v 1.4 2001/02/05 00:40:45 christos Exp $	*/
 # ifdef OTTO
 /*
  *	otto	- a hunt otto-matic player
@@ -12,7 +12,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: otto.c,v 1.2 1997/10/10 16:32:39 lukem Exp $");
+__RCSID("$NetBSD: otto.c,v 1.4 2001/02/05 00:40:45 christos Exp $");
 #endif /* not lint */
 
 # include	<sys/time.h>
@@ -41,15 +41,7 @@ __RCSID("$NetBSD: otto.c,v 1.2 1997/10/10 16:32:39 lukem Exp $");
 extern	char	screen[SCREEN_HEIGHT][SCREEN_WIDTH2];
 # define	SCREEN(y, x)	screen[y][x]
 # else
-# if defined(BSD_RELEASE) && BSD_RELEASE >= 44
-#ifndef NCURSES_VERSION
-# define	SCREEN(y, x)	stdscr->lines[y]->line[x].ch
-#else
-#define		SCREEN(y, x)	stdscr->_line[y].text[x]
-#endif
-# else
-# define	SCREEN(y, x)	stdscr->_y[y][x]
-# endif
+# define	SCREEN(y, x)	mvinch(y, x)
 # endif
 
 # ifndef DEBUG
@@ -127,9 +119,11 @@ STATIC	SIGNAL_TYPE	nothing __P((int));
 STATIC	int		stop_look __P((struct item *, char, int, int));
 STATIC	void		wander __P((void));
 
+extern	int	Otto_count;
+
 STATIC SIGNAL_TYPE
 nothing(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
 }
 
@@ -139,7 +133,6 @@ otto(y, x, face)
 	char	face;
 {
 	int		i;
-	extern	int	Otto_count;
 	int		old_mask;
 
 # ifdef	DEBUG

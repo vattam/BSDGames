@@ -1,4 +1,4 @@
-/*	$NetBSD: struct.h,v 1.3 1995/03/21 15:04:31 cgd Exp $	*/
+/*	$NetBSD: struct.h,v 1.4 1999/07/17 19:57:03 hubertf Exp $	*/
 
 /*-
  * Copyright (c) 1990, 1993

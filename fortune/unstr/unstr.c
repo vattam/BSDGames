@@ -1,4 +1,4 @@
-/*	$NetBSD: unstr.c,v 1.4 1997/10/11 07:59:09 lukem Exp $	*/
+/*	$NetBSD: unstr.c,v 1.7 1999/09/18 19:38:50 jsm Exp $	*/
 
 /*-
  * Copyright (c) 1991, 1993
@@ -46,7 +46,7 @@ __COPYRIGHT("@(#) Copyright (c) 1991, 1993\n\
 #if 0
 static char sccsid[] = "@(#)unstr.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: unstr.c,v 1.4 1997/10/11 07:59:09 lukem Exp $");
+__RCSID("$NetBSD: unstr.c,v 1.7 1999/09/18 19:38:50 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -65,13 +65,11 @@ __RCSID("$NetBSD: unstr.c,v 1.4 1997/10/11 07:59:09 lukem Exp $");
 
 # include	<sys/types.h>
 # include	<sys/param.h>
-# ifndef __linux__
-# include	<machine/endian.h>
-# endif
+# include	<sys/endian.h>
 # include	<ctype.h>
 # include	<err.h>
-# include	<netinet/in.h>
 # include	<stdio.h>
+# include	<stdlib.h>
 # include	<string.h>
 # include	"strfile.h"
 
@@ -92,7 +90,7 @@ void	order_unstr __P((STRFILE *));
 /* ARGSUSED */
 int
 main(ac, av)
-	int	ac __attribute__((unused));
+	int	ac __attribute__((__unused__));
 	char	**av;
 {
 	static STRFILE	tbl;		/* description table */
@@ -103,11 +101,11 @@ main(ac, av)
 	if ((Dataf = fopen(Datafile, "r")) == NULL)
 		err(1, "fopen %s", Datafile);
 	(void) fread((char *) &tbl, sizeof tbl, 1, Dataf);
-	tbl.str_version = ntohl(tbl.str_version);
-	tbl.str_numstr = ntohl(tbl.str_numstr);
-	tbl.str_longlen = ntohl(tbl.str_longlen);
-	tbl.str_shortlen = ntohl(tbl.str_shortlen);
-	tbl.str_flags = ntohl(tbl.str_flags);
+	BE32TOH(tbl.str_version);
+	BE32TOH(tbl.str_numstr);
+	BE32TOH(tbl.str_longlen);
+	BE32TOH(tbl.str_shortlen);
+	BE32TOH(tbl.str_flags);
 	if (!(tbl.str_flags & (STR_ORDERED | STR_RANDOM))) {
 		fprintf(stderr, "nothing to do -- table in file order\n");
 		exit(1);
@@ -138,12 +136,12 @@ order_unstr(tbl)
 {
 	unsigned int	i;
 	char	*sp;
-	off_t	pos;
+	u_int64_t	pos;
 	char	buf[BUFSIZ];
 
 	for (i = 0; i < tbl->str_numstr; i++) {
 		(void) fread((char *) &pos, 1, sizeof pos, Dataf);
-		(void) fseek(Inf, ntohl(pos), 0);
+		(void) fseek(Inf, be64toh(pos), SEEK_SET);
 		if (i != 0)
 			(void) printf("%c\n", Delimch);
 		for (;;) {

@@ -1,4 +1,4 @@
-/*	$NetBSD: input.c,v 1.10 1998/09/13 15:20:31 hubertf Exp $	*/
+/*	$NetBSD: input.c,v 1.14 2001/01/16 02:50:28 cgd Exp $	*/
 
 /*-
  * Copyright (c) 1990, 1993
@@ -50,9 +50,9 @@
 #if 0
 static char sccsid[] = "@(#)input.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: input.c,v 1.10 1998/09/13 15:20:31 hubertf Exp $");
+__RCSID("$NetBSD: input.c,v 1.14 2001/01/16 02:50:28 cgd Exp $");
 #endif
-#endif not lint
+#endif /* not lint */
 
 #include "include.h"
 #include "pathnames.h"
@@ -374,7 +374,7 @@ setplane(c)
 
 const char	*
 turn(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	if (p.altitude == 0)
 		return ("Planes at airports may not change direction");
@@ -383,7 +383,7 @@ turn(c)
 
 const char	*
 circle(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	if (p.altitude == 0)
 		return ("Planes cannot circle on the ground");
@@ -393,7 +393,7 @@ circle(c)
 
 const char	*
 left(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	dir = D_LEFT;
 	p.new_dir = p.dir - 1;
@@ -404,7 +404,7 @@ left(c)
 
 const char	*
 right(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	dir = D_RIGHT;
 	p.new_dir = p.dir + 1;
@@ -415,7 +415,7 @@ right(c)
 
 const char	*
 Left(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	p.new_dir = p.dir - 2;
 	if (p.new_dir < 0)
@@ -425,7 +425,7 @@ Left(c)
 
 const char	*
 Right(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	p.new_dir = p.dir + 2;
 	if (p.new_dir >= MAXDIR)
@@ -434,13 +434,12 @@ Right(c)
 }
 
 const char	*
-delayb(ch)
-	char ch;
+delayb(c)
+	char c;
 {
 	int	xdiff, ydiff;
-	unsigned char c;
 
-	c = ch - '0';
+	c -= '0';
 
 	if (c >= sp->num_beacons)
 		return ("Unknown beacon");
@@ -482,7 +481,7 @@ delayb(ch)
 
 const char	*
 beacon(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	dest_type = T_BEACON;
 	return (NULL);
@@ -490,7 +489,7 @@ beacon(c)
 
 const char	*
 ex_it(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	dest_type = T_EXIT;
 	return (NULL);
@@ -498,7 +497,7 @@ ex_it(c)
 
 const char	*
 airport(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	dest_type = T_AIRPORT;
 	return (NULL);
@@ -506,7 +505,7 @@ airport(c)
 
 const char	*
 climb(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	dir = D_UP;
 	return (NULL);
@@ -514,7 +513,7 @@ climb(c)
 
 const char	*
 descend(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	dir = D_DOWN;
 	return (NULL);
@@ -556,12 +555,10 @@ setrelalt(c)
 }
 
 const char	*
-benum(ch)
-	char ch;
+benum(c)
+	char c;
 {
-	unsigned char c;
-
-	dest_no = c = ch - '0';
+	dest_no = c -= '0';
 
 	switch (dest_type) {
 	case T_BEACON:
@@ -624,7 +621,7 @@ rel_dir(c)
 
 const char	*
 mark(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	if (p.altitude == 0)
 		return ("Cannot mark planes on the ground");
@@ -636,7 +633,7 @@ mark(c)
 
 const char	*
 unmark(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	if (p.altitude == 0)
 		return ("Cannot unmark planes on the ground");
@@ -648,7 +645,7 @@ unmark(c)
 
 const char	*
 ignore(c)
-	char c;
+	char c __attribute__((__unused__));
 {
 	if (p.altitude == 0)
 		return ("Cannot ignore planes on the ground");

@@ -16,8 +16,8 @@ variable of static storage duration assigned to must be of type
 volatile sig_atomic_t.  (See adventure for an example of proper
 handling.)
 
-Some games may not check for errors when they should (including
-allocation failure), or may return inappropriate exit statuses.
+Some games may not check for errors when they should, or may return
+inappropriate exit statuses.
 
 Some games may have arbitrary limits that they should not have.
 
@@ -27,18 +27,19 @@ Specific games
 Under some circumstances, hunt fails to start the hunt daemon if one
 is not already running.  In general, hunt needs thorough testing by
 someone willing to investigate and fix bugs; at present hunt should be
-considered unsupported and probably broken.
+considered unsupported and probably broken.  OpenBSD has a
+substantially improved version that should be imported/merged.
 
 Saving in monop is completely broken.  Since it assumes it can save by
 writing out the whole data space from 0 to sbrk(0) and read it in to
-restore, it may not be easy to fix.
+restore, it may not be easy to fix.  See NetBSD PR bin/8247.
 
 Gomoku can use 16 megabytes or more of memory.  (This is reported (not
 by me) as NetBSD PR 3126.)
 
 
 Joseph S. Myers
-jsm28@cam.ac.uk
+jsm@polyomino.org.uk
 
 
 

@@ -1,10 +1,10 @@
 TODO list for bsd-games and bsd-games-non-free
 ==============================================
 
-Please let me (jsm28@cam.ac.uk) know if you're interested in doing any
-of these, or have done work on them, so we can avoid duplication of
-effort.  The order of entries is just the order they were added in, not any
-priority order.
+Please let me (jsm@polyomino.org.uk) know if you're interested in
+doing any of these, or have done work on them, so we can avoid
+duplication of effort.  The order of entries is just the order they
+were added in, not any priority order.
 
 The file BUGS lists known bugs; you may wish to work on some of
 those.  The issues listed there are not included in this list.
@@ -12,25 +12,25 @@ those.  The issues listed there are not included in this list.
 1997-04-29 - Improve security of games when running setgid.  Most of
              this has been done, through adopting changes from
              OpenBSD, but a thorough audit is needed - see SECURITY.
-             There are rumours of the games having been audited by the
-             Linux Security Audit Project (see linux-kernel archives
-             and Alan Cox's diary at
-             <URL:http://roadrunner.swansea.uk.linux.org/alan.shtml>)
-             but I have received no patches.
+	     The Linux Security Audit Project looked at the games but
+             never bothered to send me their fixes; I think they are
+             now included.  Rogue and tetris could probably be adapted
+             to keep their score files open and so need no more
+             privileges than an open file descriptor.  Sail could
+             better use a daemon than a file for interfacing between
+             multiple players; Paul Janzen might do this at some point.
 
 1997-04-29 - Fix compilation warnings with increasingly strict warning
-             options.  -Wwrite-strings (and general use of const) is
-             currently being worked on.
-
-1997-04-29 - Get changes (at least the bug-fixes) merged back into NetBSD.
-             Various patches for specific bugs have been sent in and
-             applied: more still needs to be done, and some patches
-             are currently waiting in their bug tracking system.
+             options.  The main reasonable ones have now been done,
+             but maybe some bits are left, and new warnings get added
+             to new versions of GCC.  Fixes for -pedantic warnings are
+             in progress.
 
 1997-05-01 - Games with scorefiles should lock them when updating them.
 
-1997-07-15 - Get distribution permission for hack and larn.  Get
-             licence of rogue clarified.  (See NetBSD PR 5850.)
+1997-07-15 - Get distribution permission for larn.  Get licence of
+             rogue clarified.  (See NetBSD PR 5850.  Note that the
+             original author of larn, Noah Morgan, is dead.)
 
 1998-07-28 - Support building in a directory other than the source directory.
 
@@ -41,27 +41,56 @@ those.  The issues listed there are not included in this list.
              be compiled with -fwritable-strings.
 
 1998-08-27 - Convert the games that use termcap to use curses.
-             Currently these are backgammon, rain, snake, tetris and
-             worms.  Somewhat hacked versions of rain and worms that
-             use curses are distributed as test programs with ncurses;
-             these might just possibly be useful.
+             Currently these are backgammon, hack and tetris; rain,
+             snake and worms have been done.  If it becomes possible
+             to distribute larn, this will apply to it as well.
 
 1998-08-27 - If we build a game that links to another game's manpage,
              but don't install the other game, then we get a dangling
              symlink or .so for the manpage.
 
-1998-08-27 - Merge in improvements from OpenBSD.
-
-1998-08-27 - Fix warnings with -Wl,--warn-common (i.e., variables should be
-             declared extern in the header, and defined non-extern
-             exactly once).
+1998-08-27 - Merge in improvements from OpenBSD.  Perhaps FreeBSD also
+             has some; Paul Janzen is adding FreeBSD changes to
+             OpenBSD, so they may reach me that way.
 
 1998-09-04 - dm should not access the utmp file directly.
 
-1998-09-11 - Move building of the manpages and headers in which
-             configuration variables are substituted from the
-             configure script into the Makefiles.
+1998-09-11 - Move building of more files in which configuration
+             variables are substituted from the configure script into
+             the Makefiles.
 
+1998-12-06 - Allow alternative dictionaries to be specified at runtime
+             for boggle.
+
+1998-12-11 - Support LFS (large files) - this requires using
+             fseeko/ftello instead of fseek/ftell, where supported,
+             and using -D_FILE_OFFSET_BITS=64 (actually getconf
+             LFS_CFLAGS, getconf LFS_LDFLAGS and getconf LFS_LIBS),
+             and could be useful with the kernel support for 32 bit
+             uids in Linux 2.4, when there could be sparse score files
+             (indexed by uid) over 2Gb.
+
+1998-12-14 - Check for any more constant data that could be marked
+             const.
+
+1998-12-28 - Fix any places that use the pid as random seed to use
+             something else, such as the time, because the pid is bad
+             when people boot up their system just to play a game and
+             so it is constant.
+
+1999-07-29 - Provide support for giving each setgid game its own gid.
+
+2000-09-09 - Fuzz testing (i.e., pass random input to games in an
+             attempt to crash them).  Some bugs have been found and
+             fixed in battlestar through this already.  It probably
+             works best with GCC bounded pointers.
+
+2000-09-09 - Support for HURD-based GNU systems.  This may now (2.13)
+             work.
+
+2000-09-24 - Fix any and all date-related bugs (Y2038, Y10K, etc.) so
+             that the games will work on any date provided only that
+             time_t is big enough.
 
 
 Local Variables:

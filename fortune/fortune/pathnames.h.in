@@ -35,4 +35,4 @@
  *	@(#)pathnames.h	8.1 (Berkeley) 5/31/93
  */
 
-#define	FORTDIR		"@usrlibdir@"
+#define	FORTDIR		"@sharedir@"

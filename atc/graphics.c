@@ -1,4 +1,4 @@
-/*	$NetBSD: graphics.c,v 1.4 1997/10/10 02:07:11 lukem Exp $	*/
+/*	$NetBSD: graphics.c,v 1.9 1999/09/10 00:16:43 jsm Exp $	*/
 
 /*-
  * Copyright (c) 1990, 1993
@@ -50,7 +50,7 @@
 #if 0
 static char sccsid[] = "@(#)graphics.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: graphics.c,v 1.4 1997/10/10 02:07:11 lukem Exp $");
+__RCSID("$NetBSD: graphics.c,v 1.9 1999/09/10 00:16:43 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -72,8 +72,10 @@ getAChar()
 	int c;
 
 	errno = 0;
-	while ((c = getchar()) == EOF && errno == EINTR)
+	while ((c = getchar()) == EOF && errno == EINTR) {
+		errno = 0;
 		clearerr(stdin);
+	}
 	return(c);
 }
 
@@ -294,7 +296,7 @@ ioerror(pos, len, str)
 
 void
 quit(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
 	int			c, y, x;
 #ifdef BSD

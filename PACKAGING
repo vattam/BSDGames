@@ -27,12 +27,12 @@ target system.  If used, this prefix must be an absolute path.
 
 Although the configuration script is by default interactive (although
 it does not need a terminal), it can also be used non-interactively.
-If a file `config.params' exists in the source directory, it will be
+If a file "config.params" exists in the source directory, it will be
 sourced by the configure script.  If this file (which can be an
-arbitrary shell script) sets `bsd_games_cfg_non_interactive' to `y',
+arbitrary shell script) sets "bsd_games_cfg_non_interactive" to "y",
 then the default answers to all questions will be taken without
-interaction.  If this sets `bsd_games_cfg_FOO' to `BAR' then the
-default value for configuration parameter `FOO' will become `BAR'
+interaction.  If this sets "bsd_games_cfg_FOO" to "BAR" then the
+default value for configuration parameter "FOO" will become "BAR"
 instead of whatever default the script would otherwise give.  You can
 find the names and meanings of the configuration parameters by reading
 the configure script; they are not otherwise documented.
@@ -45,7 +45,9 @@ trade-off between security and functionality present, and you may wish
 to choose a potentially more secure default and allow the sysadmin to
 change permissions if they are in an environment (for example, a home
 system with only trusted users) where the functionality is preferred,
-while ensuring such changes persist across upgrades.
+while ensuring such changes persist across upgrades.  Some packagers
+may wish to provide a security-hardened system by giving each setgid
+game its own group so bugs in one do not affect others.
 
 You may wish to include auxiliary documentation for users, such as the
 BSD Users' Supplementary Documents for trek and rogue
@@ -53,20 +55,26 @@ BSD Users' Supplementary Documents for trek and rogue
 versions thereof), the AUTHORS and THANKS files, and the year 2000
 statement YEAR2000.  Note that the trek manpage contains a reference
 to /usr/doc/trek, which should be updated to point to where you put
-trek.me or a formatted version.  As noted below, it is better to
-update trek.6.in (before configure) than trek.6.
+trek.me or a formatted version.
 
 Assuming you distribute source for your package (I do not believe any
 of the games have licences requiring this), and separate your patches
 from the original source .tar.gz files (whether in separate files or
 in a single file source package including them as separable
 components), arranging the building of the source so that your patches
-add a `config.params' as described above, and do any other necessary
-changes to `configure' or other source files, and so that the build
+add a "config.params" as described above, and do any other necessary
+changes to "configure" or other source files, and so that the build
 process runs configure non-interactively and then builds the package,
 makes it easier for readers to see how you have packaged it than
 running configure interactively and including the generated files in
 your patch.
+
+Since bsd-games no longer comes with its own words file, you may wish
+to ensure that the same dictionaries are used in the build of boggle
+regardless of the local configuration of the dictionaries installed on
+the computer used for the build.  (The list used by hangman can also
+be specified by the user at run time; future versions may provide for
+this to be done with boggle as well; see TODO.)
 
 Andries Brouwer has noted more than once on linux-kernel (and
 elsewhere) that some packagers (for various software and documentation
@@ -111,6 +119,9 @@ minors; this includes but is not limited to the offensive fortunes.
 It is your responsibility to determine and apply any restriction on
 your distribution of the games that may be necessary in consequence.
 
+This package contains cryptographic software (caesar and rot13).  See
+the warnings in README about this.
+
 Notification of new versions
 ============================
 
@@ -120,10 +131,10 @@ not currently receive this notification, please let me know.
 A note on terminology and credit
 ================================
 
-I am not the `upstream author' of the games packaged here; for an
+I am not the "upstream author" of the games packaged here; for an
 incomplete list of the authors see AUTHORS, but do not give me this
 credit I do not deserve at the expense of the true authors.  Rather I
-am the `upstream maintainer' of the bsd-games and bsd-games-non-free
+am the "upstream maintainer" of the bsd-games and bsd-games-non-free
 packages (upstream relative to distributions), and upstream of me is
 NetBSD, who also are maintainers of the games, but not for the most
 part authors.  Nor am I the creator of the bsd-games package, although
@@ -138,3 +149,9 @@ where not known and listed in AUTHORS, or up-to-date contact details
 for authors listed there, please send me the details so they can
 receive their due credit in future versions, and thanks from any
 appreciative users.
+
+
+
+Local Variables:
+mode: text
+End:
