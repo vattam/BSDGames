@@ -1,3 +1,15 @@
+bsdgames (2.15-1) unstable; urgency=low
+
+  * New upstream release.
+    - Fix backgammon scoring bug related to peices on the bar and gammons.
+      Closes: #185101
+    - Fix backgammon tutorial text. Closes: #212478
+    - Advertising clause is gone from most, but not all licenses.
+    - Apparently better fix for boggle man page.
+    - Incorporates nearly all changes in Debian diff.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 19 Dec 2003 18:04:24 -0500
+
 bsdgames (2.14-8) unstable; urgency=low
 
   * Update for POSIX chown. Closes: #214043
