@@ -1,3 +1,9 @@
+bsdgames (2.13-9) unstable; urgency=low
+
+  * Moved wtf acronym list into /usr/share/games. Closes: #144804
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 22 May 2002 13:17:37 -0400
+
 bsdgames (2.13-8) unstable; urgency=low
 
   * COrrected primes (really factor) man page. Closes: #144738
