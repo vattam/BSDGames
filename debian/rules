@@ -43,8 +43,8 @@ binary-arch: build
 	   debian/bsdgames/var/games/bsdgames/phantasia/void \
 	   debian/bsdgames/usr/share/games/bsdgames/phantasia/
 
-	dh_installdocs ChangeLog ChangeLog.0 TODO README \
-		trek/USD.doc/trek.me SECURITY THANKS AUTHORS BUGS YEAR2000
+	dh_installdocs ChangeLog ChangeLog.0 TODO README SECURITY THANKS \
+		AUTHORS BUGS YEAR2000
 	cat COPYING >> debian/bsdgames/usr/share/doc/bsdgames/copyright
 	dh_installexamples
 	dh_installmenu

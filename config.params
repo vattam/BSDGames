@@ -38,3 +38,5 @@ bsd_games_cfg_dictionary_src=`pwd`/temp-dictionary
 
 # Put it in /usr/share/games with the rest of the games data.
 bsd_games_cfg_wtf_acronymfile=/usr/share/games/bsdgames/acronyms
+
+bsd_games_cfg_docdir=/usr/share/doc/bsdgames
