@@ -1,3 +1,9 @@
+bsdgames (2.12-5) unstable; urgency=low
+
+  * Added AIUI, Closes: #90973
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 24 Mar 2001 14:27:16 -0800
+
 bsdgames (2.12-4) unstable; urgency=low
 
   * Added real dependancy alternate (lintian).
