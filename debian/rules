@@ -4,6 +4,9 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+# This is the debhelper compatibility version to use.
+export DH_COMPAT=2
+
 build: build-stamp
 build-stamp:
 	dh_testdir
@@ -32,26 +35,26 @@ binary-arch: build
 		usr/share/games/bsdgames/phantasia
 
 	$(MAKE) install
-	cp atc/BUGS debian/tmp/usr/share/doc/bsdgames/BUGS.atc
-	cp hunt/README debian/tmp/usr/share/doc/bsdgames/README.hunt
-	cp hunt/README.linux debian/tmp/usr/share/doc/bsdgames/README.linux.hunt
-	cp phantasia/README debian/tmp/usr/share/doc/bsdgames/README.phantasia
-	cp boggle/README debian/tmp/usr/share/doc/bsdgames/README.boggle
-	cp boggle/README.linux debian/tmp/usr/share/doc/bsdgames/README.linux.boggle
+	cp atc/BUGS debian/bsdgames/usr/share/doc/bsdgames/BUGS.atc
+	cp hunt/README debian/bsdgames/usr/share/doc/bsdgames/README.hunt
+	cp hunt/README.linux debian/bsdgames/usr/share/doc/bsdgames/README.linux.hunt
+	cp phantasia/README debian/bsdgames/usr/share/doc/bsdgames/README.phantasia
+	cp boggle/README debian/bsdgames/usr/share/doc/bsdgames/README.boggle
+	cp boggle/README.linux debian/bsdgames/usr/share/doc/bsdgames/README.linux.boggle
 	# Since factor is not installed, and primes.6 is a symlink to
 	# factor.6, I need to change that to the actual man page.
-	-rm -f debian/tmp/usr/share/man/man6/factor.6.gz \
-		debian/tmp/usr/share/man/man6/primes.6
-	cp factor/factor.6 debian/tmp/usr/share/man/man6/primes.6
+	-rm -f debian/bsdgames/usr/share/man/man6/factor.6.gz \
+		debian/bsdgames/usr/share/man/man6/primes.6
+	cp factor/factor.6 debian/bsdgames/usr/share/man/man6/primes.6
 	# Move phantasia's binary state files into /usr, they are copied
 	# back to /var in the postinst.
-	mv debian/tmp/var/games/bsdgames/phantasia/monsters \
-	   debian/tmp/var/games/bsdgames/phantasia/void \
-	   debian/tmp/usr/share/games/bsdgames/phantasia/
+	mv debian/bsdgames/var/games/bsdgames/phantasia/monsters \
+	   debian/bsdgames/var/games/bsdgames/phantasia/void \
+	   debian/bsdgames/usr/share/games/bsdgames/phantasia/
 
 	dh_installdocs ChangeLog ChangeLog.0 TODO README \
 		trek/USD.doc/trek.me SECURITY THANKS AUTHORS BUGS YEAR2000
-	cat COPYING >> debian/tmp/usr/share/doc/bsdgames/copyright
+	cat COPYING >> debian/bsdgames/usr/share/doc/bsdgames/copyright
 	dh_installexamples
 	dh_installmenu
 	dh_installcron
@@ -62,35 +65,35 @@ binary-arch: build
 	dh_compress
 	dh_fixperms
 
-	chmod -R u+rw debian/tmp/usr/
+	chmod -R u+rw debian/bsdgames/usr/
 	# Games with score files need to be set up sgid games.
-	chown root.games debian/tmp/usr/games/atc \
-		debian/tmp/usr/games/battlestar \
-		debian/tmp/usr/games/canfield \
-		debian/tmp/usr/games/cribbage \
-		debian/tmp/usr/games/robots \
-		debian/tmp/usr/games/snake \
-		debian/tmp/usr/games/tetris-bsd \
-		debian/tmp/usr/games/phantasia \
-		debian/tmp/usr/games/sail
-	chmod g+s debian/tmp/usr/games/atc \
-		debian/tmp/usr/games/battlestar \
-		debian/tmp/usr/games/canfield \
-		debian/tmp/usr/games/cribbage \
-		debian/tmp/usr/games/robots \
-		debian/tmp/usr/games/snake \
-		debian/tmp/usr/games/tetris-bsd \
-		debian/tmp/usr/games/phantasia \
-		debian/tmp/usr/games/sail
+	chown root.games debian/bsdgames/usr/games/atc \
+		debian/bsdgames/usr/games/battlestar \
+		debian/bsdgames/usr/games/canfield \
+		debian/bsdgames/usr/games/cribbage \
+		debian/bsdgames/usr/games/robots \
+		debian/bsdgames/usr/games/snake \
+		debian/bsdgames/usr/games/tetris-bsd \
+		debian/bsdgames/usr/games/phantasia \
+		debian/bsdgames/usr/games/sail
+	chmod g+s debian/bsdgames/usr/games/atc \
+		debian/bsdgames/usr/games/battlestar \
+		debian/bsdgames/usr/games/canfield \
+		debian/bsdgames/usr/games/cribbage \
+		debian/bsdgames/usr/games/robots \
+		debian/bsdgames/usr/games/snake \
+		debian/bsdgames/usr/games/tetris-bsd \
+		debian/bsdgames/usr/games/phantasia \
+		debian/bsdgames/usr/games/sail
 	# The game directories need to be sgid too, and let's
 	# remove all the zero byte score files in them.
-	chown root.games debian/tmp/var/games/bsdgames/ \
-		debian/tmp/var/games/bsdgames/sail \
-		debian/tmp/var/games/bsdgames/phantasia
-	chmod g+rws debian/tmp/var/games/bsdgames/ \
-		debian/tmp/var/games/bsdgames/sail \
-		debian/tmp/var/games/bsdgames/phantasia
-	find debian/tmp/var/games/bsdgames -size 0 -exec rm {} \;
+	chown root.games debian/bsdgames/var/games/bsdgames/ \
+		debian/bsdgames/var/games/bsdgames/sail \
+		debian/bsdgames/var/games/bsdgames/phantasia
+	chmod g+rws debian/bsdgames/var/games/bsdgames/ \
+		debian/bsdgames/var/games/bsdgames/sail \
+		debian/bsdgames/var/games/bsdgames/phantasia
+	find debian/bsdgames/var/games/bsdgames -size 0 -exec rm {} \;
 
 	dh_suidregister
 

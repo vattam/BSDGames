@@ -2,7 +2,7 @@
 bsd_games_cfg_non_interactive=y
 
 # Install into here for building the package.
-bsd_games_cfg_install_prefix=`pwd`/debian/tmp
+bsd_games_cfg_install_prefix=`pwd`/debian/bsdgames
 
 # Do not build or install these games:
 bsd_games_cfg_no_build_dirs="dm banner fortune factor"
