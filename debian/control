@@ -10,6 +10,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, wenglish | wordlist
 Conflicts: bsdgames-nonfree (<< 2.5), suidmanager (<< 0.50)
 Replaces: bsdgames-nonfree (<< 2.5)
+Suggests: wenglish
 Description: collection of text games from BSD systems
  This is a collection of some of the text-based games and amusements that have
  been enjoyed for decades on unix systems.
