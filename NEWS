@@ -11,6 +11,18 @@ changes in installation instructions.  Packagers should also reread
 the PACKAGING file each version (or do a diff between the old and new
 versions of the package and read that).
 
+Version 2.12 (2000-09-25)
+============
+
+* Improvements and bugfixes to battlestar, mainly from OpenBSD.
+Though there are still plenty of known bugs, it should be much harder
+to crash.
+
+* Should compile with glibc 2.2 (tested with 2.1.94).
+
+* Other minor changes and bugfixes; current with NetBSD CVS of
+2000-09-25.
+
 Version 2.11 (2000-04-19)
 ============
 
@@ -61,7 +73,7 @@ score file when upgrading to this version.
 interface (rather than termcap emulation in ncurses); backgammon and
 tetris still to be converted.
 
-* New `game': wtf.
+* New "game": wtf.
 
 * Updated from NetBSD CVS of 1999-09-25; many more changes merged back
 into NetBSD.
@@ -79,7 +91,7 @@ games, as best as I can determine them, now appear in COPYING.
 hangman; you need to provide one at compile time (for boggle) and at
 run time (for hangman).  The copyright status of the one formerly
 included was not entirely clear.  The word list used by hangman can
-also now be specified at run time with the new `-d' option.
+also now be specified at run time with the new "-d" option.
 
 * bsd-games now has a testsuite (for programs that can be tested
 non-interactively only).
@@ -109,10 +121,10 @@ option).
 
 * Other minor changes.
 
-* Some users of this package may be interested in my `nppt' package,
+* Some users of this package may be interested in my "nppt" package,
 which provides an alternative implementation of ppt(6) with additional
 features such as Encapsulated PostScript output.  (This package
-installs the binary as `nppt', so can be installed simultaneously with
+installs the binary as "nppt", so can be installed simultaneously with
 this one.  Look for nppt-0.1.tar.gz (or a later version) on
 metalab.unc.edu (formerly sunsite) in /pub/Linux/Incoming/ or under
 /pub/Linux/games/.)
@@ -124,14 +136,14 @@ Version 2.5 (1998-09-24)
 that includes makefile fragments from subdirectories, and uses GNU
 Make's automatic dependency generation to generate dependencies
 automatically, rather than recursive make.  See Peter Miller's paper
-`Recursive Make Considered Harmful'
+"Recursive Make Considered Harmful"
 <http://www.canb.auug.org.au/~millerp/rmch/recu-make-cons-harm.html>
 for reasons why this is better than recursive make.  This should make
 no difference to normal users, but if you modify the sources note that
 you will need to rebuild from the top directory, and you may find that
 the dependencies are now accurate whereas formerly they were
 incomplete.  The automatic dependency generation causes the build to
-start with about 300 `no such file or directory' warnings, which
+start with about 300 "no such file or directory" warnings, which
 should be ignored: these refer to the dependency files which GNU Make
 will then automatically generate.
 
@@ -237,15 +249,15 @@ local to bsd-games with ones now in NetBSD.
 current egcs snapshot fixed as well.
 
 * Configuration / installation change - to strip the installed
-binaries, use `make install-strip' instead of `make install'; this
-replaces the configuration option for `make install' to strip the
+binaries, use "make install-strip" instead of "make install"; this
+replaces the configuration option for "make install" to strip the
 installed binaries.
 
 * Manpages for wargames and paranoia, thanks to Joey Hess
 <joeyh@kitenet.net>.
 
 * Battlestar save file name can be chosen at runtime, and defaults to
-`.Bstar' instead of `Bstar' for cleaner directory listings.
+".Bstar" instead of "Bstar" for cleaner directory listings.
 
 Version 2.0 (1997-12-25)
 ===========
@@ -292,7 +304,7 @@ Version 1.3.4beta (1997-05-06)
 
 * Backgammon, battlestar, bcd, caesar, canfield, cribbage and factor
 updated to the versions in NetBSD-current.  As a side-effect, caesar
-now installs a `rot13' script.
+now installs a "rot13" script.
 
 * Tetris score file now defaults to tetris-bsd.scores for consistency
 with using tetris-bsd in the names of files installed from tetris.

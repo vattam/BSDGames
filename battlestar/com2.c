@@ -1,4 +1,4 @@
-/*	$NetBSD: com2.c,v 1.8 1999/07/14 17:42:13 hubertf Exp $	*/
+/*	$NetBSD: com2.c,v 1.21 2000/09/25 19:37:58 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)com2.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: com2.c,v 1.8 1999/07/14 17:42:13 hubertf Exp $");
+__RCSID("$NetBSD: com2.c,v 1.21 2000/09/25 19:37:58 jsm Exp $");
 #endif
 #endif				/* not lint */
 
@@ -47,28 +47,24 @@ __RCSID("$NetBSD: com2.c,v 1.8 1999/07/14 17:42:13 hubertf Exp $");
 int
 wearit()
 {				/* synonyms = {sheathe, sheath} */
-	int     n;
 	int     firstnumber, value;
 
 	firstnumber = wordnumber;
-	while (wordtype[++wordnumber] == ADJS);
-	while (wordnumber <= wordcount) {
+	wordnumber++;
+	while (wordnumber <= wordcount && (wordtype[wordnumber] == OBJECT ||
+	    wordtype[wordnumber] == NOUNS) && wordvalue[wordnumber] != DOOR) {
 		value = wordvalue[wordnumber];
-		/* Is the thing being worn a known object? */
-		if (value == -1) {
-			puts("Wear what?");
-			return (firstnumber);
-		}
-		/* Now find the length of the short description,
-		 * mostly so we know if it ends in 's' or not.
-		 */
-		for (n = 0; objsht[value][n]; n++)
-			/* do nothing */;
-			
+		if (objsht[value] == NULL)
+			break;
 		switch (value) {
 
+		case -1:
+			puts("Wear what?");
+			return (firstnumber);
+
 		default:
-			printf("You can't wear%s%s!\n", (objsht[value][n - 1] == 's' ? " " : " a "), objsht[value]);
+			printf("You can't wear %s%s!\n",
+			    A_OR_AN_OR_BLANK(value), objsht[value]);
 			return (firstnumber);
 
 		case KNIFE:
@@ -96,9 +92,8 @@ wearit()
 				carrying -= objwt[value];
 				encumber -= objcumber[value];
 				ourtime++;
-				printf("You are now wearing %s %s.\n",
-				    (objsht[value][n - 1] == 's' ? "the"
-					: "a"), objsht[value]);
+				printf("You are now wearing %s%s.\n",
+				    A_OR_AN_OR_THE(value), objsht[value]);
 			} else
 				if (testbit(wear, value))
 					printf("You are already wearing the %s.\n",
@@ -122,10 +117,12 @@ put()
 {				/* synonyms = {buckle, strap, tie} */
 	if (wordvalue[wordnumber + 1] == ON) {
 		wordvalue[++wordnumber] = PUTON;
+		wordtype[wordnumber] = VERB;
 		return (cypher());
 	}
 	if (wordvalue[wordnumber + 1] == DOWN) {
 		wordvalue[++wordnumber] = DROP;
+		wordtype[wordnumber] = VERB;
 		return (cypher());
 	}
 	puts("I don't understand what you want to put.");
@@ -142,7 +139,7 @@ draw()
 int
 use()
 {
-	while (wordtype[++wordnumber] == ADJS && wordnumber < wordcount);
+	wordnumber++;
 	if (wordvalue[wordnumber] == AMULET && testbit(inven, AMULET) &&
 	    position != FINAL) {
 		puts("The amulet begins to glow.");
@@ -165,20 +162,16 @@ use()
 		ourtime++;
 		notes[CANTSEE] = 0;
 		return (0);
-	} else
-		if (position == FINAL)
-			puts("The amulet won't work in here.");
-		else
-			if (wordvalue[wordnumber] == COMPASS && testbit(inven, COMPASS))
-				printf("Your compass points %s.\n", truedirec(NORTH, '-'));
-			else
-				if (wordvalue[wordnumber] == COMPASS)
-					puts("You aren't holding the compass.");
-				else
-					if (wordvalue[wordnumber] == AMULET)
-						puts("You aren't holding the amulet.");
-					else
-						puts("There is no apparent use.");
+	} else if (position == FINAL)
+		puts("The amulet won't work in here.");
+	else if (wordvalue[wordnumber] == COMPASS && testbit(inven, COMPASS))
+		printf("Your compass points %s.\n", truedirec(NORTH, '-'));
+	else if (wordvalue[wordnumber] == COMPASS)
+		puts("You aren't holding the compass.");
+	else if (wordvalue[wordnumber] == AMULET)
+		puts("You aren't holding the amulet.");
+	else
+		puts("There is no apparent use.");
 	return (-1);
 }
 
@@ -188,11 +181,36 @@ murder()
 	int     n;
 
 	for (n = 0; !((n == SWORD || n == KNIFE || n == TWO_HANDED || n == MACE || n == CLEAVER || n == BROAD || n == CHAIN || n == SHOVEL || n == HALBERD) && testbit(inven, n)) && n < NUMOFOBJECTS; n++);
-	if (n == NUMOFOBJECTS)
-		puts("You don't have suitable weapons to kill.");
-	else {
+	if (n == NUMOFOBJECTS) {
+		if (testbit(inven, LASER)) {
+			printf("Your laser should do the trick.\n");
+			wordnumber++;
+			switch(wordvalue[wordnumber]) {
+			case NORMGOD:
+			case TIMER:
+			case NATIVE:
+			case MAN:
+				wordvalue[--wordnumber] = SHOOT;
+				cypher();
+				break;
+			case -1:
+				puts("Kill what?");
+				break;
+			default:
+				if (wordtype[wordnumber] != OBJECT ||
+				    wordvalue[wordnumber] == EVERYTHING)
+					puts("You can't kill that!");
+				else
+					printf("You can't kill %s%s!\n",
+					    A_OR_AN_OR_BLANK(wordvalue[wordnumber]),
+					    objsht[wordvalue[wordnumber]]);
+				break;
+			}
+		} else
+			puts("You don't have suitable weapons to kill.");
+	} else {
 		printf("Your %s should do the trick.\n", objsht[n]);
-		while (wordtype[++wordnumber] == ADJS);
+		wordnumber++;
 		switch (wordvalue[wordnumber]) {
 
 		case NORMGOD:
@@ -212,7 +230,7 @@ murder()
 					if (wintime)
 						live();
 				} else
-					puts("I dont see her anywhere.");
+					puts("I don't see her anywhere.");
 			break;
 		case TIMER:
 			if (testbit(location[position].objects, TIMER)) {
@@ -245,8 +263,9 @@ murder()
 			break;
 
 		default:
-			if (wordtype[wordnumber] != NOUNS)
-				puts("Kill what?");
+			if (wordtype[wordnumber] != OBJECT ||
+			    wordvalue[wordnumber] == EVERYTHING)
+				puts("You can't kill that!");
 			else
 				printf("You can't kill the %s!\n",
 				    objsht[wordvalue[wordnumber]]);
@@ -257,13 +276,18 @@ murder()
 void
 ravage()
 {
-	while (wordtype[++wordnumber] != NOUNS && wordnumber <= wordcount);
-	if (wordtype[wordnumber] == NOUNS && testbit(location[position].objects, wordvalue[wordnumber])) {
+	while (wordtype[++wordnumber] != NOUNS && wordnumber <= wordcount)
+		continue;
+	if (wordtype[wordnumber] == NOUNS && (testbit(location[position].objects, wordvalue[wordnumber])
+	    || (wordvalue[wordnumber] == NORMGOD && testbit(location[position].objects, BATHGOD)))) {
 		ourtime++;
 		switch (wordvalue[wordnumber]) {
 		case NORMGOD:
 			puts("You attack the goddess, and she screams as you beat her.  She falls down");
-			puts("crying and tries to hold her torn and bloodied dress around her.");
+			if (testbit(location[position].objects, BATHGOD))
+				puts("crying and tries to cover her nakedness.");
+			else
+				puts("crying and tries to hold her torn and bloodied dress around her.");
 			power += 5;
 			pleasure += 8;
 			ego -= 10;

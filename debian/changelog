@@ -1,3 +1,9 @@
+bsdgames (2.12-1) unstable; urgency=low
+
+  * New upstream release, fixing problems in battlestar. Closes: #70465
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 26 Sep 2000 09:21:22 -0700
+
 bsdgames (2.11-4) unstable; urgency=low
 
   * Updated to debhelper v2.
@@ -57,7 +63,7 @@ bsdgames (2.9-3) unstable; urgency=low
 bsdgames (2.9-2) unstable; urgency=low
 
   * Build deps. Boggle is now forced to always build with wgenlish as it's
-    word list, for consitency. Unfortunatly, it cannot use the currnelt
+    word list, for consitency. Unfortunatly, it cannot use the currnetly
     install word list because it hashes it at install time.
 
  -- Joey Hess <joeyh@debian.org>  Sat,  4 Dec 1999 00:13:01 -0800

@@ -160,7 +160,7 @@ main(argc, argv)
 		case 'l':
 			level = atoi(optarg);
 			if (level < MINLEVEL || level > MAXLEVEL) {
-				errx(1, "tetris-bsd: level must be from %d to %d",
+				errx(1, "level must be from %d to %d",
 				     MINLEVEL, MAXLEVEL);
 			}
 			break;

@@ -1,0 +1,13 @@
+a.out
+*.d
+*.i
+*.s
+*.d.tmp
+atc
+pathnames.h
+atc.6
+grammar.c
+grammar.h
+y.tab.*
+lex.c
+lex.yy.c
