@@ -102,11 +102,11 @@ These terms also apply to "hunt/Makeconfig", which is derived from the
 hunt "Makefile.inc" distributed by NetBSD.
 
 The files "backgammon/backgammon/backlocal.h", "countmail/countmail",
-"hack/extern.h", "robots/auto.c", "sail/display.h" and
-"sail/restart.h" have a similar licence, but copyright is held by the
-NetBSD Foundation:
+"dm/utmpentry.c", "dm/utmpentry.h", "hack/extern.h", "robots/auto.c",
+"sail/display.h", "sail/restart.h" and the game "dab" have a similar
+licence, but copyright is held by the NetBSD Foundation:
 
-   Copyright (c) 1997, 1998, 1999, 2001 The NetBSD Foundation, Inc.
+   Copyright (c) 1997, 1998, 1999, 2001, 2002, 2003 The NetBSD Foundation, Inc.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -136,6 +136,32 @@ NetBSD Foundation:
    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
    POSSIBILITY OF SUCH DAMAGE.
+
+In the case of "dab/dab.6", the copyright is held by Thomas Klausner:
+
+   Copyright (c) 2003 Thomas Klausner.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+   1. Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+   2. Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+   3. The name of the author may not be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+   IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+   OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+   IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+   INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 In the case of "adventure/extern.h" the copyright is held by Christos
 Zoulas:
@@ -361,7 +387,7 @@ insofar as they get compiled into the games; note that the include
 files are probably irrelevant for this purpose as it is unlikely they
 are significant enough to make any binary a derived work).
 
-   Copyright (c) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Joseph Samuel Myers.
+   Copyright (c) 1997-2004 Joseph Samuel Myers.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
@@ -400,16 +426,15 @@ qualify for copyright; but if not, then the terms given above apply
 (and, of course, running the test command gives an identical output
 file to which you could apply your own copyright).
 
-The files "bsd-games.lsm", "ChangeLog.0", "THANKS", "INSTALL",
-"README", "TODO", "boggle/README.linux", "fortune/README.linux", and
-"hunt/README.linux" are still significantly derived from files in the
-original bsd-games package for Linux by Curt Olson and Andy Tefft.  It
-is expected that the following terms will apply to these files, and to
+The files "bsd-games.lsm", "ChangeLog.0", "THANKS", "INSTALL" and
+"README" are still significantly derived from files in the original
+bsd-games package for Linux by Curt Olson and Andy Tefft.  It is
+expected that the following terms will apply to these files, and to
 the compilation copyright on the package as a whole; ***this has yet
 to be confirmed with Andy Tefft***:
 
    Copyright (c) 1993 Curt Olson, Andy Tefft.
-   Copyright (c) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Joseph Samuel Myers.
+   Copyright (c) 1997-2004 Joseph Samuel Myers.
    All rights reserved.
 
    Redistribution and use in source and binary forms, with or without

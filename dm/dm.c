@@ -1,5 +1,4 @@
-/*	$NetBSD: dm.c,v 1.18 2003/08/07 09:37:11 agc Exp $	*/
-/* For Linux: still using old utmp interface from version 1.16.  */
+/*	$NetBSD: dm.c,v 1.20 2004/02/08 22:23:50 jsm Exp $	*/
 
 /*
  * Copyright (c) 1987, 1993
@@ -40,7 +39,7 @@ __COPYRIGHT("@(#) Copyright (c) 1987, 1993\n\
 #if 0
 static char sccsid[] = "@(#)dm.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: dm.c,v 1.18 2003/08/07 09:37:11 agc Exp $");
+__RCSID("$NetBSD: dm.c,v 1.20 2004/02/08 22:23:50 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -58,8 +57,8 @@ __RCSID("$NetBSD: dm.c,v 1.18 2003/08/07 09:37:11 agc Exp $");
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include <utmp.h>
 
+#include "utmpentry.h"
 #include "pathnames.h"
 
 static time_t	now;			/* current time value */
@@ -67,16 +66,16 @@ static int	priority = 0;		/* priority game runs at */
 static char	*game,			/* requested game */
 		*gametty;		/* from tty? */
 
-void	c_day __P((const char *, const char *, const char *));
-void	c_game __P((const char *, const char  *, const char *, const char *));
-void	c_tty __P((const char *));
-const char *hour __P((int));
-double	load __P((void));
-int	main __P((int, char *[]));
-void	nogamefile __P((void));
-void	play __P((char **)) __attribute__((__noreturn__));
-void	read_config __P((void));
-int	users __P((void));
+void	c_day(const char *, const char *, const char *);
+void	c_game(const char *, const char  *, const char *, const char *);
+void	c_tty(const char *);
+const char *hour(int);
+double	load(void);
+int	main(int, char *[]);
+void	nogamefile(void);
+void	play(char **) __attribute__((__noreturn__));
+void	read_config(void);
+int	users(void);
 
 int
 main(argc, argv)
@@ -253,16 +252,16 @@ load()
 int
 users()
 {
-	
-	int nusers, utmp;
-	struct utmp buf;
+	static struct utmpentry *ohead = NULL;	
+	struct utmpentry *ep;
+	int nusers;
 
-	if ((utmp = open(_PATH_UTMP, O_RDONLY, 0)) < 0)
-		err(1, "%s", _PATH_UTMP);
-	for (nusers = 0; read(utmp, (char *)&buf, sizeof(struct utmp)) > 0;)
-		if (buf.ut_name[0] != '\0')
-			++nusers;
-	return (nusers);
+	nusers = getutentries(NULL, &ep);
+	if (ep != ohead) {
+		freeutentries(ep);
+		ohead = ep;
+	}
+	return nusers;
 }
 
 void

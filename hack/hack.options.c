@@ -1,4 +1,4 @@
-/*	$NetBSD: hack.options.c,v 1.6 2003/04/02 18:36:39 jsm Exp $	*/
+/*	$NetBSD: hack.options.c,v 1.7 2004/01/01 16:02:51 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,
@@ -63,7 +63,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: hack.options.c,v 1.6 2003/04/02 18:36:39 jsm Exp $");
+__RCSID("$NetBSD: hack.options.c,v 1.7 2004/01/01 16:02:51 jsm Exp $");
 #endif				/* not lint */
 
 #include <stdlib.h>

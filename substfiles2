@@ -1,7 +1,7 @@
 # substfiles2 - list of files in which parameters are to be substituted.
 # These ones get substituted during the make process.
 #
-# Copyright (c) 1997, 1998, 1999, 2000, 2003 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 1999, 2000, 2003, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -46,5 +46,6 @@ robots/robots.6
 rogue/rogue.6
 snake/snake/snake.6
 tetris/tetris.6
+trek/trek.6
 wtf/wtf.6
 wtf/wtf

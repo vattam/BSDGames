@@ -1,7 +1,7 @@
 #!/bin/sh
 # pom.test - test functionality of pom.
 #
-# Copyright (c) 1999 Joseph Samuel Myers.
+# Copyright (c) 1999, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -33,15 +33,15 @@ set -e
 
 testexec pom pom/pom
 
-# Test dates from Astronomical Almanac 1998, rounded to nearest hour.
-# Should add dates from other years.
-
-# We should also test the fraction illuminated given by the program, but
-# it isn't really accurate enough to do this reliably and the Astronomical
-# Almanac only gives these figures to 2 decimal places (like pom) so I don't
-# know which are border cases and which are good tests.
-
 export TZ=UTC0
+
+# Should add dates from years before 1998.
+
+# Test dates from Astronomical Almanac 1998, rounded to nearest hour.
+# We should also test the fraction illuminated given by the program,
+# but the Astronomical Almanac 1998 only gives these figures to 2
+# decimal places (like pom) so I don't know which are border cases and
+# which are good tests.
 
 testno 1
 pom/pom 1998010514 >test.out 2>&1 || failtest
@@ -82,3 +82,89 @@ testno 8
 pom/pom 1998111100 >test.out 2>&1 || failtest
 compare test.out tests/pom.1998lq2
 rm -f test.out
+
+# Test dates from Astronomical Almanac 2003, rounded to nearest hour,
+# and fractions of illumination at the start of the day.
+
+testno 9
+pom/pom 2003010220 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003nm1
+rm -f test.out
+
+testno 10
+pom/pom 2003011013 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003fq1
+rm -f test.out
+
+testno 11
+pom/pom 2003011811 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003fm1
+rm -f test.out
+
+testno 12
+pom/pom 2003012509 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003lq1
+rm -f test.out
+
+testno 13
+pom/pom 2003112323 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003nm2
+rm -f test.out
+
+testno 14
+pom/pom 2003113017 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003fq2
+rm -f test.out
+
+testno 15
+pom/pom 2003120821 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003fm2
+rm -f test.out
+
+testno 16
+pom/pom 2003121618 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003lq2
+rm -f test.out
+
+testno 17
+pom/pom 2003010200 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003ph1
+rm -f test.out
+
+testno 18
+pom/pom 2003010600 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003ph2
+rm -f test.out
+
+testno 19
+pom/pom 2003011100 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003ph3
+rm -f test.out
+
+testno 20
+pom/pom 2003012200 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003ph4
+rm -f test.out
+
+testno 21
+pom/pom 2003090100 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003ph5
+rm -f test.out
+
+testno 22
+pom/pom 2003090700 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003ph6
+rm -f test.out
+
+testno 23
+pom/pom 2003091500 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003ph7
+rm -f test.out
+
+testno 24
+pom/pom 2003092200 >test.out 2>&1 || failtest
+compare test.out tests/pom.2003ph8
+rm -f test.out
+
+# Note that the output of pom differs for dates in the past and the
+# future, so future dates are not good tests.

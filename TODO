@@ -47,8 +47,6 @@ those.  The issues listed there are not included in this list.
              has some; Paul Janzen is adding FreeBSD changes to
              OpenBSD, so they may reach me that way.
 
-1998-09-04 - dm should not access the utmp file directly.
-
 1998-09-11 - Move building of more files in which configuration
              variables are substituted from the configure script into
              the Makefiles.

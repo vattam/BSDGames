@@ -1,6 +1,6 @@
 # Makefrag - makefile fragment for trek
 #
-# Copyright (c) 1997, 1998 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,12 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
-trek_DIRS := $(GAMESDIR) $(MAN6DIR)
+trek_DIRS := $(GAMESDIR) $(MAN6DIR) $(DOCDIR)
 
-trek_all:	trek/trek trek/trek.6
+trek_all:	trek/trek trek/trek.6 trek/USD.doc/trek.me
 
 trek_install:	trek_all
 	$(INSTALL_BINARY) trek/trek $(INSTALL_PREFIX)$(GAMESDIR)/trek
 	$(HIDE_GAME) trek
 	$(INSTALL_MANUAL) trek/trek.6
+	$(INSTALL_DATA) trek/USD.doc/trek.me $(INSTALL_PREFIX)$(DOCDIR)/trek.me

@@ -1,6 +1,6 @@
 /* signal.h - bsd-games wrapper for <signal.h>.
  *
- * Copyright (c) 1997, 1998, 2000 Joseph Samuel Myers.
+ * Copyright (c) 1997, 1998, 2000, 2004 Joseph Samuel Myers.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,10 +39,9 @@
 
 #include_next <signal.h>
 
-#ifndef __GLIBC__ /* glibc 2 has this; with libc5 we want to avoid
-		   * <bsd/signal.h>.  */
+#ifndef HAVE_sig_t
 #ifndef LINUX_BSD_GAMES_DEFINED_SIG_T
-typedef __sighandler_t sig_t;
+typedef void (*sig_t)(int);
 #define LINUX_BSD_GAMES_DEFINED_SIG_T	1
 #endif
 #endif

@@ -161,7 +161,7 @@ fortune 50% funny 50% not
 .Ed
 .Sh FILES
 .Bl -tag -width Pa -compact
-.It Pa @sharedir@/fortunes
+.It Pa @fortune_dir@
 .El
 .Sh SEE ALSO
 .Xr regex 3

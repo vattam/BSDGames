@@ -1,8 +1,0 @@
-1997-05-18
-
-The full trek manual is in USD.doc/trek.me; this is not installed by
-the Makefile.  You may wish to install it somewhere; if you do,
-remember to update the reference to /usr/doc/trek in the man page.
-
-Joseph Myers
-jsm@polyomino.org.uk

@@ -1,4 +1,4 @@
-/*	$NetBSD: varpush.c,v 1.7 2003/08/07 09:37:26 agc Exp $	*/
+/*	$NetBSD: varpush.c,v 1.8 2004/01/27 20:30:30 jsm Exp $	*/
 
 /*
  * Copyright (c) 1982, 1993
@@ -34,7 +34,7 @@
 #if 0
 static char sccsid[] = "@(#)varpush.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: varpush.c,v 1.7 2003/08/07 09:37:26 agc Exp $");
+__RCSID("$NetBSD: varpush.c,v 1.8 2004/01/27 20:30:30 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -53,9 +53,9 @@ bool
 varpush(file, func)
 	int	file;
 #if defined(__linux__) && !defined(__GLIBC__)
-	ssize_t	(*func) __P((int, const struct iovec *, size_t)); 
+	ssize_t	(*func)(int, const struct iovec *, size_t); 
 #else
-	ssize_t	(*func) __P((int, const struct iovec *, int)); 
+	ssize_t	(*func)(int, const struct iovec *, int); 
 #endif
 {
 	int		temp;

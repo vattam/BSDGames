@@ -21,8 +21,7 @@ The games are mostly not enhanced from the NetBSD versions, but many
 bugs are fixed.
 
 For installation instructions and details of prerequisites, see the
-file "INSTALL".  Some games have "README.linux" files you may wish to
-read.
+file "INSTALL".
 
 The statement of year 2000 issues associated with bsd-games and
 bsd-games-non-free is in the file "YEAR2000".
@@ -50,6 +49,7 @@ caesar:		reads fortunes from the game fortune, also some internet posts
 canfield:	curses-based solitaire
 countmail:	tell you how much new mail you have
 cribbage:	cribbage
+dab:		dots and boxes
 dm:		dungeon master, regulates games playing
 factor:		factor a number
 fish:		go fish
@@ -102,6 +102,32 @@ have ported the code from NetBSD to Linux, but may not be familiar
 with the workings of any particular program, whereas you will be if
 you have been tracing and fixing a bug.  The GCC info manual contains
 a discussion of how to produce good bug reports.
+
+Notes on specific games:
+
+boggle: by default this game compiles with certain Linux improvements;
+if you want the original BSD behaviour, remove -DNEW_STYLE from the
+boggle_boggle_DEFS in boggle/boggle/Makefrag.  Defining NEW_STYLE will
+provide a more intuitive way of quitting or playing a new game after
+time has run out.
+
+dm: the "dungeon master", a program that allows you to control when
+users can play games.  (Note that this does not control any private
+copies of games they may have.)  I do not claim that this program is
+actually useful, but it is included in bsd-games since it is in
+NetBSD.  Add -DLOG to the DEFS in dm/Makefrag if you want logging of
+games playing (not regularly tested).
+
+fortune: Another enhanced version is available from
+<ftp://ibiblio.org/pub/Linux/games/amusements/fortune/fortune-mod-9708.tar.gz>.
+unstr is not installed by default.  If you want to install it,
+uncomment the relevant lines (installation command and definition of
+fortune_unstr_DIRS) in fortune/unstr/Makefrag before doing the top
+level "make install".
+
+hunt: may well be unreliable or broken in various ways.  There is some
+local configuration possible in hunt/Makeconfig but changing this may
+well break things.
 
 Joseph S. Myers
 jsm@polyomino.org.uk

@@ -23,17 +23,15 @@ the bsd-games-non-free package unpacks conventionally into a directory
 of its own.  It can be built separately from bsd-games, or in the same
 source directory: to do the latter, move those files and directories
 that are in bsd-games-non-free but not bsd-games into the
-bsd-games-VERSION directory before building.  If you are building
-bsd-games, cd to boggle and decide if you want -DNEW_STYLE or not --
-see boggle/README.linux for more information.  If you are in a hurry,
-don't worry about it ... it really is more of an aesthetic thing.
+bsd-games-VERSION directory before building.
 
 Prerequisites
 =============
 
 You need the following to build this distribution:
 
-* GCC (the C compiler only - other languages not needed).
+* GCC (the C and C++ compilers only - other languages not needed; C++
+  only needed for dab).
 
 * glibc 2.3 or later.  Older versions will not work (at least for
   hunt) since they lack the <ifaddrs.h> header.
@@ -161,13 +159,7 @@ Building and installation
     this or a later version, and a new one created with the correct
     permissions.
 
-10. You may wish to do something with the BSD Users' Supplementary
-    Documents for trek and rogue, in trek/USD.doc/trek.me and
-    rogue/USD.doc/rogue.me.  You can look at them on a text terminal
-    with "nroff -me" (piped to your pager), or format in PostScript
-    for printing with "groff -me -Tps".
-
-11. "make distclean" will restore the source directory to the original
+10. "make distclean" will restore the source directory to the original
     unpacked state.  The automatically generated dependency files
     include paths to system headers, including those in gcc's internal
     header directory: if you have changed your compiler or library
@@ -179,10 +171,6 @@ Building and installation
 
 Further information
 ===================
-
-Some subdirectories have README.linux files.  If you are still having
-trouble with a program, check this file first -- it may contain some
-helpful hints, or information about further configuration options.
 
 See TODO for information on what needs to be improved in this package;
 you may want to volunteer for some of the things in there.

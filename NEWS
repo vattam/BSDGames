@@ -11,6 +11,22 @@ changes in installation instructions.  Packagers should also reread
 the PACKAGING file each version (or do a diff between the old and new
 versions of the package and read that).
 
+Version 2.16 (2004-02-13)
+============
+
+* Updated from NetBSD CVS of 2004-02-12.  Includes a new game, dab
+(Dots and Boxes), written in C++.
+
+* Supplementary documentation for trek and rogue now installed
+automatically (in a configurable directory).
+
+* Some changes for portability to Cygwin, thanks to David A Bagley
+<bagleyd@tux.org>; more portability issues remain.
+
+* Various improvements to morse from OpenBSD.
+
+* Some bugs fixed, some backlogged.
+
 Version 2.15 (2003-12-18)
 ============
 

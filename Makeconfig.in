@@ -1,6 +1,6 @@
 # Makeconfig.in - configuration included in Makefiles after substitution.
 #
-# Copyright (c) 1997, 1998, 1999, 2000, 2003 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 1999, 2000, 2003, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -50,6 +50,8 @@ MAN8DIR := @man8dir@
 MAN5DIR := @man5dir@
 # Constant data (arch-independent)
 SHAREDIR := @sharedir@
+# Miscellaneous documentation
+DOCDIR := @docdir@
 # Variable data
 VARLIBDIR := @varlibdir@
 # Directory for hidden games (dm)
@@ -83,12 +85,17 @@ HIDE_GAME := @hidegame@
 
 # Compilation details
 CC := @cc@
+CXX := @cxx@
 OPTIMIZE := @optimize_flags@
 WARNING := @warning_flags@
+CXX_WARNING := @cxx_warning_flags@
 CFLAGS := $(OPTIMIZE) $(WARNING) @other_cflags@
+CXXFLAGS := $(OPTIMIZE) $(CXX_WARNING) @other_cflags@
 LDFLAGS := @other_ldflags@
 FGETLN_DEFS := @fgetln_defs@
 GETLOADAVG_DEFS := @getloadavg_defs@
+STRLCPY_DEFS := @strlcpy_defs@
+GETPROGNAME_DEFS := @getprogname_defs@
 NCURSES_LIB := @ncurses_lib@
 NCURSES_INCS := @ncurses_includes@
 OPENSSL_LIB := @openssl_lib@

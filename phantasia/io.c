@@ -1,4 +1,4 @@
-/*	$NetBSD: io.c,v 1.5 1999/09/08 21:45:29 jsm Exp $	*/
+/*	$NetBSD: io.c,v 1.6 2004/02/08 00:32:07 jsm Exp $	*/
 
 /*
  * io.c - input/output routines for Phantasia

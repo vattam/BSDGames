@@ -1,6 +1,6 @@
 # Makefrag - makefile fragment for primes
 #
-# Copyright (c) 1997, 1998, 1999 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 1999, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -29,9 +29,9 @@
 primes_DEFS := -D_GNU_SOURCE
 primes_DIRS := $(GAMESDIR) $(MAN6DIR)
 
-primes_all:	primes/primes
+primes_all:	primes/primes primes/primes.6
 
 primes_install:	primes_all
 	$(INSTALL_BINARY) primes/primes $(INSTALL_PREFIX)$(GAMESDIR)/primes
 	$(HIDE_GAME) primes
-	$(INSTALL_MANUAL) factor.6 primes.6
+	$(INSTALL_MANUAL) primes/primes.6

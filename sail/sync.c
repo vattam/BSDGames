@@ -1,4 +1,4 @@
-/*	$NetBSD: sync.c,v 1.21 2003/08/07 09:37:45 agc Exp $	*/
+/*	$NetBSD: sync.c,v 1.22 2004/01/27 20:27:59 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -34,9 +34,12 @@
 #if 0
 static char sccsid[] = "@(#)sync.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: sync.c,v 1.21 2003/08/07 09:37:45 agc Exp $");
+__RCSID("$NetBSD: sync.c,v 1.22 2004/01/27 20:27:59 jsm Exp $");
 #endif
 #endif /* not lint */
+
+#include <sys/file.h>
+#include <sys/stat.h>
 
 #include <fcntl.h>
 #include <errno.h>
@@ -45,9 +48,6 @@ __RCSID("$NetBSD: sync.c,v 1.21 2003/08/07 09:37:45 agc Exp $");
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/file.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <time.h>
 #include <unistd.h>
 #include "extern.h"

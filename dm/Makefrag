@@ -1,6 +1,6 @@
 # Makefrag - makefile fragment for dm
 #
-# Copyright (c) 1997, 1998, 1999 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 1999, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,7 @@
 # SUCH DAMAGE.
 
 # Add -DLOG if you want logging
-dm_DEFS := $(GETLOADAVG_DEFS) # -DLOG
+dm_DEFS := $(GETLOADAVG_DEFS) -D_GNU_SOURCE -DSUPPORT_UTMPX -DSUPPORT_UTMP # -DLOG
 dm_DIRS := $(GAMESDIR) $(MAN8DIR) $(MAN5DIR)
 
 dm_all:	dm/dm dm/dm.8 dm/dm.conf.5

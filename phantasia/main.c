@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.11 2003/05/08 13:03:49 wiz Exp $	*/
+/*	$NetBSD: main.c,v 1.12 2004/01/01 16:03:46 jsm Exp $	*/
 
 /*
  * Phantasia 3.3.2 -- Interterminal fantasy game

@@ -1,7 +1,7 @@
 # exec.objs - details of objects that go into bsd-games programs.
 # This file is used for automatic makefile generation.
 #
-# Copyright (c) 1998, 1999, 2000, 2001, 2003 Joseph Samuel Myers.
+# Copyright (c) 1998, 1999, 2000, 2001, 2003, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
 adventure		crc.o data.o done.o init.o io.o main.o save.o subr.o \
 	vocab.o wizard.o
 adventure/setup		setup.o
-arithmetic		arithmetic.o
+arithmetic		arithmetic.o lib/getprogname.o
 atc			extern.o grammar.o graphics.o input.o lex.o list.o \
 	log.o main.o tunable.o update.o
 backgammon/backgammon/backgammon	extra.o main.o move.o text.o \
@@ -59,10 +59,12 @@ caesar			caesar.o
 canfield/canfield/canfield	canfield.o
 canfield/cfscores/cfscores	cfscores.o
 cribbage		cards.o crib.o extern.o instr.o io.o score.o support.o
-dm			dm.o lib/getloadavg.o
+dab			algor.o board.o box.o gamescreen.o human.o main.o \
+	player.o random.o ttyscrn.o
+dm			dm.o utmpentry.o lib/getloadavg.o
 factor			factor.o primes/pr_tbl.o
 fish			fish.o
-fortune/fortune/fortune	fortune.o
+fortune/fortune/fortune	fortune.o lib/getprogname.o
 fortune/strfile/strfile	strfile.o
 fortune/unstr/unstr	unstr.o
 gomoku			bdinit.o bdisp.o main.o makemove.o pickmove.o stoc.o

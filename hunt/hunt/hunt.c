@@ -1,4 +1,4 @@
-/*	$NetBSD: hunt.c,v 1.20 2003/06/11 12:04:06 wiz Exp $	*/
+/*	$NetBSD: hunt.c,v 1.22 2004/02/08 22:23:50 jsm Exp $	*/
 /*
  * Copyright (c) 1983-2003, Regents of the University of California.
  * All rights reserved.
@@ -32,7 +32,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: hunt.c,v 1.20 2003/06/11 12:04:06 wiz Exp $");
+__RCSID("$NetBSD: hunt.c,v 1.22 2004/02/08 22:23:50 jsm Exp $");
 #endif /* not lint */
 
 # include	<sys/param.h>
@@ -112,15 +112,15 @@ static int	in_visual;
 
 extern int	cur_row, cur_col;
 
-void	dump_scores __P((SOCKET));
-long	env_init __P((long));
-void	fill_in_blanks __P((void));
-void	leave __P((int, const char *)) __attribute__((__noreturn__));
-void	leavex __P((int, const char *)) __attribute__((__noreturn__));
-void	fincurs __P((void));
-int	main __P((int, char *[]));
+void	dump_scores(SOCKET);
+long	env_init(long);
+void	fill_in_blanks(void);
+void	leave(int, const char *) __attribute__((__noreturn__));
+void	leavex(int, const char *) __attribute__((__noreturn__));
+void	fincurs(void);
+int	main(int, char *[]);
 # ifdef INTERNET
-SOCKET *list_drivers __P((void));
+SOCKET *list_drivers(void);
 # endif
 
 extern int	Otto_mode;

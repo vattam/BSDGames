@@ -1,3 +1,9 @@
+bsdgames (2.16-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 14 Feb 2004 16:34:08 -0500
+
 bsdgames (2.15-1) unstable; urgency=low
 
   * New upstream release.

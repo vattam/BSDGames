@@ -50,12 +50,7 @@ may wish to provide a security-hardened system by giving each setgid
 game its own group so bugs in one do not affect others.
 
 You may wish to include auxiliary documentation for users, such as the
-BSD Users' Supplementary Documents for trek and rogue
-(trek/USD.doc/trek.me and rogue/USD.doc/rogue.me, or formatted
-versions thereof), the AUTHORS and THANKS files, and the year 2000
-statement YEAR2000.  Note that the trek manpage contains a reference
-to /usr/doc/trek, which should be updated to point to where you put
-trek.me or a formatted version.
+AUTHORS and THANKS files and the year 2000 statement YEAR2000.
 
 Assuming you distribute source for your package (I do not believe any
 of the games have licences requiring this), and separate your patches

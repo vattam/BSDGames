@@ -1,4 +1,4 @@
-$NetBSD: acronyms,v 1.129 2003/11/22 18:01:46 jschauma Exp $
+$NetBSD: acronyms,v 1.135 2004/01/14 13:46:26 keihan Exp $
 
 AFAICR	as far as I can recall
 AFAICT	as far as I can tell
@@ -18,6 +18,9 @@ ATM	at the moment
 AWOL	absent without official leave
 AYBABTU	all your base are belong to us
 B/C	because
+B/S	bullshit
+B/W	between
+BBIAB	be back in a bit
 BBL	[I'll] be back later
 BBS	be back soon
 BBT	be back tomorrow
@@ -27,10 +30,12 @@ BIAF	back in a few
 BIALW	back in a little while
 BIAS	back in a second
 BIAW	back in a while
+BOATILAS	bend over and take it like a slut
 BOFH	bastard operator from hell
 BOGAHICA	bend over, grab ankles, here it comes again
 BOHICA	bend over here it comes again
 BRB	[I'll] be right back
+BS	bullshit
 BTDT	been there, done that
 BTTH	boot to the head
 BTW	by the way
@@ -54,6 +59,7 @@ ETLA	extended three letter acronym
 EWAG	experienced wild-ass guess
 FAQ	frequently asked question
 FCFS	first come first served
+FIGJAM	fuck I'm good, just ask me
 FIIK	fuck[ed] if I know
 FIIR	fuck[ed] if I remember
 FM	fucking magic
@@ -100,6 +106,7 @@ ISTM	it seems to me
 ISTR	I seem to recall
 ITYM	I think you mean
 IYSS	if you say so
+IWBNI	it would be nice if
 J/K	just kidding
 JIC	just in case
 JK	just kidding
@@ -127,6 +134,8 @@ NFC	no fucking clue
 NFI	no fucking idea
 NFW	no fucking way
 NIH	not invented here
+NMF	not my fault
+NMP	not my problem
 NOYB	none of your business
 NOYFB	none of your fucking business
 NP	no problem
@@ -153,6 +162,7 @@ PPL	pretty please
 PTV	parental tunnel vision
 QED	quod erat demonstrandum
 RFC	request for comments
+RIP	rest in peace
 RL	real life
 RLC	rod length check
 ROFL	rolling on floor laughing
@@ -162,6 +172,7 @@ RP	responsible person
 RSN	real soon now
 RTFB	read the fine/fucking book
 RTFC	read the fine/fucking code
+RTFD	read the fine/fucking documentation
 RTFM	read the fine/fucking manual
 RTFMP	read the fine/fucking man page
 RTFS	read the fine/fucking source
@@ -174,6 +185,7 @@ SMLSFB	so many losers, so few bullets
 SMOP	simple matter of programming
 SNAFU	situation normal, all fucked up
 SNERT	snot-nosed egotistical rude teenager
+SNMP	sorry, not my problem
 SNR	signal to noise ratio
 SO	significant other
 SOB	son of [a] bitch
@@ -190,6 +202,8 @@ TANSTAAFL	there ain't no such thing as a free lunch
 TBC	to be continued
 TBD	to be {decided,determined,done}
 TBOMK	the best of my knowledge
+THNX	thanks
+THX	thanks
 TIA	thanks in advance
 TINC	there is no cabal
 TLA	three letter acronym
@@ -202,6 +216,7 @@ TTBOMK	to the best of my knowledge
 TTFN	ta ta for now
 TTYL	talk to you later
 TWIAVBP	the world is a very big place
+TY	thank you
 TYVM	thank you very much
 U/L	upload
 UTSL	use the source, Luke
@@ -219,6 +234,7 @@ WRT	with respect to
 WTF	{what,where,who,why} the fuck
 WTH	{what,where,who,why} the hell
 WYSIWYG	what you see is what you get
+YALIMO	you are lame, in my opinion
 YHBT	you have been trolled
 YHL	you have lost
 YKWIM	you know what I mean

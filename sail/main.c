@@ -44,8 +44,8 @@ __RCSID("$NetBSD: main.c,v 1.21 2003/08/07 09:37:43 agc Exp $");
 #endif /* not lint */
 
 #include <fcntl.h>
-#include <stdio.h>
 #include <setjmp.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>

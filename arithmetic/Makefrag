@@ -1,6 +1,6 @@
 # Makefrag - makefile fragment for arithmetic
 #
-# Copyright (c) 1997, 1998 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -26,6 +26,7 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
+arithmetic_DEFS := $(GETPROGNAME_DEFS)
 arithmetic_DIRS := $(GAMESDIR) $(MAN6DIR)
 
 arithmetic_all:	arithmetic/arithmetic arithmetic/arithmetic.6

@@ -1,6 +1,6 @@
 /* stdlib.h - bsd-games wrapper for <stdlib.h>.
  *
- * Copyright (c) 1998, 1999, 2000 Joseph Samuel Myers.
+ * Copyright (c) 1998, 1999, 2000, 2004 Joseph Samuel Myers.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,4 +36,8 @@
 
 #ifndef HAVE_getloadavg
 extern int getloadavg(double loadavg[], int nelem);
+#endif
+
+#ifndef HAVE_getprogname
+extern const char *getprogname(void);
 #endif

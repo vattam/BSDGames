@@ -1,4 +1,4 @@
-/*	$NetBSD: arithmetic.c,v 1.19 2003/08/07 09:36:52 agc Exp $	*/
+/*	$NetBSD: arithmetic.c,v 1.20 2004/01/27 20:30:28 jsm Exp $	*/
 
 /*
  * Copyright (c) 1989, 1993
@@ -42,7 +42,7 @@ __COPYRIGHT("@(#) Copyright (c) 1989, 1993\n\
 #if 0
 static char sccsid[] = "@(#)arithmetic.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: arithmetic.c,v 1.19 2003/08/07 09:36:52 agc Exp $");
+__RCSID("$NetBSD: arithmetic.c,v 1.20 2004/01/27 20:30:28 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -84,14 +84,14 @@ __RCSID("$NetBSD: arithmetic.c,v 1.19 2003/08/07 09:36:52 agc Exp $");
 #include <time.h>
 #include <unistd.h>
 
-int	getrandom __P((int, int, int));
-void	intr __P((int)) __attribute__((__noreturn__));
-int	main __P((int, char *[]));
-int	opnum __P((int));
-void	penalise __P((int, int, int));
-int	problem __P((void));
-void	showstats __P((int));
-void	usage __P((void)) __attribute__((__noreturn__));
+int	getrandom(int, int, int);
+void	intr(int) __attribute__((__noreturn__));
+int	main(int, char *[]);
+int	opnum(int);
+void	penalise(int, int, int);
+int	problem(void);
+void	showstats(int);
+void	usage(void) __attribute__((__noreturn__));
 
 const char keylist[] = "+-x/";
 const char defaultkeys[] = "+-";
@@ -101,8 +101,6 @@ int rangemax = 10;
 int nright, nwrong;
 time_t qtime;
 #define	NQUESTS	20
-
-extern char *__progname;	/* from crt0.o */
 
 /*
  * Select keys from +-x/ to be asked addition, subtraction, multiplication,
@@ -390,6 +388,6 @@ void
 usage()
 {
 	(void)fprintf(stderr, "Usage: %s [-o +-x/] [-r range]\n",
-		__progname);
+		getprogname());
 	exit(1);
 }

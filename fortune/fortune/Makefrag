@@ -1,6 +1,6 @@
 # Makefrag - makefile fragment for fortune/fortune
 #
-# Copyright (c) 1997, 1998 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -26,7 +26,7 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
-fortune_fortune_DEFS := -DHAVE_REGCOMP
+fortune_fortune_DEFS := $(GETPROGNAME_DEFS) -DHAVE_REGCOMP
 fortune_fortune_DIRS := $(GAMESDIR) $(MAN6DIR)
 fortune_fortune_INCS := -Ifortune/strfile
 

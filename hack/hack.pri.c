@@ -1,4 +1,4 @@
-/*	$NetBSD: hack.pri.c,v 1.7 1.8 2003/04/02 18:36:39 jsm Exp $	*/
+/*	$NetBSD: hack.pri.c,v 1.8 2003/04/02 18:36:39 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,

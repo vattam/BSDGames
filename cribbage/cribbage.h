@@ -1,4 +1,4 @@
-/*	$NetBSD: cribbage.h,v 1.9 2003/08/07 09:37:09 agc Exp $	*/
+/*	$NetBSD: cribbage.h,v 1.12 2004/02/08 22:23:50 jsm Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -57,56 +57,56 @@ extern	BOOLEAN		playing;		/* currently playing game */
 
 extern  char		explan[];		/* string for explanation */
 
-void	 addmsg __P((const char *, ...))
+void	 addmsg(const char *, ...)
     __attribute__((__format__(__printf__, 1, 2)));
-int	 adjust __P((const CARD [], CARD));
-int	 anymove __P((const CARD [], int, int));
-int	 anysumto __P((const CARD [], int, int, int));
-void	 bye __P((void));
-int	 cchose __P((const CARD [], int, int));
-void	 cdiscard __P((BOOLEAN));
-int	 chkscr __P((int *, int));
-int	 comphand __P((const CARD [], const char *));
-void	 cremove __P((CARD, CARD [], int));
-int	 cut __P((BOOLEAN, int));
-int	 deal __P((int));
-void	 discard __P((BOOLEAN));
-void	 do_wait __P((void));
-void	 endmsg __P((void));
-int	 eq __P((CARD, CARD));
-int	 fifteens __P((const CARD [], int));
-void	 game __P((void));
-void	 gamescore __P((void));
-char	*getline __P((void));
-int	 getuchar __P((void));
-int	 incard __P((CARD *));
-int	 infrom __P((const CARD [], int, const char *));
-void	 instructions __P((void));
-int	 is_one __P((CARD, const CARD [], int));
-void	 makeboard __P((void));
-void	 makedeck __P((CARD []));
-void	 makeknown __P((const CARD [], int));
-void	 msg __P((const char *, ...))
+int	 adjust(const CARD [], CARD);
+int	 anymove(const CARD [], int, int);
+int	 anysumto(const CARD [], int, int, int);
+void	 bye(void);
+int	 cchose(const CARD [], int, int);
+void	 cdiscard(BOOLEAN);
+int	 chkscr(int *, int);
+int	 comphand(const CARD [], const char *);
+void	 cremove(CARD, CARD [], int);
+int	 cut(BOOLEAN, int);
+int	 deal(int);
+void	 discard(BOOLEAN);
+void	 do_wait(void);
+void	 endmsg(void);
+int	 eq(CARD, CARD);
+int	 fifteens(const CARD [], int);
+void	 game(void);
+void	 gamescore(void);
+char	*getline(void);
+int	 getuchar(void);
+int	 incard(CARD *);
+int	 infrom(const CARD [], int, const char *);
+void	 instructions(void);
+int	 is_one(CARD, const CARD [], int);
+void	 makeboard(void);
+void	 makedeck(CARD []);
+void	 makeknown(const CARD [], int);
+void	 msg(const char *, ...)
     __attribute__((__format__(__printf__, 1, 2)));
-int	 msgcard __P((CARD, BOOLEAN));
-int	 msgcrd __P((CARD, BOOLEAN, const char *, BOOLEAN));
-int	 number __P((int, int, const char *));
-int	 numofval __P((const CARD [], int, int));
-int	 pairuns __P((const CARD [], int));
-int	 peg __P((BOOLEAN));
-int	 pegscore __P((CARD, const CARD [], int, int));
-int	 playhand __P((BOOLEAN));
-int	 plyrhand __P((const CARD [], const char *));
-void	 prcard __P((WINDOW *, int, int, CARD, BOOLEAN));
-void	 prcrib __P((BOOLEAN, BOOLEAN));
-void	 prhand __P((const CARD [], int, WINDOW *, BOOLEAN));
-void	 printcard __P((WINDOW *, int, CARD, BOOLEAN));
-void	 prpeg __P((int, int, BOOLEAN));
-void	 prtable __P((int));
-int	 readchar __P((void));
-void	 rint __P((int)) __attribute__((__noreturn__));
-int	 score __P((BOOLEAN));
-int	 scorehand __P((const CARD [], CARD, int, BOOLEAN, BOOLEAN));
-void	 shuffle __P((CARD []));
-void	 sorthand __P((CARD [], int));
-void	 wait_for __P((int));
+int	 msgcard(CARD, BOOLEAN);
+int	 msgcrd(CARD, BOOLEAN, const char *, BOOLEAN);
+int	 number(int, int, const char *);
+int	 numofval(const CARD [], int, int);
+int	 pairuns(const CARD [], int);
+int	 peg(BOOLEAN);
+int	 pegscore(CARD, const CARD [], int, int);
+int	 playhand(BOOLEAN);
+int	 plyrhand(const CARD [], const char *);
+void	 prcard(WINDOW *, int, int, CARD, BOOLEAN);
+void	 prcrib(BOOLEAN, BOOLEAN);
+void	 prhand(const CARD [], int, WINDOW *, BOOLEAN);
+void	 printcard(WINDOW *, int, CARD, BOOLEAN);
+void	 prpeg(int, int, BOOLEAN);
+void	 prtable(int);
+int	 readchar(void);
+void	 receive_intr(int) __attribute__((__noreturn__));
+int	 score(BOOLEAN);
+int	 scorehand(const CARD [], CARD, int, BOOLEAN, BOOLEAN);
+void	 shuffle(CARD []);
+void	 sorthand(CARD [], int);
+void	 wait_for(int);

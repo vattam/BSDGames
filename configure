@@ -1,7 +1,7 @@
 #!/bin/sh
 # configure - home-grown configuration script for bsd-games.
 #
-# Copyright (c) 1997, 1998, 1999, 2000, 2003 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 1999, 2000, 2003, 2004 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -56,10 +56,10 @@ ask () {
 	read input
     fi
     case "$input" in
-	'')
+	('')
 	    input="$default"
 	    ;;
-	*)
+	(*)
 	    ;;
     esac
     eval $query_var=\"\$input\"
@@ -73,13 +73,13 @@ ask_yn () {
 	ask "$1" $2 $3
 	eval answer=\$$2
 	case "$answer" in
-	    [yY]*)
+	    ([yY]*)
 		answer=y
 		;;
-	    [nN]*)
+	    ([nN]*)
 		answer=n
 		;;
-	    *)
+	    (*)
 		answer=
 		echo "Please answer y or n"
 		;;
@@ -242,6 +242,13 @@ else
     subst_vars="$subst_vars man5dir"
 fi
 
+if building_in trek || building_in rogue; then
+    ask "Directory for miscellaneous documentation" docdir /usr/share/doc/bsd-games
+else
+    docdir=
+    subst_vars="$subst_vars docdir"
+fi
+
 # The paths for data are as per the FHS.  If a future version removes the
 # games ghettoes of /usr/games, /var/games, etc., then a subdirectory for
 # this package (/usr/share/bsdgames, /var/state/bsdgames, etc.) would be
@@ -289,12 +296,12 @@ use_dot_so=
 while test x$use_dot_so = x; do
     ask "Use .so or symlinks for manpages" use_dot_so .so
     case "$use_dot_so" in
-        .so)
+        (.so)
     	;;
-        syml*)
+        (syml*)
     	use_dot_so=symlinks
     	;;
-        *)
+        (*)
     	use_dot_so=
 	echo "Please answer \`.so\' or \`symlinks\'"
     	;;
@@ -317,13 +324,19 @@ subst_vars="$subst_vars install_script"
 echo
 echo "It is presumed in some places by the Makefiles that the compiler"
 echo "will be some form of gcc."
-ask "Compiler" cc gcc
+ask "C compiler" cc gcc
+if building_in dab; then
+    ask "C++ compiler" cxx g++
+fi
 ask "Optimize flags" optimize_flags "-g -O2"
 echo
 echo "The default warning flags should give a compile with few warnings."
 # -Wbad-function-cast and -Wshadow give lots of warnings that are basically
 # harmless.
-ask "Compiler warning flags" warning_flags "-Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wcast-align -Wcast-qual -Wwrite-strings"
+ask "C compiler warning flags" warning_flags "-Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wcast-align -Wcast-qual -Wwrite-strings"
+if building_in dab; then
+    ask "C++ compiler warning flags" cxx_warning_flags "-Wall -W -Wpointer-arith -Wcast-align -Wcast-qual -Wwrite-strings"
+fi
 echo
 echo "You probably want the default here, or could use -lncurses_g for"
 echo "debugging ncurses.  Use -lcurses -ltermcap if you want to try that,"
@@ -405,6 +418,29 @@ main(void)
   char s[1] = "";
   char d[1];
   strlcpy(d, s, 1);
+  return 0;
+}
+EOF
+
+check_func sig_t <<EOF
+#include <signal.h>
+
+sig_t s;
+
+int
+main(void)
+{
+  return 0;
+}
+EOF
+
+check_func getprogname <<EOF
+#include <stdlib.h>
+
+int
+main(void)
+{
+  const char *n = getprogname();
   return 0;
 }
 EOF
@@ -630,7 +666,25 @@ EOF
 for dir in $make_dirs; do
     udir=$(slashdot_to_under $dir)
     eval clean_$udir=
-    cat >>GNUmakefile <<EOF
+    if [ $dir = dab ]; then
+	cat >>GNUmakefile <<EOF
+include $dir/Makefrag
+
+$dir/%.o:	$dir/%.cc
+	\$(CXX) \$(CXXFLAGS) \$(${udir}_CXXFLAGS) \$(${udir}_DEFS) \$(BASE_INCS) -I$dir \$(${udir}_INCS) -c \$< -o \$@
+
+$dir/%.ii:	$dir/%.cc
+	\$(CXX) \$(CXXFLAGS) \$(${udir}_CXXFLAGS) \$(${udir}_DEFS) \$(BASE_INCS) -I$dir \$(${udir}_INCS) -E \$< -o \$@
+
+$dir/%.s:	$dir/%.cc
+	\$(CXX) \$(CXXFLAGS) \$(${udir}_CXXFLAGS) \$(${udir}_DEFS) \$(BASE_INCS) -I$dir \$(${udir}_INCS) -S -fverbose-asm \$< -o \$@
+
+$dir/%.d:	$dir/%.cc
+	./mkdep \$< \$@ \$(CXX) \$(CXXFLAGS) \$(${udir}_CXXFLAGS) \$(${udir}_DEFS) \$(BASE_INCS) -I$dir \$(${udir}_INCS)
+
+EOF
+    else
+	cat >>GNUmakefile <<EOF
 include $dir/Makefrag
 
 $dir/%.o:	$dir/%.c
@@ -646,6 +700,7 @@ $dir/%.d:	$dir/%.c
 	./mkdep \$< \$@ \$(CC) \$(CFLAGS) \$(${udir}_CFLAGS) \$(${udir}_DEFS) \$(BASE_INCS) -I$dir \$(${udir}_INCS)
 
 EOF
+    fi
 done
 
 # This temporary file is needed because we don't know whether the last
@@ -687,13 +742,18 @@ while read prog objs; do
 	    eval $obj_dep_var=y
 	fi
     done
+    if [ $dir = dab ]; then
+	ccvar=CXX
+    else
+	ccvar=CC
+    fi
     cat >>GNUmakefile <<EOF
 ifneq (\$(nodep),true)
 include $deps_to_inc
 endif
 
 $exec:	$nobjs
-	\$(CC) \$(LDFLAGS) \$^ $libs \$(BASE_LIBS) -o \$@
+	\$($ccvar) \$(LDFLAGS) \$^ $libs \$(BASE_LIBS) -o \$@
 
 EOF
 done <exec.objs.tmp

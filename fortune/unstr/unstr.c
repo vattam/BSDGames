@@ -1,4 +1,4 @@
-/*	$NetBSD: unstr.c,v 1.8 2003/08/07 09:37:15 agc Exp $	*/
+/*	$NetBSD: unstr.c,v 1.11 2004/02/08 22:23:50 jsm Exp $	*/
 
 /*-
  * Copyright (c) 1991, 1993
@@ -42,7 +42,7 @@ __COPYRIGHT("@(#) Copyright (c) 1991, 1993\n\
 #if 0
 static char sccsid[] = "@(#)unstr.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: unstr.c,v 1.8 2003/08/07 09:37:15 agc Exp $");
+__RCSID("$NetBSD: unstr.c,v 1.11 2004/02/08 22:23:50 jsm Exp $");
 #endif
 #endif /* not lint */
 
@@ -79,9 +79,9 @@ char	*Infile,			/* name of input file */
 
 FILE	*Inf, *Dataf;
 
-void	getargs __P((char *[]));
-int	main __P((int, char *[]));
-void	order_unstr __P((STRFILE *));
+void	getargs(char *[]);
+int	main(int, char *[]);
+void	order_unstr(STRFILE *);
 
 /* ARGSUSED */
 int

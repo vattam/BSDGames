@@ -12,6 +12,10 @@ in this list.
 
 For recent work (since 1.3), thanks to:
 
+David A Bagley <bagleyd@tux.org>
+
+  For work towards portability to Cygwin.
+
 Joey Hess <joeyh@debian.org>
 
   For the Debian patches, which covered what was needed to make the games
