@@ -1,0 +1,5266 @@
+2003-04-01  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.14.
+
+	* configure: Fix bug in OpenSSL support.
+
+	* NEWS, bsd-games.lsm, bsd-games-non-free.lsm: Update.
+
+	* configure, Makeconfig.in, exec.libs: Support OpenSSL for factor.
+	* INSTALL: Update.
+	* tests/factor.987654321987654,
+	tests/factor.987654321987654321987: New files.
+	* tests/factor.test: Update.
+
+2003-03-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hack/COPYRIGHT, hack/COPYRIGHT-JF, hack/alloc.c, hack/config.h,
+	hack/date.h, hack/def.edog.h, hack/def.eshk.h, hack/def.flag.h,
+	hack/def.func_tab.h, hack/def.gen.h, hack/def.gold.h,
+	hack/def.mkroom.h, hack/def.monst.h, hack/def.obj.h,
+	hack/def.objclass.h, hack/def.objects.h, hack/def.permonst.h,
+	hack/def.rm.h, hack/def.trap.h, hack/def.wseg.h, hack/hack.6.in,
+	hack/hack.Decl.c, hack/hack.apply.c, hack/hack.bones.c,
+	hack/hack.c, hack/hack.cmd.c, hack/hack.do.c, hack/hack.do_name.c,
+	hack/hack.do_wear.c, hack/hack.dog.c, hack/hack.eat.c,
+	hack/hack.end.c, hack/hack.engrave.c, hack/hack.fight.c,
+	hack/hack.h, hack/hack.invent.c, hack/hack.ioctl.c,
+	hack/hack.lev.c, hack/hack.main.c, hack/hack.makemon.c,
+	hack/hack.mfndpos.h, hack/hack.mhitu.c, hack/hack.mklev.c,
+	hack/hack.mkmaze.c, hack/hack.mkobj.c, hack/hack.mkshop.c,
+	hack/hack.mon.c, hack/hack.monst.c, hack/hack.o_init.c,
+	hack/hack.objnam.c, hack/hack.options.c, hack/hack.pager.c,
+	hack/hack.potion.c, hack/hack.pri.c, hack/hack.read.c,
+	hack/hack.rip.c, hack/hack.rumors.c, hack/hack.save.c,
+	hack/hack.search.c, hack/hack.sh, hack/hack.shk.c,
+	hack/hack.shknam.c, hack/hack.steal.c, hack/hack.termcap.c,
+	hack/hack.timeout.c, hack/hack.topl.c, hack/hack.track.c,
+	hack/hack.trap.c, hack/hack.tty.c, hack/hack.u_init.c,
+	hack/hack.unix.c, hack/hack.vault.c, hack/hack.version.c,
+	hack/hack.wield.c, hack/hack.wizard.c, hack/hack.worm.c,
+	hack/hack.worn.c, hack/hack.zap.c, hack/makedefs.c, hack/rnd.c:
+	Hack is now BSD-licensed.  Thanks to Andries Brouwer, Jay Fenlason
+	and CWI <http://www.cwi.nl/~aeb/games/hack/hack.html>.  Via
+	OpenBSD.
+	* COPYING, README, README.non-free, bsd-games.lsm,
+	bsd-games-non-free.lsm: Update.
+
+	* quiz/datfiles/europe: Yugoslavia has changed its name to Serbia
+	and Montenegro.
+
+	* quiz/datfiles/europe: The Hague is not the capital of the
+	Netherlands.  Reported by Hugo van Galen <hugo@Dot.net> (in the
+	Netherlands) and Florian Boehl <flo@namensraumverschmutzung.net>.
+
+2003-03-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Makefile.bsd, Makefile.inc.bsd, adventure/Makefile.bsd,
+	arithmetic/arithmetic.6, arithmetic/arithmetic.c, atc/atc.6.in,
+	backgammon/backgammon/backgammon.6.in,
+	backgammon/common_source/Makefile.bsd,
+	backgammon/teachgammon/Makefile.bsd, banner/banner.6,
+	battlestar/battlestar.6, bcd/bcd.6, boggle/Makefile.bsd,
+	boggle/boggle/boggle.6, boggle/boggle/timer.c,
+	boggle/mkdict/Makefile.bsd, boggle/mkindex/Makefile.bsd,
+	caesar/caesar.6, canfield/canfield/canfield.6.in,
+	canfield/cfscores/Makefile.bsd, countmail/countmail,
+	countmail/countmail.6, cribbage/cribbage.6.in,
+	cribbage/cribbage.h, cribbage/extern.c, cribbage/io.c,
+	cribbage/score.c, cribbage/support.c, dm/Makefile.bsd, dm/dm.8.in,
+	dm/dm.c, dm/dm.conf.5.in, factor/Makefile.bsd, factor/factor.6,
+	factor/factor.c, fortune/datfiles/Makefile.bsd,
+	fortune/datfiles/fortunes, fortune/datfiles/fortunes2,
+	fortune/datfiles/fortunes2-o.real, fortune/datfiles/limerick,
+	fortune/datfiles/netbsd, fortune/fortune/fortune.6.in,
+	fortune/fortune/fortune.c, fortune/strfile/strfile.8,
+	fortune/unstr/Makefile.bsd, gomoku/gomoku.6, hack/Makefile.bsd,
+	hack/extern.h, hack/hack.6.in, hack/hack.main.c,
+	hack/hack.mkshop.c, hack/hack.pri.c, hack/hack.topl.c,
+	hack/hack.tty.c, hack/help, hangman/hangman.6.in,
+	hunt/Makefile.inc.bsd, hunt/hunt/hunt.6.in, hunt/hunt/hunt.c,
+	hunt/hunt/playit.c, hunt/huntd/answer.c, hunt/huntd/bsd.h,
+	hunt/huntd/ctl_transact.c, hunt/huntd/driver.c,
+	hunt/huntd/extern.c, hunt/huntd/faketalk.c, hunt/huntd/hunt.h,
+	hunt/huntd/huntd.6.in, hunt/huntd/terminal.c, mille/mille.6,
+	mille/misc.c, monop/Makefile.bsd, monop/cards.c, monop/getinp.c,
+	monop/monop.6.in, monop/roll.c, morse/Makefile.bsd,
+	phantasia/Makefile.bsd, phantasia/misc.c, phantasia/phantasia.6,
+	pom/pom.6, ppt/Makefile.bsd, ppt/ppt.c, primes/Makefile.bsd,
+	quiz/datfiles/posneg, quiz/quiz.6.in, quiz/rxp.c, rain/rain.6,
+	random/random.6, robots/auto.c, robots/init_field.c,
+	robots/move.c, robots/robots.6.in, robots/robots.h,
+	rogue/Makefile.bsd, rogue/USD.doc/Makefile.bsd, rogue/hit.c,
+	rogue/inventory.c, rogue/level.c, rogue/message.c,
+	rogue/rogue.6.in, rogue/rogue.h, rogue/save.c, rogue/score.c,
+	sail/sail.6, snake/snake/snake.6.in, snake/snscore/Makefile.bsd,
+	tetris/input.c, tetris/scores.c, tetris/screen.c, tetris/shapes.c,
+	tetris/tetris.6.in, tetris/tetris.c, trek/USD.doc/Makefile.bsd,
+	trek/damage.c, trek/getpar.c, trek/trek.6.in, wargames/wargames.6,
+	worm/worm.6, worms/worms.6, wtf/acronyms, wtf/wtf.in,
+	wtf/wtf.6.in: Update from NetBSD CVS.
+	* include/sys/poll.h: New file.
+	* lib/strlcpy.c: New file.
+	* configure: Test for strlcpy.
+	* include/string.h: New file.
+	* exec.objs: Use it for rogue.
+	* trek/trek.6.in: Rename to trek.6.
+	* substfiles2: Update.
+	* COPYING: Update.
+	* INSTALL: No longer suggest not using groff's macros.
+	* PACKAGING: Update.
+	* SECURITY: Update.
+
+2002-06-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* BUGS, ChangeLog, INSTALL, README, README.non-free, SECURITY,
+	TODO, bsd-games-non-free.lsm, bsd-games.lsm, dm/README.linux,
+	hunt/README.linux, trek/README.linux: Consistently use
+	jsm@polyomino.org.uk as email address.
+
+2002-01-26  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hangman/extern.c, hangman/getword.c, hangman/hangman.6.in,
+	hangman/hangman.h, hangman/main.c: Update from NetBSD CVS.
+
+2002-01-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* README: Note this collection supports GNU Hurd as well as Linux.
+	* COPYING: Update.
+
+2002-01-19  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* phantasia/fight.c (encounter): Make firsthit and flockcnt
+	volatile.
+
+	* backgammon/common_source/Makefile.bsd,
+	backgammon/teachgammon/Makefile.bsd, boggle/mkdict/Makefile.bsd,
+	boggle/mkindex/Makefile.bsd, canfield/cfscores/Makefile.bsd,
+	fortune/datfiles/netbsd, fortune/fortune/fortune.c,
+	fortune/unstr/Makefile.bsd, morse/Makefile.bsd, number/number.6,
+	phantasia/Makefile.bsd, ppt/Makefile.bsd, primes/Makefile.bsd,
+	snake/snscore/Makefile.bsd, wtf/acronyms: Update from NetBSD CVS.
+
+	* hangman/main.c: Include <err.h>.
+
+	* hangman/extern.c, hangman/getword.c, hangman/hangman.6.in,
+	hangman/hangman.h, hangman/main.c: Allow minimum word length to be
+	set on the command line.  Patch from Joey Hess <joeyh@debian.org>.
+	* COPYING: Update.
+
+2001-12-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* phantasia/Makefrag (phantasia_install): Use $(INSTALL_PREFIX)
+	when copying score files.  Patch from Joey Hess
+	<joeyh@debian.org>.
+	* AUTHORS, THANKS: Update email address for Joey Hess.  Patch from
+	Joey Hess <joeyh@debian.org>.
+
+2001-12-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/fly.c, cribbage/crib.c, fortune/datfiles/fortunes2,
+	fortune/datfiles/fortunes2-o.real, hangman/setup.c, mille/mille.c,
+	phantasia/Makefile.bsd, phantasia/main.c, robots/main.c,
+	rogue/init.c, sail/pl_7.c, worm/worm.c, wtf/acronyms: Update from
+	NetBSD CVS.
+
+2001-11-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+	* battlestar/com1.c: Rename to battlestar/command1.c.
+	* battlestar/com2.c: Rename to battlestar/command2.c.
+	* battlestar/com3.c: Rename to battlestar/command3.c.
+	* battlestar/com4.c: Rename to battlestar/command4.c.
+	* battlestar/com5.c: Rename to battlestar/command5.c.
+	* battlestar/com6.c: Rename to battlestar/command6.c.
+	* battlestar/com7.c: Rename to battlestar/command7.c.
+	From NetBSD CVS.
+	* exec.objs: Update.
+	* battlestar/Makefile.bsd, battlestar/command1.c,
+	battlestar/command2.c, battlestar/command3.c,
+	battlestar/command4.c, battlestar/command5.c,
+	battlestar/command6.c, battlestar/command7.c,
+	fortune/datfiles/Makefile.bsd, fortune/datfiles/limerick,
+	fortune/fortune/fortune.c, hack/hack.termcap.c, tetris/screen.c:
+	Update from NetBSD CVS.
+	* fortune/datfiles/farber: New file.  From NetBSD CVS.
+	* fortune/datfiles/Makefrag: Update.
+
+	* tetris/screen.c (scr_set): Set VMIN and VTIME.
+
+2001-10-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/backgammon/main.c, hack/hack.fix, monop/monop.c,
+	phantasia/phantdefs.h, sail/pl_7.c, wargames/wargames: Update from
+	NetBSD CVS.
+
+	* hunt/hunt/hunt.6.in: Correct slime costs.  Bug reported by
+	Britton Leo Kerin <fsblk@aurora.uaf.edu>.
+
+2001-09-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/setup.c, atc/include.h, boggle/mkdict/mkdict.c,
+	fortune/datfiles/fortunes, fortune/datfiles/fortunes-o.real,
+	monop/execute.c, sail/main.c, snake/snake/snake.c, worm/worm.6,
+	worm/worm.c, wump/wump.c, wtf/acronyms: Update from NetBSD CVS.
+
+2001-08-30  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.13.
+
+	* COPYING, NEWS, TODO, bsd-games-non-free.lsm, bsd-games.lsm:
+	Update.
+	* phantasia/Makefrag: Update copyright dates.
+
+	* hunt/hunt/hunt.c, hunt/huntd/get_names.c: Define MAXHOSTNAMELEN
+	if not already defined.  May fix Hurd compilation (original patch
+	from Igor Khavkine <i_khavki@alcor.concordia.ca>).
+
+	* snake/snake/snake.c (main): Control -d by #ifdef DEBUG; adjust
+	usage message accordingly.  Bug reported by Malcolm Parsons
+	<malcolm@ivywell.screaming.net>.
+
+	* mille/save.c (save): Handle '\r' the same as '\n'.  Bug reported
+	by Nicolas Lichtmaier <nick@technisys.com.ar>.
+
+	* snake/snake/snake.c (post): Always lseek back to the beginning
+	of the file.  Patch from Malcolm Parsons
+	<malcolm@ivywell.screaming.net>.
+
+	* wump/wump.c (gcd): New function.
+	(cave_init): Ensure that gcd of (delta + 1) and room_num is 1.
+	Based on bug report and patch by <afghan@afghanhound.org.uk>.
+
+	* worm/worm.c: Keep track of visible worm length.
+	(newpos): If nowhere is available for the new prize, have the
+	player win rather than hanging.  Bug reported by Malcolm Parsons
+	<malcolm@ivywell.screaming.net>.
+
+	* phantasia/Makefrag: Use a stamp file for generating score files.
+	* phantasia/.cvsignore: Update.
+
+2001-08-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* worm/worm.c (main): Check for too small a screen size.
+	(newpos): Fix off-by-one error preventing the prize from being
+	placed on the top line.
+	(process): Position score appropriately for different width
+	screens.
+
+	* worm/worm.c: Whitespace tweak.
+
+	* worm/worm.c, worm/worm.6: Remove documented bug with long worm
+	lengths, and improve handling of non-standard screen sizes.  From
+	OpenBSD.
+
+	* wargames/wargames: Allow - in game names.  Bug reported by Guus
+	Sliepen <guus@sliepen.warande.net>.
+
+	* wtf/acronyms: Add AIUI.  Suggestion from Adam Olsen
+	<adamolsen@technologist.com>.
+
+	* phantasia/Makefrag: Fix typo.
+
+	* arithmetic/arithmetic.6, atc/atc.6.in, atc/list.c,
+	backgammon/backgammon/backgammon.6,
+	backgammon/teachgammon/teach.c, battlestar/battlestar.6,
+	battlestar/com2.c, battlestar/parse.c, bcd/bcd.6,
+	boggle/boggle/boggle.6, canfield/canfield/canfield.6.in,
+	cribbage/cribbage.6.in, factor/factor.6, fish/fish.6,
+	fortune/datfiles/fortunes, fortune/datfiles/fortunes2,
+	fortune/datfiles/fortunes2-o.real, fortune/datfiles/netbsd,
+	fortune/datfiles/startrek, fortune/fortune/fortune.6.in,
+	fortune/fortune/fortune.c, fortune/strfile/strfile.c, hack/date.h,
+	hack/def.func_tab.h, hack/def.monst.h, hack/def.objclass.h,
+	hack/def.objects.h, hack/def.permonst.h, hack/extern.h,
+	hack/hack.6.in, hack/hack.Decl.c, hack/hack.apply.c,
+	hack/hack.bones.c, hack/hack.c, hack/hack.cmd.c, hack/hack.do.c,
+	hack/hack.do_name.c, hack/hack.dog.c, hack/hack.eat.c,
+	hack/hack.end.c, hack/hack.engrave.c, hack/hack.fight.c,
+	hack/hack.h, hack/hack.invent.c, hack/hack.lev.c,
+	hack/hack.main.c, hack/hack.makemon.c, hack/hack.mhitu.c,
+	hack/hack.mklev.c, hack/hack.mkmaze.c, hack/hack.mkobj.c,
+	hack/hack.mkshop.c, hack/hack.mon.c, hack/hack.monst.c,
+	hack/hack.o_init.c, hack/hack.objnam.c, hack/hack.pager.c,
+	hack/hack.potion.c, hack/hack.pri.c, hack/hack.read.c,
+	hack/hack.rip.c, hack/hack.save.c, hack/hack.shk.c,
+	hack/hack.shknam.c, hack/hack.timeout.c, hack/hack.topl.c,
+	hack/hack.trap.c, hack/hack.tty.c, hack/hack.u_init.c,
+	hack/hack.unix.c, hack/hack.vault.c, hack/hack.wield.c ,
+	hack/hack.wizard.c, hack/hack.zap.c, hack/makedefs.c,
+	hunt/hunt/hunt.6.in, hunt/huntd/ctl_transact.c,
+	hunt/huntd/huntd.6.in, mille/mille.c, monop/Makefile.bsd,
+	monop/initdeck.c, monop/monop.6.in, phantasia/Makefile.bsd,
+	phantasia/phantasia.6, phantasia/setup.c, pom/pom.6,
+	quiz/datfiles/collectives, quiz/datfiles/flowers, quiz/quiz.6.in,
+	rain/rain.6, robots/robots.6.in, rogue/USD.doc/rogue.me,
+	rogue/score.c, sail/sail.6, snake/snake/snake.6.in,
+	tetris/tetris.6.in, trek/DOC/read_me.nr, trek/DOC/trekmanual.nr,
+	trek/events.c, trek/main.c, trek/trek.6.in, trek/warp.c,
+	worms/worms.6, wtf/wtf.6.in: Update from NetBSD CVS.
+	* wtf/acronyms: Update from NetBSD CVS.
+	* phantasia/Makefrag: Update to build generated files in source
+	directory rather than on install.
+	* phantasia/.cvsignore: Update.
+	* atc/include.h, hunt/huntd/driver.c, monop/execute.c: Include
+	<time.h>.
+	* sail/misc.c: Include <stdlib.h>.
+
+2001-08-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* README, PACKAGING: Warn about inclusion of cryptographic
+	software.
+
+2001-03-24  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hack/hack.cmd.c: Whitespace adjustments for NetBSD alignment.
+
+	* arithmetic/arithmetic.c, banner/banner.6,
+	fortune/datfiles/fortunes, fortune/datfiles/fortunes2-o.real,
+	fortune/fortune/fortune.c, wtf/acronyms: Update from NetBSD CVS
+	(but don't apply __progname changes).
+
+2001-03-19  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* bsd-games.lsm (Primary-site), bsd-games-non-free.lsm
+	(Primary-site): Change metalab.unc.edu to ibiblio.org.
+
+2001-03-03  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* install-man.in, install-score.in: Use POSIX "chown user:group"
+	instead of GNU "chown user.group".
+
+2001-02-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* rogue/USD.doc/rogue.me: Fix typo (s/scroll/potion/).  Reported
+	by Lidovski Vladimir <yyterry@chat.ru>.
+
+2001-02-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/hdr.h, adventure/init.c, arithmetic/arithmetic.c,
+	atc/atc.6.in, atc/extern.h, atc/input.c, atc/log.c, atc/main.c,
+	atc/update.c, backgammon/Makefile.bsd,
+	backgammon/Makefile.inc.bsd, backgammon/teachgammon/teach.c,
+	boggle/Makefile.bsd, boggle/boggle/help.c, boggle/boggle/mach.c,
+	boggle/boggle/timer.c, boggle/boggle/word.c, cribbage/crib.c,
+	dm/dm.c, fortune/Makefile.bsd, fortune/datfiles/Makefile.bsd,
+	fortune/datfiles/fortunes, fortune/datfiles/fortunes-o.real,
+	fortune/datfiles/fortunes-o.sp.ok, fortune/datfiles/fortunes2,
+	fortune/datfiles/netbsd, fortune/fortune/fortune.c, patching file
+	fortune/strfile/strfile.8, gomoku/bdisp.c, hack/config.h,
+	hack/def.monst.h, hack/def.rm.h, hack/extern.h, hack/hack.6.in,
+	hack/hack.cmd.c, hack/hack.h, hack/hack.options.c,
+	hack/hack.read.c, hack/hack.tty.c, hack/hack.unix.c,
+	hunt/hunt/hunt.c, hunt/hunt/otto.c, hunt/huntd/driver.c,
+	hunt/huntd/faketalk.c, hunt/huntd/get_names.c, monop/misc.c,
+	monop/monop.6.in, monop/prop.c, phantasia/phantglobs.h,
+	primes/pr_tbl.c, primes/primes.c, quiz/datfiles/midearth,
+	quiz/datfiles/pres, robots/main.c, robots/move_robs.c,
+	robots/play_level.c, rogue/rogue.h, sail/assorted.c,
+	sail/display.h, sail/dr_1.c, sail/dr_2.c, sail/dr_3.c,
+	sail/dr_4.c, sail/dr_5.c, sail/dr_main.c, sail/driver.h,
+	sail/extern.h, sail/game.c, sail/globals.c, sail/lo_main.c,
+	sail/main.c, sail/misc.c, sail/parties.c, sail/pl_1.c,
+	sail/pl_2.c, sail/pl_3.c, sail/pl_4.c, sail/pl_5.c, sail/pl_6.c,
+	sail/pl_7.c, sail/pl_main.c, sail/player.h, sail/restart.h,
+	sail/sync.c, trek/externs.c, trek/lose.c, trek/play.c, trek/win.c,
+	wtf/wtf.in: Update from NetBSD CVS.
+	* sail/main.c: Include <time.h>.
+	* COPYING: Update.
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2001-01-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* mkdep: Update to work with current CVS GCC.
+	* COPYING: Update copyright dates.
+
+2000-12-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* rain/rain.c (main): If delay is zero, do tcdrain(STDOUT_FILENO)
+	at the end of each iteration to avoid buffered output preventing
+	Ctrl-C from working within a reasonable time.
+
+2000-10-17  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* cribbage/cribbage.h: Mark msg() and addmsg() with printf format
+	attributes.
+	* hack/extern.h: Make vpline() with printf format attribute.
+
+	* monop/misc.c (next_play): Fix undefined order of side effects.
+	* monop/prop.c (bid): Likewise.
+
+2000-09-25  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.12.
+
+	* NEWS, bsd-games.lsm, bsd-games-non-free.lsm: Update.
+
+	* battlestar/com2.c, battlestar/com4.c, battlestar/com5.c,
+	battlestar/cypher.c, battlestar/extern.h, battlestar/globals.c,
+	battlestar/words.c: Update from NetBSD CVS after merge.
+
+	* battlestar/extern.h: Add AUXVERB.
+	* battlestar/words.c (wlist): Use AUXVERB for "climb", "move" and
+	"make".
+	* battlestar/cypher.c (cypher): Object to words in the place for a
+	verb that aren't a VERB or KNIFE.  Allow for AUXVERBs.
+	* battlestar/com2.c (put), battlestar/com4.c (take): When creating
+	new verbs from "put on", "put down" and "take off", make their
+	type be VERB.
+	Partly from Paul Janzen <pjanzen@foatdi.harvard.edu>.
+	* tests/battlestar.out3: Update.
+	* tests/battlestar.in42, tests/battlestar.out42,
+	tests/battlestar.in43, tests/battlestar.out43: New tests.
+	* tests/battlestar.test: Update.
+
+	* battlestar/extern.h: Add flags OBJ_PERSON and OBJ_NONOBJ.
+	* battlestar/globals.c (objflags): Use them.
+
+	* battlestar/extern.h: Define new macros for handling "a" versus
+	"an" and "is" versus "are" wording issues.
+	* battlestar/globals.c (objflags): Add OBJ_AN flags; reformat.
+	From OpenBSD.
+	* battlestar/com2.c (wearit, murder), battlestar/com4.c (take,
+	eat): Use these macros.
+	* tests/battlestar.in41, tests/battlestar.out41: New test.
+	* tests/battlestar.test: Update.
+
+	* battlestar/cypher.c (cypher): Remove excess blank lines.  From
+	OpenBSD.
+
+	* battlestar/com5.c (love): Fix loving already loved goddess;
+	avoid fallthrough after loving goddess; give error on "love
+	amulet".  From OpenBSD.
+	* tests/battlestar.in40, tests/battlestar.out40: New test.
+	* tests/battlestar.test: Update.
+
+	* atc/atc.6.in, hack/Makefile.bsd: Update from NetBSD CVS.
+	* battlestar/battlestar.c, battlestar/com1.c, battlestar/com2.c,
+	battlestar/com3.c, battlestar/com4.c, battlestar/com5.c,
+	battlestar/com6.c, battlestar/com7.c, battlestar/cypher.c,
+	battlestar/dayfile.c, battlestar/extern.h, battlestar/fly.c,
+	battlestar/getcom.c, battlestar/globals.c, battlestar/nightfile.c,
+	battlestar/parse.c, battlestar/room.c, battlestar/words.c: Update
+	from NetBSD CVS after merge.
+
+	* battlestar/com3.c (jump): Use defined constant FINAL instead of
+	hardcoded number 275.  From OpenBSD.
+
+	* battlestar/com2.c (murder): Fix logic of use of n and wordnumber
+	when using laser.  From OpenBSD.
+	* tests/battlestar.in39, tests/battlestar.out39: New test.
+	* tests/battlestar.test: Update.
+
+2000-09-24  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* NEWS, TODO: Update.
+
+	* COPYING, INSTALL, NEWS, PACKAGING, README, SECURITY: Don't use
+	ASCII backquotes and neutral apostrophes as matched quotes.
+
+	* battlestar/getcom.c (getcom): If a line of standard input goes
+	beyond our buffer, discard extra characters rather than reading
+	them as our next command.  From OpenBSD.
+
+	* battlestar/cypher.c (cypher): Improve messages when WEIGHT or
+	CUMBER are zero.
+
+	* battlestar/com2.c (ravage), battlestar/com3.c (bury),
+	battlestar/com5.c (kiss, love, give), battlestar/com6.c (ride):
+	Add explicit no-ops to empty loops following the NetBSD style
+	guide.
+
+	* battlestar/extern.h, battlestar/parse.c, battlestar/globals.c:
+	Make hash table static in parse.c.
+
+	* battlestar/cypher.c (cypher): For INVEN, give more sensible
+	messages when WEIGHT or CUMBER are zero.
+
+2000-09-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/globals.c (objdes, objsht): Use NULL instead of 0;
+	from OpenBSD.  Also add or adjust comments.
+
+	* battlestar/com2.c (murder), battlestar/com3.c (shoot),
+	battlestar/com4.c (take): Correct "dont" to "don't".  From
+	OpenBSD.
+	* tests/battlestar.out28: Update.
+
+	* battlestar/parse.c: Make local functions static.
+	* battlestar/extern.h: Remove declarations of functions now static
+	in parse.c.
+
+	* battlestar/com4.c (eat): Check first for having the object to be
+	eaten, then for needing a knife, then for being stuffed.  Also
+	give a better message for things it doesn't make sense to eat.
+	From OpenBSD.
+	* tests/battlestar.in38, tests/battlestar.out38: New test.
+	* tests/battlestar.test: Update.
+
+	* battlestar/fly.c: Remove abs() macro; make local variables and
+	functions static.
+	* battlestar/extern.h: Remove declarations of functions now static
+	in fly.c
+
+	* battlestar/com1.c (news): Don't let CUMBER go negative.
+	* battlestar/cypher.c (cypher): For INVEN, show -1% if CUMBER is
+	zero.
+
+	* battlestar/com4.c (drop): Disambiguate BODY; handle "kick
+	door".  From OpenBSD.
+	* tests/battlestar.in32, tests/battlestar.out32,
+	tests/battlestar.in33, tests/battlestar.out33,
+	tests/battlestar.in34, tests/battlestar.out34,
+	tests/battlestar.in35, tests/battlestar.out35,
+	tests/battlestar.in36, tests/battlestar.out36,
+	tests/battlestar.in37, tests/battlestar.out37: New tests.
+	* tests/battlestar.test: Update.
+
+2000-09-22  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/com5.c (love): Allow for bathing goddess; better
+	message when the lover is not present or for certain choices of
+	lover.  From OpenBSD.
+
+	* battlestar/com2.c (ravage): Allow for the bathing goddess.  From
+	OpenBSD.
+
+	* battlestar/extern.h: Add OBJ_PLURAL, objflags and
+	is_plural_object.
+	* battlestar/globals.c: Add objflags.
+	* battlestar/com2.c (wearit), battlestar/com3.c (shoot),
+	battlestar/com4.c (take, eat): Use is_plural_object rather than
+	looking for a final 's'.
+	* tests/battlestar.in31, tests/battlestar.out31: New test.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com4.c (drop): When kicking, check for objects being
+	worn or not present.  From OpenBSD.
+	* tests/battlestar.in29, tests/battlestar.out29,
+	tests/battlestar.in30, tests/battlestar.out30: New tests.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com4.c (take): Check for the object not being present
+	before checking for it being too heavy or bulky.
+	* tests/battlestar.in28, tests/battlestar.out28: New test.
+	* tests/battlestar.test: Update.
+
+2000-09-21  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/cypher.c (cypher): Give appropriate messages for
+	verbs applied to "all" where nothing relevant is present.  From
+	OpenBSD.
+	* tests/battlestar.in27, tests/battlestar.out27: New test.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com2.c (wearit, use, murder), battlestar/com3.c
+	(shoot), battlestar/com4.c (take, throw, drop, eat),
+	battlestar/com6.c (dooropen), battlestar/cypher.c (cypher),
+	battlestar/parse.c (parse): Move all discarding of adjectives to
+	parse().  From Paul Janzen <pjanzen@foatdi.harvard.edu>.  Fixes
+	crash on "carry old all", shown up by fuzz testing.
+	* tests/battlestar.in26, tests/battlestar.out26: New test.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com2.c (murder): Give error rather than crashing on
+	"kill all".  From OpenBSD.
+	* tests/battlestar.in25, tests/battlestar.out25: New test.
+	* tests/battlestar.test: Update.
+
+	* battlestar/extern.h: Define and use WORDLEN.  From OpenBSD.
+	* battlestar/globals.c: Also use WORDLEN.  From OpenBSD.
+	* battlestar/battlestar.c (main): Use NWORD rather than 20 (from
+	OpenBSD).  Avoid off-by-one error by using NWORD - 1.
+	* battlestar/cypher.c (cypher): Increment wordnumber after INVEN.
+	* battlestar/getcom.c (getword): Avoid overflowing elements of the
+	words array.  From OpenBSD.
+	* battlestar/words.c (wlist): Parse "," as AND.  From OpenBSD.
+	* battlestar/parse.c (parse): Trim AND AND.  When an OBJECT AND
+	EVERYTHING or NOUNS AND EVERYTHING sequence occurs, move the
+	EVERYTHING to the beginning.  Trim EVERYTHING AND EVERYTHING.
+	From OpenBSD.  Also disable parsing of "," as AND if followed by a
+	verb.
+	* tests/battlestar.in21, tests/battlestar.out21,
+	tests/battlestar.in22, tests/battlestar.out22,
+	tests/battlestar.in23, tests/battlestar.out23,
+	tests/battlestar.in24, tests/battlestar.out24: New tests.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com2.c (wearit): Don't attempt to wear anything with
+	no short description.
+	* tests/battlestar.in20, tests/battlestar.out20: New tests.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com2.c (wearit): Partly from OpenBSD: don't try to
+	wear anything that isn't OBJECT or NOUNS, and don't try to wear
+	DOOR.  Fixes with a different patch a bug report from Peter
+	Maydell <pmaydell@chiark.greenend.org.uk>.
+	* tests/battlestar.in16, tests/battlestar.out16,
+	tests/battlestar.in17, tests/battlestar.out17,
+	tests/battlestar.in18, tests/battlestar.out18,
+	tests/battlestar.in19, tests/battlestar.out19: New tests.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com2.c (murder): From OpenBSD: shoot with laser if no
+	hand-to-hand weapon available.
+
+2000-09-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/getcom.c (getcom): die() on EOF; based on OpenBSD.
+	* tests/battlestar.out15: New test.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com6.c (open_score_file): If BATTLESTAR_QUIET is set
+	in the environment, don't give a warning.
+	* tests/battlestar.test: Set BATTLESTAR_QUIET so tests can be done
+	as a user without write access to the log file.
+
+	* battlestar/com5.c (kiss): From OpenBSD, "take" the bathing
+	goddess if required; give a better message when trying to kiss a
+	person who is not present.
+	* tests/battlestar.in14, tests/battlestar.out14: New tests.
+	* tests/battlestar.test: Update.
+
+2000-09-17  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/dayfile.c (dayfile), battlestar/nightfile.c
+	(nightfile): Add missing initialisers and comments giving room
+	numbers.
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+	* battlestar/com1.c, battlestar/com2.c, battlestar/com4.c,
+	battlestar/com5.c, battlestar/com6.c, battlestar/com7.c,
+	battlestar/getcom.c: Clean up formatting; partly from OpenBSD.
+
+	* tests/battlestar.in9, tests/battlestar.out9,
+	tests/battlestar.in10, tests/battlestar.out10,
+	tests/battlestar.in11, tests/battlestar.out11,
+	tests/battlestar.in12, tests/battlestar.out12,
+	tests/battlestar.in13, tests/battlestar.out13: New tests.
+	* tests/battlestar.test: Update.
+
+	* battlestar/com6.c (dooropen): New function, from OpenBSD.
+	* battlestar/cypher.c (cypher): Support new verbs OPEN, VERBOSE
+	and BRIEF, from OpenBSD.
+	* battlestar/extern.h: Add new verbs OPEN, VERBOSE and BRIEF, new
+	variable verbose, and new function dooropen(), from OpenBSD.
+	* battlestar/globals.c (verbose): New variable, from OpenBSD.
+	* battlestar/room.c (writedes): If verbose, always give long
+	description; from OpenBSD.
+	* battlestar/words.c (wlist): Add synonyms "papaya" and "coconut"
+	and verbs "open", "unlock", "verbose" and "brief", from OpenBSD.
+
+2000-09-10  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/com2.c, battlestar/com3.c, battlestar/com4.c,
+	battlestar/com5.c, battlestar/com6.c, battlestar/com7.c,
+	battlestar/cypher.c, battlestar/dayfile.c, battlestar/nightfile.c,
+	battlestar/room.c, battlestar/words.c: Update from NetBSD CVS
+	after merge.
+
+2000-09-09  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/room.c (writedes): Process '=' in descriptions as
+	meaning a literal '-'; from OpenBSD.
+	* battlestar/dayfile.c (dayfile), battlestar/nightfile.c
+	(nightfile): Spelling, punctuation and line length adjustments
+	from OpenBSD.
+	* tests/battlestar.out4, tests/battlestar.out5,
+	tests/battlestar.out8: Update for changes in line length.
+
+	* battlestar/com2.c (murder): Give an appropriate message for
+	trying to kill non-OBJECT things (from OpenBSD); fixes "kill door"
+	segfault.
+	* battlestar/com3.c (shoot), battlestar/com4.c (take),
+	battlestar/com5.c (kiss), battlestar/com6.c (ride),
+	battlestar/com7.c (fight), battlestar/cypher.c (save): Wording,
+	spelling, punctuation and line length adjustments from OpenBSD.
+	* tests/battlestar.out5, tests/battlestar.out6: Update for changed
+	wording.
+	* tests/battlestar.in8, tests/battlestar.out8: New tests.
+	* tests/battlestar.test: Update.
+
+	* battlestar/words.c: Make spacing nicer and add missing
+	initialisers.
+
+	* NEWS, TODO: Update.
+
+	* battlestar/battlestar.6, battlestar/battlestar.c,
+	battlestar/com1.c, battlestar/com5.c, battlestar/cypher.c,
+	battlestar/dayfile.c, battlestar/extern.h, battlestar/globals.c,
+	battlestar/init.c, battlestar/nightfile.c, battlestar/room.c:
+	Update from NetBSD CVS after merge.
+
+2000-09-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/battlestar.6: Don't refer to ~.  Suggested by Hubert
+	Feyrer.
+
+	* battlestar/extern.h, battlestar/globals.c, battlestar/init.c:
+	Don't restrict length of username, use a string from strdup
+	instead.  Make functions and arrays only used in init.c static.
+
+2000-09-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/extern.h: Put prototypes in alphabetical order.
+
+	* fortune/datfiles/Makefile.bsd: Really update from NetBSD CVS.
+
+	* battlestar/battlestar.6: Improvements from OpenBSD.
+	* battlestar/extern.h: Define ROOMDESC.
+	* battlestar/room.c (writedes): Use it.
+	* battlestar/battlestar.c: From OpenBSD, make clearer and don't
+	increase beenthere[position] beyond ROOMDESC.
+	* battlestar/com1.c (news), battlestar/com5.c (kiss),
+	battlestar/cypher.c (cypher), battlestar/dayfile.c (dayfile),
+	battlestar/globals.c (objdes, objsht), nightfile.c (nightfile):
+	Spelling and punctuation corrections or adjustments from OpenBSD.
+
+	* tests/battlestar.test: Test for wizard or anti-wizard users.
+
+2000-09-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* tests/battlestar.in5, tests/battlestar.out5,
+	tests/battlestar.in6, tests/battlestar.out6,
+	tests/battlestar.err6: New files.
+	* tests/battlestar.test: Update.
+
+	* tests/battlestar.test, tests/battlestar.in1,
+	tests/battlestar.out1, tests/battlestar.in2,
+	tests/battlestar.out2, tests/battlestar.in3,
+	tests/battlestar.out3, tests/battlestar.in4,
+	tests/battlestar.out4: New files.
+
+	* lib/.cvsignore: New file.
+	* morse/.cvsignore: Add morse.
+
+2000-08-22  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hunt/hunt/.cvsignore, hunt/huntd/.cvsignore, mille/.cvsignore,
+	monop/.cvsignore, morse/.cvsignore, number/.cvsignore,
+	phantasia/.cvsignore, pig/.cvsignore, pom/.cvsignore,
+	ppt/.cvsignore, primes/.cvsignore, quiz/.cvsignore,
+	quiz/datfiles/.cvsignore, rain/.cvsignore, random/.cvsignore,
+	robots/.cvsignore, rogue/.cvsignore, sail/.cvsignore,
+	snake/snake/.cvsignore, snake/snscore/.cvsignore,
+	tetris/.cvsignore, trek/.cvsignore, worm/.cvsignore,
+	worms/.cvsignore, wtf/.cvsignore, wump/.cvsignore: New files.
+
+2000-08-19  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/datfiles/.cvsignore, fortune/fortune/.cvsignore,
+	fortune/strfile/.cvsignore, fortune/unstr/.cvsignore,
+	gomoku/.cvsignore, hack/.cvsignore, hangman/.cvsignore: New files.
+
+2000-08-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* caesar/.cvsignore, canfield/canfield/.cvsignore,
+	canfield/cfscores/.cvsignore, cribbage/.cvsignore, dm/.cvsignore,
+	factor/.cvsignore, fish/.cvsignore: New files.
+
+	* fortune/datfiles/Makefile.bsd, fortune/datfiles/fortunes,
+	fortune/datfiles/netbsd, fortune/datfiles/netbsd-o.fake,
+	fortune/datfiles/netbsd-o.real, wtf/acronyms: Update from NetBSD
+	CVS.
+
+2000-08-05  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* .cvsignore, include/.cvsignore, adventure/.cvsignore,
+	arithmetic/.cvsignore, atc/.cvsignore,
+	backgammon/backgammon/.cvsignore,
+	backgammon/common_source/.cvsignore,
+	backgammon/teachgammon/.cvsignore, banner/.cvsignore,
+	battlestar/.cvsignore, bcd/.cvsignore, boggle/boggle/.cvsignore,
+	boggle/mkdict/.cvsignore, boggle/mkindex/.cvsignore: New files.
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2000-08-04  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* include/signal.h, include/stdio.h, include/stdlib.h,
+	include/termios.h, include/sys/cdefs.h, include/sys/ttydefaults.h:
+	Use #pragma GCC system_header to allow #include_next with
+	-pedantic.
+
+2000-08-03  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/input.c, atc/log.c, atc/update.c, hack/config.h,
+	hack/def.monst.h, hack/def.rm.h, hack/hack.cmd.c, hack/hack.h,
+	robots/move_robs.c, robots/play_level.c: Comment out text after
+	#endif.
+	* bcd/bcd.c: Use unsigned char and casts to avoid -pedantic
+	warnings.
+	* pom/pom.c: Likewise.
+	* fortune/unstr/unstr.c, hack/makedefs.c: Include <stdlib.h>.
+	* lib/fgetln.c: Include <string.h>.
+
+	* adventure/setup.c, battlestar/com1.c, battlestar/com7.c,
+	battlestar/cypher.c, battlestar/extern.h, boggle/mkdict/mkdict.c,
+	boggle/mkindex/mkindex.c, fortune/datfiles/netbsd,
+	fortune/strfile/strfile.c, hack/makedefs.c, monop/initdeck.c:
+	Update from NetBSD CVS.
+
+2000-08-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* sail/extern.h (abs): Don't define; breaks with glibc 2.2.
+
+2000-07-22  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hack/hack.tty.c, monop/getinp.c, rogue/message.c, trek/phaser.c:
+	Update from NetBSD CVS.
+
+2000-07-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/done.c, adventure/main.c, adventure/subr.c, bcd/bcd.c,
+	canfield/cfscores/cfscores.c, countmail/countmail.6,
+	fortune/datfiles/fortunes, fortune/datfiles/fortunes2,
+	fortune/datfiles/netbsd, gomoku/stoc.c, hack/hack.h,
+	hunt/huntd/get_names.c, morse/morse.c, phantasia/Makefile.bsd,
+	ppt/ppt.c, rogue/init.c, sail/Makefile.bsd, sail/lo_main.c,
+	sail/pl_1.c, sail/pl_7.c, trek/computer.c, trek/destruct.c,
+	trek/getpar.c, trek/setup.c, trek/torped.c: Update from NetBSD
+	CVS.
+
+2000-05-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/Makefile.bsd, adventure/main.c,
+	arithmetic/arithmetic.c, atc/main.c, backgammon/backgammon/main.c,
+	backgammon/teachgammon/teach.c, battlestar/battlestar.c,
+	bcd/bcd.c, boggle/boggle/bog.c, caesar/caesar.c, caesar/rot13.in,
+	canfield/canfield/canfield.c, canfield/cfscores/cfscores.c,
+	cribbage/crib.c, fish/fish.c, fortune/datfiles/netbsd,
+	gomoku/main.c, hack/hack.termcap.c, hangman/main.c, mille/mille.c,
+	mille/misc.c, mille/print.c, monop/cards.inp, monop/monop.c,
+	morse/morse.c, phantasia/Makefile.bsd, phantasia/fight.c,
+	phantasia/misc.c, ppt/ppt.c, quiz/quiz.c, robots/main.c,
+	robots/score.c, snake/snake/snake.c, snake/snscore/snscore.c,
+	tetris/screen.c, tetris/screen.h, trek/main.c, worm/worm.c,
+	wump/wump.c: Update from NetBSD CVS.
+
+2000-05-27  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2000-05-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* bsd-games now under CVS version control.  At present there is no
+	anoncvs access, so this isn't particularly relevant to anyone else
+	yet.  The CVS tree up to now has been generated with scripts based
+	on RCS to include all past releases and betas from 1.3 onwards,
+	and those snapshots of the bsd-games source tree from in between
+	releases that I have, with checkin dates set to the dates of the
+	ChangeLogs in the respective releases and snapshots.  Tags used
+	are BSD_GAMES_DATE_yyyy_mm_dd for dated snapshots; BSD_GAMES_v_v
+	for versioned bsd-games releases; BSD_GAMES_NON_FREE_v_v for
+	bsd-games-non-free releases; and BSD_GAMES_VERSION_v_v for the
+	union of corresponding bsd-games and bsd-games-non-free releases,
+	and for bsd-games releases before the split, but this tag was not
+	applied where no bsd-games-non-free release corresponded to a
+	particular bsd-games release.
+
+2000-04-26  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* bsd-games.lsm, bsd-games-non-free.lsm: Update to LSM format
+	version 4.
+
+2000-04-19  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.11.
+
+	* NEWS: Update.
+	* bsd-games.lsm: Update.
+	* bsd-games-non-free.lsm: Update.
+
+	* hack/date.h, hack/def.monst.h, hack/def.objclass.h,
+	hack/def.objects.h, hack/def.permonst.h, hack/extern.h,
+	hack/hack.Decl.c, hack/hack.cmd.c, hack/hack.dog.c,
+	hack/hack.eat.c, hack/hack.end.c, hack/hack.engrave.c,
+	hack/hack.fight.c, hack/hack.h, hack/hack.invent.c,
+	hack/hack.lev.c, hack/hack.main.c, hack/hack.makemon.c,
+	hack/hack.mhitu.c, hack/hack.mklev.c, hack/hack.mkmaze.c,
+	hack/hack.mkobj.c, hack/hack.mkshop.c, hack/hack.mon.c,
+	hack/hack.monst.c, hack/hack.o_init.c, hack/hack.objnam.c,
+	hack/hack.pager.c, hack/hack.pri.c, hack/hack.read.c,
+	hack/hack.rip.c, hack/hack.save.c, hack/hack.shk.c,
+	hack/hack.termcap.c, hack/hack.timeout.c, hack/hack.topl.c,
+	hack/hack.tty.c, hack/hack.u_init.c, hack/hack.unix.c,
+	hack/hack.vault.c, hack/hack.wield.c, hack/hack.wizard.c,
+	hack/hack.zap.c: Use const and fix compiler warnings.
+
+2000-04-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hack/*: New, from NetBSD CVS.
+	* hack/Makefile: Rename to Makefile.bsd.
+	* AUTHORS, COPYING, INSTALL, README, README.non-free, SECURITY,
+	TODO: Update.
+	* NEWS: Update.
+	* bsd-games-non-free.lsm: Update.
+	* hack/pathnames.h: Rename to pathnames.h.in for substitutions.
+	* hack/hack.6: Rename to hack.6.in for substitutions.
+	* configure, substfiles, substfiles2, Makeconfig.in: Update.
+	* exec.libs, exec.objs: Update.
+	* hack/Makefrag: New file.
+	* hack/hack.main.c: Check for fds 0, 1, 2 being closed; use
+	setregid() for gid revokes.
+	* hack/hack.bones.c, hack/hack.do.c, hacl/hack.main.c,
+	hack/hack.pager.c, hack/hack.save.c, hack/hack.unix.c,
+	hack/makedefs.c: Use symbolic constants.
+	* hack/makedefs.c: Check for write errors on output; use const and
+	fix compiler warnings.
+	* hack/def.func_tab.h, hack/def.objclass.h, hack/def.permonst.h,
+	hack/extern.h, hack/hack.Decl.c, hack/hack.apply.c, hack/hack.c,
+	hack/hack.cmd.c, hack/hack.do_name.c, hack/hack.end.c,
+	hack/hack.invent.c, hack/hack.h, hack/hack.main.c,
+	hack/hack.mon.c, hack/hack.objnam.c, hack.pager.c, hack.potion.c,
+	hack/hack.shknam.c, hack.trap.c, hack.zap.c: Use const and fix
+	compiler warnings.
+
+2000-04-15  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* arithmetic/arithmetic.c, boggle/mkdict/Makefile.bsd,
+	boggle/mkindex/Makefile.bsd, fortune/datfiles/fortunes,
+	fortune/datfiles/fortunes2, fortune/fortune/fortune.c,
+	fortune/strfile/Makefile.bsd, hunt/Makefile.inc.bsd,
+	hunt/hunt/hunt.c, hunt/huntd/driver.c, phantasia/fight.c,
+	robots/score.c: Update from NetBSD CVS.
+
+2000-04-14  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* COPYING: Fix spelling error.
+
+2000-04-09  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* quiz/datfiles/asia: Corrections from Robert Vollmert
+	<rvollmert@gmx.net>.
+
+2000-04-05  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* countmail/countmail.6: Fix grammar (bug reported by Thomas
+	Bushnell BSG <tb@MIT.EDU>).
+
+2000-03-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* boggle/boggle/prtable.c, fish/fish.c, fortune/datfiles/fortunes,
+	fortune/datfiles/fortunes2, fortune/datfiles/fortunes2-o.real,
+	fortune/datfiles/netbsd, gomoku/makemove.c, hunt/hunt/hunt.c,
+	rogue/CHANGES, trek/trek.6.in: Update from NetBSD CVS.
+
+2000-02-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2000-02-12  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.10.
+
+	* fortune/fortune/fortune.c: Include <sys/endian.h>.
+	* fortune/unstr/unstr.c: Likewise.
+	* fortune/strfile/strfile.c: Include <netinet/in.h>.
+	* monop/initdeck.c: Likewise.  Remove unnecessary casts.
+
+	* NEWS: Update.
+	* bsd-games.lsm: Update.
+
+	* fortune/datfiles/netbsd, sail/Makefile.bsd: Update from NetBSD
+	CVS.
+
+	* COPYING: Add 2000 to copyright years.
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2000-02-09  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+	* THANKS: Update.
+	* INSTALL: Update.
+
+	* Essentially all relevant changes now merged back into NetBSD
+	(except for hunt).
+	* TODO: Update.
+	* NEWS: Update.
+
+	* sail/Makefile.bsd, sail/dr_main.c, sail/extern.h,
+	sail/globals.c, sail/main.c, sail/misc.c, sail/pathnames.h.in,
+	sail/pl_7.c, sail/pl_main.c, sail/sync.c: Update from NetBSD CVS
+	after further merge.
+
+	* fortune/datfiles/Makefile.bsd, wargames/Makefile.bsd: Update
+	from NetBSD CVS.
+	* fortune/datfiles/netbsd: New, from NetBSD.
+
+2000-02-01  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2000-01-24  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* snake/snscore/snscore.c, tetris/scores.c, tetris/tetris.c,
+	wargames/Makefile.bsd, wargames/wargames.6: Update from NetBSD CVS
+	after further merge.
+
+	* boggle/Makefile.bsd, fortune/Makefile.bsd,
+	fortune/datfiles/Makefile.bsd, hunt/hunt/hunt.c,
+	hunt/huntd/hunt.h, phantasia/Makefile.bsd: Update from NetBSD CVS.
+
+2000-01-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* robots/main.c, robots/score.c: Update from NetBSD CVS after
+	further merge.
+
+2000-01-19  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/strfile/strfile.c, random/random.c: Update from NetBSD
+	CVS after further merge.
+
+2000-01-17  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* random/random.c: Define MAXRANDOM rather than using RAND_MAX.
+
+2000-01-13  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/io.c, adventure/vocab.c, battlestar/save.c,
+	caesar/caesar.c, monop/monop.c, worm/worm.c: Update from NetBSD
+	CVS after further merge.
+
+2000-01-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+2000-01-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* tetris/screen.h, tetris/tetris.c, tetris/tetris.h: Update from
+	NetBSD CVS after further merge.
+
+1999-12-31  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/strfile/strfile.c, fortune/strfile/strfile.h,
+	monop/cards.c, monop/initdeck.c: Update from NetBSD CVS.
+
+1999-12-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* sail/extern.h, sail/globals.c, sail/pl_7.c, sail/player.h:
+	Update from NetBSD CVS after further merge.
+
+1999-12-16  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* ppt/ppt.c, quiz/quiz.c: Update from NetBSD CVS (more changes
+	merged into NetBSD).
+
+	* quiz/quiz.c (show_index): Refer error message to the pager
+	actually used.
+
+	* fortune/strfile/strfile.c: Use err(1, NULL) for out-of-memory
+	error.
+
+	* boggle/mkindex/mkindex.c, fortune/datfiles/fortunes,
+	fortune/strfile/strfile.c, wargames/wargames, wtf/wtf.in: Update
+	from NetBSD CVS.
+
+1999-12-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/io.c, adventure/vocab.c, battlestar/save.c,
+	caesar/caesar.c, monop/cards.c, monop/initdeck.c, monop/monop.c,
+	monop/prop.c, snake/snscore/snscore.c, worm/worm.c: Use err(1,
+	NULL) or warn(NULL) for `out of memory' messages.
+
+	* fortune/strfile/strfile.c: Remove obsolete NO_VOID conditional,
+	and casts in ALLOC macro.
+
+1999-12-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+1999-11-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* ChangeLog: Use consistent form of my name and email address.
+
+1999-11-15  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* countmail/countmail: Don't describe messages as new when they
+	may not be (bug report and suggested fix from Malcolm Parsons
+	<malcolm@bits.bris.ac.uk>).
+
+	* configure: Ask for permissions on variable data that should not
+	be world readable (bug report from <cesarb@web4u.com.br>).
+	* install-score.in: Use this.
+	* phantasia/Makefrag: Use this.
+	* SECURITY: Update.
+
+	* tetris/tetris.c: Include <err.h>; use errx() for error messages;
+	change usage message to refer to tetris-bsd (bug report from
+	Malcolm Parson <malcolm@bits.bris.ac.uk>).
+
+	* tetris/scores.c (printem): Fix formatting of high score tables
+	with multiple columns (bug report and suggested fix from Malcolm
+	Parsons <malcolm@bits.bris.ac.uk>).
+
+	* robots/main.c (main): Fix spelling error in unknown option
+	message (bug report and suggested fix by Malcolm Parsons
+	<malcolm@bits.bris.ac.uk>).
+
+1999-11-12  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.9.
+
+	* bsd-games.lsm: Update.
+
+	* NEWS: Update.
+
+1999-11-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* boggle/mkindex/mkindex.c (main): Add index entries for letters
+	not found in the dictionary (problem reported by Mike Castle
+	<dalgoda@ix.netcom.com>).
+
+	* robots/main.c (main): Reinitialise Num_games to 1 after looping
+	through Num_games games, so if you ask for another game then you
+	still get this prompt next time.  Bug report and suggested fix
+	from Malcolm Parsons <malcolm@bits.bris.ac.uk>.
+
+	* robots/score.c (score): Fix reporting of auto-bot scores, bug
+	report and suggested fix from Malcolm Parsons
+	<malcolm@bits.bris.ac.uk>.
+
+	* cribbage/instr.c, fortune/fortune/fortune.c,
+	snake/snake/snake.6.in, snake/snake/snake.c, worm/worm.6,
+	worm/worm.c: Update from NetBSD CVS.
+
+1999-11-05  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+1999-10-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+	* random/random.c: Use RAND_MAX rather than LONG_MAX (patch from
+	William Brioschi).
+
+	* tests/rot13.*: Removed; test not meaningful since it uses the
+	installed caesar (which may not be present) rather than the
+	just-built one.  Bug reported by Roman Hodek
+	<Roman.Hodek@informatik.uni-erlangen.de>.
+
+1999-10-21  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/common_source/back.h,
+	backgammon/common_source/subs.c, robots/main.c, tetris/screen.c,
+	tetris/screen.h: Update from NetBSD CVS.
+
+1999-10-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+1999-10-01  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* cribbage/cribbage.6.in, mille/move.c: Update from NetBSD CVS
+	after further merge.
+
+1999-09-30  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/def.h, cribbage/cards.c, cribbage/cribbage.h, cribbage/io.c,
+	mille/comp.c, mille/init.c, mille/mille.h, mille/move.c,
+	mille/types.h, monop/misc.c, monop/monop.h, monop/trade.c,
+	phantasia/phantdefs.h, robots/robots.h, sail/dr_1.c, sail/dr_2.c,
+	sail/dr_3.c, sail/extern.h: Update from NetBSD CVS after further
+	merge.
+
+	* cribbage/cribbage.6.in (FILES): Tweak.
+
+1999-09-27  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* quiz/datfiles/europe (Monaco): Change capital to Monaco, bug
+	reported by <capo@writeme.com>.
+
+1999-09-26  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.8.
+
+	* include/tzfile.h: Remove (no longer used).
+
+	* fortune/datfiles/Makefrag: Use $(SHAREDIR) not $(LIBDIR).
+
+	* NEWS: Update.
+
+	* bsd-games.lsm, bsd-games-non-free.lsm: Update.
+
+	* */Makefrag, */*/Makefrag: Add copyright notices and licence
+	terms.
+	* hangman/Makefrag: Remove reference to $(hangman_WORDS).
+	* COPYING: Tweak.
+	* NEWS: Add release dates.
+
+1999-09-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* dm/dm.c, fish/fish.c, fortune/fortune/fortune.c: Update from
+	NetBSD CVS after further merge.
+
+	* fortune/datfiles/Makefile.bsd: Update from NetBSD CVS.
+
+1999-09-19  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* boggle/boggle/bog.c, boggle/mkdict/mkdict.c, cribbage/extern.c,
+	dm/dm.c, phantasia/setup.c: Update from NetBSD CVS after further
+	merge.
+
+1999-09-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* boggle/mkdict/mkdict.c, boggle/mkindex/mkindex.c: Update from
+	NetBSD CVS after further merge.
+
+	* battlestar/com1.c, battlestar/com4.c: Tweak for NetBSD
+	alignment.
+
+	* battlestar/com1.c, battlestar/com4.c, boggle/boggle/bog.c,
+	cribbage/io.c, fortune/fortune/fortune.c,
+	fortune/strfile/strfile.c, fortune/unstr/unstr.c,
+	gomoku/pickmove.c, mille/comp.c, phantasia/interplayer.c,
+	pig/pig.c, robots/extern.c, robots/robots.h, robots/score.c,
+	rogue/save.c, tetris/scores.c, trek/main.c: Update from NetBSD CVS
+	after further merge.
+
+	* battlestar/battlestar.c, battlestar/cypher.c,
+	battlestar/dayobjs.c, battlestar/init.c, battlestar/nightobjs.c:
+	Update from NetBSD CVS after further merge.
+
+	* backgammon/backgammon/main.c, boggle/boggle/bog.c,
+	hangman/extern.c, hangman/hangman.6.in, hangman/hangman.h,
+	hangman/main.c, hangman/setup.c, quiz/quiz.c, sail/game.c,
+	tetris/scores.c, trek/externs.c, trek/trek.h: Update from NetBSD
+	CVS after further merge.
+
+1999-09-17  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Update from NetBSD CVS.
+
+	* NEWS: Update.
+
+	* hangman/extern.c, hangman/hangman.h, hangman/main.c,
+	hangman/setup.c: Make dictionary path selectable at run time.
+	* hangman/hangman.6.in: Document this.
+	* NEWS, TODO, INSTALL, PACKAGING: Update.
+
+1999-09-16  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hangman/words: Remove.  The copyright status was not clear;
+	assertions in the LSM entry that it is free from copyright seem to
+	be contradicted by inspection of the READMEs.  (See
+	ftp://ftp.cs.unc.edu/pub/users/faith/linux/utils/ .)
+	* hangman/Makefrag: No longer install words file.
+	* configure: Update accordingly.
+	* boggle/mkdict/Makefrag: Update accordingly.
+	* Makeconfig.in: Update accordingly.
+	* NEWS: Update.
+	* INSTALL: Update.
+	* PACKAGING: Update.
+
+	* configure: Fix bugs in earlier changes.
+
+	* sail/game.c (maxturns): Tweak following comments from Hubert
+	Feyrer.
+
+	* boggle/boggle/bog.c (checkdict): Tweak following comments from
+	Hubert Feyrer.
+
+	* trek/trek.h: Modify form of structure/variable declarations
+	(following comments from Hubert Feyrer).
+
+	* battlestar/battlestar.c (main): Give a sensible error message in
+	the default (should't happen) case.
+
+1999-09-15  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* COPYING: Update.
+
+	* substfiles: Move manpages and some other non-headers into
+	substfiles2 (new file).
+	* quiz/datfiles/Makefrag (quiz_datfiles_all): Depend on
+	quiz/datfiles/index.
+	* configure: Only generate rules for files in substfiles2, don't
+	actually build them at configure time.
+	* TODO: Update.
+
+	* configure: Allow for comments in exec.objs, exec.libs and
+	substfiles.
+	* exec.objs, exec.libs, substfiles: Add explanatory comments,
+	copyright notices and licence terms.
+
+	* substscr: New file to handle substitution logic.  Also generate
+	subst.rules makefile for redoing the substitutions if required.
+	* configure: Use it to do substitutions.  Handle subst.rules.
+
+	* fortune/unstr/unstr.c: Don't include <machine/endian.h> at all.
+	* gomoku/pickmove.c: Likewise, unconditionally include <limits.h>
+	rather than <machine/limits.h>.
+
+	* fortune/fortune/fortune.c: Use macro NAMLEN rather than
+	strlen(dirent->d_name).
+
+1999-09-14  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* gomoku/main.c: Tweak for NetBSD alignment.
+
+	* battlestar/com6.c, battlestar/extern.h, battlestar/globals.c,
+	pom/pom.6, pom/pom.c, snake/snake/Makefile.bsd,
+	snake/snake/snake.6.in, snake/snake/snake.c: Update from NetBSD
+	CVS after further merge.
+
+	* fortune/fortune/fortune.c: Adjust (unsigned long) casts to use
+	(u_int32_t) and (u_int64_t) as appropriate.
+
+	* TODO: Update.
+
+	* phantasia/setup.c: Add checks for write errors.
+
+	* fortune/fortune/fortune.6.in, fortune/fortune/pathnames.h.in:
+	Fix references to @usrlibdir@.
+
+	* quiz/datfiles/pres: Update to OpenBSD version (minor
+	corrections, and includes vice-presidents).
+	* quiz/datfiles/index.in: Update.
+
+1999-09-13  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/com6.c, battlestar/extern.h, battlestar/init.c,
+	cribbage/instr.c, gomoku/gomoku.h, gomoku/main.c,
+	phantasia/main.c, rogue/Makefile.bsd, rogue/machdep.c,
+	rogue/rogue.h, rogue/save.c: Update from NetBSD CVS after further
+	merge.
+
+	* fortune/datfiles/Makefile.bsd, fortune/datfiles/limerick,
+	fortune/datfiles/limerick-o.fake,
+	fortune/datfiles/limerick-o.real, fortune/datfiles/limerick.fake,
+	fortune/datfiles/limerick.real,
+	fortune/datfiles/unamerican-o.fake,
+	fortune/datfiles/unamerican-o.real,
+	fortune/datfiles/unamerican.fake,
+	fortune/datfiles/unamerican.real: Update from NetBSD CVS
+	(offensive fortunes renamed to ...-o).
+	* fortune/datfiles/Makefrag: Update.
+
+	* tests/*: Add testsuite.
+	* configure: Update.
+	* bcd/Makefrag, caesar/Makefrag, factor/Makefrag, morse/Makefrag,
+	number/Makefrag, pig/Makefrag, pom/Makefrag, ppt/Makefrag,
+	primes/Makefrag, wargames/Makefrag: Remove old test fragments.
+	* COPYING: Update.
+	* INSTALL: Update.
+	* NEWS: Update.
+
+	* lib/fgetln.c, lib/getloadavg.c: Add copyright notice and licence
+	terms.
+	* include/signal.h, include/stdio.h, include/stdlib.h,
+	include/termios.h, include/tzfile.h, include/sys/cdefs.h,
+	include/sys/endian.h, include/sys/ttydefaults.h: Likewise.
+	* hide-game.in, install-man.in, install-score.in, mkdep: Likewise.
+	* configure, Makeconfig.in: Likewise.
+	* COPYING: Update.
+
+1999-09-12  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wargames/wargames.6: Add copyright notice and licence terms;
+	convert to use tmac.doc.
+	* COPYING: Update.
+
+	* snake/snake/snake.6.in: Fix substitution.
+
+	* snake/snake/snake.c: #ifdef keypad functionality so snake can be
+	built/tested on systems without it.
+
+	* AUTHORS: Fix entries for rogue and worm.
+
+	* canfield/canfield/canfield.c, canfield/cfscores/cfscores.c,
+	cribbage/crib.c, fish/fish.c, gomoku/main.c, hangman/main.c,
+	mille/mille.c, monop/monop.c, morse/morse.c, ppt/ppt.c,
+	quiz/quiz.c, robots/main.c, robots/robots.h, robots/score.c,
+	rogue/init.c, rogue/machdep.c, rogue/rogue.h, rogue/score.c,
+	snake/snake/snake.c, snake/snscore/snscore.c, tetris/scores.c,
+	tetris/tetris.c, tetris/tetris.h, trek/main.c, worm/worm.c,
+	wump/wump.c: Update from NetBSD CVS after merge of most security
+	changes.
+
+1999-09-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wtf/acronyms: Updatef from NetBSD-current.
+
+	* COPYING: New file.
+	* NEWS: Update.
+	* README: Update.
+
+1999-09-10  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wump/wump.c: Update from NetBSD CVS.
+
+	* rogue/curses.c: Remove.
+	* rogue/machdep.c, rogue/rogue.h: Remove traces of CURSES.
+
+	* THANKS: Update.
+	* NEWS: Update.
+
+	* gomoku/main.c (main): Comment tweak.
+
+	* rogue/init.c: Add blank line.
+
+	* robots/main.c (main): Restore errno before printing error
+	message.
+
+	* robots/query.c: NetBSD alignment tweak.
+
+	* atc/graphics.c, boggle/mkdict/mkdict.c,
+	boggle/mkindex/mkindex.c, cribbage/cribbage.h,
+	fortune/strfile/strfile.c, monop/initdeck.c: Update from NetBSD
+	CVS after further merge.
+
+1999-09-09  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* monop/initdeck.c (main): Whitespace tweaks.
+
+	* backgammon/backgammon/main.c, boggle/boggle/extern.h,
+	canfield/canfield/canfield.c, fortune/fortune/fortune.c,
+	fortune/strfile/strfile.c, gomoku/pickmove.c, hangman/setup.c,
+	mille/save.c, monop/cards.c, monop/initdeck.c, monop/monop.c,
+	monop/monop.h, monop/prop.c, rogue/init.c, sail/sync.c,
+	snake/snscore/snscore.c, worm/worm.c, wump/wump.c: Update from
+	NetBSD CVS after merge of malloc checks and <time.h> includes.
+
+	* fortune/strfile/strfile.8: Update from NetBSD CVS.
+
+	* mille/save.c: Move <time.h> include up.
+
+	* backgammon/backgammon/main.c: Move <time.h> include up.  Use
+	NULL as argument of time() instead of 0.
+
+	* backgammon/common_source/subs.c, battlestar/com6.c,
+	battlestar/fly.c, boggle/boggle/bog.c, boggle/boggle/extern.h,
+	boggle/boggle/mach.c, boggle/boggle/prtable.c,
+	boggle/boggle/word.c, caesar/caesar.c,
+	canfield/canfield/canfield.c, canfield/cfscores/cfscores.c,
+	cribbage/cards.c, cribbage/crib.c, cribbage/cribbage.h,
+	cribbage/io.c, cribbage/score.c, cribbage/support.c,
+	factor/factor.c, fish/fish.c, fortune/fortune/fortune.c,
+	fortune/strfile/strfile.c, fortune/unstr/unstr.c, gomoku/bdisp.c,
+	gomoku/gomoku.h, gomoku/main.c, gomoku/makemove.c,
+	gomoku/pickmove.c, gomoku/stoc.c, hangman/extern.c,
+	hangman/getword.c, hangman/hangman.h, hangman/main.c,
+	hangman/setup.c, mille/comp.c, mille/extern.c, mille/mille.c,
+	mille/mille.h, mille/move.c, mille/print.c, mille/save.c,
+	monop/cards.c, monop/execute.c, monop/getinp.c, monop/houses.c,
+	monop/initdeck.c, monop/misc.c, monop/monop.c, monop/monop.def,
+	monop/monop.ext, monop/monop.h, monop/morg.c, monop/print.c,
+	monop/spec.c, monop/trade.c, morse/morse.c, number/number.c,
+	phantasia/fight.c, phantasia/gamesupport.c,
+	phantasia/interplayer.c, phantasia/io.c, phantasia/main.c,
+	phantasia/misc.c, phantasia/phantglobs.c, phantasia/phantglobs.h,
+	phantasia/phantstruct.h, phantasia/setup.c, primes/pattern.c,
+	primes/pr_tbl.c, primes/primes.c, quiz/quiz.c, quiz/quiz.h,
+	quiz/rxp.c, random/random.c, robots/auto.c, robots/extern.c,
+	robots/init_field.c, robots/main.c, robots/move.c, robots/query.c,
+	robots/robots.h, robots/score.c, rogue/init.c, rogue/rogue.h,
+	sail/assorted.c, sail/dr_1.c, sail/dr_2.c, sail/driver.h,
+	sail/extern.h, sail/globals.c, sail/lo_main.c, sail/pl_1.c,
+	sail/pl_3.c, sail/pl_4.c, sail/pl_7.c, sail/sync.c,
+	snake/snake/snake.c, snake/snscore/snscore.c, tetris/scores.c,
+	tetris/screen.c, tetris/shapes.c, tetris/tetris.c,
+	tetris/tetris.h, trek/abandon.c, trek/capture.c, trek/cgetc.c,
+	trek/computer.c, trek/dcrept.c, trek/destruct.c, trek/dock.c,
+	trek/dumpgame.c, trek/getpar.h, trek/help.c, trek/impulse.c,
+	trek/lrscan.c, trek/phaser.c, trek/play.c, trek/rest.c,
+	trek/setwarp.c, trek/torped.c, trek/trek.h, trek/visual.c,
+	worm/worm.c: Update from NetBSD CVS after initial merge of const,
+	attribute and symbolic constant changes.
+
+1999-09-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* README: Update.
+
+	* NEWS: Update.
+
+1999-08-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* INSTALL: Update.
+
+1999-08-22  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* README: Update.
+	* NEWS: Update.
+	* TODO: Update.
+
+	* include/sys/endian.h: Add the 16-bit functions in case they get
+	used in the games later.  Still does not include the little-endian
+	functions until some game starts using data in little-endian
+	format.
+
+	* AUTHORS: Update.
+	* BUGS: Update.
+
+1999-08-21  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* include/sys/endian.h: New file (compatibility with changes in
+	NetBSD).
+	* fortune/fortune/fortune.c, fortune/strfile/strfile.8,
+	fortune/strfile/strfile.c, fortune/strfile/strfile.h,
+	fortune/fortune/unstr.c: Update from NetBSD anoncvs.
+	* fortune/datfiles/Makefrag: fortune data is now arch-independent.
+	* phantasia/Makefile.bsd, phantasia/main.c: Update from NetBSD
+	anoncvs.
+	* monop/cards.c, monop/deck.h, monop/execute.c, monop/getinp.c,
+	monop/houses.c, monop/initdeck.c, monop/jail.c, monop/misc.c,
+	monop/monop.c, monop/monop.def, monop/monop.h, monop/morg.c,
+	monop/print.c, monop/prop.c, monop/rent.c, monop/roll.c,
+	monop/spec.c, monop/trade.c: Update from NetBSD anoncvs.
+	* configure, Makeconfig.in: monop data is now arch-independent.
+	* NEWS: Update.
+
+	* NEWS: Update.
+
+1999-08-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fish/fish.6: Update from NetBSD anoncvs.
+
+1999-08-17  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* NEWS: Update.
+
+	* snake/snake/snake.c: Move to use curses.  Other minor fixes.
+	* snake/snake/move.c, snake/snake/snake.h: Remove (incorporated in
+	snake.c).
+	* snake/snake/snake.6.in: Update.
+	* exec.objs: Update.
+	* TODO: Update.
+
+	* snake/snake/snake.c, snake/snake/move.c: Minor fixes from
+	OpenBSD.
+
+1999-08-16  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/backgammon/main.c, backgammon/teachgammon/teach.c,
+	fortune/datfiles/fortunes2, snake/snake/move.c,
+	snake/snake/snake.h, tetris/screen.c: Update from NetBSD anoncvs.
+
+1999-08-14  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* AUTHORS: Update.
+	* NEWS: Update.
+
+	* wtf/wtf.in: Update from NetBSD anoncvs.
+
+	* wtf/acronyms: Update from NetBSD-current.
+
+1999-08-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* worm/worm.c: Update from NetBSD anoncvs.
+
+1999-08-09  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* sail/sync.c: Tweak for NetBSD alignment.
+
+	* monop/monop.def: Tweak for NetBSD alignment.
+
+	* rain/rain.c, worm/worm.c: Update from NetBSD anoncvs.
+
+1999-08-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortunes/datfiles/Makefile.bsd,
+	fortune/datfiles/unamerican.fake,
+	fortune/datfiles/unamerican.real, rain/Makefile.bsd, rain/rain.6,
+	rain/rain.c, worms/worms.6, worms/worms.c: Update from NetBSD
+	anoncvs.
+	* fortune/datfiles/Makefrag: Update.
+
+1999-07-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/hdr.h, adventure/init.c, atc/graphics.c,
+	backgammon/backgammon/main.c, backgammon/common_source/save.c,
+	battlestar/battlestar.6, battlestar/battlestar.c,
+	battlestar/cypher.c, battlestar/extern.h, battlestar/init.c,
+	battlestar/save.c, bcd/bcd.6, bcd/bcd.c, worm/worm.c, wtf/wtf.in:
+	Update from NetBSD anoncvs.
+
+1999-07-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/grammar.y, backgammon/common_source/back.h,
+	backgammon/common_source/fancy.c, backgammon/common_source/subs.c:
+	Update from NetBSD anoncvs of yesterday.
+
+1999-07-27  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* TODO, SECURITY, PACKAGING: Add note on security hardening.
+
+	* phantasia/phantglobs.h: Mark `catchalarm' as noreturn.
+	* sail/extern.h: Mark `play' as noreturn.
+	* snake/snake/snake.h: Mark `mainloop' as noreturn.
+	* tetris/screen.c: Mark `stopset' as noreturn.
+	* trek/trek.h: Mark `lose', `myreset', `play' and `win' as
+	noreturn.
+
+	* bcd/bcd.6: Fix mdoc usage in references.
+
+	* adventure/hdr.h, adventure/init.c: Fix use of linker commons.
+	* battlestar/extern.h, battlestar/globals.c: Likewise.
+	* backgammon/common_source/fancy.c: Likewise.
+	* sail/extern.h, sail/globals.c, sail/player.h, sail/pl_7.c:
+	Likewise.
+	* snake/snake/snake.h, snake/snake/snake.c: Likewise.
+	* tetris/screen.h, tetris/screen.c, tetris/tetris.h,
+	tetris/tetris.c: Likewise.
+	* trek/trek.h, trek/externs.c: Likewise.
+	* TODO: Update.
+
+	* backgammon/common_source/save.c (save): Fix other case of
+	executable save files.
+
+	* atc/graphics.c (getAChar): Be yet more paranoid about EINTR.
+
+	* atc/input.c (delayb, benum): Revert old unsigned char change
+	(NetBSD now casts the subscripts to int).
+
+	* configure: Check for fgetln and getloadavg in case they are
+	added to glibc in future.
+	* include/stdio.h: Update.
+	* include/stdlib.h: Update.
+	* lib/fgetln.c: Update.
+	* lib/getloadavg.c: Update.
+	* Makeconfig.in: Add GETLOADAVG_DEFS and FGETLN_DEFS.
+	* battlestar/Makefrag, dm/Makefrag, quiz/Makefrag: Use them.
+
+1999-07-26  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/battlestar.6: Fix mdoc usage (use .Op Ar saved-file
+	instead of .Op saved-file).
+
+	* wtf/wtf.in, wtf/wtf.6.in: Update from NetBSD anoncvs.
+
+1999-07-25  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/grammer.y, atc/graphics.c, atc/input.c, atc/log.c,
+	atc/main.c, atc/update.c, backgammon/teachgammon/ttext1.c: Update
+	from NetBSD anoncvs.
+
+1999-07-24  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/main.c: Change to use getopt.
+
+	* substfiles: Fix error.
+	* backgammon/common_source/init.c: Whitespace alignment with
+	NetBSD.
+
+1999-07-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Makefile.bsd, atc/grammar.y, backgammon/backgammon/main.c,
+	backgammon/teachgammon/teach.c, banner/banner.c,
+	battlestar/battlestar.c, battlestar/com6.c, battlestar/extern.h,
+	bcd/bcd.c, boggle/boggle/bog.c, caesar/caesar.c, trek/computer.c,
+	trek/externs.c, trek/getpar.c, trek/getpar.h, trek/help.c,
+	trek/kill.c, trek/lose.c, trek/out.c, trek/phaser.c, trek/play.c,
+	trek/setup.c, trek/shield.c, trek/srscan.c, trek/systemname.c,
+	trek/trek.h, trek/win.c: Update from NetBSD-current of 1999-07-23.
+	* wtf/wtf.6.in, wtf/wtf.in: New game.
+	* wtf/Makefrag: New file.
+	* configure, substfiles, Makeconfig.in: Update.
+	* wtf/acronyms: Acronym collection from NetBSD.
+	* README, bsd-games.lsm, NEWS: Update.
+
+1999-07-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/grammar.y (wdef): Check sp->width instead of sp->height.
+
+	* INSTALL, TODO: Update for egcs/gcc terminology change.
+
+	* adventure/save.c, arithmetic/arithmetic.c, atc/Makefile.bsd,
+	atc/atc.6.in, atc/extern.h, atc/input.c, atc/log.c, atc/main.c,
+	atc/struct.h: Update from NetBSD-current of 1999-07-18.
+
+	* battlestar/save.c, battlestar/extern.h, battlestar/init.c,
+	battlestar/cypher.c: Change saving interface again; new function
+	save_file_name() determines the name under which to save.
+
+	* battlestar/com6.c, battlestar/extern.h: Don't include <time.h>
+	in com6.c, include it instead of <sys/time.h> in extern.h.
+
+1999-07-16  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/hdr.h, adventure/main.c, adventure/save.c,
+	adventure/setup.c, adventure/wizard.c,
+	backgammon/backgammon/main.c, battlestar/com1.c,
+	battlestar/com2.c, battlestar/com5.c, battlestar/dayfile.c,
+	battlestar/globals.c, battlestar/nightfile.c, boggle/boggle/bog.c,
+	dm/dm.c, fish/fish.c, wump/wump.c: Update from NetBSD-current of
+	1999-07-16 (more of my changes merged back in).
+
+1999-07-15  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/save.c (restore): Check for errors writing the save
+	file.
+
+1999-07-14  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* boggle/boggle/bog.c (checkdict): Use SEEK_SET with dictseek().
+
+	* atc/atc.6.in: New atc.6 from NetBSD-current of 1999-06-28,
+	parametrised.
+	* substfiles: Include atc/atc.6.
+
+1999-06-30  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/fly.c, fish/fish.c, hunt/hunt/otto.c,
+	robots/Makefile.bsd, robots/auto.c, robots/extern.c,
+	robots/main.c, robots/make_level.c, robots/move.c,
+	robots/move_robs.c, robots/robots.6, robots/robots.h,
+	robots/score.c, rogue/Makefile.bsd, sail/player.h, trek/trek.6.in:
+	Update from NetBSD-current of 1999-05-18.
+	* exec.objs: Update.
+	* INSTALL, NEWS: Note score file format change.
+	* robots/auto.c, robots/robots.h, robots/extern.c, robots/score.c:
+	Fix new warnings.
+	* backgammon/common_source/back.h: Mark `norec' and `errexit' as
+	`noreturn'.
+	* hangman/hangman.h: Mark `die' as `noreturn'.
+	* hunt/huntd/hunt.h: Mark `bad_con', `bad_ver', `sigterm' and
+	`sigemt' as `noreturn'.
+	* phantasia/setup.c: Mark `Error' as `noreturn'.
+	* pom/pom.c: Mark `badformat' as `noreturn'.
+	* random/random.c: Mark `usage' as `noreturn'.
+	* rogue/rogue.h: Mark `killed_by' and `win' as `noreturn'.
+
+1999-04-10  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* BUGS: Update.
+
+1999-04-04  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.7.
+
+	* bsd-games.lsm, bsd-games-non-free.lsm: Update.
+
+	* mille/mille.c, mille/misc.c, mille/move.c, mille/save.c: Update
+	from NetBSD-current of 1999-04-02.
+
+1999-03-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* INSTALL: Update.
+
+	* NEWS: Update.
+
+	* mille/print.c (prscore): Mark parameter `for_real' possibly
+	unused.
+
+	* atc/input.c: Mark unused parameters (detected by current egcs
+	snapshots but not by egcs 1.1) as such.
+
+	* tetris/scores.c: Use <err.h> error reporting functions.
+
+	* hunt/huntd/driver.c (init): Fork and exit to ensure that
+	setsid() will work.
+
+1999-03-27  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/backgammon/main.c (main): Fix scoring if you bear off
+	all your men and your opponent has borne off at least one man but
+	has a man in your inner board or on the bar (thanks to Stuart
+	Lamble <sjl@debian.lib.monash.edu.au>).
+	* THANKS: Update.
+
+	* arithmetic/arithmetic.6, backgammon/common_source/Makefile.bsd,
+	battlestar/cypher.c, canfield/canfield/canfield.6.in,
+	countmail/countmail.6, dm/dm.conf.5.in, fortune/strfile/strfile.8,
+	gomoku/gomoku.6, random/random.6, tetris/tetris.c, worms/worms.6:
+	Update from NetBSD-current of 1999-03-26.
+
+1999-02-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/crc.c, adventure/hdr.h, adventure/init.c,
+	adventure/io.c, adventure/main.c, adventure/setup.c,
+	adventure/wizard.c, atc/Makefile.bsd,
+	backgammon/backgammon/main.c, backgammon/backgammon/text.c,
+	backgammon/backgammon/version.c,
+	backgammon/common_source/Makefile.bsd,
+	backgammon/common_source/back.h, backgammon/common_source/board.c,
+	backgammon/common_source/fancy.c, backgammon/common_source/init.c,
+	backgammon/common_source/save.c, backgammon/common_source/subs.c,
+	backgammon/common_source/table.c,
+	backgammon/teachgammon/Makefile.bsd,
+	backgammon/teachgammon/data.c, backgammon/teachgammon/teach.c,
+	backgammon/teachgammon/ttext1.c, backgammon/teachgammon/ttext2.c,
+	backgammon/teachgammon/tutor.c, backgammon/teachgammon/tutor.h,
+	battlestar/com1.c, battlestar/com4.c, battlestar/com6.c,
+	battlestar/dayobjs.c, battlestar/extern.h, battlestar/getcom.c,
+	battlestar/globals.c, battlestar/init.c, battlestar/misc.c,
+	battlestar/nightobjs.c, battlestar/parse.c, battlestar/room.c,
+	boggle/Makefile.bsd, boggle/boggle/Makefile.bsd,
+	boggle/mkdict/Makefile.bsd, boggle/mkindex/Makefile.bsd,
+	canfield/cfscores/Makefile.bsd, countmail/Makefile.bsd,
+	cribbage/Makefile.bsd, fish/Makefile.bsd,
+	fortune/datfiles/Makefile.bsd, fortune/unstr/Makefile.bsd,
+	monop/Makefile.bsd, morse/Makefile.bsd, ppt/Makefile.bsd,
+	primes/Makefile.bsd, quiz/Makefile.bsd, sail/assorted.c,
+	sail/dr_1.c, sail/dr_2.c, sail/dr_3.c, sail/dr_4.c, sail/dr_5.c,
+	sail/extern.h, sail/parties.c, sail/pl_1.c, sail/pl_3.c,
+	sail/pl_4.c, sail/pl_5.c, sail/pl_6.c, sail/pl_7.c,
+	sail/pl_main.c, sail/sync.c, snake/snscore/Makefile.bsd,
+	tetris/tetris.c, wargames/Makefile.bsd, wump/Makefile.bsd,
+	wump/wump.c: Update from NetBSD-current of 1999-02-19.
+	* backgammon/teachgammon/ttext1.c: Add more use of const.
+
+1999-01-21  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/fortune/fortune.c: Use strlen(d_name) rather than
+	incorrect #define d_namlen d_reclen.  Should be conditionalised in
+	some way.
+
+1999-01-12  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* bcd/bcd.6: Include references to the relevant standards.
+
+1999-01-10  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* worms/worms.c (main): Use leaveok().
+
+	* rain/rain.c (main): Use leaveok().
+
+1999-01-09  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/hdr.h: Add comment saying where to find original
+	source.
+
+	* adventure/hdr.h, adventure/main.c, adventure/save.c,
+	adventure/wizard.c: Change saved to saveday where appropriate.
+	This shouldn't actually change the behaviour of the program,
+	except perhaps when saving a game fails, but makes things a lot
+	clearer.
+
+	* pom/pom.c: Update from the 3rd edition of the reference book.
+	Make date calculation work before the epoch.  Fix bug in
+	waxing/waning display near full moon.  Use a sensible input date
+	format.  (Based on Paul Janzen's work in OpenBSD.)
+	* pom/pom.6: Update.
+
+1999-01-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/cypher.c (cypher): Add FALLTHROUGH comment as per
+	NetBSD policy.
+
+	* backgammon/backgammon/main.c: Remove unused junk to limit number
+	of users (performed by dm); use \a instead of \007.
+
+	* adventure/init.c, arithmetic/arithmetic.c, atc/grammar.y,
+	atc/graphics.c, atc/log.c, atc/main.c, atc/update.c,
+	backgammon/backgammon/main.c, backgammon/common_source/subs.c,
+	teachgammon/teach.c, battlestar/com6.c, battlestar/fly.c,
+	boggle/boggle/mach.c, canfield/canfield/canfield.c, cribbage/io.c,
+	cribbage/score.c, dm/dm.c, fortune/fortune/fortune.c,
+	fortune/unstr/unstr.c, gomoku/main.c, gomoku/pickmove.c,
+	hangman/main.c, hunt/hunt/hunt.c, hunt/hunt/otto.c,
+	hunt/huntd/faketalk.c, mille/mille.c, monop/monop.c,
+	phantasia/io.c, robots/main.c, rogue/init.c, sail/main.c,
+	sail/pl_1.c, sail/pl_7.c, snake/snake/snake.c, tetris/tetris.c,
+	trek/abandon.c, trek/capture.c, trek/cgetc.c, trek/computer.c,
+	trek/dcrept.c, trek/destruct.c, trek/dock.c, trek/dumpgame.c,
+	trek/help.c, trek/impulse.c, trek/lrscan.c, trek/phaser.c,
+	trek/play.c, trek/rest.c, trek/setwarp.c, trek/torped.c,
+	trek/visual.c, worm/worm.c: Change `unused' parameters to
+	`__unused__'.
+
+	* bcd/bcd.6: Update from NetBSD-current of 1999-01-07.
+	* phantasia/oldplayer.h: Remove (removed in NetBSD-current on
+	response to my PR bin/6700, and unused since phantasia/convert.c
+	was removed some time ago).
+	* tetris/input.c, tetris/input.h, tetris/screen.c,
+	tetris/tetris.6.in, tetris/tetris.c, tetris/tetris.h: Update from
+	NetBSD-current of 1999-01-07 (adds piece preview option).
+
+1999-01-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/strfile/strfile.c (main): Flush output file and check
+	for write errors before closing it and exiting the program.
+
+	* include/sys/cdefs.h: Use __unused__ in attribute, for cleanness
+	and NetBSD alignment.
+
+1999-01-01  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/strfile/strfile.c: Remove unused ALWAYS macro.
+
+	* adventure/setup.c, boggle/mkdict/mkdict.c,
+	boggle/mkindex/mkindex.c, monop/initdeck.c: Flush stdout or output
+	file and check for errors on writing before terminating.
+
+1998-12-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* pig/pig.6: Include utility name with .Nm where needed.
+
+	* TODO: Update.
+
+	* atc/extern.h: Whitespace adjustment for NetBSD alignment.
+
+	* battlestar/com1.c, battlestar/com2.c, battlestar/com5.c,
+	battlestar/dayfile.c, battlestar/globals.c,
+	battlestar/nightfile.c: Spelling and punctuation corrections from
+	OpenBSD.
+
+1998-12-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* worms/worms.c, worms/worms.6: Convert to use curses; add delay
+	option from OpenBSD; change to use <err.h> functions; fix signal
+	handling.
+	* TODO: Update.
+
+	* rain/rain.c, rain/rain.6: Convert to use curses; add delay
+	option from OpenBSD; fix signal handling.
+	* TODO: Update.
+
+1998-12-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* install-man.in: Use `ln -sf' rather than `ln -s'.  How come this
+	never got noticed before?
+
+	* Version 2.6.
+
+	* configure: Really fix quiz/datfiles/index generation.
+
+	* NEWS: Update.
+	* bsd-games.lsm: Update.
+	* bsd-games-non-free.lsm: Update.
+
+1998-12-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* ppt/ppt.c: Print a space between command line arguments (bugfix
+	from OpenBSD).
+
+1998-12-14  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure (warning_flags): Add -Wwrite-strings to defaults.
+	* TODO: Update.
+	* NEWS: Update.
+
+	* sail/assorted.c, sail/dr_1.c, sail/dr_2.c, sail/driver.h,
+	sail/extern.h, sail/globals.c, sail/lo_main.c, sail/pl_3.c,
+	sail/pl_4.c, sail/pl_7.c: Use const where appropriate.
+
+	* tetris/scores.c, tetris/screen.c, tetris/shapes.c,
+	tetris/tetris.c, tetris/tetris.h: Use const where appropriate.
+
+	* snake/snake/move.c, snake/snake/snake.c, snake/snake/snake.h,
+	snake/snscore/snscore.c: Use const where appropriate.
+
+1998-12-12  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* sail/assorted.c, sail/dr_1.c, sail/dr_2.c, sail/dr_3.c,
+	sail/dr_4.c, sail/dr_5.c, sail/extern.h, sail/parties.c,
+	sail/pl_1.c, sail/pl_3.c, sail/pl_4.c, sail/pl_5.c, sail/pl_6.c,
+	sail/pl_7.c, sail/pl_main.c, sail/sync.c: Split Write() into two
+	separate functions for string and numeric arguments.
+
+	* robots/extern.c, robots/init_field.c, robots/main.c,
+	robots/move.c, robots/query.c, robots/robots.h, robots/score.c:
+	Use const where appropriate.
+
+	* quiz/quiz.c, quiz/quiz.h, quiz/rxp.c: Use const where
+	appropriate.
+
+	* phantasia/gamesupport.c, phantasia/interplayer.c,
+	phantasia/io.c, phantasia/main.c, phantasia/misc.c,
+	phantasia/phantglobs.c, phantasia/phantglobs.h,
+	phantasia/phantstruct.h, phantasia/setup.c: Use const where
+	appropriate.
+
+1998-12-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* NEWS: Update.
+
+	* monop/cards.c, monop/execute.c, monop/getinp.c,
+	monop/initdeck.c, monop/misc.c, monop/monop.def, monop/monop.ext,
+	monop/monop.h, monop/morg.c, monop/print.c, monop/spec.c,
+	monop/trade.c: Use const where appropriate.
+
+	* trek/computer.c, trek/externs.c, trek/getpar.h, trek/getpar.c,
+	trek/help.c, trek/kill.c, trek/lose.c, trek/out.c, trek/phaser.c,
+	trek/play.c, trek/setup.c, trek/shield.c, trek/srscan.c,
+	trek/systemname.c, trek/trek.h, trek/win.c: Use const where
+	appropriate.
+
+	* TODO: Update.
+
+	* fortune/fortune/fortune.c: Use const where appropriate.
+
+	* rain/rain.c: Use const where appropriate.
+
+	* number/number.c: Use const where appropriate.
+
+1998-12-10  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* morse/morse.c: Use const where appropriate.
+
+	* worm/worm.c: Use const where appropriate.
+
+	* worms/worms.c: Include <termcap.h> instead of providiing
+	prototypes for termcap functions; use const where appropriate;
+	tputs fixes.
+
+	* wump/wump.c (instructions): Use const where appropriate.
+
+	* phantasia/fight.c, phantasia/gamesupport.c,
+	phantasia/interplayer.c, phantasia/main.c, phantasia/misc.c: Use
+	symbolic argument with fseek.
+
+	* sail/sync.c: Use symbolic argument with fseek.
+
+	* monop/initdeck.c: Use symbolic argument with fseek.
+
+	* monop/cards.c (get_card): Use symbolic argument with fseek.
+
+	* hangman/getword.c (getword): Use symbolic argument with fseek.
+
+	* fortune/fortune/fortune.c, fortune/strfile/strfile.c,
+	fortune/unstr/unstr.c: Use symbolic argument with fseek.
+
+	* boggle/boggle/bog.c: Use symbolic argument with dictseek (which
+	gets passed to fseek).
+
+	* BUGS: Update.
+
+	* rogue/save.c (save_into_file): Check for allocation failure.
+
+	* rogue/init.c: Check for allocation failure.
+
+	* snake/snscore/snscore.c (main): Check for allocation failure.
+
+	* worm/worm.c: Check for allocation failure.
+
+	* monop/prop.c (add_list): Check for allocation failure.
+
+	* monop/monop.c (getplayers): Check for allocation failure.
+
+	* monop/initdeck.c (main): Check for allocation failure; use
+	symbolic argument for fseek; exit with error status if opening
+	output file fails.
+
+	* monop/cards.c (set_up): Check for allocation failure.
+	* monop/monop.h: Include <err.h>.
+
+1998-12-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/wizard.c (ciao): Avoid buffer overrun when reading
+	save file name.
+
+	* morse/morse.c, phantasia/Makefile.bsd, quiz/Makefile.bsd,
+	rogue/hit.c, rogue/init.c, rogue/inventory.c, rogue/level.c,
+	rogue/machdep.c, rogue/message.c, rogue/monster.c, rogue/move.c,
+	rogue/object.c, rogue/pack.c, rogue/play.c, rogue/ring.c,
+	rogue/rogue.h, rogue/room.c, rogue/save.c, rogue/score.c,
+	rogue/throw.c, rogue/trap.c, rogue/use.c, rogue/zap.c,
+	wump/Makefile.bsd: Update from NetBSD-current of 1998-12-07.
+
+1998-12-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/Makefile.bsd, atc/extern.c, atc/extern.h, atc/graphics.c,
+	atc/input.c, atc/log.c, atc/main.c, atc/update.c,
+	backgammon/backgammon/main.c, backgammon/common_source/subs.c,
+	backgammon/teachgammon/teach.c, bcd/bcd.6, boggle/Makefile.bsd,
+	boggle/boggle/Makefile.bsd, cribbage/Makefile.bsd,
+	fish/Makefile.bsd, fortune/datfiles/Makefile.bsd,
+	fortune/datfiles/fortunes, fortune/datfiles/fortunes.sp.ok,
+	monop/Makefile.bsd: Update from NetBSD-current of 1998-12-07.
+
+	* exec.objs: Remove references to lib/select.o.
+	* lib/select.c: Remove.
+
+	* hunt/huntd/driver.c (main): Initialise linger when required to
+	avoid need for select() wrapper.
+
+	* hunt/huntd/ctl_transact.c (ctl_transact): Reinitialise wait to
+	avoid need for select() wrapper.
+
+	* hunt/hunt/hunt.c (list_drivers): Reinitialise wait in each
+	cycle, so as not to need select() wrapper.
+
+	* README: Update.
+
+	* TODO: Update.
+
+	* tetris/tetris.c (main): Die if fds 0, 1, 2 aren't already open.
+
+	* snake/snake/snake.c (main): Die if score file gets fd < 3.
+
+	* sail/main.c (main): Die if fds 0, 1, 2 aren't already open.
+
+	* sail/sync.c: Size sync_lock and sync_file according to the
+	length required for the name formatted.
+
+	* rogue/init.c (init): Die if fds 0, 1, 2 aren't already open.
+
+	* robots/main.c (main): Die if the score file gets fd < 3.
+
+	* phantasia/main.c (initialstate): Die if the first file opened
+	gets fd < 3.
+
+	* cribbage/crib.c (main): Die if the score file gets fd < 3.
+
+	* canfield/canfield/canfield.c (initall): Die if the score file
+	gets fd < 3.
+
+	* battlestar/com6.c (open_score_file): Die if the score file gets
+	fd < 3.
+
+	* atc/log.c (open_score_file): Die if the score file gets fd < 3.
+
+1998-12-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* TODO: Update.
+
+	* sail/pl_main.c (initialize): Use snprintf, not sprintf.  This
+	fixes a possible buffer overrun; it comes from RedHat and the
+	LSAP, though neither ever bothered to send it to me.
+
+	* configure: Don't put `#!/bin/sh' and an `autogenerated' comment
+	in quiz/datfiles/index.
+
+1998-09-24  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.5.
+
+	* bsd-games.lsm, bsd-games-non-free.lsm: Update.
+
+	* Paul Janzen has checked with the original author, and it turns
+	out the the BSD licence applies to boggle and obsoletes the old
+	one, so boggle can go in the main bsd-games package.
+	* boggle/README: Update accordingly.
+	* boggle/README.linux, boggle/Makefrag: Update accordingly.  No
+	longer need to include uuencoded patch.
+	* boggle/boggle/helpfile: Update accordingly.
+	* INSTALL: Update accordingly.
+	* NEWS: Update accordingly.
+	* PACKAGING: Update accordingly.
+	* README, README.non-free: Update accordingly.
+	* bsd-games.lsm, bsd-games-non-free.lsm: Update accordingly.
+
+	* TODO: Update accordingly.
+	* THANKS: Update accordingly.
+
+1998-09-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* NEWS: Update.
+
+	* trek/main.c: Make Mother uid_t.
+
+	* hunt/hunt/hunt.c: Don't declare errno.
+
+	* hunt/huntd/hunt.h: Don't declare errno - include <errno.h>
+	instead.
+
+	* factor/Makefrag: Define _GNU_SOURCE, for isblank().
+	* number/Makefrag, primes/Makefrag: Likewise.
+
+	* With glibc 2.1, various headers can be included with an
+	__need_foo preprocessor define to make them only define some
+	particular symbols; this interacts badly with multiple inclusion
+	protection on the header wrappers in bsd-games.  Therefore, we
+	must not protect wrapper headers against multiple inclusion, but
+	instead make sure they are safe to be included multiple times and
+	only protect local bits that need it.
+	* include/signal.h: Don't protect against multiple inclusion -
+	only protect the sig_t definition that needs it.
+	* include/stdlib.h: Don't protect against multiple inclusion.
+	* include/stdio.h: Don't protect against multiple inclusion.
+	* include/termios.h: Don't protect against multiple inclusion.
+	* include/sys/cdefs.h: Don't protect against multiple inclusion.
+	* include/sys/ttydefaults.h: Don't protect against multiple
+	inclusion.
+
+	* dm/dm.c: Don't include <nlist.h> - it isn't needed, and doesn't
+	exist with some glibc versions.
+
+	* INSTALL: Minor changes.
+
+1998-09-15  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/Makefile.bsd, atc/extern.h, atc/input.c, atc/main.c,
+	backgammon/backgammon/backgammon.6.in,
+	backgammon/common_source/back.h, backgammon/common_source/fancy.c,
+	backgammon/common_source/save.c, backgammon/common_source/subs.c,
+	backgammon/teachgammon/tutor.h, banner/banner.c,
+	battlestar/extern.h, battlestar/save.c, boggle/boggle/extern.h,
+	caesar/caesar.c, canfield/canfield/canfield.c,
+	cribbage/cribbage.h, dm/dm.c, factor/factor.c, fish/fish.c,
+	fortune/datfiles/fortunes, fortune/fortune/fortune.c,
+	fortune/strfile/strfile.c, gomoku/gomoku.h, hunt/hunt/hunt.c,
+	hunt/huntd/hunt.h, mille/mille.h, number/number.c, pig/pig.c,
+	primes/primes.c, quiz/quiz.c, robots/robots.h, rogue/rogue.h,
+	sail/extern.h, snake/snake/snake.h, tetris/tetris.c,
+	tetris/tetris.h, worm/worm.c, worms/worms.c, wump/wump.c: Update
+	from NetBSD-current of 1998-09-14.
+
+	* atc/games/ATC_Scores, sail/:file, sail/:scene, sail/:ship,
+	sail/:specs, trek/board.x: Removed (unused, and removed in
+	NetBSD-current of 1998-09-14 in response to PR bin/6083).
+
+1998-09-14  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/done.c, adventure/extern.h, adventure/io.c,
+	adventure/main.c, adventure/setup.c, adventure/subr.c,
+	adventure/vocab.c, arithmetic/arithmetic.c: Update from
+	NetBSD-current of 1998-09-14.
+
+	* mille/move.c: Remove unused Movenames[] array.
+
+	* mille/comp.c, mille/mille.h, mille/extern.c, mille/move.c,
+	mille/save.c, mille/print.c: Use const where appropriate.
+
+	* robots/robots.h: #undef S_BONUS before defining.
+
+	* mille/mille.h: #undef S_* constants before defining.
+
+	* atc/def.h: #undef S_* constants before defining.
+
+	* hunt/hunt/connect.c, hunt/huntd/hunt.h, hunt/hunt/main.c,
+	hunt/hunt/playit.c, hunt/huntd/answer.c, hunt/huntd/draw.c,
+	hunt/huntd/faketalk.c, hunt/huntd/get_names.c,
+	hunt/huntd/pathname.c, hunt/huntd/terminal.c, hunt/huntd/driver.c:
+	Use const where appropriate.
+
+	* hangman/extern.c, hangman/hangman.h, hangman/setup.c: Use const
+	where appropriate.
+
+1998-09-13  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* gomoku/bdisp.c, gomoku/gomoku.h, gomoku/main.c,
+	gomoku/makemove.c, gomoku/pickmove.c, gomoku/stoc.c: Use const
+	where appropriate.
+
+	* configure: Generate GNUmakefile, not Makefile - the makefile and
+	makefile fragments are thoroughly dependent on GNU Make.
+
+	* backgammon/common_source/back.h: No longer any need to define
+	OXTABS.
+	* snake/snake/move.c: No longer any need to define CTRL or OXTABS.
+	* tetris/screen.c: No longer any need to define OXTABS.
+	* mille/misc.c: No longer any need to define CTRL.
+	* snake/snake/snake.c: No longer any need to define CTRL.
+
+	* include/sys/ttydefaults.h: Define OXTABS if not already defined.
+	* include/termios.h: New file, also include <sys/ttydefaults.h>.
+
+	* THANKS: Update.
+
+	* adventure/crc.c: Mark crctab[] const.
+
+	* adventure/vocab.c (vocab): Use errx() for error messages.
+
+	* adventure/main.c (main): Use bug(22) rather than printing "Error
+	22".
+
+	* adventure/io.c (rdesc): Use errx() for error messages.
+
+	* monop/Makefile.bsd: Update from NetBSD-current of 1998-09-13.
+
+	* adventure/crc.c, adventure/extern.h, adventure/io.c,
+	adventure/save.c, adventure/vocab.c: Update from NetBSD-current of
+	1998-09-13 (const changes merged into NetBSD).
+
+1998-09-12  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* All games now updated from NetBSD-current of 1998-09-12.
+
+	* adventure/extern.h, adventure/main.c, atc/def.h, atc/update.c,
+	backgammon/common_source/subs.c, battlestar/battlestar.6,
+	bcd/bcd.6, boggle/mkindex/mkindex.c, canfield/canfield/canfield.c,
+	hangman/hangman.h, hangman/main.c, hunt/huntd/hunt.h,
+	monop/execute.c, monop/monop.c, pom/pom.c, rogue/monster.c,
+	rogue/object.c, rogue/pack.c, rogue/room.c, sail/dr_2.c,
+	sail/sync.c, snake/snscore/snscore.c, trek/dumpgame.c,
+	trek/warp.c: Update from NetBSD-current of 1998-09-12.
+
+1998-09-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* BUGS: Update.
+
+	* SECURITY: Update.
+
+	* INSTALL: Update.
+
+	* NEWS: Update.
+
+	* TODO: Update.
+
+1998-09-10  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/io.c (pspeak): Give "Out of memory!" error on
+	allocation failure rather than bug(108).
+
+1998-09-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* boggle/README.linux, boggle/Makefrag: Update.
+
+1998-09-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* */Makefrag: Further changes for the new build system.
+
+1998-09-05  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* New configuration/build system, based on a single makefile that
+	includes makefile fragments that together describe all the
+	dependencies (using GNU make's automatic dependency generation).
+	See `Recursive Make Considered Harmful' by Peter Miller
+	<http://www.canb.auug.org.au/~millerp/rmch/recu-make-cons-harm.html>
+	for a discussion of the advantages of this over recursive make.
+	* configure, install-score.in, Makeconfig.in: Changes for the new
+	system.
+	* Makefile: Removed.
+	* mkdep, exec.libs, exec.objs: New files.
+	* */Makefile, */*/Makefile: Renamed to Makefrag and changed for
+	the new system.
+	* hunt/Makeconfig: Adapted to the new system.
+	* backgammon/README.linux: Removed.
+	* TODO: Update.
+	* PACKAGING: Update.
+	* INSTALL: Update.
+	* fortune/fortune/pathnames.in: Remove TEST support.
+	* fortune/README.linux: Update.
+
+	* Version 2.4.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+	* TODO: Update.
+
+	* INSTALL: Update.
+
+	* BUGS: Update.
+
+1998-09-04  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/teachgammon/Makefile (COBJS): No need to include
+	odds.o.
+
+	* TODO: Update.
+
+	* NEWS: Update.
+
+	* THANKS: Update.
+
+	* dm/dm.c: Allow time-based games play to be turned off from 11pm
+	to midnight; remove spurious terminal full stop from err() string
+	(patch from Paul Janzen <pjanzen@foatdi.harvard.edu>).
+
+1998-09-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* NEWS: Update.
+
+	* lib/fgetln.c (fgetln): Check for allocation failure.
+
+	* hunt/huntd/shots.c (chkslime): Check for allocation failure.
+
+	* hunt/huntd/expl.c (showexpl): Check for allocation failure.
+
+	* hunt/hunt/hunt.c: Check for allocation failure.
+
+	* gomoku/pickmove.c: Check for allocation failure.
+	* BUGS: Update about gomoku defect.
+
+	* INSTALL: Update egcs 1.1 references.
+
+	* battlestar/dayobjs.c (dayobjs): Add missing initialiser at end.
+	* battlestar/nightbojs.c (nightobjs): Likewise.
+
+1998-09-01  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/common_source/fancy.c (getcaps): Check for allocation
+	failure.
+
+	* atc/graphics.c (loser): Check for p being NULL, which it could
+	be if we tun out of memory.
+
+	* atc/update.c: Allow for newplane() to return NULL if out of
+	memory.
+
+	* adventure/vocab.c (vocab): Check for memory allocation failure.
+
+	* adventure/io.c (rtrav): Check for memory allocation failure.
+
+	* NEWS: Update.
+
+	* rogue/save.c (save_into_file): Avoid buffer overrun.
+
+	* rogue/Makefile (object.o): Build object.o with
+	-fwritable-strings - the other files don't need it.  Also don't
+	build curses.c.
+
+	* TODO: Update.
+
+	* rogue/rogue.h: Undefine CURSES after including <curses.h>.
+
+	* rogue/rogue.h, rogue/hit.c, rogue/message.c, rogue/init.c,
+	rogue/machdep.c, rogue/save.c, rogue/inventory.c, rogue/object.c,
+	rogue/level.c, rogue/monster.c, rogue/pack.c, rogue/play.c,
+	rogue/ring.c, rogue/room.c, rogue/score.c, rogue/throw.c,
+	rogue/trap.c, rogue/use.c, rogue/zap.c, rogue/move.c: Use const
+	where appropriate.
+
+	* fish/fish.c: Use const where appropriate.
+
+	* phantasia/io.c (getanswer): Mark loop, oldx, oldy volatile.
+
+1998-08-31  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/setup.c (main): String passed to err() shouldn't have
+	full stop at its end.
+
+	* factor/factor.c, primes/pr_tbl.c, primes/primes.c,
+	primes/pattern.c: Use const where appropriate.
+
+	* dm/dm.c: Use const where appropriate.
+
+	* cribbage/cribbage.h, cribbage/cards.c, cribbage/instr.c,
+	cribbage/io.c, cribbage/score.c, cribbage/support.c: Use const
+	where appropriate.
+
+1998-08-30  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* NEWS: Update.
+
+	* All games now updated from NetBSD-current of 1998-08-30.
+
+	* adventure/extern.h, adventure/hdr.h, adventure/init.c,
+	adventure/io.c, backgammon/backgammon/main.c,
+	backgammon/common_source/save.c, backgammon/teachgammon/teach.c,
+	battlestar/com5.c, boggle/boggle/bog.c,
+	canfield/canfield/canfield.c, canfield/cfscores/cfscores.c,
+	cribbage/crib.c, cribbage/score.c, fortune/fortune/fortune.c,
+	hunt/hunt/hunt.c, monop/cards.c, monop/morg.c, phantasia/fight.c,
+	phantasia/main.c, phantasia/misc.c, sail/dr_1.c, sail/pl_3.c,
+	sail/pl_7.c, sail/sync.c, trek/kill.c, trek/move.c, trek/nova.c,
+	trek/shield.c, wump/wump.c: Update from NetBSD-current of
+	1998-08-30.
+
+	* dm/dm.c (main): Do unsetenv("TZ") to prevent people cheating on
+	the times they can play.
+
+	* atc/main.c (main): Remove comment on ICRNL change.
+	* atc/input.c: Remove CRTOKEN stuff (conditional on SYSV) - no
+	need for it with ICRNL.
+
+1998-08-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/com5.c (give): Add explanatory comment.
+
+1998-08-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/com5.c (give): Proper fix this time: reset wordnumber
+	before doing an error return.
+
+	* atc/graphics.c (getAChar): Check against EOF, not -1;
+	clearerr(stdin) while the error occurs since the error indicator
+	may have been set; initialise errno to avoid problems with a real
+	EOF and errno left as EINTR.
+
+	* boggle/boggle/bog.c (compar): Use const more.
+
+	* INSTALL: Update.
+
+	* boggle/boggle/bog.c (main): Change linux/PURE variants to
+	NEW_STYLE define.
+	* boggle/boggle/Makefile: NEW_STYLE is default.
+	* boggle/Makefile (linux-patch): Change construction of Linux
+	patch.
+	* boggle/README.linux: Adjust accordingly.
+	* INSTALL: Likewise.
+
+	* sail/extern.h, sail/dr_1.c, sail/dr_2.c, sail/dr_3.c: Rename
+	strend() to str_end(), isolated() to is_isolated(), toughmelee()
+	to is_toughmelee().
+
+	* phantasia/phantdefs.h: #undef S_* constants before definition.
+
+	* monop/monop.h, monop/misc.c, monop/trade.c: Rename isnot_monop()
+	to is_not_monop().
+
+	* mille/mille.h, mille/comp.c, mille/init.c, mille/move.c,
+	mille/types.c: Rename issafety to is_safety, isrepair to
+	is_repair.
+
+1998-08-27  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hunt/huntd/hunt.h, hunt/huntd/draw.c, hunt/huntd/shots.c: Rename
+	isplayer to is_player.
+
+	* gomoku/gomoku.h, gomoku/main.c: Rename log() to glog().
+
+	* cribbage/cards.c, cribbage/cribbage.h, cribbage/io.c: Rename
+	isone() to is_one().
+
+	* backgammon/common_source/fancy.c,
+	backgammon/common_source/back.h: Remove tos().
+
+	* boggle/boggle/help.c (help): Make change to use redrawwin()
+	conditional on NCURSES_VERSION.
+
+	* configure: Suggest mode 2770 for sail directory, better than
+	0770.
+
+	* NEWS: Update.
+
+	* PACKAGING: Add new Warnings section.
+
+	* battlestar/extern.h, battlestar/com6.c, battlestar/init.c:
+	Change uname[] to username[].
+
+	* backgammon/teachgammon/tutor.h: Mark leave() and tutor()
+	noreturn.
+
+	* TODO: Update.
+
+	* BUGS: Update.
+
+1998-08-26  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/vocab.c (vocab): Exit with status 1 on error.
+
+	* adventure/main.c (main): Exit with status 1 on error.
+
+	* adventure/io.c (rdesc): Exit with status 1 on error.
+
+	* adventure/hdr.h (FLUSHLINE): Handle EOF.
+
+	* adventure/io.c: Handle EOF.
+
+	* adventure/wizard.c (ciao): Handle EOF.
+
+	* adventure/setup.c: Don't put \n in error strings (err and errx
+	add it).
+
+	* backgammon/backgammon/main.c: Change condition on ospeed being
+	declared to #ifndef NCURSES_VERSION.
+	* backgammon/teachgammon/teach.c: Likewise.
+	* snake/snake/move.c: Likewise.
+	* snake/snake/snake.h: Likewise.
+	* tetris/screen.c: Likewise.
+
+	* backgammon/backgammon/text.c (text): Switch order of char and
+	const.
+
+	* battlestar/cypher.c (cypher): In take all, handle BATHGOD and
+	NORMGOD properly.
+
+	* rogue/machdep.c (md_slurp): Use POSIX version unconditionally.
+
+	* hunt/huntd/driver.c (init): Use setsid() to become session
+	leader.
+
+	* canfield/canfield/canfield.c: Use const where appropriate.
+
+	* canfield/cfscores/cfscores.c: Use const where appropriate.
+
+	* caesar/caesar.c: Use const where appropriate.
+
+	* rogue/rogue.h: Condition some prototypes on #ifdef CURSES.
+
+1998-08-25  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/graphics.c (getAChar): Just use SYSV version always rather
+	than conditioning on SYSV || __linux__; the efficiency loss on
+	systems where getchar() retries is insignificant.
+
+	* adventure/extern.h, adventure/init.c, adventure/main.c,
+	adventure/subr.c, adventure/vocab.c, adventure/wizard.c: Update
+	from NetBSD-current of 1998-08-25.
+
+	* boggle/README.linux: Rebuild.
+
+	* configure: Suggest sail directory should not be world
+	accessible.
+
+	* sail/sync.c: Use egid when checking for file existence, so that
+	the sail directory can be mode 770.
+
+	* boggle/boggle/extern.h, boggle/boggle/word.c,
+	boggle/boggle/prtable.c, boggle/boggle/mach.c,
+	boggle/boggle/bog.c: Use const where appropriate.
+
+1998-08-24  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* arithmetic/arithmetic.c: Use const where appropriate.
+
+	* include/sys/cdefs.h: Use const in __RCSID and __COPYRIGHT.
+
+	* bcd/bcd.c: Use const where appropriate.
+
+	* mille/save.c (rest_f): Use O_RDONLY in open().
+
+	* adventure/subr.c, adventure/extern.h: Make checkhints(),
+	closing() and caveclose() return void.
+
+	* adventure/subr.c, adventure/extern.h: Make bug() return void.
+
+	* adventure/subr.c, adventure/extern.h: badmove()'s return value
+	is never used, so make it void.
+
+	* adventure/extern.h: twrite() returns void, and is conditioned on
+	#ifdef DEBUG.
+
+	* adventure/io.c, adventure/extern.h: Remove unused function
+	confirm().
+
+	* adventure/done.c, adventure/extern.h, adventure/main.c: die()
+	can only return 2000, so make it void.
+
+	* battlestar/com2.c, battlestar/com3.c, battlestar/cypher.c:
+	Update from NetBSD-current of 1998-08-24.
+
+	* battlestar/init.c (getutmp): Use strncpy().
+
+	* battlestar/extern.h, battlestar/globals.c, battlestar/words.c,
+	battlestar/dayobjs.c, battlestar/nightobjs.c, battlestar/misc.c,
+	battlestar/init.c, battlestar/com4.c, battlestar/parse.c,
+	battlestar/save.c, battlestar/getcom.c, battlestar/com1.c,
+	battlestar/com6.c, battlestar/room.c: Use const where appropriate.
+
+	* banner/banner.c: Use const where appropriate.
+
+	* adventure/io.c: Make tape, iotape const.
+
+	* backgammon/teachgammon/Makefile: Add dependency on tutor.h.
+
+	* backgammon/backgammon/main.c, backgammon/backgammon/text.c,
+	backgammon/backgammon/version.c: Use const where appropriate.
+
+	* backgammon/common_source/save.c: Use <errno.h>, not extern int
+	errno.
+
+	* backgammon/teachgammon/tutor.c, backgammon/teachgammon/tutor.h,
+	backgammon/teachgammon/data.c, backgammon/teachgammon/teach.c,
+	backgammon/teachgammon/ttext1.c, backgammon/teachgammon/ttext2.c:
+	Use const where appropriate.
+
+	* backgammon/backgammon/backgammon.6.in,
+	backgammon/common_source/save.c: Remove nonsense about executing
+	save files; open them without execute permission.
+
+	* backgammon/common_source/save.c: Use symbolic constants in
+	open() and for errno.
+
+	* backgammon/common_source/fancy.c,
+	backgammon/common_source/back.h, backgammon/common_source/save.c,
+	backgammon/common_source/subs.c, backgammon/common_source/init.c,
+	backgammon/common_source/table.c,
+	backgammon/common_source/board.c: Use const where appropriate.
+
+	* backgammon/common_source/subs.c,
+	backgammon/common_source/back.h: Remove strset() (not used).
+
+1998-08-23  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* TODO: Update.
+
+	* atc/input.c, atc/extern.h, atc/graphics.c, atc/update.c,
+	atc/main.c, atc/extern.c, atc/log.c: Use const where appropriate.
+
+	* adventure/hdr.h, adventure/init.c: Make delhit volatile
+	sig_atomic_t; only assign to it.
+
+	* adventure/crc.c, adventure/extern.h, adventure/io.c,
+	adventure/save.c, adventure/vocab.c: Use const where appropriate.
+
+	* adventure/vocab.c, adventure/extern.h: Make copystr(), weq() and
+	length() into macros that use standard C library functions.
+
+	* adventure/wizard.c, adventure/extern.h, adventure/main.c: Remove
+	unused arg of ciao().
+
+	* adventure/wizard.c, adventure/extern.h, adventure/init.c,
+	adventure/main.c: Remove unused arg of Start().
+
+	* adventure/subr.c, adventure/extern.h, adventure/main.c: Remove
+	unused arg of dark().
+
+	* adventure/subr.c, adventure/extern.h, adventure/main.c: Remove
+	unused arg of liq().
+
+	* adventure/init.c, adventure/extern.h, adventure/main.c: Remove
+	unused arg of init().
+
+1998-08-21  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* sail/extern.h, sail/main.c, sail/dr_main.c: Remove handling of
+	being setuid - nowadays games only run setgid.
+
+	* rogue/machdep.c (md_shell): Remove unnecessary setuid().
+
+	* fish/fish.c (instructions): Remove setuid() and setgid() in
+	child, no longer necessary.
+
+	* INSTALL: Add note about the desirability of using tmac.doc from
+	NetBSD.
+
+	* worm/worm.6: Revert unnecessary changes.
+
+	* hangman/hangman.6.in: Revert unnecessary changes.
+
+	* dm/dm.8.in: Revert unnecessary changes.
+
+	* bcd/bcd.6: Revert unnecessary changes.
+
+	* backgammon/backgammon/backgammon.6.in: Revert some unnecessary
+	changes.
+
+1998-08-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hunt/hunt/hunt.c: Include <sys/param.h> for MAXHOSTNAMELEN.
+
+	* snake/snake/move.c, snake/snake/snake.h, snake/snake/snake.c:
+	Rename raw() to my_raw() (from Joey Hess <joey@kitenet.net>).
+
+	* robots/robots.h: Include <errno.h> (from Joey Hess
+	<joey@kitenet.net>).
+
+1998-08-19  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* number/number.c (convert): Decrement len when there's a minus
+	sign.
+
+	* Version 2.3.
+
+	* sail/Makefile (install): Use install prefix.
+
+	* NEWS: Update.
+
+	* All games now updated from NetBSD-current of 1998-08-19.
+
+	* tetris/tetris.c: Update from NetBSD-current of 1998-08-19.
+
+	* tetris/screen.c: Update from NetBSD-current of 1998-08-19.
+
+	* TODO: Update.
+
+	* NEWS: Update.
+
+	* bsd-games.lsm: Update.
+
+	* AUTHORS (countmail): Restore.
+
+	* README: Update.
+
+	* countmail/*: Restore, updated from NetBSD-current of 1998-08-19
+	(which has a licence for it).
+
+	* atc/input.c: Update from NetBSD-current of 1998-08-19.
+
+	* adventure/Makefile.bsd: Update from NetBSD-current of
+	1998-08-19.
+
+	* SECURITY: Update.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+	* boggle/README.linux: Regenerate.
+
+	* NEWS: Update.
+
+	* sail/sync.c: Restore privileges when appropriate.
+
+	* sail/misc.c (logger): Restore privileges for file open.
+
+	* sail/main.c (main): Initialise gid and egid; drop egid leaving
+	saved gid.
+
+	* sail/extern.h: Add gid and egid.
+
+	* sail/Makefile (install): Install sail directory.
+
+	* sail/sync.c: Use defines from pathnames.h.
+
+	* sail/pathnames.h.in: Put definitions here.
+
+	* Makeconfig.in: Add appropriate macros.
+
+	* configure: Configure a directory for sail temporary files.
+
+	* sail/*: Revert previous changes.  Sail needs to keep privileges
+	for sync file handling.
+
+	* atc/log.c (log_score): Fix truncate logic.
+
+	* configure: Remove some of the less useful warning flags just
+	added.
+
+	* wump/wump.c (int_compare): Use const.
+
+	* robots/score.c (cmp_sc): Use const.
+
+	* fortune/strfile/strfile.c (cmp_str): Use const.
+
+	* boggle/boggle/bog.c (compar): Use const.
+
+	* atc/log.c (compar): Use const.
+
+	* configure: Add more warning flags to the default.
+
+1998-08-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* INSTALL: Minor changes.
+
+	* wump/wump.c: Mark usage() noreturn.
+
+	* worms/worms.c: Mark nomem() and onsig() noreturn.
+
+	* worm/worm.c: Mark leave() and crash() noreturn.
+
+	* tetris/tetris.c: Mark usage() and onintr() noreturn.
+
+	* tetris/tetris.h: Mark stop() noreturn.
+
+	* snake/snake/snake.h: Mark done() and stop() noreturn.
+
+	* sail/extern.h: Mark leave() and choke() noreturn.
+
+	* TODO: Update.
+
+	* rogue/rogue.h: Mark clean_up(), error_save(), md_exit(),
+	put_scores() and sf_error() noreturn.
+
+	* robots/robots.h: Mark quit() noreturn.
+
+	* gomoku/gomoku.h: Mark quit(), quitsig() and panic() noreturn.
+
+	* quiz/quiz.c: Mark usage() noreturn.
+
+	* primes/primes.c: Mark usage() noreturn.
+
+	* pig/pig.c: Mark usage() noreturn.
+
+	* number/number.c: Mark usage() noreturn; remove spurious toobig()
+	prototype (no such function defined or used).
+
+	* mille/mille.h: Mark die() noreturn.
+
+1998-08-17  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* hunt/huntd/hunt.h: Mark cleanup() noreturn.
+
+	* hunt/hunt/hunt.c: Mark leave() noreturn.
+
+	* fortune/strfile/strfile.c: Mark usage() noreturn.
+
+	* fortune/fortune/fortune.c: Mark usage() noreturn.
+
+	* fish/fish.c: Mark usage() noreturn; actually use it.
+
+	* cribbage/cribbage.h: Mark rint() noreturn.
+
+	* factor/factor.c: Mark usage() noreturn.
+
+	* dm/dm.c: Mark play() noreturn.
+
+	* canfield/canfield/canfield.c: Mark cleanup() noreturn.
+
+	* caesar/caesar.c: Mark printit() noreturn.
+
+	* boggle/boggle/extern.h: Mark usage() noreturn.
+	* boggle/README.linux: Rebuild.
+
+	* battlestar/extern.h: Mark die(), diesig() and live() noreturn.
+
+	* backgammon/common_source/back.h: Mark getout() noreturn.
+
+	* atc/extern.h: Make loser() and log_score_quit() noreturn.
+
+	* arithmetic/arithmetic.c: Mark intr() and usage() noreturn.
+
+	* adventure/extern.h: Mark done() noreturn.
+
+	* adventure/subr.c (bug): Use exit status 1 for a fatal error.
+
+	* snake/snake/snake.c (post): Use SEEK_SET rather than 0 in
+	lseek().
+
+	* robots/score.c (score): Use SEEK_SET rather than 0 in lseek().
+
+	* fortune/fortune/fortune.c (get_fort): Use SEEK_SET rather than 0
+	in lseek().
+
+	* canfield/cfscores/cfscores.c (printuser): Use SEEK_SET rather
+	than 0 in lseek().
+
+	* canfield/canfield/canfield.c (suspend): Use SEEK_SET rather than
+	0 in lseek().
+	(cleanup): Same.
+
+	* SECURITY: Clarify.
+
+1998-08-15  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.2.
+
+	* robots/score.c (score): Check for score file not having been
+	successfully opened.
+
+	* README: Update.
+
+	* INSTALL: Update.
+
+	* configure: Fix typo.
+
+	* atc/log.c (log_score): Use it, avoiding possible buffer overrun.
+
+	* atc/struct.h (SCORE_SCANF_FMT): Define to be format for scnaf
+	from score file, with appropriate max field widths.
+
+	* configure: Update.
+
+	* bsd-games.lsm: Update.
+
+	* TODO: Update.
+
+	* AUTHORS (countmail): Remove.
+
+	* NEWS: Update.
+
+	* README: Update.
+
+	* countmail/*: Remove.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+	* PACKAGING: Update.
+
+	* BUGS: Update.
+
+	* NEWS: Update.
+
+	* TODO: Update.
+
+	* SECURITY: New file, describing security issues, taken from
+	INSTALL.
+	* INSTALL: Update.
+
+	* wump/wump.c (main): Revoke setgid privileges.
+
+	* worms/worms.c (main): Revoke setgid privileges.
+
+	* worm/worm.c (main): Revoke setgid privileges.
+
+	* trek/main.c (main): Revoke setgid privileges.
+
+	* tetris/tetris.c, tetris/score.c: Only have privileged egid when
+	needed.
+
+	* tetris/tetris.h: New variables gid, egid.
+
+	* snake/snscore/snscore.c (main): Revoke setgid privileges.
+
+	* snake/snake/snake.c: Open score files as early as possible, then
+	drop setgid privileges.
+
+	* sail/misc.c (open_log): New function: opens log file.
+	* sail/extern.h: Declare this.
+	* sail/misc.c (logger): Use already open log file.
+	* sail/main.c: Open log file, then drop privileges.
+
+	* rogue/init.c, rogue/machdep.c, rogue/score.c: Only have
+	privileged egid when needed.
+
+	* rogue/init.c: New variables gid, egid; initialise them.
+	* rogue/rogue.h: Declare them; include <sys/types.h> and
+	<unistd.h>.
+
+	* robots/main.c (main), robots/extern.h, robots/score.c (score):
+	Open score file at start, then drop privileges (from OpenBSD).
+
+	* cribbage/crib.c (main): Set close-on-exec flag on log file.
+
+	* random/random.c (main): Revoke setgid privileges.
+
+	* rain/rain.c (main): Revoke setgid privileges.
+
+	* quiz/quiz.c (main): Revoke setgid privileges.
+
+	* primes/primes.c (main): Revoke setgid privileges.
+
+	* ppt/ppt.c (main): Revoke setgid privileges.
+
+	* pom/pom.c (main): Revoke setgid privileges.
+
+	* pig/pig.c (main): Revoke setgid privileges.
+
+	* number/number.c (main): Revoke setgid privileges.
+
+	* morse/morse.c (main): Revoke setgid privileges.
+
+	* monop/monop.c (main): Revoke setgid privileges.
+
+	* mille/mille.c (main): Revoke setgid privileges.
+
+	* hunt/hunt/hunt.c (main): Revoke setgid privileges.
+
+	* hangman/main.c (main): Revoke setgid privileges.
+
+	* gomoku/main.c (main): Revoke setgid privileges.
+
+	* fortune/fortune/fortune.c (main): Revoke setgid privileges.
+
+	* fish/fish.c (main): Revoke setgid privileges.
+
+	* factor/factor.c (main): Revoke setgid privileges.
+
+	* cribbage/crib.c (main): Open log file then drop privileges as
+	soon as possible.
+
+	* canfield/canfield/canfield.c (initall): Use SEEK_SET instead of
+	0 as argument of lseek().
+
+	* canfield/cfscores/cfscores.c (main): Revoke setgid privileges.
+
+	* canfield/canfield/canfield.c (initall): Revoke setgid privileges
+	after opening the score file.
+
+1998-08-13  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* boggle/README.linux: Rebuild.
+
+	* caesar/caesar.c (main): Revoke setgid privileges.
+
+	* boggle/boggle/bog.c (main): Revoke setgid privileges.
+
+	* bcd/bcd.c (main): Revoke setgid privileges.
+
+	* battlestar/com6.c (open_score_file), battlestar/extern.h: New
+	function.
+	* battlestar/com6.c (post): Use already opened score file.
+	* battlestar/battlestar.c (main): Open score file then revoke
+	setgid privileges.
+
+	* atc/input.c (gettoken): Remove unnecessary setuid() call.
+
+1998-08-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* AUTHORS (paranoia): Removed entry.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* INSTALL: Update.
+
+	* atc/log.c (open_score_file): Set close-on-exec flag.
+
+	* TODO: Update.
+
+	* PACKAGING: Update.
+
+	* Credits: Split into AUTHORS and THANKS; update.
+
+	* BUGS: Update.
+
+1998-08-09  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/extern.h, battlestar/save.c, battlestar/init.c,
+	battlestar/cypher.c, battlestar/battlestar.c: New interface for
+	saving, passes length and does dynamic allocation rather than
+	using fixed length buffers.
+	* battlerstar/Makefile: Include fgetln.
+
+	* banner/banner.c (main): Revoke setgid privileges.
+
+	* backgammon/backgammon/main.c (main): Revoke setgid privileges.
+
+	* atc/log.c: Cast getuid() return value to int for %d format.
+
+	* atc/log.c (open_score_file), atc/extern.h: New function.
+	* atc/log.c (log_score): Use already opened score file.  Truncate
+	the score file to the length written.
+	* atc/main.c (main): Open the score file and then revoke setgid
+	privileges.
+
+	* arithmetic/arithmetic.c (main): Revoke setgid privileges.
+
+	* adventure/main.c (main): Revoke setgid privileges.
+
+	* snake/snscore/snscore.c (main): Take no arguments.
+
+	* hangman/extern.h, hangman/main.c (main): Take no arguments.
+
+	* canfield/canfield/canfield.c (main): Take no arguments.
+
+1998-08-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* README.non-free: Update.
+
+	* README: Update.
+
+	* paranoia/*: Remove.
+
+	* NEWS: Update.
+
+	* INSTALL: Update.
+
+1998-08-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure: Add facility to specify a list of games not to build.
+
+	* TODO: Update.
+
+	* README: Update.
+
+	* PACKAGING: Update.
+
+	* Credits: Update.
+
+1998-07-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* NEWS: Update.
+
+	* INSTALL: Update.
+
+	* PACKAGING: New file - information for those packaging bsd-games
+	for a Linux distribution.
+
+1998-07-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* TODO: Update.
+
+	* substfiles: Include hide-game (no need to special case it).
+	* configure, Makefile: Don't special case hide-game.
+
+	* hide-game.in: No longer needs #!/bin/sh, since added by
+	configure.
+	* install-score.in: Likewise.
+	* install-man.in: Likewise.
+	* caesar/rot13.in: Likewise.
+
+	* configure (substitute): Put comments at the top of generated
+	files saying they are automatically generated.
+
+1998-07-27  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* All games (expect paranoia) now updated from NetBSD-current of
+	1998-07-27 (some of the Linux changes merged back to NetBSD).
+
+	* snake/snscore/snscore.c: Update from NetBSD-current of
+	1998-07-27.
+
+	* sail/dr_2.c, sail/extern.h: Update from NetBSD-current of
+	1998-07-27.
+
+	* rogue/init.c, rogue/machdep.c, rogue/monster.c, rogue/rogue.h:
+	Update from NetBSD-current of 1998-07-27.
+
+	* robots/move.c: Update from NetBSD-current of 1998-07-27.
+
+	* pom/pom.c: Update from NetBSD-current of 1998-07-27.
+
+	* phantasia/phantglobs.c, phantasia/phantglobs.h: Update from
+	NetBSD-current of 1998-07-27.
+
+	* mille/mille.h, mille/misc.c: Update from NetBSD-current of
+	1998-07-27.
+
+	* battlestar/dayfile.c, battlestar/nightfile.c: Update from
+	NetBSD-current of 1998-07-27 (changes merged - this changes rcsids
+	only).
+
+	* atc/atc.6, atc/log.c: Update from NetBSD-current of 1998-07-27.
+
+	* adventure/wizard.c: Update from NetBSD-current of 1998-07-27.
+
+	* configure: Allow defaults to be taken from a config.params file,
+	which can specify non-interactive operation.
+
+1998-07-25  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure: Make a /bin/sh script; use printf instead of echo -n
+	so that a POSIX.2 shell suffices.
+
+	* INSTALL: Update.
+
+	* TODO: Update.
+
+1998-07-22  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* NEWS: Update.
+
+	* rogue/machdep.c (md_gseed): Use time, not pid, as seed, so you
+	don't get the same game each time if you boot the system up to
+	play rogue (patch from Bill Lash <lash@tellabs.com>).
+	* rogue/monster.c (mv_mons): If a dragon kills a monster on
+	level_monsters, mv_mons can move things in the free_list, so don't
+	move monsters not on level_monsters (patch from Bill Lash
+	<lash@tellabs.com>).
+
+	* All games (except paranoia) now updated from NetBSD-current of
+	1998-07-11.
+
+	* worms/worms.6: Update from NetBSD-current of 1998-07-11.
+
+	* sail/*: Update from NetBSD-current of 1998-07-11.
+
+	* pom/*: Update from NetBSD-current of 1998-07-11.
+
+	* hunt/*/*: Update from NetBSD-current of 1998-07-11.
+
+	* dm/*: Update from NetBSD-current of 1998-07-11.
+
+1998-07-21  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* countmail/countmail.6: Update from NetBSD-current of 1998-07-11.
+
+	* boggle/*/Makefile.bsd: Update from NetBSD-current of 1998-07-11.
+
+	* battlestar/extern.h: Update from NetBSD-current of 1998-07-11.
+
+	* backgammon/backgammon/main.c: Update from NetBSD-current of
+	1998-07-11.
+
+	* atc/*: Update from NetBSD-current of 1998-07-11.
+	* atc/Makefile: Use grammar.h instead of y.tab.h.
+
+	* arithmetic/arithmetic.6: Update from NetBSD-current of
+	1998-07-11.
+
+	* quiz/datfiles/europe: Fix typo (patch from G. Branden Robinson
+	<branden@purdue.edu>).
+
+	* TODO: Update.
+
+	* BUGS: Update.
+
+	* README.non-free: Update.
+
+	* YEAR2000: Minor changes.
+
+	* README: Update.
+
+	* INSTALL: Update.
+
+	* Credits: Minor changes.
+
+1998-07-20  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* YEAR2000: New file, year 2000 statement for bsd-games.
+
+	* adventure/wizard.c (datime): Handle leap years correctly
+	according to the Gregorian calendar (could be perceived as fixing
+	a year 2000 problem, but it was broken wrt leap years anyway).
+
+	* pom/pom.c (main): Add 1900 to year as argument of isleap()
+	(fixes year 2000 problem).
+
+1998-07-03  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Credits: Add introductory paragraph.
+
+1998-04-11  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Makefile: Add some standard GNU makefile targets.
+
+1998-04-07  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure: Update message before selecting pager.
+
+	* wump/wump.c (instructions): Use POSIX.2 pager behaviour.
+
+	* quiz/quiz.c (show_index): Use POSIX.2 pager behaviour.
+
+	* fish/fish.c (instructions): Use POSIX.2 pager behaviour.
+
+1998-04-06  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* cribbage/instr.c (instructions): Use POSIX.2 pager behaviour.
+
+1998-04-04  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* BUGS: Update.
+
+	* INSTALL: Update for changed paths.
+
+	* configure: Change default paths to FHS ones; change some
+	comments and messages.
+
+	* bsd-games.lsm (Primary-site): Make sunsite, since tsx-11 is
+	somewhat unreliable and laggardly about installing new releases.
+
+1998-03-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.1.
+
+	* TODO: Update.
+
+	* README: Update.
+
+	* INSTALL: Update.
+
+	* Credits: Update.
+
+1998-03-28  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* boggle/README.linux: Rebuild.
+
+	* bsd-games.lsm, bsd-games-non-free.lsm, NEWS: Update.
+
+	* configure: Don't ask about libc version or BSD signal defines.
+
+	* Makeconfig.in (BSD_SIGNAL_DEFS): Removed.
+
+	* */Makefile, */*/Makefile, hunt/Makeconfig: Don't use
+	$(BSD_SIGNAL_DEFS).
+
+	* include/signal.h: Define __USE_BSD_SIGNAL if libc5, so that the
+	Makefiles don't need to.
+
+	* lib/fgetln.c: New file, implementation of fgetln() (from
+	quiz/quiz.c).
+	* include/stdio.h: New file, wrap <stdio.h> and declare fgetln().
+	* quiz/quiz.c: Don't include implementation of fgetln().
+
+1998-03-27  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* dm/dm.c (load): Use getloadavg().
+	* dm/Makefile: Use getloadavg() from lib/getloadavg.c.
+
+	* lib/getloadavg.c: New file, implementation of getloadavg().
+	* include/stdlib.h: New file, wrap <stdlib.h> and declare
+	getloadavg().
+
+	* wump/wump.c (move_to, shoot): Add explicit braces to avoid
+	ambiguous else.
+
+	* trek/shield.c (shield): Add explicit braces to avoid ambiguous
+	else.
+
+	* trek/nova.c (nova): Add explicit braces to avoid ambiguous else.
+
+	* trek/move.c (move): Add explicit braces to avoid ambiguous else.
+
+	* trek/kill.c (killb): Add explicit braces to avoid ambiguous
+	else.
+
+	* sail/sync.c (sync_update): Add explicit braces to avoid
+	ambiguous else.
+
+	* sail/sync.c (Sync): Don't declare errno.
+
+	* sail/dr_1.c (compcombat, next): Add explicit braces to avoid
+	ambiguous else.
+
+	* sail/pl_7.c (newturn): Add explicit braces to avoid ambiguous
+	else.
+
+	* sail/pl_3.c (acceptcombat): Add explicit braces to avoid
+	ambiguous else.
+
+	* phantasia/misc.c (tradingpost): Add explicit braces to avoid
+	ambiguous else.
+
+	* phantasia/fight.c (playerhits, awardtreasure): Add explicit
+	braces to avoid ambiguous else.
+
+	* phantasia/main.c (main): Add explicit braces to avoid ambiguous
+	else.
+
+	* fortune/fortune/fortune.6: Rename to fortune.6.in.
+	* fortune/fortune/fortune.6.in: Parametrise.
+	* substfiles: Include fortune/fortune/fortune.6.
+
+	* monop/morg.c (set_mlist): Add explicit braces to avoid ambiguous
+	else.
+
+	* monop/cards.c (get_card): Add explicit braces to avoid ambiguous
+	else.
+
+	* hunt/hunt/hunt.c (list_drivers): Add explicit int in declaration
+	of `initial'.
+	(env_init): Add explicit braces to avoid ambiguous else.
+
+	* fortune/fortune/fortune.c (display, form_file_list): Add
+	explicit braces to avoid ambiguous else.
+	(init_prob): Add braces to make if/else binding agree with the
+	indentation.
+
+	* cribbage/score.c (scorehand): Add explicit braces to avoid
+	ambiguous else.
+
+	* cribbage/crib.c (peg): Add explicit braces to avoid ambiguous
+	else.
+
+	* boggle/boggle/bog.c (main): Add explicit braces to avoid
+	ambiguous else.
+
+	* battlestar/com5.c (love): Add explicit braces to avoid ambiguous
+	else.
+
+	* atc/input.c (delayb, benum): Change char to unsigned char for
+	subscript.
+
+	* Credits: Update.
+
+	* paranoia/paranoia.6: New manpage, from Joey Hess.
+	* paranoia/Makefile: Install it.
+
+	* wargames/wargames.6: New manpage, from Joey Hess
+	<joeyh@kitenet.net>.
+	* wargames/Makefile: Install it.
+
+	* hunt/Makefile.inc.bsd, hunt/hunt/Makefile.bsd, hunt/huntd/bsd.h,
+	hunt/huntd/hunt.h, hunt/huntd/huntd.6.in, hunt/huntd/talk_ctl.h:
+	Update from NetBSD-current of 1998-03-21.
+
+	* fortune/*: Update from NetBSD-current of 1998-03-21.
+	* fortune/fortune/Makefile: Use -DHAVE_REGCOMP.
+
+	* Makefile.inc.bsd, adventure/init.c, atc/Makefile.bsd,
+	backgammon/Makefile.inc.bsd, battlestar/Makefile.bsd,
+	battlestar/extern.h, boggle/*/Makefile.bsd, caesar/caesar.6,
+	canfield/*/Makefile.bsd, cribbage/Makefile.bsd, dm/Makefile.bsd,
+	dm/dm.c, factor/Makefile.bsd, fish/fish.c, rain/Makefile.bsd,
+	robots/Makefile.bsd, rogue/Makefile.bsd, sail/Makefile.bsd,
+	snake/*/Makefile.bsd, tetris/Makefile.bsd, worm/Makefile.bsd,
+	worms/Makefile.bsd, gomoku/Makefile.bsd, gomoku/main.c,
+	hangman/Makefile.bsd, mille/Makefile.bsd, phantasia/Makefile.bsd,
+	phantasia/setup.c, quiz/datfiles/pres: Update from NetBSD-current
+	of 1998-03-21.
+
+1998-03-26  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* monop/monop.c (main): Use SIGINT instead of 2 in signal.
+
+	* backgammon/teachgammon/teach.c (main): Use SIGINT instead of 2
+	in signal.
+
+	* backgammon/backgammon/main.c (main): Use SIGINT instead of 2 in
+	signal, and 14 instead of SIGALRM.
+
+	* BUGS: New file, lists known bugs.
+	* INSTALL, README, TODO: Update.
+
+	* trek/dumpgame.c (restartgame): Use O_RDONLY instead of 0 in
+	open.
+
+	* monop/execute.c (rest_f): Use O_RDONLY instead of 0 in open.
+
+	* fortune/fortune/fortune.c (add_file, all_forts, open_dat,
+	get_pos, get_tbl): Use O_RDONLY instead of 0 in open.
+
+	* canfield/cfscores/cfscores.c (main): Use O_RDONLY instead of 0
+	in open.
+
+	* canfield/canfield/canfield.c (initall): Use O_RDWR instead of 2
+	in open.
+
+	* quiz/datfiles/europe: Added more new countries.
+
+1998-03-25  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* quiz/datfiles/europe: Update for political changes of the 1990s
+	(needs more work).
+
+	* Credits: Update.
+	* INSTALL, README: Update (need libc 5.4.5 or later if using
+	libc5).
+
+1998-01-02  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/battlestar.c, battlestar/init.c, battlestar/save.c,
+	battlestar/extern.h, battlestar/cypher.c,
+	battlestar/battlerstar.6: Let save file name vary.
+
+1997-12-30  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/com5.c (give): The value 0 used in NetBSD is as good
+	as any for initialising last1 and last2, so use it; check for it
+	in last1 at the appropriate place and give an error if so.
+
+	* battlestar/com3.c (shoot): Correct initialiser for firstnumber
+	is always wordnumber.
+
+1997-12-29  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* mille/mille.h, mille/varpush.c: Make previous change conditional
+	on defined(__linux__) && !defined(__GLIBC__), since the X/Open
+	spec says you should use int but libc5 (only) uses size_t.
+
+	* boggle/boggle/help.c (help): Use redrawwin(stdscr) at the end,
+	to get proper redrawing with ncurses.
+	* boggle/README.linux: Rebuild.
+
+	* Makeconfig.in (DEFS_TO_PASS, DEFS_TO_PASS_STRIP): New variables,
+	definitions of installation variables to pass to sub-makes.
+	* Makefile (install, install-strip): Use these.
+	* configure (strip_install): Remove configuration option.
+	* INSTALL: Update.
+	* backgammon/Makefile, boggle/Makefile, canfield/Makefile,
+	fortune/Makefile, hunt/Makefile, snake/Makefile: Pass DEFS_TO_PASS
+	in install.
+
+1997-12-26  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* mille/mille.h: prscore's argument is bool, not int (from Joey
+	Hess).
+
+1997-12-25  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.0.
+
+	* INSTALL: Add name and email address to bottom.
+
+	* Credits: Update.
+
+Sun Dec 21 11:59:34 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure: Don't ask for file for backgammon rules.
+
+	* TODO: Update.
+
+	* Makefile (install): Don't create $(SOCKETDIR), which is no
+	longer defined.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+	* README: Update.
+
+	* configure: Don't configure bsd_lib or bsd_includes.
+	* Makeconfig.in: Delete BSD_LIB, BSD_INCS, BSD_DEFS.
+
+	* configure (warning_flags): Default to -Wall -W
+	-Wstrict-prototypes -Wmissing-prototypes.
+
+Sat Dec 20 11:25:48 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* All games (except paranoia) now updated to NetBSD-current of
+	1997-12-12.
+
+	* wump/wump.c: Include <time.h>.
+
+	* wump/*: Update from NetBSD-current of 1997-12-12.
+	* wump/Makefile: Use -I../include; don't define path; don't use
+	libbsd or ncurses.
+	* substfiles: Include wump/pathnames.h.
+
+	* worms/worms.c (onsig): Mark unused parameter.
+
+	* worms/*: Update from NetBSD-current of 1997-12-12.
+	* worms/Makefile: Use -I../include; use BSD signal defines only.
+
+	* worm/worm.c: Mark unused parameters.
+
+	* worm/worm.6: Fix.
+
+	* worm/*: Update from NetBSD-current of 1997-12-12.
+	* worm/Makefile: Use -I../include; use BSD signal defines only.
+
+	* trek/warp.c (dowarp): Mark parameter as int.
+
+	* trek/abandon.c, trek/capture.c, trek/computer.c, trek/dcrept.c,
+	trek/destruct.c, trek/dock.c, trek/dumpgame.c, trek/help.c,
+	trek/impulse.c, trek/lrscan.c, trek/phaser.c, trek/play.c,
+	trek/rest.c, trek/setwarp.c, trek/torped.c, trek/visual.c,
+	trek/cgetc.c: Mark unused parameters.
+
+	* trek/*: Update from NetBSD-current of 1997-12-12.
+	* trek/Makefile: Use -I../include; don't use libbsd.
+
+	* tetris/tetris.c: Mark unused parameter.
+
+	* tetris/scores.c: Fix warnings.
+
+	* tetris/screen.c, tetris/screen.h: Make put return int.
+
+	* tetris/screen.c: Don't declare ospeed.
+
+	* tetris/*: Update from NetBSD-current of 1997-12-12.
+	* tetris/Makefile: Use -I../include; don't define paths; use BSD
+	signal defines only.
+	* substfiles: Include tetris/pathnames.h.
+
+	* snake/snake/snake.c, snake/snscore/snscore.c: Mark unused
+	parameters.
+
+	* snake/snake/snake.h, snake/snake/move.c: Make outch return int.
+
+	* snake/snake/snake.h, snake/snake/move.c: Don't declare ospeed.
+
+	* snake/*: Update from NetBSD-current of 1997-12-12.
+	* snake/snake/Makefile, snake/snscore/Makefile: Use
+	-I../../include; don't define paths; use BSD signal defines only.
+	* substfiles: Include snake/snake/pathnames.h.
+
+	* sail/pl_main.c, sail/pl_7.c, sail/player.h: Move screen
+	initialisation into initscreen(); no longer do echo() in
+	SCREENTEST().
+
+	* sail/sync.c: Include <sys/file.h> and <time.h>; mark int
+	parameter.
+
+	* sail/misc.c: Include <sys/file.h>, for flock().
+
+	* sail/game.c: Fix pointer/integer comparison warning.
+
+	* sail/dr_2.c: Mark int parameters as such.
+
+	* sail/player.h (SCREENTEST): Compare initscr() against NULL, not
+	ERR.
+
+	* sail/main.c, sail/pl_1.c, sail/pl_7.c: Mark unused parameters.
+
+	* sail/dr_2.c, sail/extern.h: Rename move to sail_move.
+
+	* sail/*: Update from NetBSD-current of 1997-12-12.
+	* sail/Makefile: Use -I../include; don't define paths; use BSD
+	signal defines only.
+	* substfiles: Include sail/pathnames.h
+
+	* rogue/save.c: Fix signed/unsigned warnings.
+
+	* rogue/monster.c, rogue/object.c, rogue/pack.c, rogue/room.c:
+	Mark int parameters as such.
+
+	* rogue/init.c: Mark unused parameters.
+
+	* rogue/*: Update from NetBSD-current of 1997-12-12.
+	* rogue/Makefile: Use -I../include; don't define path; use BSD
+	signal defines only.
+	* substfiles: Include rogue/pathnames.h.
+
+	* robots/move.c (get_move): Always initialise lastmove, to shut up
+	gcc.
+
+	* robots/main.c: Remove unused function __cputchar; mark unused
+	parameter.
+
+	* robots/move.c (get_move): Restore declaration of lastmove.
+
+	* robots/*: Update from NetBSD-current of 1997-12-12.
+	* robots/Makefile: Use -I../include; don't define path; use BSD
+	signal defines only.
+	* substfiles: Include robots/pathnames.h.
+
+	* Credits: List original authors.
+
+	* bsd-games.lsm: Update.
+
+	* NEWS: Update.
+
+	* INSTALL: Update.
+
+	* README.non-free: Update.
+
+	* README: Update.
+
+	* countmail/*: New game, from NetBSD-current of 1997-12-12.
+
+	* configure (install_script): New variable, avoid warnings about
+	stripping scripts.
+	* Makeconfig.in (INSTALL_SCRIPT): Define.
+	* caesar/Makefile, wargames/Makefile: Use $(INSTALL_SCRIPT).
+
+Fri Dec 19 14:37:56 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* TODO: Update.
+
+	* hunt/*: New port, replacing the old one, based on NetBSD-current
+	of 1997-12-12.
+	* substfiles: Update accordingly.
+	* configure, Makeconfig.in: No longer need to configure directory
+	for sockets.
+
+	* random/*: Update from NetBSD-current of 1997-12-12.
+	* random/Makefile: Use -I../include.
+
+	* rain/rain.c: Make fputchar return int, since this is what tputs
+	expects.  Also mark unused parameters.
+
+	* rain/*: Update from NetBSD-current of 1997-12-12.
+	* rain/Makefile: Use -I../include; don't use libbsd.
+	* substfiles: Don't include rain/rain.6.
+
+	* quiz/quiz.c (appdstr): Change NULL to '\0' to fix warning.
+
+	* quiz/*: Update from NetBSD-current of 1997-12-12.
+	* quiz/Makefile: Use -I../include; don't define paths.
+	* substfiles: Include quiz/pathnames.h.in.
+
+	* primes/*: Update from NetBSD-current of 1997-12-12.
+	* primes/Makefile: Use -I../include.
+
+	* include/sys/ttydefaults.h: New file, wrap <sys/ttydefaults.h> so
+	that individual games need not know that it is in glibc but not
+	libc5.
+	* hangman/getguess.c: Restore to NetBSD version since these
+	conditionals are no longer needed.
+
+	* lib/select.c: New file, emulate BSD select for games that need
+	it (I think only hunt), so that libbsd will not be needed at all
+	and games will work fine with libc6.
+
+Thu Dec 18 13:24:54 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* ppt/*: Update from NetBSD-current of 1997-12-12.
+	* ppt/Makefile: Use -I../include.
+
+	* pom/pom.c: Mark unused parameters.
+
+	* pom/*: Update from NetBSD-current of 1997-12-12.
+	* pom/Makefile: Use -I../include; don't use libbsd.
+	* include/tzfile.h: New file.
+
+	* pig/pig.c (main): Fix signed/unsigned warning.
+
+	* pig/*: Update from NetBSD-current of 1997-12-12.
+	* pig/Makefile: Use -I../include.
+
+	* phantasia/setup.c: Include <fcntl.h>; fix warnings; add
+	prototypes and function return types.
+
+	* phantasia/interplayer.c (dotampered): Avoid signed/unsigned
+	warning.
+
+	* phantasia/io.c (catchalarm): Mark unused parameter.
+
+	* phantasia/*: Update from NetBSD-current of 1997-12-12.
+	* phantasia/Makefile: Don't define paths; use BSD signal defines
+	only.
+	* substfiles: Include phantasia/pathnames.h.
+
+	* paranoia/paranoia.c: Include headers, add prototypes and
+	function return types; changes to avoid warnings.
+
+	* number/*: Update from NetBSD-current of 1997-12-12.
+	* number/Makefile: Use -I../include.
+
+	* morse/*: Update from NetBSD-current of 1997-12-12.
+	* morse/Makefile: Use -I../include.
+
+	* monop/cards.c: Avoid signed/unsigned warning.
+
+	* monop/monop.c (do_quit): Mark unused parameter.
+
+	* monop/*: Update from NetBSD-current of 1997-12-12.
+	* monop/Makefile: Use -I../include; don't define path; use BSD
+	signal defines only.
+	* substfiles: Include monop/pathnames.h.
+
+	* NEWS: Update; fix typo.
+
+	* mille/save.c: Include <time.h>.
+
+	* mille/mille.h, varpush.c: Use size_t for last argument of last
+	argument of varpush.
+
+	* mille/comp.c (calcmove): Avoid signed/unsigned warning.
+
+	* mille/mille.c (rub): Mark unused parameter.
+
+	* mille/*: Update from NetBSD-current of 1997-12-12.
+	* mille/Makefile: Use -I../include; don't use libbsd.
+	* substfiles: Don't include mille/mille.6, it's no longer needed.
+
+	* hangman/setup.c: Include <time.h>.
+
+	* hangman/main.c: Mark unused parameters.
+
+	* hangman/*: Update from NetBSD-current of 1997-12-12.
+	* hangman/Makefile: Use -I../include; don't define path; don't use
+	libbsd.
+	* substfiles: Include hangman/pathnames.h.
+
+Wed Dec 17 16:14:21 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* gomoku/pickmove.c: Fix signed/unsigned warnings; mark unused
+	parameter.
+
+	* gomoku/main.c: Include <time.h>; mark unused parameter.
+
+	* gomoku/*: Update from NetBSD-current of 1997-12-12.
+	* gomoku/Makefile: Use -I../include; use BSD signal defines only.
+
+	* fortune/strfile/strfile.c, fortune/fortune/fortune.c,
+	fortune/unstr/unstr.c: Changes to avoid warnings.
+
+	* fortune/*: Update from NetBSD-current of 1997-12-12.
+	* fortune/fortune/Makefile, fortune/strfile/Makefile,
+	fortune/unstr/Makefile: Use -I../../include; don't use libbsd;
+	don't define paths.
+	* substfiles: Include fortune/fortune/pathnames.h.
+
+	* fish/*: Update from NetBSD-current of 1997-12-12.
+	* fish/Makefile: Use -I../include.
+	* substfiles: Include fish/pathnames.h.
+
+	* primes/pr_tbl.c: Use __RCSID.
+
+	* factor/*: Update from NetBSD_current of 1997-12-12.
+	* factor/Makefile: Use -I../include.
+
+	* Makeconfig.in: Remove dm variables.
+
+	* dm/dm.c: Mark unused parameter.
+
+	* dm/pathnames.h.in: Undefine _PATH_LOG before defining it.
+
+	* dm/dm.8.in: Fix.
+
+	* dm/*: Update from NetBSD-current of 1997-12-12.
+	* dm/Makefile: Use -I../include; don't define paths.
+	* substfiles: Include dm/pathnames.h.
+
+Tue Dec 16 10:35:32 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* cribbage/io.c, cribbage/score.c: Avoid signed/unsigned warning;
+	mark unused parameters.
+
+	* cribbage/*: Update from NetBSD-current of 1997-12-12.
+	* cribbage/Makefile: Use -I../include; don't use libbsd or define
+	paths.
+	* substfiles: Include cribbage/pathnames.h.
+
+	* canfield/canfield/canfield.c: Include <time.h>; mark unused
+	parameters.
+
+	* canfield/*: Update from NetBSD-current of 1997-12-12.
+	* canfield/canfield/Makefile, canfield/cfscores/Makefile: Use
+	-I../../include.
+	* substfiles: Include canfield/canfield/pathnames.h.
+	* canfield/canfield/Makefile, canfield/cfscores/Makefile: Don't
+	define _PATH_SCORE; don't use libbsd.
+
+	* caesar/*: Update from NetBSD-current of 1997-12-12.
+	* caesar/Makefile: Use -I../include.
+	* caesar/rot13.in: Use "$@" instead of $*.
+
+	* boggle/boggle/mach.c: Mark unused parameters.
+
+	* boggle/boggle/bog.c: Changes to avoid warnings.
+
+	* boggle/mkindex/mkindex.c (main): Make it take no arguments,
+	since they are unused.
+
+	* boggle/mkdict/mkdict.c: Include <err.h>; other changes to avoid
+	warnings.
+
+	* boggle/*: Update from NetBSD-current of 1997-12-12.
+	* boggle/boggle/Makefile, boggle/mkdict/Makefile,
+	boggle/mkindex/Makefile: Use -I../../include.
+	* substfiles: Include boggle/boggle/bog.h.
+	* boggle/boggle/Makefile: Don't define paths.
+	* boggle/Makefile, boggle/README.linux: Update for change to bog.h.in.
+
+	* bcd/bcd.6: Fix.
+
+	* bcd/*: Update from NetBSD-current of 1997-12-12.
+	* bcd/Makefile: Use -I../include.
+
+	* battlestar/battlestar.6: Fix typo.
+
+	* battlestar/com6.c, battlestar/fly.c: Mark unused parameters.
+
+	* battlestar/*: Update from NetBSD-current of 1997-12-12.
+	* battlestar/Makefile: Use -I../include, and BSD signal defines
+	only.
+	* substfiles: Include battlestar/pathnames.h.
+	* battlestar/Makefile: Don't define _PATH_SCORE.
+
+Mon Dec 15 10:07:10 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* banner/Makefile: Use -I../include.
+
+	* banner/*: Update from NetBSD-current of 1997-12-12.
+
+	* TODO: Update.
+
+	* backgammon/common_source/subs.c (getarg): Check that an argument
+	is given to -s.
+
+	* backgammon/common_source/subs.c, backgammon/backgammon/main.c,
+	backgammon/teachgammon/teach.c: Mark unused parameters.
+
+	* backgammon/common_source/subs.c (addbuf): Make addbuf return an
+	int, since this is what tputs expects.
+	* backgammon/common_source/back.h: Likewise.
+
+	* backgammon/teachgammon/teach.c: Don't declare ospeed.
+
+	* backgammon/backgammon/main.c: Don't declare ospeed; include
+	<time.h>.
+
+	* backgammon/backgammon/Makefile,
+	backgammon/common_source/Makefile,
+	backgammon/teachgammon/Makefile: Use -I../../include.
+
+	* Makeconfig.in (BACKGAMMON_RULES): Remove.
+
+	* backgammon/*: Update from NetBSD-current of 1997-12-12; make
+	changes for no longer having simple game.
+
+	* atc/pathnames.h: Remove.
+	* atc/pathnames.h.in: New file, from NetBSD-current and
+	parametrised.
+	* substfiles: Substitute in this file.
+	* atc/Makefile: Don't define _PATH_GAMES and _PATH_SCORE any more.
+
+	* substfiles: New file - list of files created by substitution.
+	* configure, Makefile: Use this list.
+
+	* atc/log.c (log_score): Use nodename, not sysname.
+
+	* atc/grammar.y, atc/graphics.c, atc/log.c, atc/main.c,
+	atc/update.c: Mark unused parameters and add parameter types.
+
+	* atc/Makefile: Use -I../include and -DYY_NO_UNPUT.
+
+	* atc/*: Update from NetBSD-current of 1997-12-12.
+
+	* adventure/setup.c: Use __RCSID and __COPYRIGHT.
+
+	* include/sys/cdefs.h: Mark rcsid and copyright unused, so -Dlint
+	is not needed when using warnings.
+
+	* arithmetic/arithmetic.c (intr): Mark `dummy' unused.
+
+	* arithmetic/Makefile: Use -I../include.
+
+	* arithmetic/*: Update from NetBSD-current of 1997-12-12.
+
+	* adventure/init.c, adventure/subr.c, adventure/wizard.c: Add
+	argument types and mark unused arguments as
+	__attribute__((unused)).
+
+	* adventure/crc.c: Make step unsigned int.
+
+	* adventure/setup.c: Add prototype; include <err.h>.
+	* adventure/extern.h: Remove prototypes for setup.c.
+
+	* adventure/Makefile: Use -I../include.
+
+	* adventure/*: Update from NetBSD-current of 1997-12-12.
+
+	* include/signal.h: New file, wrapper to typedef sig_t without
+	needing <bsd/signal.h> for libc5.
+
+	* include/sys/cdefs.h: New file, wrapper to define __RCSID and
+	__COPYRIGHT.
+
+	* Makefile.bsd, Makefile.inc.bsd: Update from NetBSD-current of
+	1997-12-12.
+
+Wed Sep 24 13:44:06 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* caesar/caesar.c: Include <string.h> and <stdlib.h>; add
+	prototypes and function return types; remove old declarations.
+
+	* boggle/boggle/mach.c (winch_catcher): Don't ioctl(TIOCGWINSZ).
+
+	* boggle/boggle/bog.c: Add prototypes.
+
+	* boggle/mkdict/mkdict.c: Add prototypes.
+	* boggle/mkindex/mkindex.c: Add prototypes; include <stdlib.h>.
+
+	* boggle/README.linux: Update.
+
+	* INSTALL: Update.
+	* README: Update.
+	* README.non-free: Update.
+	* TODO: Update.
+	* bsd-games-non-free.lsm: Update.
+	* Makeconfig.in: Update.
+
+	* configure: Use boggle instead of bog; don't substitute in
+	bog.6.in.
+	* Makefile: Don't remove bog/bog.6.
+
+	* boggle/boggle/extern.h: Include <time.h> (for time_t).
+
+	* boggle/boggle/Makefile: Use BSD signal defines only.
+
+	* boggle/*: From NetBSD-current; merge in Linux changes from bog.
+
+	* atc/log.c, atc/update.c: Consistently use strchr and strrchr.
+	* atc/include.h [SYSV]: Remove #defines of index and rindex.
+
+	* bcd/bcd.c (printcard): Remove declaration of index(); use
+	strchr(); make p unsigned char.
+
+	* bcd/bcd.c: Include <stdlib.h>.
+
+	* bcd/bcd.c: Add prototypes and function return types.
+
+Sat Sep 13 21:08:53 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure: Fix spelling errors; some cleanup.
+
+Tue Sep  2 17:28:22 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure: Use empty man8dir if not building in dm or fortune.
+
+Sun Aug 24 10:33:08 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/*: Update from NetBSD-current of 1997-08-24.
+	* adventure/Makefile: Add dependency on extern.h.
+	* adventure/Makefile: Add definitions of __RCSID and __COPYRIGHT.
+
+	* fortune/*: Update from NetBSD-current of 1997-08-24.
+
+	* battlestar/fly.c: Include <unistd.h>.
+
+	* battlestar/fly.c (visual): Remove declaration of moveenemy().
+
+	* battlestar/save.c (restore): Remove declaration of getenv().
+	(save): Likewise.
+
+	* battlestar/getcom.c: Include "extern.h" for prototypes.
+
+	* battlestar/init.c: Include <unistd.h>.
+
+	* battlestar/init.c (initialize): Remove declaration of die().
+
+	* battlestar/com6.c (post): Remove declaration of ctime().
+
+	* battlestar/com1.c: Include <unistd.h> (for sleep).
+	* battlestar/com1.c (convert): Make i and j unsigned to avoid
+	warnings for comparison with unsigned.
+	* battlestar/com4.c (throw): Make n unsigned for the save reason.
+
+	* battlestar/extern.h, battlestar/parse.c, battlestar/room.c,
+	battlestar/save.c: Add prototypes and function return types.
+
+Sat Aug 23 21:17:20 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* battlestar/battlestar.c, battlestar/com1.c, battlestar/com2.c,
+	battlestar/com3.c, battlestar/com4.c, battlestar/com5.c,
+	battlestar/com6.c, battlestar/com7.c, battlestar/cypher.c,
+	battlestar/extern.h, battlestar/fly.c, battlestar/getcom.c,
+	battlestar/init.c, battlestar/misc.c: Add prototypes and function
+	return types.
+
+	* battlestar/extern.h: Don't conditionalise inclusion of
+	<stdlib.h>.
+
+Mon Aug 18 09:14:17 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* banner/banner.c: Add prototype for main().
+
+	* backgammon/common_source/Makefile,
+	backgammon/backgammon/Makefile, backgammon/teachgammon/Makefile:
+	Use BSD signal defines only.
+
+	* atc/include.h: Include <sys/stat.h> (for umask).
+
+	* atc/Makefile: Use BSD signal defines only.
+
+	* adventure/Makefile: Don't use BSD includes, defines or library
+	(works with SYSV signal semantics as well).
+
+	* configure: Ask for libc version; configure defines for BSD
+	signal semantics (-D__USE_BSD_SIGNAL, etc.).
+	* Makeconfig.in (BSD_SIGNAL_DEFS): New variable.
+
+	* backgammon/common_source/Makefile (clean): Remove sbackgammon.
+
+	* backgammon/common_source/fancy.c: Include <unistd.h>.
+
+	* backgammon/common_source/subs.c: Include <unistd.h>.
+
+	* backgammon/common_source/save.c: Include <unistd.h>.
+
+	* backgammon/common_source/fancy.c: Include <termcap.h>.
+
+	* backgammon/common_source/allow.c,
+	backgammon/common_source/back.h, backgammon/common_source/board.c,
+	backgammon/common_source/check.c,
+	backgammon/common_source/fancy.c, backgammon/common_source/odds.c,
+	backgammon/common_source/one.c, backgammon/common_source/save.c,
+	backgammon/common_source/subs.c, backgammon/common_source/table.c:
+	Add prototypes and function return types.
+
+Sun Aug 10 10:06:10 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/main.c (main): Include program name in `Unknown option'
+	error message.
+
+	* atc/include.h: Include <sys/wait.h>.
+
+	* atc/extern.h, atc/graphics.c, atc/input.c, atc/list.c,
+	atc/log.c, atc/main.c, atc/update.c: Add prototypes and function
+	return types.
+
+Sat Aug  9 16:36:17 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/extern.h, atc/grammar.y, atc/graphics.c, atc/input/c,
+	atc/update.c: Add prototypes and function return types.
+
+Thu Aug  7 12:01:56 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/include.h: Make inclusion of <unistd.h> unconditional;
+	remove unused defines of bcopy and bzero under SYSV.
+
+	* configure: Escape ` and ' when asking for .so or symlinks.
+
+	* configure, Makeconfig.in, atc/Makefile: Configure yacc and lex
+	programs using configure script.
+
+	* configure: Add note about placing of sockets.
+
+	* dm/README.linux: New file, mentions -DLOG.
+
+	* configure, Makeconfig.in, dm/Makefile: Configure log file for dm.
+
+Sun Jul 27 12:45:18 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* arithmetic/arithmetic.c: Include <stdlib.h> and <unistd.h>; add
+	function return types and prototypes; remove previous function
+	declarations.
+
+Sat Jul 26 20:17:49 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/crc.c: Add prototypes.
+
+	* adventure/setup.c (main): Add casts so as not to print a long
+	with an int format.
+
+	* adventure/io.c, adventure/setup.c: Add prototypes and function
+	return types.
+
+Fri Jul 25 12:48:04 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/wizard.c: Include <time.h>; remove declaration of
+	localtime().
+
+	* adventure/setup.c: Include <stdlib.h>.
+
+	* adventure/subr.c, adventure/wizard.c: Add some prototypes.
+
+	* adventure/save.c: Include <stdlib.h>.
+
+	* adventure/crc.c, adventure/io.c, adventure/save.c,
+	adventure/vocab.c, adventure/wizard.c: Add function return types.
+
+	* adventure/hdr.h: More prototypes.
+
+	* adventure/wizard.c (ran): Remove declaration of rand().
+
+	* adventure/hdr.h, adventure/init.c, adventure/wizard.c: Change
+	macro DECR and all uses so as not to need -traditional-cpp
+	* adventure/Makefile: Don't use -traditional-cpp.
+
+Thu Jul 24 19:30:35 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/init.c: Include <time.h> and <stdlib.h>; remove
+	declaration of time().
+
+	* adventure/init.c: Add argument to trapdel(); add prototype for
+	linkdata().
+
+	* adventure/main.c (main): Remove declaration of trapdel().
+
+	* adventure/main.c: Add prototype for main().
+
+	* adventure/hdr.h, adventure/main.c, adventure/save.c,
+	adventure/vocab.c: Change link to adv_link.
+
+	* adventure/main.c: Include <unistd.h>.
+
+	* adventure/io.c: Include <stdlib.h>.
+
+	* adventure/wizard.c: Include <stdio.h> and <stdlib.h>.
+
+	* adventure/vocab.c: Include <stdio.h> and <stdlib.h>.
+
+	* adventure/subr.c: Include <stdio.h> and <stdlib.h>.
+
+	* adventure/done.c: Include <stdio.h> and <stdlib.h>.
+
+	* adventure/done.c, adventure/init.c, adventure/io.c,
+	adventure/save.c, adventure/subr.c, adventure/vocab.c,
+	adventure/wizard.c: Add function return types.
+
+	* adventure/hdr.h: Add prototypes; remove declaration of malloc().
+
+Sat Jul 19 20:51:49 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure: Set empty man5dir if not building in dm.
+
+Thu Jul 17 16:41:29 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 1.5.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+Wed Jul 16 12:50:00 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* bsd-games.lsm: Update.
+
+	* NEWS: Update.
+
+	* Makefile (install): Create MAN5DIR.
+
+	* NEWS: Update.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+Tue Jul 15 15:57:06 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+	* TODO: Update.
+
+	* README.non-free: Update.
+
+	* README: Update.
+
+	* INSTALL: Update.
+
+	* rogue/machdep.c (md_slurp): Use tcflush() under Linux.
+
+	* rogue/Makefile (DEFS): Add UNIX_SYSV to get <time.h> included in
+	machdep.c.
+
+	* rogue/*: Added from NetBSD-current.
+	* rogue/Makefile: Renamed to Makefile.bsd.
+	* rogue/USD.doc/Makefile: Renamed to Makefile.bsd.
+	* rogue/Makefile: New file.
+	* rogue/rogue.6: Rename to rogue.6.in.
+	* rogue/rogue.6.in: Parametrise.
+	* configure: Ask for rogue scorefile; substitute in this file.
+	* Makefile: Remove rogue.6 in distclean.
+	* Makeconfig.in: Include ROGUE_SCOREFILE.
+	* rogue/pathnames.h: The path for the score file is in the
+	Makefile.
+
+Mon Jul 14 11:46:56 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* quiz/Makefile (clean): Add target.
+
+	* random/*: Added from NetBSD-current.
+	* random/Makefile: Renamed to Makefile.bsd.
+	* random/Makefile: New file.
+
+	* quiz/quiz.c (fgetln): Add implementation since Linux libc lacks
+	fgetln.
+
+	* quiz/*: Added from NetBSD-current.
+	* quiz/Makefile: Renamed to Makefile.bsd.
+	* quiz/Makefile: New file.
+	* quiz/datfiles/index: Rename to index.in.
+	* quiz/datfiles/index.in: Parametrise.
+	* quiz/quiz.6: Rename to quiz.6.in.
+	* quiz/quiz.6.in: Parametrise.
+	* configure: Ask for quiz directory; substitute in these files.
+	* Makeconfig.in (QUIZ_DIR): Add for quiz directory.
+	* Makefile: Remove index and quiz.6 in distclean.
+	* quiz/pathnames.h: Paths are defined in the Makefile.
+
+	* pig/*: Added from NetBSD-current.
+	* pig/Makefile: Renamed to Makefile.bsd.
+	* pig/Makefile: New file.
+
+	* phantasia/main.c (playinit): Add ICRNL to terminal modes if
+	using ncurses.
+
+	* phantasia/Makefile (install): Bug-fix.
+
+	* configure: Configure directory for phantasia.
+	* Makeconfig.in: Include PHANTASIA_DIR.
+	* phantasia/pathnames.h: Paths are defined in Makefile.
+	* phantasia/Makefile: Supply motd to setup.
+
+Sun Jul 13 18:28:52 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* phantasia/*: Added from NetBSD-current.
+	* phantasia/Makefile: Renamed to Makefile.bsd.
+	* phantasia/Makefile: New file.
+
+	* dm/dm.c (load): Add Linux-specific way of getting load average.
+
+	* dm/dm.8: Rename to dm.8.in.
+	* dm/dm.conf.5: Rename to dm.conf.5.in.
+	* dm/dm.8.in, dm/dm.conf.5.in: Parametrise.
+	* configure: Substitute in these files.
+	* Makefile: Remove dm.8 and dm.conf.5 in distclean.
+
+	* configure: Do additional configuration for dm.
+	* Makeconfig.in: Include these variables.
+	* install-man.in: Allow manual section 5.
+
+	* dm/*: Added from NetBSD-current.
+	* dm/Makefile: Renamed to Makefile.bsd.
+	* dm/Makefile: New file.
+
+	* TODO: Update.
+
+	* All games, except bog, hunt, and paranoia, now updated from
+	NetBSD-current of 1997-07-12.
+
+	* cribbage/*: Update from NetBSD-current of 1997-07-12.
+
+Fri Jul 11 19:09:24 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* bog/README.linux: Comply with licence conditions by including
+	patch from original bog.
+	* bog/Makefile (linux-patch): Create or update this patch.
+
+	* banner/*: Added from NetBSD-current.
+	* banner/Makefile: Renamed to Makefile.bsd.
+	* banner/Makefile: New file.
+
+	* atc/graphics.c (getAChar): Use SYSV method instead of BSD one
+	under Linux; change conditional on inclusion of <errno.h> to allow
+	for this.
+
+Thu Jun 12 20:32:57 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* adventure/*: Added from NetBSD-current.
+	* adventure/Makefile: Renamed to Makefile.bsd.
+	* adventure/Makefile: New file.
+
+Wed Jun 11 12:09:38 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Now builds with glibc without needing stray <bsd/*> headers.
+
+	* snake/snake/snake.c: Define MIN instead of including
+	<bsd/bsd.h>.
+
+	* pom/pom.c: With glibc, define isleap instead of including
+	<tzfile.h>.
+
+	* mille/Makefile: Remove dependency on unctrl.h.
+
+	* configure: Choose default for BSD-compat includes based on
+	whether /usr/include/bsd exists.
+
+Tue Jun 10 17:40:44 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* All games, with same exceptions as below, now updated from
+	NetBSD-current of 1997-06-07.
+
+	* cribbage/*, hangman/*, mille/*, robots/*, tetris/*: Update from
+	NetBSD-current of 1997-06-07.
+
+Fri Jun  6 22:19:38 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* README: Update.
+
+	* *.orig, */*.orig, */*/*.orig: Rename to *.bsd instead to avoid
+	conflicts with patch backups.
+
+Thu May 22 00:03:59 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* TODO: Update.
+
+	* README.non-free: Update.
+
+	* README: Update.
+
+Wed May 21 00:08:36 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* TODO: Update.
+
+	* README: Update.
+
+	* INSTALL: Update.
+
+	* Now builds with glibc.
+
+	* bog/mach.c (flushin): Use the flushinp() version.
+
+	* cribbage/extern.c: Change `bool' to `BOOLEAN'.
+
+	* atc/Makefile: Use -lfl instead of -ll.
+
+Tue May 20 00:26:52 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* All games, with same exceptions as below, now updated from
+	NetBSD-current of 1997-05-17.
+
+	* backgammon/backgammon/Makefile.orig,
+	backgammon/teachgammon/Makefile.orig, factor/Makefile.orig,
+	fortune/Makefile.orig, fortune/datfiles/Makefile.orig,
+	fortune/strfile/Makefile.orig, wargames/Makefile.orig: Update from
+	NetBSD-current of 1997-05-17.
+
+Mon May 19 00:50:37 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* All games, except bog, hunt and paranoia, now updated from
+	NetBSD-current of 1997-04-26.
+
+	* wump/*: Update from NetBSD-current of 1997-04-26.
+
+	* worms/Makefile (DEFS): Remove -DUSG which is no longer needed.
+
+	* worms/*: Update from NetBSD-current of 1997-04-26.
+
+	* worm/worm.c (process): Move the move to highlight head of worm
+	here from main().
+
+	* worm/*: Update from NetBSD-current of 1997-04-26.
+
+	* wargames/*: Update from NetBSD-current of 1997-04-26.
+
+Sun May 18 01:29:05 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* trek/README.linux: New file, mentions trek manual.
+
+	* trek/*: Update from NetBSD-current of 1997-04-26.
+
+	* tetris/screen.c (OXTABS): Define to XTABS.
+
+	* tetris/*: Update from NetBSD-current of 1997-04-26.
+
+Sat May 17 12:24:07 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* snake/snake/snake.c: Define CTRL.
+
+	* snake/snake/move.c: Include <unistd.h>; condition use of VDSUSP
+	on its being defined; define CTRL; define OXTABS.
+
+	* snake/*: Update from NetBSD-current of 1997-04-26.
+
+	* sail/pl_7.c: Don't include <sys/ttydefaults.h>.
+
+	* sail/Makefile: Change dependency on externs.h to extern.h.
+
+	* sail/*: Update from NetBSD-current of 1997-04-26.
+
+Thu May 15 15:09:59 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* robots/move.c: Don't include <sys/ttydefualts.h>; define CTRL.
+
+	* robots/*: Update from NetBSD-current of 1997-04-26.
+
+	* hangman/getguess.c: Fix sense of glibc test for
+	<sys/ttydefaults.h>.
+
+	* rain/rain.6: Rename to rain.6.in.
+	* rain/rain.6.in: Parametrise.
+	* configure: Substitute in this file.
+	* Makefile: Remove rain/rain.6 in distclean.
+
+	* rain/Makefile (DEFS): Remove -DUSG, as it's no longer needed.
+
+	* rain/*: Update from NetBSD-current of 1997-04-26.
+
+Wed May 14 23:27:32 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* primes/*: Update from NetBSD-current of 1997-04-26.
+
+	* ppt/*: Update from NetBSD-current of 1997-04-26.
+
+	* pom/*: Update from NetBSD-current of 1997-04-26.
+
+	* number/*: Update from NetBSD-current of 1997-04-26.
+
+	* morse/*: Update from NetBSD-current of 1997-04-26.
+
+	* monop/*: Update from NetBSD-current of 1997-04-26.
+
+Mon May 12 02:08:53 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* mille/misc.c (CTRL): Define.
+
+	* mille/*: Update from NetBSD-current of 1997-04-26.
+
+Wed May  7 00:15:09 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 1.4.
+
+	* Makefile, caesar/Makefile: Disable test in caesar (as it depends
+	on rot13ed fortunes).
+
+	* NEWS: Update.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+	* hangman/getguess.c (readch): Change curx to _curx, cury to _cury
+	if using ncurses.
+
+	* hangman/getguess.c: Don't include <sys/ttydefaults.h>; define
+	CTRL.
+
+	* hangman/*: Update from NetBSD-current of 1997-04-26.
+
+	* fortune/README.linux: Update.
+
+	* fortune/datfiles/Makefile: Update for more fortune collections.
+
+	* configure: Ask whether to install offensive fortunes.
+	* Makeconfig.in: Provide FORTUNE_TYPE.
+
+	* fortune/*: Update from NetBSD-current of 1997-04-26.
+
+Tue May  6 00:53:04 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fish/*: Update from NetBSD-current of 1997-04-26.
+
+	* Version 1.3.4beta.
+
+	* NEWS: Update.
+
+	* bsd-games-non-free.lsm: Update.
+
+	* bsd-games.lsm: Update.
+
+	* README: Update.
+
+	* configure, tetris/Makefile: Consistently use tetris-bsd for
+	files associated with tetris.
+
+	* INSTALL: Update.
+
+	* factor/*: Update from NetBSD-current of 1997-04-26.
+
+	* cribbage/*: Update from NetBSD-current of 1997-04-26.
+
+Mon May  5 02:23:05 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* canfield/*: Update from NetBSD-current of 1997-04-26.
+
+	* caesar/caesar.6: Mention rot13.
+
+	* caesar/Makefile: Install rot13 and manpage link.
+
+	* caesar/rot13.sh: Rename to rot13.in.
+	* caesar/rot13.in: Parametrise to use full path of caesar.
+	* configure: Substitute in this file.
+	* Makefile: Remove rot13 in distclean.
+
+	* caesar/*: Update from NetBSD-current of 1997-04-26.
+
+	* bcd/*: Update from NetBSD-current of 1997-04-26.
+
+	* battlestar/com6.c (post): Change to use time() in line with
+	comments.
+
+	* battlestar/Makefile: Change dependency on externs.h to extern.h.
+
+	* battlestar/*: Update from NetBSD-current of 1997-04-26.
+
+	* backgammon/common_source/Makefile: Quote value of RULES; only
+	define when building sbackgammon.
+
+	* backgammon/backgammon/Makefile, backgammon/teachgammon/Makefile:
+	Don't include RULES in DEFS.
+
+	* backgammon/Makefile: Don't include ../Makeconfig.
+
+	* backgammon/common_source/back.h (OXTABS): Define to XTABS if not
+	defined (from glibc headers).
+
+	* backgammon/*: Update from NetBSD-current of 1997-04-26.
+
+Sun May  4 01:55:22 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/common_source/subs.c: Initialise `buffnum' to -1, to
+	prevent a spurious NUL.
+	* backgammon/common_source/fancy.c: Mark `buffnum' as `extern'.
+
+Sat May  3 00:27:49 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 1.3.3beta.
+
+	* NEWS: Update.
+	* bsd-games.lsm: Update.
+	* bsd-games-non-free.lsm: Update.
+
+	* sail/player.h (SCREENTEST): Do echo(), since ncurses turns off
+	echo in initscr but we want it on for initial questions.
+
+	* backgammon/teachgammon/ttext1.c: Remove \032 from `hello'.
+
+	* backgammon/teachgammon/ttext2.c: Make list `char *list[]'.
+
+	* configure: Default list of directories should only include those
+	with a Makefile.
+
+	* README.non-free: Update.
+
+	* README: Update.
+
+	* INSTALL: Update.
+
+	* Version 1.3.2beta.
+
+	* NEWS: Update.
+
+	* TODO: Update.
+
+	* Makefile.orig, Makefile.inc.orig: Update from NetBSD-current of
+	1997-04-26.
+
+	* Makefile (distclean): Remove install-score.
+
+Fri May  2 13:23:28 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/*: Update from NetBSD-current of 1997-04-26.
+
+	* arithmetic/*: Update from NetBSD-current of 1997-04-26.
+
+	* worm/worm.c (main): Place cursor on head of worm.
+
+	* snake/snake/snake.c (mainloop): Place cursor on you, not one
+	cell to the left and above.
+
+	* backgammon/common_source/init.c,
+	backgammon/common_source/back.h: Initialise args to start with
+	'-'.
+
+	* bsd-games-non-free.lsm: New file - LSM entry for
+	bsd-games-non-free.
+
+	* bsd-games.lsm: Update.
+
+	* INSTALL: Update.
+
+	* README.linux: Rename to README.
+	* README: Update.
+
+	* README.non-free: New file - README for non-free distribution.
+
+	* fortune/README.linux: Update.
+
+	* bog/README.linux: Update.
+
+Thu May  1 00:45:58 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/Makefile, battlestar/Makefile, canfield/canfield/Makefile,
+	cribbage/Makefile, robots/Makefile, sail/Makefile,
+	snake/snake/Makefile, tetris/Makefile: Use INSTALL_SCORE_FILE.
+
+	* tetris/Makefile (install): Use INSTALL_SCORE_GAME.
+
+	* configure, Makeconfig.in: Update for this.
+
+	* install-score.in: New file - install a score file.
+
+	* TODO: Update.
+
+	* INSTALL: Update.
+
+	* README.linux: Update.
+
+	* arithmetic/README.linux, atc/README.linux,
+	battlestar/README.linux, bcd/README.linux, caesar/README.linux,
+	canfield/README.linux, cribbage/README.linux, factor/README.linux,
+	fish/README.linux, hangman/README.linux, mille/README.linux,
+	monop/README.linux, morse/README.linux, number/README.linux,
+	paranoia/README.linux, pom/README.linux, ppt/README.linux,
+	primes/README.linux, rain/README.linux, robots/README.linux,
+	sail/README.linux, snake/README.linux, trek/README.linux,
+	wargames/README.linux, worm/README.linux, worms/README.linux,
+	wump/README.linux: Remove.
+
+	* fortune/fortune/Makefile: Remove unused definition.
+
+	* configure, Makeconfig.in, atc/Makefile, backgammon/Makefile,
+	backgammon/backgammon/Makefile, backgammon/common_source/Makefile,
+	backgammon/teachgammon/Makefile, battlestar/Makefile,
+	bog/Makefile, bog/bog.6.in, canfield/Makefile,
+	canfield/canfield/Makefile, canfield/cfscores/Makefile,
+	canfield/canfield/canfield.6.in, cribbage/Makefile,
+	cribbage/cribbage.6.in, fish/Makefile, hangman/Makefile,
+	hangman/hangman.6.in, monop/Makefile, monop/monop.6.in,
+	robots/Makefile, robots/robots.6.in, sail/Makefile,
+	snake/Makefile, snake/snake/Makefile, snake/snake/snake.6.in,
+	snake/snscore/Makefile, tetris/Makefile, tetris/tetris.6.in,
+	wump/Makefile: Configure paths for data files for individual games
+	with configure script.
+
+	* configure: Find default list of games to build from what
+	directories are present.
+
+	* Version 1.3.1beta privately distributed for comments.
+
+	* NEWS: New file - summary of changes.
+
+	* TODO: Update.
+
+	* README.linux: Update.
+
+	* INSTALL: Update.
+
+	* tetris/Makefile: Install manual page as tetris-bsd.6.
+
+	* bsd-games.lsm: Update.
+
+Wed Apr 30 00:45:55 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* INSTALL: Update.
+
+	* TODO: Update.
+
+	* bsd-games.lsm: Update.
+
+	* wump/Makefile (install): Use INSTALL_PREFIX.
+
+	* canfield/canfield/Makefile (install): Use INSTALL_PREFIX.
+
+	* Makefile (install): Fix typo.
+
+	* rain/Makefile: Add target `all'; fix dependencies.
+
+	* ppt/Makefile: Add target `all'.
+
+	* pom/Makefile: Add target `all'.
+
+	* paranoia/Makefile: Add target `all'.
+
+	* number/Makefile: Add target `all'.
+
+	* morse/Makefile: Add target `all'.
+
+	* fish/Makefile: Add target `all'.
+
+	* factor/Makefile: Add target `all'.
+
+	* caesar/Makefile: Add target `all'.
+
+	* bcd/Makefile: Add target `all'.
+
+	* arithmetic/Makefile: Add target `all'.
+
+	* snake/snake/snake.h: Use <sgtty.h> instead of <bsd/sgtty.h>.
+
+Tue Apr 29 10:37:00 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Makefile (distclean): Delete all substituted-in manpages.
+
+	* fortune/fortune/Makefile, fortune/datfiles/Makefile: Fortunes go
+	under $(LIBDIR), not $(SHAREDIR).
+
+	* TODO: Update.
+
+	* Credits: Update.
+
+	* Debian patch (1.3-7), and David Frey's ports, now integrated
+	into the source, at least where I thought the fixes were correct
+	and needed.
+
+	* gomoku/pickmove.c: Include <limits.h> instead of
+	<machine/limits.h> (from David Frey's port).
+
+	* gomoku/gomoku.h: Include <endian.h> (from David Frey's port).
+
+	* gomoku/Makefile: Rename to Makefile.orig
+	* gomoku/Makefile: New from port by David Frey; rewrite to use
+	config information; fix dependencies.
+
+	* configure: Add gomoku to list of directories to build in.
+
+	* gomoku/*: Added from NetBSD-current, for adding port from David
+	Frey.
+
+	* tetris/tetris.6: Rename to tetris.6.in.
+	* tetris/tetris.6.in: Parametrise.
+	* configure: Substitute in this file.
+
+	* tetris/pathnames.h: Path to score file is defined in the
+	Makefile.
+
+	* tetris/Makefile: Rename to Makefile.orig.
+	* tetris/Makefile: New from port by David Frey; rewrite to use
+	config information; fix dependencies.
+
+	* configure: Add tetris to list of directories to build in.
+
+	* tetris/*: Added from FreeBSD-current (as a basis to include port
+	from David Frey <david@eos.lugs.ch>).
+
+Mon Apr 28 12:22:57 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* wump/README.linux: Update.
+
+	* wump/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* worms/worms.c (main): Include <sys/ioctl.h> (from Debian).
+
+	* worms/worms.6: Change -length to -l, -number to -n (from
+	Debian).
+
+	* worms/README.linux: Update.
+
+	* worms/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* worm/worm.c: Include <termios.h> (from Debian); don't define
+	baudrate().
+
+	* worm/README.linux: Update.
+
+	* worm/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* wargames/README.linux: Update.
+
+	* wargames/Makefile: Rewrite to use config information.
+
+	* wargames/wargames.sh: Remove.
+	* wargames/wargames: Change `tput cl' to `tput clear'.
+
+	* trek/trek.6: Rename to trek.6.in.
+	* trek/trek.6.in: Parametrise.
+	* configure: Substitute in this file.
+
+	* trek/README.linux: Update.
+
+	* trek/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* snake/snscore/snscore.c (main): Initialise noplayers; check for
+	empty scorefile (from Debian).
+
+	* snake/snscore/snscore.c (MAXPLAYERS): Increase to 65534 (from
+	Debian).
+
+	* snake/snake/snake.6: Rename to snake.6.in.
+	* snake/snake/snake.6.in: Parametrise.
+	* configure: Substitute in this file.
+
+	* snake/snscore/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* snake/snake/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* snake/README.linux: Update.
+
+	* snake/Makefile: Rewrite to use config information; use `set -e'
+	in compound commands.
+
+Sun Apr 27 00:02:40 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* sail/pl_7.c (susp): Don't call tstp (from Debian).
+
+	* sail/player.h: Mark `version' as `extern'.
+
+	* sail/externs.h: Mark variables as `extern'.
+
+	* sail/driver.h: Mark `dtab' as `extern'.
+
+	* sail/player.h: Change <ncurses.h> to <curses.h>.
+
+	* sail/externs.h: Don't include <bsd/signal.h>.
+
+	* sail/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* robots/init_field.c (init_field), robots/move.c (get_move):
+	Don't call flushok.
+
+	* robots/main.c (quit): Condition out bit using CE (from Debian).
+
+	* robots/robots.h, robots/move.c: Use character constants as
+	argument to CTRL macro.
+
+	* robots/robots.6: Rename to robots.6.in.
+	* robots/robots.6.in: Parametrise.
+	* configure: Substitute in this file.
+
+	* robots/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* rain/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* rain/rain.c: Include <sys/ioctl.h> (from Debian).
+
+	* factor/Makefile: Build pr_tbl.o in current directory, not in
+	primes directort.
+
+	* primes/README.linux: Update.
+
+	* primes/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* ppt/README.linux: Update.
+
+	* ppt/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* battlestar/Makefile (install): Add use of $(HIDE_GAME).
+
+	* pom/pom.c (main): Return 0.
+
+	* pom/README.linux: Update.
+
+	* pom/pom.c: Define isleap only if not defined; condition
+	definition of PI on PI rather than linux not being defined;
+	improve value of PI.
+
+	* pom/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* paranoia/paranoia.c (page40): Remove backslash from invalid "\`"
+	escape sequence.
+
+	* paranoia/README.linux: Update.
+
+	* paranoia/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* hide-game.in: Use installation prefix.
+
+	* number/README.linux: Update.
+
+	* number/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* morse/README.linux: Update.
+
+	* morse/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* monop/README.linux: Update.
+
+	* monop/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* hangman/Makefile, hunt/Makefile, mille/Makefile: Add use of
+	$(HIDE_GAME).
+
+	* monop/monop.6: Rename to monop.6.in.
+	* monop/monop.6.in: Parametrise.
+	* configure: Substitute in this file.
+
+Sat Apr 26 19:10:52 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* mille/README.linux: Update.
+
+	* mille/init.c (newscore): Add force_counter hack from Debian to
+	fix problem with ncurses's addch not returning ERR at EOL.
+
+	* mille/unctrl.h: Do nothing if NCURSES_VERSION is defined.
+
+	* mille/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* mille/mille.6: Rename to mille.6.in.
+	* mille/mille.6.in: Parametrise
+	* configure: Substitute in this file.
+
+	* hunt/README.linux: Update.
+
+	* hunt/Makefile: Rewrite to use config information.
+
+	* hunt/otto.c (SCREEN): Define appropriately for ncurses,
+	conditional on NCURSES_VERSION (from Debian).
+
+	* hunt/pathname.c: Change socket directory to _PATH_SOCKETS (to be
+	defined in the Makefile).
+
+	* hunt/driver.c (init): Conditionally use /var/tmp instead of
+	/usr/tmp.
+
+	* hunt/faketalk.c (faketalk): Fix typo (`stmp' for `smtp').
+
+	* hunt/hunt.6: Rename to hunt.6.in.
+	* hunt/huntd.6: Rename to huntd.6.in.
+	* hunt/hunt.6.in: Parametrise.
+	* hunt/huntd.6.in: Parametrise.
+	* configure: Substitute in these files.
+
+	* hangman/README.linux: Update.
+
+	* hangman/hangman.6: Rename to hangman.6.in.
+	* hangman/hangman.6.in: Parametrise.
+	* configure: Substitute in this file.
+
+	* hangman/clean.pl, hangman/util, hangman/util.cc: Remove.
+
+	* hangman/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+Thu Apr 24 00:02:10 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* fortune/fortune/Makefile: Don't keep rebuilding fortune.test.
+
+	* fortune/Makefile: Remove fortunes symlink in clean.
+
+	* fortune/unstr/unstr.c: Don't typedef off_t.
+
+	* fortune/fortune/fortune.c: Conditionally define d_namlen to
+	d_reclen.
+
+	* fortune/strfile/strfile.c: Don't typedef off_t, or undefine
+	MAXPATHLEN.
+
+	* fortune/unstr/Makefile: Rewrite to use config information.
+
+	* fortune/strfile/Makefile: Rewrite to use config information.
+
+	* fortune/fortune/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* fortune/datfiles/Makefile: Rewrite to use config information.
+
+	* fortune/Makefile: Rewrite.
+
+	* fish/README.linux: Update.
+
+	* fish/fish.c (nrandom): Condition out declaration of random()
+	(from Debian).
+
+	* fish/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* factor/README.linux: Update.
+
+	* factor/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+Wed Apr 23 00:03:24 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* cribbage/cribbage.6: Rename to cribbage.6.in.
+	* cribbage/cribbage.6.in: Parametrise; add mention of score file
+	and instructions file.
+	* configure: Substitute in this file.
+
+	* cribbage/README.linux: Update.
+
+	* cribbage/crib.c, cribbage/extern.c, cribbage/io.c,
+	cribbage/support.c: Change conditional inclusion of ncurses.h or
+	curses.h to unconditional inclusion of curses.h (ncurses provides
+	curses.h in the appropriate directory, used with -I if needed, but
+	ncurses.h is non-standard).
+
+	* cribbage/instr.c (instructions): Change `pstat' to an int; use
+	WEXITSTATUS macro (from Debian).
+
+	* cribbage/extern.c: Change `bool' to `BOOLEAN' (from Debian).
+
+	* cribbage/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* canfield/cfscores/Makefile: Don't use unnecessary libraries.
+
+	* canfield/Makefile, canfield/canfield/Makefile,
+	canfield/cfscores/Makefile: Fix quoting of SCOREFILE.
+
+	* canfield/README.linux: Update.
+
+	* canfield/canfield/canfield.6: Rename to canfield.6.in.
+	* canfield/canfield/canfield.6.in: Parametrise.
+	* configure: Substitute in canfield/canfield/canfield.6.in.
+
+	* canfield/cfscores/Makefile: Rewrite to use config information.
+
+	* canfield/canfield/Makefile: Rewrite to use config information.
+
+	* canfield/Makefile: Rewrite to use config information; use `set
+	-e' in compound commands.
+
+Tue Apr 22 00:08:42 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* caesar/README.linux: Update.
+
+	* caesar/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* bog/README.linux: Update.
+
+	* bog/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* bog/bog.man: Rename to bog.6.in.
+	* bog/bog.6.in: Include parametrised file locations.
+	* configure: Substitute in this file.
+
+	* arithmetic/Makefile, atc/Makefile,
+	backgammon/backgammon/Makefile, backgammon/teachgammon/Makefile,
+	bcd/Makefile: Use $(HIDE_GAME).
+
+	* hide-game.in: Use `set -e'.
+
+	* configure: Ask for permissions on dm (not included yet, but
+	supported for when it is ported).
+	* Makeconfig.in (INSTALL_DM): Provide macro for this.
+
+	* arithmetic/Makefile, atc/Makefile,
+	backgammon/backgammon/Makefile, backgammon/common_source/Makefile,
+	backgammon/teachgammon/Makefile, battlestar/Makefile,
+	bcd/Makefile: Use LDFLAGS in link.
+
+	* bcd/README.linux: Update.
+
+	* bcd/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+	* install-man.in: Set owner/group/permissions on .so pages.
+
+	* battlestar/fly.c (visual): Check return of initscr() against
+	NULL rather than ERR to eliminate warning (although initscr()
+	should exit in event of error).  Also comment out call to
+	savetty().
+	* battlestar/fly.c (endfly): Add call to setvbuf() to restore line
+	buffering on stdout, since ncurses changes buffering but doesn't
+	restore it.
+
+	* battlestar/save.c: Do exit(1) on failed restore; close file at
+	the end of restore() and save().
+
+	* battlestar/externs.h: Conditionally include <stdlib.h> and
+	<string.h>.
+
+	* battlestar/dayfile.c (dayfile): Spelling corrections.
+	* battlestar/nightfile.c (nightfile): Spelling corrections.
+
+	* battlestar/cypher.c (cypher): Fix many tests on *objsht[n] that
+	should be on objsht[n]; initialise `wordtype' correctly in TAKE
+	when doing a `take all'.
+
+	* battlestar/com5.c (give): Initialise `last1' and `last2' to
+	avoid a segfault if you start the game with `give'.
+
+	* battlestar/com3.c (shoot): Initialise `firstnumber' to avoid
+	segfault from `shoot all' without a laser.
+
+	* battlestar/com2.c (use): Set notes[CANTSEE] to 0 when moving
+	into the light.
+
+	* battlestar/battlestar.c: Change exit() to exit(1) in default
+	case that shouldn't occur.
+
+	* battlestar/externs.h: Mark as `extern' variables initialised
+	somewhere.
+
+	* battlestar/fly.c: Change <bsd/signal.h> to <signal.h>.
+
+	* battlestar/README.linux: Update.
+
+	* battlestar/Makefile: Rewrite to use config information; fix
+	dependencies.
+
+Mon Apr 21 22:19:28 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* configure: New variable `chown_vardata' to set owner/group on
+	variable data only if appropriate.
+	* Makeconfig.in: Use this variable.
+
+Sat Apr 19 20:06:08 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/Makefile: Add missing semi-colon, and `cd ..'s.
+
+	* backgammon/common_source/subs.c (getarg): Check s[0] for being
+	NULL (from Debian).
+
+	* backgammon/backgammon/main.c, backgammon/backgammon/move.c,
+	backgammon/backgammon/text.c, backgammon/commmon_source/back.h,
+	backgammon/common_source/board.c, backgammon/teachgammon/teach.c,
+	backgammon/teachgammon/ttext1.c, backgammon/teachgammon/ttext2.c:
+	Change `raw' to `bg_raw', and `remove' to `removetxt' (from
+	Debian).
+
+	* backgammon/teachgammon/teach.c: Mark variables as `extern'.
+
+	* backgammon/teachgammon/teach.c: Change `ospeed' to `short'.
+
+	* backgammon/backgammon/main.c: Mark `instr' and `message' as
+	`extern'.  Also change `ospeed' from `char' to `short' (from
+	Debian).
+
+	* backgammon/common_source/back.h: Mark as `extern' variables
+	initialised in init.c.
+
+	* backgammon/common_source/back.h,
+	backgammon/common_source/init.c: Don't condition on linux for
+	including <bsd/sgtty.h> or <sgtty.h>, since redundant with
+	-I/usr/include/bsd.
+
+	* backgammon/README.linux: Update.
+
+	* atc/Makefile, backgammon/backgammon/Makefile,
+	backgammon/teachgammon/Makefile: Consistently use $(INCS) in
+	compilation rules.
+
+	* backgammon/common_source/Makefile: Rewrite to use config
+	information; fix dependencies.
+
+	* backgammon/backgammon/backgammon.6.in: Include teachgammon in
+	manpage (from Debian).
+	* backgammon/teachgammon/Makefile: Install .so link or symlink to
+	backgammon manpage.
+
+Fri Apr 18 11:02:30 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* install-man.in: New file to handle all the manpage installation
+	complexities.
+	* configure, Makeconfig.in, arithmetic/Makefile, atc/Makefile,
+	backgammon/backgammon/Makefile: Use this new script.
+
+	* backgammon/backgammon/Makefile, backgammon/teachgammon/Makefile:
+	Rewrite to use config information; fix dependencies.
+
+	* backgammon/backgammon/backgammon.6: Rename to backgammon.6.in.
+	* backgammon/backgammon/backgammon.6.in: Parametrise reference to
+	teachgammon.
+	* configure: Substitute in backgammon/backgammon/backgammon.6.in.
+
+	* backgammon/Makefile: Rewrite to use config information.
+
+	* atc/README.linux: Update.
+
+	* atc/main.c (main): Add CRMOD to terminal flags, since ncurses
+	1.9.9g (3.4) and 4.0 disable CR-NL translation.
+
+Thu Apr 17 12:31:00 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* atc/Makefile: Rewrite to use config information; fix
+	dependencies; fix libraries and installation of games (from
+	Debian).
+
+	* atc/include.h: Remove conditional inclusion of <bsd/signal.h>,
+	as it's redundant with -I/usr/include/bsd.
+
+	* atc/def.h: Change #ifndef linux to #ifndef PI for definition of
+	PI (from Debian).  Also improve accuracy of value.
+
+	* arithmetic/arithmetic.c: include <time.h>; remove declaration of
+	time().
+
+	* Makeconfig.in (CC): Add new macro.
+
+	* arithmetic/Makefile: Rewrite to use config information; fix
+	dependencies.
+	* arithmetic/README.linux: Update.
+
+	* Makeconfig.in (BUILDDIRS): Add new macro.
+	* configure: Always substitute for sbindir, socketdir and
+	usrbindir, even if not building relevant programs (so that we can
+	always create them).
+	* Makefile: Essentially complete rewrite to use configuration
+	information; allow installation prefix and use install -d instead
+	of mkdir -p as per Debian patch.  Also use set -e in all compound
+	commands.
+
+	* Makeconfig.in (INSTALL_SCORE_FILE2, INSTALL_SCORE_FILE3): Fix
+	commands for installing score files.
+
+	* configure, Makeconfig.in: Add configuration of socketdir, for
+	hunt to place its Unix domain sockets in.
+
+Wed Apr 16 21:31:18 1997  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* BSD-games.src.lsm: Remove.
+	* bsd-games.lsm: New file - new-style LSM entry.
+
+	* configure, Makeconfig.in, hide-game.in: New files - beginnings
+	of a configuration system.
+
+	* CHANGELOG: Rename to ChangeLog.0.
+	* ChangeLog: New file.
+
+	* BSD-games.bin.lsm: Remove.
+
+	* New maintainer.
+
+See ChangeLog.0 for earlier changes.
