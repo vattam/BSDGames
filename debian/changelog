@@ -1,3 +1,9 @@
+bsdgames (2.10-3) unstable; urgency=low
+
+  * Modified asian capitals quiz with some corrections. Closes: #62078 
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  9 Apr 2000 15:16:40 -0700
+
 bsdgames (2.10-2) unstable; urgency=low
 
   * Fixed countmail man page, Closes: #61846 
