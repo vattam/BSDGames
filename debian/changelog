@@ -1,3 +1,10 @@
+bsdgames (2.12-4) unstable; urgency=low
+
+  * Added real dependancy alternate (lintian).
+  * Debhelper v3.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 10 Feb 2001 00:24:27 -0800
+
 bsdgames (2.12-3) unstable; urgency=low
 
   * Corrected snake's usage message, Closes: #84852
