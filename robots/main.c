@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.11 1999/09/12 09:02:22 jsm Exp $	*/
+/*	$NetBSD: main.c,v 1.12 1999/10/04 23:27:02 lukem Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1980, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: main.c,v 1.11 1999/09/12 09:02:22 jsm Exp $");
+__RCSID("$NetBSD: main.c,v 1.12 1999/10/04 23:27:02 lukem Exp $");
 #endif
 #endif /* not lint */
 
@@ -187,7 +187,7 @@ main(ac, av)
 				sleep(1);
 			refresh();
 		}
-	  	Num_games = 1;
+		Num_games = 1;
 	} while (!Auto_bot && another());
 	quit(0);
 	/* NOTREACHED */
