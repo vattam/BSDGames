@@ -1,3 +1,10 @@
+bsdgames (2.12-7) unstable; urgency=low
+
+  * Modified all the rest of the menu items that need a pause after
+    running. Also fixed bashisms in the pause code..
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 11 May 2001 16:19:13 -0400
+
 bsdgames (2.12-6) unstable; urgency=low
 
   * Pause after tetris-bsd exits when run from the menu, to give a chance

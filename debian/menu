@@ -1,17 +1,17 @@
 ?package(bsdgames):needs="text" section="Apps/Educational" \
-	title="Arithmetic Quiz" command="/usr/games/arithmetic"
+	title="Arithmetic Quiz" command="sh -c '/usr/games/arithmetic;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Simulation" \
 	title="Air Traffic Controller" \
-	command="sh -c '/usr/games/atc ; echo;echo PRESS ENTER;read'"
+	command="sh -c '/usr/games/atc ; echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
-	title="Battlestar" command="/usr/games/battlestar"
+	title="Battlestar" command="sh -c '/usr/games/battlestar;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Canfield" command="/usr/games/canfield"
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Cribbage" command="/usr/games/cribbage"
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Go Fish" \
-	command="sh -c '/usr/games/fish;echo;echo PRESS ENTER;read'"
+	command="sh -c '/usr/games/fish;echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Mille Bournes" command="/usr/games/mille"
 ?package(bsdgames):needs="text" section="Games/Board" \
@@ -25,18 +25,18 @@
 ?package(bsdgames):needs="text" section="Games/Simulation" \
 	title="Sail" command="/usr/games/sail"
 ?package(bsdgames):needs="text" section="Games/Arcade" \
-	title="Snake" command="/usr/games/snake"
+	title="Snake" command="sh -c '/usr/games/snake;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Arcade" \
 	title="Star Trek" command="/usr/games/trek"
 ?package(bsdgames):needs="text" section="Games/Arcade" \
-	title="Worm" command="/usr/games/worm"
+	title="Worm" command="sh -c '/usr/games/worm;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Screen/Save/Text" \
 	title="Worms" command="/usr/games/worms"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
 	title="Hunt the Wumpus" command="/usr/games/wump"
 ?package(bsdgames):needs="text" section="Games/Tetris-like" \
 	title="Bsd Tetris" \
-	command="sh -c '/usr/games/tetris-bsd;echo;echo PRESS ENTER;read'"
+	command="sh -c '/usr/games/tetris-bsd;echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Board" \
 	title="Gomoku" \
 	command="/usr/games/gomoku"
