@@ -1,3 +1,11 @@
+bsdgames (2.9-2) unstable; urgency=low
+
+  * Build deps. Boggle is now forced to always build with wgenlish as it's
+    word list, for consitency. Unfortunatly, it cannot use the currnelt
+    install word list because it hashes it at install time.
+
+ -- Joey Hess <joeyh@debian.org>  Sat,  4 Dec 1999 00:13:01 -0800
+
 bsdgames (2.9-1) unstable; urgency=low
 
   * New upstream version.

@@ -1,8 +1,9 @@
 Source: bsdgames
 Section: games
 Priority: optional
+Build-Depends: debhelper, libncurses4-dev, flex, bison, wenglish
 Maintainer: Joey Hess <joeyh@debian.org>
-Standards-Version: 3.1.1.0
+Standards-Version: 3.1.1.1
 
 Package: bsdgames
 Architecture: any
@@ -10,8 +11,8 @@ Depends: ${shlibs:Depends}
 Conflicts: bsdgames-nonfree (<< 2.5)
 Replaces: bsdgames-nonfree (<< 2.5)
 Description: collection of text games from BSD systems
- This is a collection of some of the text-based games and amusements that are 
- common on BSD systems.
+ This is a collection of some of the text-based games and amusements that have
+ been enjoyed for decades on unix systems.
  .
  Includes these programs: adventure, arithmetic, atc, backgammon, battlestar,
  bcd, boggle, caesar, canfield, countmail, cribbage, fish, gomoku, hangman,

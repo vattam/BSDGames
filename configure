@@ -1,5 +1,31 @@
 #!/bin/sh
-# configure - home-grown configuration script for bsd-games
+# configure - home-grown configuration script for bsd-games.
+#
+# Copyright (c) 1997, 1998, 1999 Joseph Samuel Myers.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
 
 # Default paths follow Filesystem Hierarchy Standard version 2.0.
 
@@ -93,6 +119,32 @@ game_ask () {
     game="$1"
     if building_in "$game"; then
 	ask "$2" "$3" "$4"
+    fi
+}
+
+check_func () {
+    funcname=$1
+    subst_vars="$subst_vars ${funcname}_defs"
+    cat >conftest.c
+    printf "Checking for %s..." "$funcname"
+    compiler="$cc $optimize_flags $other_cflags $other_ldflags"
+    if $compiler conftest.c >/dev/null 2>&1; then
+	echo "found."
+	echo "#define HAVE_$funcname 1" >>include/bsd-games.h
+	# Check whether we need _GNU_SOURCE for a prototype.
+	if $compiler -Wall -Werror conftest.c >/dev/null 2>&1; then
+	    eval ${funcname}_defs=
+	else
+	    # Prototype not in headers by default (try _GNU_SOURCE).
+	    eval ${funcname}_defs=-D_GNU_SOURCE
+	fi
+	rm -f a.out conftest.c
+	true
+    else
+	echo "not found."
+	rm -f a.out conftest.c
+	eval ${funcname}_defs=
+	false
     fi
 }
 
@@ -195,10 +247,6 @@ fi
 # this package (/usr/share/bsdgames, /var/state/bsdgames, etc.) would be
 # desirable, but I don't feel it necessary at present.
 
-# arch-dependent data is a bad thing, and we should change the games to
-# avoid it where possible, but until then this is needed.
-ask "Library directory for constant data
-	(architecture dependent)" usrlibdir /usr/lib/games
 ask "Library directory for constant data
 	(architecture independent)" sharedir /usr/share/games
 ask "Library directory for variable data" varlibdir /var/games
@@ -273,9 +321,7 @@ echo
 echo "The default warning flags should give a compile with few warnings."
 # -Wbad-function-cast and -Wshadow give lots of warnings that are basically
 # harmless.
-# -Wwrite-strings probably needs a lot of work on the games to get const in
-# where needed, but would be a good idea.
-ask "Compiler warning flags" warning_flags "-Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wcast-align -Wcast-qual"
+ask "Compiler warning flags" warning_flags "-Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith -Wcast-align -Wcast-qual -Wwrite-strings"
 echo
 echo "You probably want the default here, or could use -lncurses_g for"
 echo "debugging ncurses.  Use -lcurses -ltermcap if you want to try that,"
@@ -292,6 +338,38 @@ ask "Ncurses includes" ncurses_includes ''
 
 ask "Other CFLAGS" other_cflags ''
 ask "Other LDFLAGS" other_ldflags ''
+
+# Check for functions - not in glibc 2.1.1, but could be added later.
+echo "#ifndef LINUX_BSD_GAMES_H" >include/bsd-games.h
+echo "#define LINUX_BSD_GAMES_H 1" >>include/bsd-games.h
+
+check_func getloadavg <<EOF
+#include <stdlib.h>
+
+int
+main(void)
+{
+  double la[3];
+  getloadavg(la, 3);
+  return 0;
+}
+EOF
+
+check_func fgetln <<EOF
+#include <stdio.h>
+
+int
+main(void)
+{
+  char *f;
+  size_t l;
+  f = fgetln(stdin, &l);
+  return 0;
+}
+EOF
+
+echo "#endif /* !defined(LINUX_BSD_GAMES_H) */" >>include/bsd-games.h
+
 
 echo
 echo "For some special purposes you may want to link all games with a"
@@ -344,10 +422,20 @@ fi
 echo
 echo "You can configure the exact names used for data files by various"
 echo "of the games.  Most probably the defaults are OK."
+echo
+echo "Note that bsd-games no longer comes with its own word list."
+echo "For hangman you should specify the path to a word list to be read"
+echo "at runtime (probably /usr/share/dict/words or /usr/dict/words)."
+echo "For boggle you should specify one to be used at compile time to"
+echo "generate boggle's own data.  In both cases they should probably be"
+echo "English dictionaries; all words which do not consist entirely of"
+echo "lower-case ASCII letters will be silently ignored."
+echo
 game_ask atc "Directory for atc static data" atc_dir "$sharedir/atc"
 game_ask atc "Score file for atc" atc_scorefile "$varlibdir/atc_score"
 game_ask battlestar "Score file for battlestar" battlestar_scorefile "$varlibdir/battlestar.log"
 # Bog has some other configuration
+game_ask boggle "Dictionary for boggle (CHECK ANSWER)" dictionary_src /usr/share/dict/american-english
 game_ask boggle "Directory for boggle static data" boggle_dir "$sharedir/boggle"
 game_ask canfield "Score file for canfield" canfield_scorefile "$varlibdir/cfscores"
 game_ask cribbage "File for cribbage instructions" cribbage_instrfile "$sharedir/cribbage.instr"
@@ -356,9 +444,9 @@ game_ask dm "Configuration file for dm" dm_configfile /etc/dm.conf
 game_ask dm "File to disable games playing" dm_nogamesfile /etc/nogames
 game_ask dm "Log file for dm" dm_logfile "$varlibdir/games.log"
 game_ask fish "File for fish instructions" fish_instrfile "$sharedir/fish.instr"
-game_ask hangman "Words file for hangman" hangman_wordsfile "$sharedir/hangman-words"
+game_ask hangman "Words file for hangman (CHECK ANSWER)" hangman_wordsfile /usr/share/dict/words
 # Hunt has some other configuration
-game_ask monop "File for monop cards" monop_cardsfile "$usrlibdir/monop-cards.pck"
+game_ask monop "File for monop cards" monop_cardsfile "$sharedir/monop-cards.pck"
 game_ask phantasia "Directory for phantasia variable data" phantasia_dir "$varlibdir/phantasia"
 game_ask quiz "Directory for quiz static data" quiz_dir "$sharedir/quiz"
 game_ask robots "Score file for robots" robots_scorefile "$varlibdir/robots_roll"
@@ -367,6 +455,7 @@ game_ask sail "Score file for sail" sail_scorefile "$varlibdir/saillog"
 game_ask snake "Score file for snake" snake_scorefile "$varlibdir/snake.log"
 game_ask snake "Raw score file for snake" snake_rawscorefile "$varlibdir/snakerawscores"
 game_ask tetris "Score file for tetris" tetris_scorefile "$varlibdir/tetris-bsd.scores"
+game_ask wtf "Acronym database for wtf" wtf_acronymfile "/usr/share/misc/acronyms"
 game_ask wump "File for wump info" wump_infofile "$sharedir/wump.info"
 
 # Generate simplistic substitution script.
@@ -385,29 +474,42 @@ substitute () {
 	dir="${file%%/*}"
 	if building_in $dir || [ "$file" = "$dir" ]; then
 	    source_file="${file}.in"
-	    echo "Extracting $file from $source_file"
-	    cp "$source_file" "$file" # set permissions
 	    case "$file" in
+	    (quiz/datfiles/index)
+		# Can't put a comment in this file
+		subst_type=n
+		;;
 	    (Makeconfig)
-		echo "# Automatically generated by configure from $source_file.  Do not edit." >"$file"
+		subst_type=h
 		;;
 	    (*.[1-9])
-		echo ".\\\" Automatically generated by configure from $source_file.  Do not edit." >"$file"
+		subst_type=m
 		;;
 	    (*.[ch])
-		echo "/* Automatically generated by configure from $source_file.  Do not edit. */" >"$file"
+		subst_type=c
 		;;
 	    (*)
-		echo "#!/bin/sh" >"$file"
-		echo "# Automatically generated by configure from $source_file.  Do not edit." >>"$file"
+		subst_type=s
 		;;
 	    esac
-	    sed -f subst.sed <"$source_file" >>"$file"
+	    if [ "$rules_only" = y ]; then
+		./substscr r "$subst_type" "$source_file" "$file"
+	    else
+		./substscr gr "$subst_type" "$source_file" "$file"
+	    fi
 	fi
     done
 }
 
-subst_files="`cat substfiles`"
+: >subst.rules
+
+rules_only=n
+subst_files="`sed '/^#/d' <substfiles`"
+
+substitute $subst_files
+
+rules_only=y
+subst_files="`sed '/^#/d' <substfiles2`"
 
 substitute $subst_files
 
@@ -465,6 +567,9 @@ include Makeconfig
 .PHONY:	all $all_dependencies
 all:	$all_dependencies
 
+# Include substitution rules.
+include subst.rules
+
 EOF
 
 for dir in $make_dirs; do
@@ -488,6 +593,10 @@ $dir/%.d:	$dir/%.c
 EOF
 done
 
+# This temporary file is needed because we don't know whether the last
+# part of a pipeline is in the current shell execution environment
+# (POSIX.2, 3.12 and rationale).
+sed '/^#/d' <exec.libs >exec.libs.tmp
 while read prog libs; do
     if ! building_in ${prog%%/*}; then
 	continue
@@ -495,8 +604,9 @@ while read prog libs; do
     exec=$(prog_to_exec $prog)
     evar=$(slash_to_under $exec)_libs
     eval $evar=\"\$libs\"
-done <exec.libs
+done <exec.libs.tmp
 
+sed '/^#/d' <exec.objs >exec.objs.tmp
 while read prog objs; do
     if ! building_in ${prog%%/*}; then
 	continue
@@ -531,7 +641,9 @@ $exec:	$nobjs
 	\$(CC) \$(LDFLAGS) \$^ $libs \$(BASE_LIBS) -o \$@
 
 EOF
-done <exec.objs
+done <exec.objs.tmp
+
+rm -f exec.libs.tmp exec.objs.tmp
 
 clean_dependencies=
 install_dependencies=
@@ -563,9 +675,12 @@ cat >>GNUmakefile <<EOF
 clean mostlyclean:	$clean_dependencies
 
 distclean maintainer-clean:	clean
-	rm -f subst.sed
-	rm -f \`cat substfiles\`
+	rm -f subst.sed subst.rules
+	rm -f test.out
+	rm -f \`cat substfiles substfiles2 |sed '/^#/d'\`
 	rm -f GNUmakefile
+	rm -f a.out conftest.c include/bsd-games.h
+	rm -f exec.libs.tmp exec.objs.tmp
 
 .PHONY:	install install-strip
 
@@ -573,6 +688,10 @@ install:	$install_dependencies
 
 install-strip:
 	\$(MAKE) install \$(DEFS_TO_PASS_STRIP)
+
+.PHONY: check test
+check test:	all
+	set -e; for f in tests/*.test; do echo \$\$f; \$\$f; done
 
 # Standard GNU targets we don't support
 .PHONY:	uninstall TAGS dist
@@ -585,9 +704,3 @@ info dvi:
 	@echo "This package comes with no Texinfo documentation."
 
 EOF
-
-# We can `make GAME_check' for the following games, but no longer have
-# a top level target:
-# bcd factor morse pig primes number pom ppt wargames
-# If we put in a top level target again, it should compare against known good
-# output.
