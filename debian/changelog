@@ -1,3 +1,11 @@
+bsdgames (2.14-4) unstable; urgency=low
+
+  * Move atc and sail to Games/Strategy in menu, cf #194782
+  * Move rain and worms to Games/Toys, calling them screen savers is too much
+    of a long shot.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 28 May 2003 12:46:48 -0400
+
 bsdgames (2.14-3) unstable; urgency=low
 
   * Corrected Bornes typo in menu entry. It's all the bash shell's fault. :-)

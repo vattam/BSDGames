@@ -1,6 +1,6 @@
 ?package(bsdgames):needs="text" section="Apps/Educational" \
 	title="Arithmetic Quiz" command="sh -c '/usr/games/arithmetic;echo PRESS ENTER;read line'"
-?package(bsdgames):needs="text" section="Games/Simulation" \
+?package(bsdgames):needs="text" section="Games/Strategy" \
 	title="Air Traffic Controller" \
 	command="sh -c '/usr/games/atc ; echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
@@ -20,11 +20,11 @@
 	title="Monopoly" command="/usr/games/monop"
 ?package(bsdgames):needs="text" section="Games/Board" hints="Backgammon" \
 	title="Backgammon" command="/usr/games/backgammon -pb"
-?package(bsdgames):needs="text" section="Screen/Save/Text" \
+?package(bsdgames):needs="text" section="Games/Toys" \
 	title="Rain" command="/usr/games/rain"
 ?package(bsdgames):needs="text" section="Games/Arcade" \
 	title="Robots" command="/usr/games/robots"
-?package(bsdgames):needs="text" section="Games/Simulation" \
+?package(bsdgames):needs="text" section="Games/Strategy" \
 	title="Sail" command="/usr/games/sail"
 ?package(bsdgames):needs="text" section="Games/Arcade" \
 	title="Snake" command="sh -c '/usr/games/snake;echo PRESS ENTER;read line'"
@@ -32,7 +32,7 @@
 	title="Star Trek" command="/usr/games/trek"
 ?package(bsdgames):needs="text" section="Games/Arcade" \
 	title="Worm" command="sh -c '/usr/games/worm;echo PRESS ENTER;read line'"
-?package(bsdgames):needs="text" section="Screen/Save/Text" \
+?package(bsdgames):needs="vc" section="Games/Toys" \
 	title="Worms" command="/usr/games/worms"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
 	title="Hunt the Wumpus" command="/usr/games/wump"
