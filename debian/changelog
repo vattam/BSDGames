@@ -1,3 +1,9 @@
+bsdgames (2.13-11) unstable; urgency=low
+
+  * Fixed silly typo in wargames man page. Closes: #169307
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 16 Nov 2002 18:58:22 -0500
+
 bsdgames (2.13-10) unstable; urgency=low
 
   * Updated to debhelper v4.
