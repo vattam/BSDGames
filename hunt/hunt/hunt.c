@@ -513,9 +513,9 @@ list_drivers()
 get_response:
 	namelen = DAEMON_SIZE;
 	errno = 0;
-	wait.tv_sec = 1;
-	wait.tv_usec = 0;
 	for (;;) {
+		wait.tv_sec = 1;
+		wait.tv_usec = 0;
 		if (listc + 1 >= listmax) {
 			listmax += 20;
 			listv = (SOCKET *) realloc((char *) listv,

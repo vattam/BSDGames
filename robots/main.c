@@ -59,10 +59,10 @@ main(ac, av)
 	int	ac;
 	char	**av;
 {
-	char	*sp;
+	const char	*sp;
 	bool	bad_arg;
 	bool	show_only;
-	extern char	*Scorefile;
+	extern const char	*Scorefile;
 	extern int	Max_per_uid;
 	int		score_wfd; /* high score writable file descriptor */
 	int		score_err = 0; /* hold errno from score file open */
@@ -70,6 +70,8 @@ main(ac, av)
 	score_wfd = open(Scorefile, O_RDWR);
 	if (score_wfd < 0)
 		score_err = errno;
+	else if (score_wfd < 3)
+		exit(1);
 
 	/* Revoke setgid privileges */
 	setregid(getgid(), getgid());

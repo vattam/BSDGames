@@ -1,3 +1,9 @@
+bsdgames (2.6-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@master.debian.org>  Sun, 20 Dec 1998 00:24:18 -0500
+
 bsdgames (2.5-4) frozen unstable; urgency=low
 
   * Commented out a bogus sprintf prototype in sail/sync.c, makes sail

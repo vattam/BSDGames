@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.7 1998/08/29 22:53:03 hubertf Exp $	*/
+/*	$NetBSD: main.c,v 1.8 1998/09/15 13:43:34 frueauf Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -43,7 +43,7 @@ __COPYRIGHT("@(#) Copyright (c) 1980, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: main.c,v 1.7 1998/08/29 22:53:03 hubertf Exp $");
+__RCSID("$NetBSD: main.c,v 1.8 1998/09/15 13:43:34 frueauf Exp $");
 #endif
 #endif				/* not lint */
 
@@ -177,7 +177,7 @@ main(argc, argv)
 			if (yorn(0)) {
 
 				fixtty(&old);	/* restore tty */
-				execl(TEACH, "teachgammon", args, 0);
+				execl(TEACH, "teachgammon", args[1]?args:0, 0);
 
 				tflag = 0;	/* error! */
 				writel(noteach);
@@ -489,27 +489,37 @@ main(argc, argv)
 		if (tflag)
 			refresh();
 
-		/* backgammon? */
-		mflag = 0;
-		l = bar + 7 * cturn;
-		for (i = bar; i != l; i += cturn)
-			if (board[i] * cturn)
-				mflag++;
+		/*
+		 * If any men have been born off, it's a single game,
+		 * regardless of where other men are.
+		 */
+	  
+	  	if (*offptr > 0) {	
+		  	// Single game.
+		} else {
+		  	/* backgammon? */
+		  	mflag = 0;
+		  	l = bar + 7 * cturn;
+		  	for (i = bar; i != l; i += cturn)
+		    		if (board[i] * cturn)
+		      			mflag++;
+		  
+		  	/* compute game value */
+		  	if (tflag)
+		    		curmove(20, 0);
+		  	if (*offopp == 15) {
+			  	if (mflag) {
+				  	writel(bgammon);
+				  	gvalue *= 3;
+				} else
+			    		if (*offptr <= 0) {
+					  	writel(gammon);
+					  	gvalue *= 2;
+					}
+			}
+	        }
 
-		/* compute game value */
-		if (tflag)
-			curmove(20, 0);
-		if (*offopp == 15) {
-			if (mflag) {
-				writel(bgammon);
-				gvalue *= 3;
-			} else
-				if (*offptr <= 0) {
-					writel(gammon);
-					gvalue *= 2;
-				}
-		}
-		/* report situation */
+  		/* report situation */
 		if (cturn == -1) {
 			writel("Red wins ");
 			rscore += gvalue;
