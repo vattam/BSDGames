@@ -16,7 +16,7 @@
 	title="Mille Bournes" command="/usr/games/mille"
 ?package(bsdgames):needs="text" section="Games/Board" \
 	title="Monopoly" command="/usr/games/monop"
-?package(bsdgames):needs="text" section="Games/Board" \
+?package(bsdgames):needs="text" section="Games/Board" hint="Backgammon" \
 	title="Backgammon" command="/usr/games/backgammon -pb"
 ?package(bsdgames):needs="text" section="Screen/Save/Text" \
 	title="Rain" command="/usr/games/rain"
@@ -37,7 +37,7 @@
 ?package(bsdgames):needs="text" section="Games/Tetris-like" \
 	title="Bsd Tetris" \
 	command="sh -c '/usr/games/tetris-bsd;echo;echo PRESS ENTER;read line'"
-?package(bsdgames):needs="text" section="Games/Board" \
+?package(bsdgames):needs="text" section="Games/Board" hint="Go" \
 	title="Gomoku" \
 	command="/usr/games/gomoku"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
@@ -51,4 +51,3 @@
 ?package(bsdgames):needs="text" section="Games/Puzzles" \
         title="Boggle" \
         command=/usr/games/boggle
-		

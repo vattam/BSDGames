@@ -1,3 +1,11 @@
+bsdgames (2.12-11) unstable; urgency=low
+
+  * Added menu hints for backgammon and gomoku, Closes: #121012, #121012
+    NB: holding off on changing menu titles until I see evidence it's really
+    necessary.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 25 Nov 2001 21:48:03 -0500
+
 bsdgames (2.12-10) unstable; urgency=low
 
   * Fixed tetris on sun systems to not lag 3 keystrokes behind, patch from
