@@ -1,3 +1,10 @@
+bsdgames (2.6-2) unstable; urgency=low
+
+  * Fixed backgammon to correctly calculate the game value, patch from
+    sjl@debian.lib.monash.edu.au (Stuart Lamble) (#35038)
+
+ -- Joey Hess <joeyh@master.debian.org>  Thu, 25 Mar 1999 13:33:07 -0800
+
 bsdgames (2.6-1) unstable; urgency=low
 
   * New upstream release.
