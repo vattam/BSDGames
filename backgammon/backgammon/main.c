@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.9 1999/02/10 12:29:47 hubertf Exp $	*/
+/*	$NetBSD: main.c,v 1.15 1999/09/17 17:07:11 jsm Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -43,21 +43,21 @@ __COPYRIGHT("@(#) Copyright (c) 1980, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: main.c,v 1.9 1999/02/10 12:29:47 hubertf Exp $");
+__RCSID("$NetBSD: main.c,v 1.15 1999/09/17 17:07:11 jsm Exp $");
 #endif
 #endif				/* not lint */
 
+#include <time.h>
+
 #include "back.h"
 #include "backlocal.h"
-
-#include <time.h>
 
 #define MVPAUSE	5		/* time to sleep when stuck */
 
 extern const char   *const instr[];		/* text of instructions */
 extern const char   *const message[];		/* update message */
 #ifndef NCURSES_VERSION
-speed_t ospeed;			/* tty output speed */
+short ospeed;			/* tty output speed */
 #endif
 
 const char   *const helpm[] = {		/* help message */
@@ -122,7 +122,7 @@ main(argc, argv)
 	/* use whole screen for text */
 	if (tflag)
 		begscr = 0;
-	t = time(0);
+	t = time(NULL);
 	srandom(t);		/* 'random' seed */
 
 #ifdef V7
