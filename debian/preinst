@@ -1,0 +1,51 @@
+#!/bin/sh -e
+
+SCOREFILES="
+	/var/games/bsdgames/atc_score
+	/var/games/bsdgames/battlestar.log
+	/var/games/bsdgames/cfscores
+	/var/games/bsdgames/criblog
+	/var/games/bsdgames/robots_roll
+	/var/games/bsdgames/saillog
+	/var/games/bsdgames/snake.log
+	/var/games/bsdgames/snakerawscores
+	/var/games/bsdgames/tetris-bsd.scores
+	/var/games/bsdgames/phantasia/characs
+	/var/games/bsdgames/phantasia/gold
+	/var/games/bsdgames/phantasia/lastdead
+	/var/games/bsdgames/phantasia/mess
+	/var/games/bsdgames/phantasia/motd
+	/var/games/bsdgames/phantasia/scoreboard
+	/var/games/bsdgames/phantasia/void
+	/var/games/bsdgames/phantasia/monsters"
+
+# We used to keep score files in /var/lib/games, and if files are there,
+# move them into the new location.
+if [ -d /var/lib/games ]; then
+
+	# Have to set up directory hierarchy, since this is running as a preinst.
+	mkdir -p /var/games/bsdgames/sail \
+		/var/games/bsdgames/phantasia
+	chown root.games /var/games/bsdgames \
+		/var/games/bsdgames/sail \
+		/var/games/bsdgames/phantasia
+	chmod g+rws /var/games/bsdgames \
+		/var/games/bsdgames/sail \
+		/var/games/bsdgames/phantasia
+
+	for file in $SCOREFILES; do
+		oldfile=`echo $file | sed s:/var/games/:/var/lib/games/:`
+		if [ -e $oldfile ]; then
+			if [ ! -e $file ]; then
+				mv -f $oldfile $file
+			else
+				rm -f $oldfile
+			fi
+		fi
+	done
+	
+	# Delete the old directory hierarchy.
+	rm -rf /var/lib/games/bsdgames
+fi
+
+#DEBHELPER#
