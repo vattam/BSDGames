@@ -1,11 +1,4 @@
 #!/usr/bin/make -f
-# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
-
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
-
-# This is the debhelper compatibility version to use.
-export DH_COMPAT=3
 
 build: build-stamp
 build-stamp:
@@ -27,11 +20,8 @@ clean:
 	dh_clean temp-dictionary
 	-$(MAKE) -i distclean
 
-# Build architecture-independent files here.
 binary-indep: build
-# We have nothing to do by default.
 
-# Build architecture-dependent files here.
 binary-arch: build
 	dh_testdir
 	dh_testroot

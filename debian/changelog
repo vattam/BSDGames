@@ -1,3 +1,9 @@
+bsdgames (2.13-10) unstable; urgency=low
+
+  * Updated to debhelper v4.
+
+ -- Joey Hess <joeyh@debian.org>  Sat,  1 Jun 2002 22:26:40 -0400
+
 bsdgames (2.13-9) unstable; urgency=low
 
   * Moved wtf acronym list into /usr/share/games. Closes: #144804
