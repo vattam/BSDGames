@@ -37,11 +37,6 @@ binary-arch: build
 	cp boggle/README debian/bsdgames/usr/share/doc/bsdgames/README.boggle
 	cp hack/Original_READ_ME debian/bsdgames/usr/share/doc/bsdgames/Original_READ_ME.hack
 	cp hack/READ_ME debian/bsdgames/usr/share/doc/bsdgames/READ_ME.hack
-	# Since factor is not installed, and primes.6 is a symlink to
-	# factor.6, I need to change that to the actual man page.
-	-rm -f debian/bsdgames/usr/share/man/man6/factor.6.gz \
-		debian/bsdgames/usr/share/man/man6/primes.6
-	cp factor/factor.6 debian/bsdgames/usr/share/man/man6/primes.6
 	# Move phantasia's binary state files into /usr, they are copied
 	# back to /var in the postinst.
 	mv debian/bsdgames/var/games/bsdgames/phantasia/monsters \
