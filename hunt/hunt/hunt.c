@@ -26,9 +26,6 @@ static struct termios saved_tty;
 # include	<sys/param.h>
 # include	<unistd.h>
 
-/* For MAXHOSTNAMELEN -- JH */
-# include	<rpc/types.h>
-
 # include	"hunt.h"
 
 /*

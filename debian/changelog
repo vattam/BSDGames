@@ -1,3 +1,9 @@
+bsdgames (2.7-2) unstable; urgency=low
+
+  * Removed 2 patches I made that are no longer necessary.
+
+ -- Joey Hess <joeyh@master.debian.org>  Wed,  7 Apr 1999 14:53:52 -0700
+
 bsdgames (2.7-1) unstable; urgency=low
 
   * New upstream release.
