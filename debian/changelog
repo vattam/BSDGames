@@ -1,3 +1,10 @@
+bsdgames (2.12-6) unstable; urgency=low
+
+  * Pause after tetris-bsd exits when run from the menu, to give a chance
+    for the high scores to be seen. Closes: #96999
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 10 May 2001 21:49:37 -0400
+
 bsdgames (2.12-5) unstable; urgency=low
 
   * Added AIUI, Closes: #90973

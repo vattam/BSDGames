@@ -36,7 +36,7 @@
 	title="Hunt the Wumpus" command="/usr/games/wump"
 ?package(bsdgames):needs="text" section="Games/Tetris-like" \
 	title="Bsd Tetris" \
-	command="/usr/games/tetris-bsd"
+	command="sh -c '/usr/games/tetris-bsd;echo;echo PRESS ENTER;read'"
 ?package(bsdgames):needs="text" section="Games/Board" \
 	title="Gomoku" \
 	command="/usr/games/gomoku"
