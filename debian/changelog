@@ -1,3 +1,9 @@
+bsdgames (2.14-7) unstable; urgency=low
+
+  * Fix left/right confusion on worm man page. Closes: #209034
+
+ -- Joey Hess <joeyh@debian.org>  Sat,  6 Sep 2003 23:01:13 -0400
+
 bsdgames (2.14-6) unstable; urgency=low
 
   * Move menu item to new policy-compliant Apps/Education. Closes: #194782
