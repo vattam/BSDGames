@@ -31,17 +31,17 @@ set -e
 
 . tests/common
 
-testexec rot13 caesar/rot13
+testexec rot13 caesar/caesar 13
 
 testno 1
-caesar/rot13 >test.out 2>&1 <<EOF || failtest
+caesar/caesar 13 >test.out 2>&1 <<EOF || failtest
 foo
 EOF
 compare test.out tests/rot13.foo
 rm -f test.out
 
 testno 2
-caesar/rot13 >test.out 2>&1 <<EOF || failtest
+caesar/caesar 13 >test.out 2>&1 <<EOF || failtest
 Foo
 Bar
 EOF
