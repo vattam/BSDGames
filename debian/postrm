@@ -1,0 +1,30 @@
+#!/bin/sh -e
+
+SCOREFILES="
+	/var/lib/games/bsdgames/atc_score
+	/var/lib/games/bsdgames/battlestar.log
+	/var/lib/games/bsdgames/cfscores
+	/var/lib/games/bsdgames/criblog
+	/var/lib/games/bsdgames/robots_roll
+	/var/lib/games/bsdgames/saillog
+	/var/lib/games/bsdgames/snake.log
+	/var/lib/games/bsdgames/snakerawscores
+	/var/lib/games/bsdgames/tetris-bsd.scores
+	/var/lib/games/bsdgames/phantasia/characs
+	/var/lib/games/bsdgames/phantasia/gold
+	/var/lib/games/bsdgames/phantasia/lastdead
+	/var/lib/games/bsdgames/phantasia/mess
+	/var/lib/games/bsdgames/phantasia/motd
+	/var/lib/games/bsdgames/phantasia/scoreboard
+	/var/lib/games/bsdgames/phantasia/void
+	/var/lib/games/bsdgames/phantasia/monsters"
+
+# Remove high score files on purge.
+if [ "$1" = "purge" ]; then
+	rm -f $SCOREFILES
+fi
+
+rmdir /var/lib/games/bsdgames/phantasia /var/lib/games/bsdgames \
+	/var/lib/games 2>/dev/null || true 
+
+#DEBHELPER#

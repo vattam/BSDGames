@@ -158,8 +158,9 @@ sync_exists(game)
 	struct stat s;
 	time_t t;
 
-	(void) sprintf(buf, _PATH_SYNC, game);
+/*  	(void) sprintf(buf, _PATH_SYNC, game);*/
 	(void) time(&t);
+  
 	setegid(egid);
 	if (stat(buf, &s) < 0) {
 		setegid(gid);

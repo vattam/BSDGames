@@ -1,0 +1,54 @@
+?package(bsdgames):needs="text" section="Apps/Educational" \
+	title="Arithmetic Quiz" command="/usr/games/arithmetic"
+?package(bsdgames):needs="text" section="Games/Simulation" \
+	title="Air Traffic Controller" \
+	command="sh -c '/usr/games/atc ; echo;echo PRESS ENTER;read'"
+?package(bsdgames):needs="text" section="Games/Adventure" \
+	title="Battlestar" command="/usr/games/battlestar"
+?package(bsdgames):needs="text" section="Games/Card" \
+	title="Canfield" command="/usr/games/canfield"
+?package(bsdgames):needs="text" section="Games/Card" \
+	title="Cribbage" command="/usr/games/cribbage"
+?package(bsdgames):needs="text" section="Games/Card" \
+	title="Go Fish" \
+	command="sh -c '/usr/games/fish;echo;echo PRESS ENTER;read'"
+?package(bsdgames):needs="text" section="Games/Card" \
+	title="Mille Bournes" command="/usr/games/mille"
+?package(bsdgames):needs="text" section="Games/Board" \
+	title="Monopoly" command="/usr/games/monop"
+?package(bsdgames):needs="text" section="Games/Board" \
+	title="Backgammon" command="/usr/games/backgammon -pb"
+?package(bsdgames):needs="text" section="Screen/Save/Text" \
+	title="Rain" command="/usr/games/rain"
+?package(bsdgames):needs="text" section="Games/Arcade" \
+	title="Robots" command="/usr/games/robots"
+?package(bsdgames):needs="text" section="Games/Simulation" \
+	title="Sail" command="/usr/games/sail"
+?package(bsdgames):needs="text" section="Games/Arcade" \
+	title="Snake" command="/usr/games/snake"
+?package(bsdgames):needs="text" section="Games/Arcade" \
+	title="Star Trek" command="/usr/games/trek"
+?package(bsdgames):needs="text" section="Games/Arcade" \
+	title="Worm" command="/usr/games/worm"
+?package(bsdgames):needs="text" section="Screen/Save/Text" \
+	title="Worms" command="/usr/games/worms"
+?package(bsdgames):needs="text" section="Games/Adventure" \
+	title="Hunt the Wumpus" command="/usr/games/wump"
+?package(bsdgames):needs="text" section="Games/Tetris-like" \
+	title="Bsd Tetris" \
+	command="/usr/games/tetris-bsd"
+?package(bsdgames):needs="text" section="Games/Board" \
+	title="Gomoku" \
+	command="/usr/games/gomoku"
+?package(bsdgames):needs="text" section="Games/Adventure" \
+	title="Phantasia" \
+	command="/usr/games/phantasia"
+?package(bsdgames):needs="text" section="Games/Adventure" \
+	title="Adventure" \
+	command="/usr/games/adventure"
+?package(bsdgames):needs="text" section="Games/Puzzles" \
+	title="Hangman" command="/usr/games/hangman"
+?package(bsdgames):needs="text" section="Games/Puzzles" \
+        title="Boggle" \
+        command=/usr/games/boggle
+		

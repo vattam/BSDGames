@@ -1,0 +1,35 @@
+# Don't run configure interactively.
+bsd_games_cfg_non_interactive=y
+
+# Install into here for building the package.
+bsd_games_cfg_install_prefix=`pwd`/debian/tmp
+
+# Do not build or install these games:
+bsd_games_cfg_no_build_dirs="dm banner fortune factor"
+
+# Keep huntd in /usr/sbin as it was in the past. I may 
+# change this later.
+bsd_games_cfg_sbindir=/usr/sbin
+
+# Use /usr/man still. Debian doesn't use this part of FHS yet.
+bsd_games_cfg_man8dir=/usr/man/man8
+bsd_games_cfg_man6dir=/usr/man/man6
+bsd_games_cfg_man5dir=/usr/man/man5
+
+# Debian doesn't like cluttering up the /usr/*/games/ dirs too much,
+# use a subdir. /var too.
+bsd_games_cfg_usrlibdir=/usr/lib/games/bsdgames
+bsd_games_cfg_sharedir=/usr/share/games/bsdgames
+bsd_games_cfg_varlibdir=/var/lib/games/bsdgames
+
+# Do not do chown now, we arn't running as root.
+bsd_games_cfg_do_chown=n
+
+# Debian perfers symlinks for manpages.
+bsd_games_cfg_use_dot_so=symlinks
+
+# I'll handle manpage compressing.
+bsd_games_cfg_gzip_manpages=n
+
+# Policy says to use /usr/bin/pager by default.
+bsd_games_cfg_pager=/usr/bin/pager

@@ -1,0 +1,81 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+	./configure
+	$(MAKE)
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	dh_clean
+	-$(MAKE) -i distclean
+
+# Build architecture-independent files here.
+binary-indep: build
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build
+	dh_testdir
+	dh_testroot
+	dh_clean
+	dh_installdirs usr/doc/bsdgames usr/share/games/bsdgames/phantasia
+
+	$(MAKE) install
+	cp atc/BUGS debian/tmp/usr/doc/bsdgames/BUGS.atc
+	cp hunt/README debian/tmp/usr/doc/bsdgames/README.hunt
+	cp hunt/README.linux debian/tmp/usr/doc/bsdgames/README.linux.hunt
+	cp phantasia/README debian/tmp/usr/doc/bsdgames/README.phantasia
+	cp boggle/README debian/tmp/usr/doc/bsdgames/README.boggle
+	cp boggle/README.linux debian/tmp/usr/doc/bsdgames/README.linux.boggle
+	# Since factor is not installed, and primes.6 is a symlink to
+	# factor.6, I need to change that to the actual man page.
+	-rm -f debian/tmp/usr/man/man6/factor.6.gz \
+		debian/tmp/usr/man/man6/primes.6
+	cp factor/factor.6 debian/tmp/usr/man/man6/primes.6
+	# Move phantasia's binary state files into /usr, they are copied
+	# back to /var in the postinst.
+	mv debian/tmp/var/lib/games/bsdgames/phantasia/{monsters,void} \
+		debian/tmp/usr/share/games/bsdgames/phantasia/
+
+	dh_installdocs ChangeLog ChangeLog.0 TODO README \
+		trek/USD.doc/trek.me SECURITY THANKS AUTHORS BUGS YEAR2000
+	dh_installexamples
+	dh_installmenu
+	dh_installcron
+#	dh_installmanpages
+#	dh_undocumented
+	dh_installchangelogs -k NEWS
+	dh_strip
+	dh_compress
+	dh_fixperms
+
+	chmod -R u+rw debian/tmp/usr/
+	# Games with score files need to be set up sgid games.
+	chown root.games debian/tmp/usr/games/{atc,battlestar,canfield,cribbage,robots,snake,tetris-bsd,phantasia,sail}
+	chmod g+s debian/tmp/usr/games/{atc,battlestar,canfield,cribbage,robots,snake,tetris-bsd,phantasia,sail}
+	# The game directories need to be sgid too, and let's
+	# remove all the zero byte score files in them.
+	chown root.games debian/tmp/var/lib/games/bsdgames/{,phantasia}
+	chmod g+rws debian/tmp/var/lib/games/bsdgames/{,phantasia}
+	find debian/tmp/var/lib/games/bsdgames -size 0 -exec rm {} \;
+
+	dh_suidregister
+
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+#	dh_makeshlibs
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary

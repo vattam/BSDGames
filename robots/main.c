@@ -49,6 +49,9 @@ __RCSID("$NetBSD: main.c,v 1.7 1997/10/12 14:16:26 lukem Exp $");
 
 # include	"robots.h"
 
+/* errno is used below - JH */
+#include	<errno.h>
+
 int main __P((int, char **));
 
 int
