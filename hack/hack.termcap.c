@@ -77,10 +77,10 @@ __RCSID("$NetBSD: hack.termcap.c,v 1.12 2003/04/02 18:36:40 jsm Exp $");
 #include "def.flag.h"		/* for flags.nonull */
 
 static char     tbuf[512];
-static char    *HO, *CL, *CE, *UP, *CM, *ND, *XD, *BC, *SO, *SE, *TI, *TE;
+char    *HO, *CL, *CE, *UP, *CM, *ND, *XD, *BC, *SO, *SE, *TI, *TE;
 static char    *VS, *VE;
 static int      SG;
-static char     PC = '\0';
+char     PC = '\0';
 char           *CD;		/* tested in pri.c: docorner() */
 int             CO, LI;		/* used in pri.c and whatis.c */
 

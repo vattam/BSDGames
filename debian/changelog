@@ -1,3 +1,10 @@
+bsdgames (2.16-5) unstable; urgency=low
+
+  * Apply hack patch from Andreas Jochens to support building under gcc 4.0
+    which does stricter checking for static variables. Closes: #284750
+
+ -- Joey Hess <joeyh@debian.org>  Wed,  8 Dec 2004 14:39:12 -0500
+
 bsdgames (2.16-4) unstable; urgency=low
 
   * Fixed a null pointer de-reference in hunt if run on a
