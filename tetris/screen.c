@@ -1,4 +1,5 @@
-/*	$NetBSD: screen.c,v 1.7 1998/08/10 02:25:45 perry Exp $	*/
+/*	$NetBSD: screen.c,v 1.15 2000/05/24 14:43:00 blymn Exp $	*/
+/* For Linux: still using old termcap interface from version 1.13.  */
 
 /*-
  * Copyright (c) 1992, 1993
@@ -67,15 +68,16 @@ static struct termios oldtt;
 static void (*tstp) __P((int));
 
 static	void	scr_stop __P((int));
-static	void	stopset __P((int));
+static	void	stopset __P((int)) __attribute__((__noreturn__));
 
 
 /*
  * Capabilities from TERMCAP.
  */
-char	PC, *BC, *UP;		/* tgoto requires globals: ugh! */
+extern char	PC, *BC, *UP;	/* tgoto requires globals: ugh! */
+static char BCdefault[] = "\b";
 #ifndef NCURSES_VERSION
-speed_t	ospeed;
+short	ospeed;
 #endif
 
 static char
@@ -134,7 +136,7 @@ put(c)
 	int c;
 {
 
-	return putchar(c);
+	return (putchar(c));
 }
 
 /*
@@ -194,7 +196,7 @@ scr_init()
 			*p->tcaddr = tgetnum(p->tcname);
 	}
 	if (bsflag)
-		BC = "\b";
+		BC = BCdefault;
 	else if (BC == NULL && bcstr != NULL)
 		BC = bcstr;
 	if (CLstr == NULL)
@@ -281,8 +283,8 @@ scr_set()
 	Cols = COnum;
 	if (Rows < MINROWS || Cols < MINCOLS) {
 		(void) fprintf(stderr,
-		    "the screen is too small: must be at least %d x %d",
-		    MINROWS, MINCOLS);
+		    "the screen is too small: must be at least %dx%d, ",
+		    MINCOLS, MINROWS);
 		stop("");	/* stop() supplies \n */
 	}
 	if (tcgetattr(0, &oldtt) < 0)
@@ -290,6 +292,8 @@ scr_set()
 	newtt = oldtt;
 	newtt.c_lflag &= ~(ICANON|ECHO);
 	newtt.c_oflag &= ~OXTABS;
+	newtt.c_cc[VMIN] = 1;
+	newtt.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, &newtt) < 0)
 		stop("tcsetattr() fails");
 	ospeed = cfgetospeed(&newtt);
@@ -341,7 +345,7 @@ scr_end()
 
 void
 stop(why)
-	char *why;
+	const char *why;
 {
 
 	if (isset)
@@ -378,6 +382,7 @@ scr_update()
 	register regcell so, cur_so = 0;
 	register int i, ccol, j;
 	sigset_t sigset, osigset;
+	static const struct shape *lastshape;
 
 	sigemptyset(&sigset);
 	sigaddset(&sigset, SIGTSTP);
@@ -391,10 +396,45 @@ scr_update()
 			putpad(HOstr);
 		else
 			moveto(0, 0);
-		(void) printf("%d", score);
+		(void) printf("Score: %d", score);
 		curscore = score;
 	}
 
+	/* draw preview of nextpattern */
+	if (showpreview && (nextshape != lastshape)) {
+		int i;
+		static int r=5, c=2;
+		int tr, tc, t; 
+
+		lastshape = nextshape;
+		
+		/* clean */
+		putpad(SEstr);
+		moveto(r-1, c-1); putstr("          ");
+		moveto(r,   c-1); putstr("          ");
+		moveto(r+1, c-1); putstr("          ");
+		moveto(r+2, c-1); putstr("          ");
+
+		moveto(r-3, c-2);
+		putstr("Next shape:");
+						
+		/* draw */
+		putpad(SOstr);
+		moveto(r, 2*c);
+		putstr("  ");
+		for(i=0; i<3; i++) {
+			t = c + r*B_COLS;
+			t += nextshape->off[i];
+
+			tr = t / B_COLS;
+			tc = t % B_COLS;
+
+			moveto(tr, 2*tc);
+			putstr("  ");
+		}
+		putpad(SEstr);
+	}
+	
 	bp = &board[D_FIRST * B_COLS];
 	sp = &curscreen[D_FIRST * B_COLS];
 	for (j = D_FIRST; j < D_LAST; j++) {
