@@ -1,0 +1,258 @@
+#!/bin/sh
+# tests/battlestar.test - test functionality of battlestar.
+#
+# Copyright (c) 2000 Joseph Samuel Myers.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+
+set -e
+
+. tests/common
+
+testexec battlestar battlestar/battlestar
+
+export BATTLESTAR_QUIET=1
+
+if echo quit | battlestar/battlestar |grep wizard >/dev/null; then
+    echo "Can't test battlestar as this user."
+    exit 0
+fi
+
+# These tests cover various past bugs found in battlestar.
+
+testno 1
+battlestar/battlestar <tests/battlestar.in1 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out1
+rm -f test.out
+
+testno 2
+battlestar/battlestar <tests/battlestar.in2 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out2
+rm -f test.out
+
+testno 3
+battlestar/battlestar <tests/battlestar.in3 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out3
+rm -f test.out
+
+testno 4
+battlestar/battlestar <tests/battlestar.in4 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out4
+rm -f test.out
+
+testno 5
+battlestar/battlestar <tests/battlestar.in5 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out5
+rm -f test.out
+
+testno 6
+battlestar/battlestar <tests/battlestar.in6 >test.out 2>/dev/null || failtest
+compare test.out tests/battlestar.out6
+rm -f test.out
+
+testno 7
+battlestar/battlestar <tests/battlestar.in6 >/dev/null 2>test.out || failtest
+compare test.out tests/battlestar.err6
+rm -f test.out
+
+testno 8
+battlestar/battlestar <tests/battlestar.in8 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out8
+rm -f test.out
+
+testno 9
+battlestar/battlestar <tests/battlestar.in9 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out9
+rm -f test.out
+
+testno 10
+battlestar/battlestar <tests/battlestar.in10 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out10
+rm -f test.out
+
+testno 11
+battlestar/battlestar <tests/battlestar.in11 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out11
+rm -f test.out
+
+testno 12
+battlestar/battlestar <tests/battlestar.in12 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out12
+rm -f test.out
+
+testno 13
+battlestar/battlestar <tests/battlestar.in13 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out13
+rm -f test.out
+
+testno 14
+battlestar/battlestar <tests/battlestar.in14 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out14
+rm -f test.out
+
+testno 15
+battlestar/battlestar </dev/null >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out15
+rm -f test.out
+
+testno 16
+battlestar/battlestar <tests/battlestar.in16 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out16
+rm -f test.out
+
+testno 17
+battlestar/battlestar <tests/battlestar.in17 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out17
+rm -f test.out
+
+testno 18
+battlestar/battlestar <tests/battlestar.in18 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out18
+rm -f test.out
+
+testno 19
+battlestar/battlestar <tests/battlestar.in19 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out19
+rm -f test.out
+
+testno 20
+battlestar/battlestar <tests/battlestar.in20 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out20
+rm -f test.out
+
+testno 21
+battlestar/battlestar <tests/battlestar.in21 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out21
+rm -f test.out
+
+testno 22
+battlestar/battlestar <tests/battlestar.in22 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out22
+rm -f test.out
+
+testno 23
+battlestar/battlestar <tests/battlestar.in23 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out23
+rm -f test.out
+
+testno 24
+battlestar/battlestar <tests/battlestar.in24 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out24
+rm -f test.out
+
+testno 25
+battlestar/battlestar <tests/battlestar.in25 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out25
+rm -f test.out
+
+testno 26
+battlestar/battlestar <tests/battlestar.in26 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out26
+rm -f test.out
+
+testno 27
+battlestar/battlestar <tests/battlestar.in27 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out27
+rm -f test.out
+
+testno 28
+battlestar/battlestar <tests/battlestar.in28 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out28
+rm -f test.out
+
+testno 29
+battlestar/battlestar <tests/battlestar.in29 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out29
+rm -f test.out
+
+testno 30
+battlestar/battlestar <tests/battlestar.in30 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out30
+rm -f test.out
+
+testno 31
+battlestar/battlestar <tests/battlestar.in31 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out31
+rm -f test.out
+
+testno 32
+battlestar/battlestar <tests/battlestar.in32 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out32
+rm -f test.out
+
+testno 33
+battlestar/battlestar <tests/battlestar.in33 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out33
+rm -f test.out
+
+testno 34
+battlestar/battlestar <tests/battlestar.in34 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out34
+rm -f test.out
+
+testno 35
+battlestar/battlestar <tests/battlestar.in35 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out35
+rm -f test.out
+
+testno 36
+battlestar/battlestar <tests/battlestar.in36 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out36
+rm -f test.out
+
+testno 37
+battlestar/battlestar <tests/battlestar.in37 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out37
+rm -f test.out
+
+testno 38
+battlestar/battlestar <tests/battlestar.in38 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out38
+rm -f test.out
+
+testno 39
+battlestar/battlestar <tests/battlestar.in39 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out39
+rm -f test.out
+
+testno 40
+battlestar/battlestar <tests/battlestar.in40 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out40
+rm -f test.out
+
+testno 41
+battlestar/battlestar <tests/battlestar.in41 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out41
+rm -f test.out
+
+testno 42
+battlestar/battlestar <tests/battlestar.in42 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out42
+rm -f test.out
+
+testno 43
+battlestar/battlestar <tests/battlestar.in43 >test.out 2>&1 || failtest
+compare test.out tests/battlestar.out43
+rm -f test.out

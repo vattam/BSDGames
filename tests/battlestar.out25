@@ -1,0 +1,34 @@
+Version 4.2, fall 1984.
+First Adventure game written by His Lordship, the honorable
+Admiral D.W. Riggle
+
+
+	This is a luxurious stateroom.
+The floor is carpeted with a soft animal fur and the great wooden furniture
+is inlaid with strips of platinum and gold.  Electronic equipment built
+into the walls and ceiling is flashing wildly.  The floor shudders and
+the sounds of dull explosions rumble though the room.  From a window in
+the wall ahead comes a view of darkest space.  There is a small adjoining
+room behind you, and a doorway right.
+
+>-: 
+	These are the executive suites of the battlestar.
+Luxurious staterooms carpeted with crushed velvet and adorned with beaten
+gold open onto this parlor. A wide staircase with ivory banisters leads
+up or down. This parlor leads into a hallway left. The bridal suite is
+right. Other rooms lie ahead and behind you.
+
+>-: 
+	This is the maid's utility room.
+What a gruesome sight! The maid has been brutally drowned in a bucket of
+Pine Sol and repeatedly stabbed in the back with a knife.
+The hallway is behind you.
+
+There is a knife here.
+The maid's body is lying here. She was murdered!
+>-: knife:
+Taken.
+>-: Your knife should do the trick.
+You can't kill that!
+>-: bye.
+Your rating was novice.

@@ -1,0 +1,52 @@
+Version 4.2, fall 1984.
+First Adventure game written by His Lordship, the honorable
+Admiral D.W. Riggle
+
+
+	This is a luxurious stateroom.
+The floor is carpeted with a soft animal fur and the great wooden furniture
+is inlaid with strips of platinum and gold.  Electronic equipment built
+into the walls and ceiling is flashing wildly.  The floor shudders and
+the sounds of dull explosions rumble though the room.  From a window in
+the wall ahead comes a view of darkest space.  There is a small adjoining
+room behind you, and a doorway right.
+
+>-: 
+	This is a walk in closet.
+A wardrobe of immense magnitude greets the eye.  Furs and robes of kings
+hang on rack after rack.  Silken gowns, capes woven with spun gold, and 
+delicate synthetic fabrics are stowed here.  The bedroom is behind you.
+
+A kingly robe of royal purple and spun gold is draped here.
+>-: robe:
+Taken.
+>-: 
+	This is a luxurious stateroom.
+The floor is carpeted with a soft animal fur and the great wooden furniture
+is inlaid with strips of platinum and gold.  Electronic equipment built
+into the walls and ceiling is flashing wildly.  The floor shudders and
+the sounds of dull explosions rumble though the room.  From a window in
+the wall ahead comes a view of darkest space.  There is a small adjoining
+room behind you, and a doorway right.
+
+>-: 
+	These are the executive suites of the battlestar.
+Luxurious staterooms carpeted with crushed velvet and adorned with beaten
+gold open onto this parlor. A wide staircase with ivory banisters leads
+up or down. This parlor leads into a hallway left. The bridal suite is
+right. Other rooms lie ahead and behind you.
+
+>-: 
+	This was once the first class lounge.
+There is much rubble and destruction here that was not apparent elsewhere.
+The walls and ceilings have broken in in some places. A staircase with
+red coral banisters leads up. It is impossible to go left or right.
+It seems a little clearer ahead.
+
+There are some matches here.
+>-: robe:
+Dropped.
+You aren't holding a blaster.
+You aren't holding a blaster.
+>-: bye.
+Your rating was novice.
