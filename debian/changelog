@@ -1,3 +1,9 @@
+bsdgames (2.14-6) unstable; urgency=low
+
+  * Move menu item to new policy-compliant Apps/Education. Closes: #194782
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 13 Jul 2003 22:02:55 +0200
+
 bsdgames (2.14-5) unstable; urgency=low
 
   * Fix rounding error in caesar due to too small data type. Caused it to
