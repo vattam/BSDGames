@@ -15,7 +15,8 @@ Non-free games
 
 These installation instructions apply to both bsd-games and
 bsd-games-non-free.  bsd-games-non-free contains rogue, which it seems
-cannot be sold for profit: the rest of the games are under the
+cannot be sold for profit, and hack, for which porting but not
+gameplay changes may be made: the rest of the games are under the
 standard BSD distribution conditions, or very similar ones (phantasia
 is public domain, i.e. not copyrighted).  As of version 2.2 and later,
 the bsd-games-non-free package unpacks conventionally into a directory
@@ -30,50 +31,70 @@ don't worry about it ... it really is more of an aesthetic thing.
 Prerequisites
 =============
 
-You need gcc, libc5 (version 5.4.5 or later) or libc6, and ncurses
-(any reasonably recent version).  Older versions of ncurses may work
-(but are much more buggy), and BSD curses / termcap just might work
-(but is obsolete), but these are completely unsupported; even with
-recent ncurses versions you could run into problems with some games
-dependent on the version of ncurses; if so, get a debugging version of
-ncurses (libncurses_g.a), link with -lncurses_g instead of -lncurses,
-and good luck bug-hunting.  If the display gets confused in ordinary
-use (as opposed for example to after resizing the window), this might
-be a bug in the game, but is probably a bug in ncurses.  You also need
-some sort of lex and yacc; by default this package will use flex and
-bison, but byacc will probably work as well.  Libc5 versions before
-5.4.5, or libc4, will not work since they don't have the BSD <err.h>
-error reporting functions.
+You need gcc (the C compiler only - other languages not needed), libc5
+(version 5.4.5 or later) or libc6, and ncurses (any reasonably recent
+version).  Older versions of ncurses may work (but are much more
+buggy), and BSD curses / termcap just might work (but is obsolete),
+but these are completely unsupported; even with recent ncurses
+versions you could run into problems with some games dependent on the
+version of ncurses; if so, get a debugging version of ncurses
+(libncurses_g.a), link with -lncurses_g instead of -lncurses, and good
+luck bug-hunting.  If the display gets confused in ordinary use (as
+opposed for example to after resizing the window), this might be a bug
+in the game, but is probably a bug in ncurses.  You also need some
+sort of lex and yacc; by default this package will use flex and bison,
+but byacc will probably work as well.  Libc5 versions before 5.4.5, or
+libc4, will not work since they don't have the BSD <err.h> error
+reporting functions.  libcrypto from OpenSSL can optionally be used by
+factor.
+
+You now need a word list for boggle and hangman; bsd-games no longer
+provides one itself.  The GNU miscfiles package contains one, for
+example.  The path can be specified at configure time (default:
+/usr/share/dict/words).  The file used by hangman can also be
+specified at run time with the "-d" option.
 
 The makefiles require GNU make; if you have a strange system on which
-`make' is not GNU make you can use it under some other name since
+"make" is not GNU make you can use it under some other name since
 $(MAKE) is used where appropriate.  The configure script assumes that
 /bin/sh is a POSIX.2 shell (bash is known to work; current versions of
 ksh and ash should be OK but I haven't tested them); it can be run
-manually with `bash configure' or similar if /bin/sh is not a POSIX.2
+manually with "bash configure" or similar if /bin/sh is not a POSIX.2
 shell.  It uses the POSIX.2 printf utility (in GNU sh-utils, and a
 builtin in bash 2.02) to avoid depending on echo -n.
 
 I am not aware of any dependence on the version of gcc used, although
 it would be advisable to use gcc 2.7.2.1 or later (or use
--fno-strength-reduce).  Sufficiently recent egcs snapshots (those with
-global CSE), and egcs releases 1.1 or later, may produce spurious
+-fno-strength-reduce).  EGCS releases 1.1.x may produce spurious
 warnings about uninitialized variables because of limitations in the
 code to detect this, but this does not affect the correctness of the
-compiled code.  Some glibc versions may produce many warnings in the
-system headers; these can be ignored.
-
-Some man pages may look better with the tmac.doc macros from NetBSD,
-rather than the older ones distributed with groff.  If any man pages
-look funny or appear to have words missing (especially the program
-name or a reference to NetBSD), having older tmac.doc may be the
-cause.
+compiled code; this seems to be fixed in GCC 2.95.  Some glibc
+versions may produce many warnings in the system headers; these
+generally represent bugs in the headers whose only impact is cosmetic,
+and can be ignored.
 
 Security
 ========
 
 See the SECURITY file for a discussion of security issues about the
 BSD games.
+
+Alternative implementations
+===========================
+
+Some of the programs in this package have alternative implementations
+for Linux available, which you may wish to use some of instead of the
+BSD versions:
+
+* banner is in util-linux.
+* factor is in GNU sh-utils as of version 1.12q.
+* An extensively modified version of fortune is available as
+"fortune-mod".  There are also many additional fortune data files
+(including translations of the ones included here) available.
+* Perl implementations of some of the games are included in the "Perl
+Power Tools" project (http://language.perl.com/ppt/).
+* My enhanced version of ppt with support for PostScript output is
+available as "nppt" from metalab and its mirrors.
 
 Building and installation
 =========================
@@ -82,54 +103,59 @@ Building and installation
     directory that contains this file.  There is not yet any support
     for building in a directory other than the source directory.
 
-2.  Run `./configure' and configure the installation to your liking.
+2.  Run "./configure" and configure the installation to your liking.
     There may be some games you don't want to build because you have
-    them from elsewhere; for example, there is another fortune package
-    (fortune-mod) available, and factor is included in GNU sh-utils as
-    of version 1.12q.  Also banner is in util-linux.  You can specify
-    particular games you do not want built before specifying the list
-    of games to build (which will default to all those available,
-    except those you have excluded).
+    them from elsewhere (see above).  You can specify particular games
+    you do not want built before specifying the list of games to build
+    (which will default to all those available, except those you have
+    excluded).
 
     The filesystem structure used defaults to that the the Filesystem
     Hierarchy Standard (FHS), version 2.0.  If you are using the older
     FSSTND 1.2, or a newer FHS, or wish to install into /usr/local,
     check the paths given and make changes as appropriate.
 
-3.  Type `make'.  You can probably ignore compiler warnings, although
+3.  Type "make".  You can probably ignore compiler warnings, although
     most should be fixed in this release.  If you are building on a 64
     bit architecture, you might want to look over the warnings and let
     me know about any that are normally significant in such cases.
-    Some versions of gcc (e.g. egcs 1.1) give many `missing
-    initializer' warnings; these are harmless.
+    Recent versions of gcc give many "missing initializer" warnings;
+    these are harmless, as are the warnings in system headers
+    mentioned above.  Likewise, "null format string" warnings are
+    harmless; future versions of GCC will probably eliminate them, by
+    allowing headers to specify whether it is OK for a format argument
+    to a particular function to be null.
 
-    At the start of the build, their will be many `No such file or
-    directory' warnings from make.  Ignore these as long as make does
+    At the start of the build, there will be many "No such file or
+    directory" warnings from make.  Ignore these as long as make does
     not stop because of them: these refer to dependency files that
-    make can regenerate for itself.  See `Automatic Dependencies' in
+    make can regenerate for itself.  See "Automatic Dependencies" in
     the GNU Make manual for details.
 
     In the unlikely event of an internal compiler error, the build
     system supports generating the files of preprocessor output
     required for a bug report: if the error occurs while compiling
-    `foo/bar.c', then `make foo/bar.i' will put the preprocessor
-    output in `foo/bar.i', suitable for sending in a bug report along
+    "foo/bar.c", then "make foo/bar.i" will put the preprocessor
+    output in "foo/bar.i", suitable for sending in a bug report along
     with details of compiler version and options used.  You may,
     however, wish to minimise the testcase before sending a bug
     report, if you have the time to do so.
 
-4.  Save copies of any old versions of games you like and their
+4.  Run the testsuite (non-interactive) with "make check".  All tests
+    should pass.
+
+5.  Save copies of any old versions of games you like and their
     datafiles, until you know that the new versions work.
 
-5.  Become root.  (If, as an ordinary user, you are installing under
+6.  Become root.  (If, as an ordinary user, you are installing under
     your home directory, and have chosen not to set owners and groups
     on the installed files, there is of course no need to do this.)
 
-6.  Type `make install'.  If you want the installed binaries to be
-    stripped, use `make install-strip' instead.  This saves disk
+7.  Type "make install".  If you want the installed binaries to be
+    stripped, use "make install-strip" instead.  This saves disk
     space, but means that you cannot debug the installed binaries.
 
-7.  If you had an old installation of bsd-games, check for file
+8.  If you had an old installation of bsd-games, check for file
     locations that have changed.  You will probably want to remove old
     executables and static data (formerly defaulting to installation
     in /usr/games/lib), and replace any empty score files that have
@@ -147,20 +173,25 @@ Building and installation
     may need to adjust the permissions manually if you had a previous
     installation of version 2.3.
 
-8.  You may wish to do something with the BSD Users' Supplementary
+9.  The robots scorefile format changed in version 2.8, so any old
+    score file should be removed or renamed when first upgrading to
+    this or a later version, and a new one created with the correct
+    permissions.
+
+10. You may wish to do something with the BSD Users' Supplementary
     Documents for trek and rogue, in trek/USD.doc/trek.me and
     rogue/USD.doc/rogue.me.  You can look at them on a text terminal
-    with `nroff -me' (piped to your pager), or format in PostScript
-    for printing with `groff -me -Tps'.
+    with "nroff -me" (piped to your pager), or format in PostScript
+    for printing with "groff -me -Tps".
 
-9.  `make distclean' will restore the source directory to the original
+11. "make distclean" will restore the source directory to the original
     unpacked state.  The automatically generated dependency files
     include paths to system headers, including those in gcc's internal
     header directory: if you have changed your compiler or library
     headers between building bsd-games and cleaning up, you can use
-    `make distclean nodep=true' to avoid this causing problems.
+    "make distclean nodep=true" to avoid this causing problems.
 
-    `make clean' will restore the sources to the state just after
+    "make clean" will restore the sources to the state just after
     configuration.
 
 Further information
@@ -177,7 +208,7 @@ The file BUGS lists known bugs.  The README file discusses how to
 produce useful bug reports.
 
 Joseph S. Myers
-jsm28@cam.ac.uk
+jsm@polyomino.org.uk
 
 
 

@@ -1,18 +1,19 @@
 README for bsd-games
 ====================
 
-This is the bsd-games package for Linux, containing ports of all the
-games from NetBSD-current that are free in the usual (DFSG/OSD) sense
-(i.e. modified and unmodified versions can be freely distributed,
-including for profit).  NetBSD-current contains three other games,
-rogue, hack and larn.  Rogue has a standard BSD licence, but with an
+This is the bsd-games package for Linux (and GNU Hurd), containing
+ports of all the games from NetBSD-current that are free in the usual
+(DFSG/OSD) sense (i.e. modified and unmodified versions can be freely
+distributed, including for profit).  NetBSD-current contains two other
+games, rogue and larn.  Rogue has a standard BSD licence, but with an
 additional contradictory licence that does not allow for-profit
-distribution; hack and larn have no licence at all.  If you want
-rogue, get the bsd-games-non-free package (which should be on sunsite,
-but not tsx-11), and read the README.non-free that it contains: rogue
-is being distributed separately, and hack and larn not distributed at
-all in this Linux port, in the absence of definite confirmation of
-what licences really apply.  A game not from NetBSD, paranoia, was in
+distribution; larn has no licence at all, only a notice that "Copying
+for Profit is Prohibited".  If you want rogue, get the
+bsd-games-non-free package (which should be on sunsite, but not
+tsx-11), and read the README.non-free that it contains: rogue is being
+distributed separately, and larn not distributed at all in this Linux
+port, in the absence of definite confirmation of what licences really
+apply to rogue and larn.  A game not from NetBSD, paranoia, was in
 earlier versions of bsd-games-non-free (and bsd-games 1.2 and 1.3) but
 has been removed because of the lack of a clear licence.
 
@@ -27,11 +28,20 @@ don't test all possible combinations of libraries for each release, so
 tell me if some versions don't work.  For details of prerequisites,
 see INSTALL.
 
-For installation instructions, see the file `INSTALL'.  Some games
-have `README.linux' files you may wish to read.
+For installation instructions, see the file "INSTALL".  Some games
+have "README.linux" files you may wish to read.
 
 The statement of year 2000 issues associated with bsd-games and
-bsd-games-non-free is in the file `YEAR2000'.
+bsd-games-non-free is in the file "YEAR2000".
+
+The copyrights and licence terms for the games, as best as I can
+determine them, are in "COPYING".
+
+This package contains cryptographic software (caesar and rot13).  In
+some jurisdictions, use or distribution of these utilities may be
+restricted, whether under export control regulations or because these
+cryptosystems have been used as technical protection measures to
+restrict access to and copying of copyright works.
 
 This package contains the following games:
 
@@ -52,6 +62,7 @@ factor:		factor a number
 fish:		go fish
 fortune:	displays a random silly message
 gomoku:		gomoku
+hack:		exploring the Dungeons of Doom
 hangman:	guess the word before it is too late
 hunt:		hunt each other in a maze (multiplayer -- great)
 mille:		mille borne against the computer
@@ -77,10 +88,11 @@ trek:		We come in peace, shoot to kill.  It's worse than that, he's
 wargames:	would you like to play a game?
 worm:		eat the numbers without running into anything
 worms:		random worms scurrying across your screen
+wtf:		translate acronyms, e.g. "wtf is WTF"
 wump:		hunt the wumpus
 
 If you have questions about bsd-games or bsd-games-non-free you can
-contact me at <jsm28@cam.ac.uk>.  Bug reports should state the
+contact me at <jsm@polyomino.org.uk>.  Bug reports should state the
 versions of ncurses and libc used, unless clearly not relevant (e.g.,
 bugs in data files, or where you have an analysis and patch).  If you
 want to be informed by email of new releases when they come out,
@@ -89,14 +101,20 @@ please let me know.
 Known bugs are listed in the file BUGS; please do not send bug reports
 for bugs listed there, but patches that fix them are welcome.
 
-For patches, I prefer unidiffs (use `diff -u OLD NEW', or `diff -ruN
-OLD-DIRECTORY NEW-DIRECTORY'), but if your diff cannot produce them
+For patches, I prefer unidiffs (use "diff -u OLD NEW", or "diff -ruN
+OLD-DIRECTORY NEW-DIRECTORY"), but if your diff cannot produce them
 then context diffs are OK.  Please remember to include details of the
 bug and your analysis of the problem if you are sending a patch; I
 have ported the code from NetBSD to Linux, but may not be familiar
 with the workings of any particular program, whereas you will be if
-you have been tracing and fixing a bug.  The gcc info manual contains
+you have been tracing and fixing a bug.  The GCC info manual contains
 a discussion of how to produce good bug reports.
 
 Joseph S. Myers
-jsm28@cam.ac.uk
+jsm@polyomino.org.uk
+
+
+
+Local Variables:
+mode: text
+End:

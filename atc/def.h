@@ -1,4 +1,4 @@
-/*	$NetBSD: def.h,v 1.4 1998/09/11 12:53:28 hubertf Exp $	*/
+/*	$NetBSD: def.h,v 1.5 1999/09/30 18:01:31 jsm Exp $	*/
 
 /*-
  * Copyright (c) 1990, 1993

@@ -1,23 +1,53 @@
 # Makefrag - makefile fragment for fortune/datfiles
+#
+# Copyright (c) 1997, 1998, 1999 Joseph Samuel Myers.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
 
-fortune_datfiles_DATFILES := fortunes.dat fortunes2.dat startrek.dat zippy.dat
-fortune_datfiles_DATFILES_off := fortunes-o.dat fortunes2-o.dat limerick.dat
-fortune_datfiles_GENSRCFILES := fortunes-o fortunes2-o limerick
-fortune_datfiles_SRCFILES := fortunes fortunes2 startrek zippy
+fortune_datfiles_DATFILES := farber.dat fortunes.dat fortunes2.dat limerick.dat startrek.dat zippy.dat
+fortune_datfiles_DATFILES_off := fortunes-o.dat fortunes2-o.dat limerick-o.dat unamerican-o.dat
+fortune_datfiles_GENSRCFILES := fortunes-o fortunes2-o limerick-o unamerican-o
+fortune_datfiles_SRCFILES := farber fortunes fortunes2 limerick startrek zippy
 
-fortune_datfiles_DATFILESp := fortune/datfiles/fortunes.dat \
-	fortune/datfiles/fortunes2.dat fortune/datfiles/startrek.dat \
+fortune_datfiles_DATFILESp := fortune/datfiles/farber.dat \
+	fortune/datfiles/fortunes.dat fortune/datfiles/fortunes2.dat \
+	fortune/datfiles/limerick.dat fortune/datfiles/startrek.dat \
 	fortune/datfiles/zippy.dat
 fortune_datfiles_DATFILES_offp := fortune/datfiles/fortunes-o.dat \
-	fortune/datfiles/fortunes2-o.dat fortune/datfiles/limerick.dat
+	fortune/datfiles/fortunes2-o.dat fortune/datfiles/limerick-o.dat \
+	fortune/datfiles/unamerican-o.dat
 fortune_datfiles_GENSRCFILESp := fortune/datfiles/fortunes-o \
-	fortune/datfiles/fortunes2-o fortune/datfiles/limerick
-fortune_datfiles_SRCFILESp := fortune/datfiles/fortunes \
-	fortune/datfiles/fortunes2 fortune/datfiles/startrek \
+	fortune/datfiles/fortunes2-o fortune/datfiles/limerick-o \
+	fortune/datfiles/unamerican-o
+fortune_datfiles_SRCFILESp := fortune/datfiles/farber \
+	fortune/datfiles/fortunes fortune/datfiles/fortunes2 \
+	fortune/datfiles/limerick fortune/datfiles/startrek \
 	fortune/datfiles/zippy
 
 fortune_datfiles_CLEANFILES := $(fortune_datfiles_DATFILES) $(fortune_datfiles_DATFILES_off) $(fortune_datfiles_GENSRCFILES)
-fortune_datfiles_DIRS := $(LIBDIR)/fortunes
+fortune_datfiles_DIRS := $(SHAREDIR)/fortunes
 
 fortune_datfiles_all:	$(fortune_datfiles_DATFILESp) $(fortune_datfiles_DATFILES_offp) $(fortune_datfiles_SRCFILESp) $(fortune_datfiles_GENSRCFILESp)
 
@@ -26,7 +56,7 @@ fortune_datfiles_install:	fortune_datfiles_all
 	    $(fortune_datfiles_GENSRCFILES) $(fortune_datfiles_DATFILES) \
 		$(fortune_datfiles_DATFILES_off); do \
 		$(INSTALL_DATA) fortune/datfiles/$$f \
-		    $(INSTALL_PREFIX)$(LIBDIR)/fortunes/$$f; \
+		    $(INSTALL_PREFIX)$(SHAREDIR)/fortunes/$$f; \
 	    done
 
 $(fortune_datfiles_DATFILESp): fortune/datfiles/%.dat: fortune/datfiles/% fortune/strfile/strfile

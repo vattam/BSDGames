@@ -1,4 +1,31 @@
-# Makeconfig.in - configuration included in Makefiles after substitution
+# Makeconfig.in - configuration included in Makefiles after substitution.
+#
+# Copyright (c) 1997, 1998, 1999, 2000, 2003 Joseph Samuel Myers.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 3. The name of the author may not be used to endorse or promote products
+#    derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+
 # If some variables are unexpanded in Makeconfig, this shouldn't be a
 # problem, it will be because they weren't configured since the relevant
 # games weren't being built.
@@ -21,8 +48,6 @@ MAN6DIR := @man6dir@
 MAN8DIR := @man8dir@
 # Manual pages, section 5
 MAN5DIR := @man5dir@
-# Constant data (arch-dependent)
-LIBDIR := @usrlibdir@
 # Constant data (arch-independent)
 SHAREDIR := @sharedir@
 # Variable data
@@ -39,6 +64,7 @@ INSTALL_DATA := @install_constdata@
 INSTALL_VARDATA := @install_vardata@
 INSTALL_DM := @install_dm@
 INSTALL_SAIL_DIR := @install_sail_dir@
+INSTALL_HACK_DIR := @install_hack_dir@
 # Is INSTALL_VARDATA actually needed (for games that start with non-empty
 # scorefile?)
 # For games which can start with empty scorefile we do:
@@ -61,9 +87,13 @@ OPTIMIZE := @optimize_flags@
 WARNING := @warning_flags@
 CFLAGS := $(OPTIMIZE) $(WARNING) @other_cflags@
 LDFLAGS := @other_ldflags@
+FGETLN_DEFS := @fgetln_defs@
+GETLOADAVG_DEFS := @getloadavg_defs@
 NCURSES_LIB := @ncurses_lib@
 NCURSES_INCS := @ncurses_includes@
-BASE_INCS := -Iinclude $(NCURSES_INCS)
+OPENSSL_LIB := @openssl_lib@
+OPENSSL_INCS := @openssl_includes@
+BASE_INCS := -Iinclude $(NCURSES_INCS) $(OPENSSL_INCS)
 BASE_LIBS := @base_libs@
 YACC := @yacc@
 LEX := @lex@
@@ -77,12 +107,13 @@ ATC_DIR := @atc_dir@
 ATC_SCOREFILE := @atc_scorefile@
 BATTLESTAR_SCOREFILE := @battlestar_scorefile@
 BOGGLE_DIR := @boggle_dir@
+DICTIONARY_SRC := @dictionary_src@
 CANFIELD_SCOREFILE := @canfield_scorefile@
 CRIBBAGE_INSTRFILE := @cribbage_instrfile@
 CRIBBAGE_SCOREFILE := @cribbage_scorefile@
 FISH_INSTRFILE := @fish_instrfile@
 FORTUNE_TYPE := @fortune_type@
-HANGMAN_WORDSFILE := @hangman_wordsfile@
+HACK_DIR := @hack_dir@
 MONOP_CARDSFILE := @monop_cardsfile@
 PHANTASIA_DIR := @phantasia_dir@
 QUIZ_DIR := @quiz_dir@
@@ -93,4 +124,5 @@ SAIL_DIR := @sail_dir@
 SNAKE_SCOREFILE := @snake_scorefile@
 SNAKE_RAWSCOREFILE := @snake_rawscorefile@
 TETRIS_SCOREFILE := @tetris_scorefile@
+WTF_ACRONYMFILE := @wtf_acronymfile@
 WUMP_INFOFILE := @wump_infofile@

@@ -1,4 +1,4 @@
-/*	$NetBSD: log.c,v 1.7 1998/07/24 23:22:26 hubertf Exp $	*/
+/*	$NetBSD: log.c,v 1.11 2001/01/16 02:50:28 cgd Exp $	*/
 
 /*-
  * Copyright (c) 1990, 1993
@@ -50,9 +50,9 @@
 #if 0
 static char sccsid[] = "@(#)log.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: log.c,v 1.7 1998/07/24 23:22:26 hubertf Exp $");
+__RCSID("$NetBSD: log.c,v 1.11 2001/01/16 02:50:28 cgd Exp $");
 #endif
-#endif not lint
+#endif /* not lint */
 
 #include "include.h"
 #include "pathnames.h"
@@ -117,6 +117,8 @@ open_score_file()
 		warn("open %s", _PATH_SCORE);
 		return;
 	}
+	if (score_fd < 3)
+		exit(1);
 	/* Set the close-on-exec flag.  If this fails for any reason, quit
 	 * rather than leave the score file open to tampering.  */
 	flags = fcntl(score_fd, F_GETFD);
@@ -290,7 +292,7 @@ log_score(list_em)
 
 void
 log_score_quit(dummy)
-	int dummy __attribute__((unused));
+	int dummy __attribute__((__unused__));
 {
 	(void)log_score(0);
 	exit(0);

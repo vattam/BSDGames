@@ -21,7 +21,7 @@
 @quiz_dir@/murders:victim:killer
 @quiz_dir@/poetry:poem{-}line:next:poem:author
 @quiz_dir@/posneg:pos{itive}:neg{ative}
-@quiz_dir@/pres:pres{ident}:term:succ{essor}
+@quiz_dir@/pres:pres{ident}:term:vice:succ{essor}
 @quiz_dir@/province:province:cap{ital}
 @quiz_dir@/seq-easy:easy{-}{seq{uence}}:next:name
 @quiz_dir@/seq-hard:hard{-}{seq{uence}}:next:name

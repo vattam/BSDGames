@@ -18,26 +18,39 @@ drop any setgid privileges completely (including the saved gid).  This
 limits the effect of a cracked game to corruption of its score file.
 It should be somewhat safer now to make games setgid games than in
 versions 2.1 and earlier, but probably not completely safe; phantasia,
-sail, rogue and tetris do not currently handle their score files in
-the above way, and so should be considered the most dangerous to
+sail, rogue, hack and tetris do not currently handle their score files
+in the above way, and so should be considered the most dangerous to
 install setgid.  If you are auditing these games, phantasia, sail,
-rogue and tetris should be considered the most important to audit.
+rogue, hack and tetris should be considered the most important to
+audit.  In versions before 2.14, rogue had an exploitable buffer
+overrun (see NetBSD Security Advisory 2002-021).
+
+An effect of this security policy is that in some cases the score
+files need to be world-readable so that they can be opened for reading
+after the game has dropped privileges, or by a score file reading
+program that was never privileged.  In versions before 2.10, the
+phantasia "characs" file (containing passwords for phantasia
+characters) was mistakenly made world readable.
 
 You should, of course, only install the games setgid if this is in
 line with system security policy.  Games should not be installed
 setuid, since if a setuid game is cracked this allows games to be
 replaced with trojans.  Games should not be installed setgid to a
-system group such as `root' or `daemon'.  In some environments, an
+system group such as "root" or "daemon".  In some environments, an
 acceptable alternative may be not to give the games any special
 privileges, but to put trusted users in the games group.
 
-An option is to use the `dungeon master' dm to regulate games playing.
+An option is to use the "dungeon master" dm to regulate games playing.
 I believe this is safe; games that do not need to run setgid drop the
 setgid privileges they get from dm on startup.  If dm is setgid, but
 the games that access score files are not, then they will keep their
 setgid privileges from dm; note that in this case it does not make
 sense for dm to be setgid to some gid other than the one (normally
-`games') with write access to the score files.
+"games") with write access to the score files.
+
+This package does not yet support security hardening by giving each
+setgid game its own gid, but in some environments you may wish to do
+this.
 
 ***********************************************************************
 *                                                                     *
@@ -59,7 +72,7 @@ sense for dm to be setgid to some gid other than the one (normally
 
 If you are compiling these games on an operating system other than
 Linux, be warned that they rely for their security on
-`setregid(getgid(), getgid())' dropping all setgid privileges
+"setregid(getgid(), getgid())" dropping all setgid privileges
 permanently, _including the saved gid_.  On some operating systems
 this may fail to drop the saved gid (and indeed such operating systems
 may provide no way for a process not running as root to revoke
@@ -68,7 +81,7 @@ access to the games group rather than merely to to that game's score
 file.
 
 Joseph S. Myers
-jsm28@cam.ac.uk
+jsm@polyomino.org.uk
 
 
 
