@@ -1,4 +1,4 @@
-bsdgames (2.13-5) unstable; urgency=low
+bsdgames (2.13-6) unstable; urgency=low
 
   * Fixed man page warnings, Closes: #139414
 
