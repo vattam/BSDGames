@@ -126,7 +126,7 @@ main(ac, av)
 						break;
 					  
 					  default:
-						fprintf(stderr, "robots: uknown option: %c\n", *sp);
+						fprintf(stderr, "robots: unknown option: %c\n", *sp);
 						bad_arg = TRUE;
 						break;
 					}

@@ -22,14 +22,12 @@ SCOREFILES="
 # move them into the new location.
 if [ -d /var/lib/games ]; then
 
-	# Have to set up directory hierarchy, since this is running as a preinst.
-	mkdir -p /var/games/bsdgames/sail \
-		/var/games/bsdgames/phantasia
+	# Have to set up directory hierarchy, since this is running as a
+	# preinst.
+	mkdir -p /var/games/bsdgames/phantasia
 	chown root.games /var/games/bsdgames \
-		/var/games/bsdgames/sail \
 		/var/games/bsdgames/phantasia
 	chmod g+rws /var/games/bsdgames \
-		/var/games/bsdgames/sail \
 		/var/games/bsdgames/phantasia
 
 	for file in $SCOREFILES; do

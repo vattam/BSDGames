@@ -1,4 +1,4 @@
-/*	$NetBSD: scores.c,v 1.4 1997/10/14 01:14:20 lukem Exp $	*/
+/*	$NetBSD: scores.c,v 1.8 1999/09/18 19:38:55 jsm Exp $	*/
 
 /*-
  * Copyright (c) 1992, 1993
@@ -45,6 +45,7 @@
  *
  * Major whacks since then.
  */
+#include <err.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <pwd.h>
@@ -99,7 +100,7 @@ getscores(fpp)
 {
 	int sd, mint, lck;
 	mode_t mask;
-	char *mstr, *human;
+	const char *mstr, *human;
 	FILE *sf;
 
 	if (fpp != NULL) {
@@ -123,14 +124,10 @@ getscores(fpp)
 			setegid(gid);
 			return;
 		}
-		(void)fprintf(stderr, "tetris: cannot open %s for %s: %s\n",
-		    _PATH_SCOREFILE, human, strerror(errno));
-		exit(1);
+		err(1, "cannot open %s for %s", _PATH_SCOREFILE, human);
 	}
 	if ((sf = fdopen(sd, mstr)) == NULL) {
-		(void)fprintf(stderr, "tetris: cannot fdopen %s for %s: %s\n",
-		    _PATH_SCOREFILE, human, strerror(errno));
-		exit(1);
+		err(1, "cannot fdopen %s for %s", _PATH_SCOREFILE, human);
 	}
 	setegid(gid);
 
@@ -138,15 +135,12 @@ getscores(fpp)
 	 * Grab a lock.
 	 */
 	if (flock(sd, lck))
-		(void)fprintf(stderr,
-		    "tetris: warning: score file %s cannot be locked: %s\n",
-		    _PATH_SCOREFILE, strerror(errno));
+		warn("warning: score file %s cannot be locked",
+		    _PATH_SCOREFILE);
 
 	nscores = fread(scores, sizeof(scores[0]), MAXHISCORES, sf);
 	if (ferror(sf)) {
-		(void)fprintf(stderr, "tetris: error reading %s: %s\n",
-		    _PATH_SCOREFILE, strerror(errno));
-		exit(1);
+		err(1, "error reading %s", _PATH_SCOREFILE);
 	}
 
 	if (fpp)
@@ -211,8 +205,7 @@ savescore(level)
 		rewind(sf);
 		if (fwrite(scores, sizeof(*sp), nscores, sf) != (size_t)nscores ||
 		    fflush(sf) == EOF)
-			(void)fprintf(stderr,
-			    "tetris: error writing %s: %s -- %s\n",
+			warnx("error writing %s: %s -- %s",
 			    _PATH_SCOREFILE, strerror(errno),
 			    "high scores may be damaged");
 	}
@@ -443,10 +436,9 @@ printem(level, offset, hs, n, me)
 				(void)putchar('\n');
 				continue;
 			}
-			(void)printf(item + offset < 10 ? "  " : " ");
 			sp = &hs[item];
 			(void)sprintf(buf,
-			    "%d%c %6d  %-11s (%d on %d)",
+			    "%3d%c %6d  %-11s (%6d on %d)",
 			    item + offset, sp->hs_time ? '*' : ' ',
 			    sp->hs_score * sp->hs_level,
 			    sp->hs_name, sp->hs_score, sp->hs_level);

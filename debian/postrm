@@ -22,9 +22,8 @@ SCOREFILES="
 # Remove high score files on purge.
 if [ "$1" = "purge" ]; then
 	rm -f $SCOREFILES
+	rmdir /var/games/bsdgames/phantasia /var/games/bsdgames/sail \
+	      /var/games/bsdgames /var/games 2>/dev/null || true 
 fi
-
-rmdir /var/games/bsdgames/phantasia /var/games/bsdgames/sail /var/games/bsdgames \
-	/var/games 2>/dev/null || true 
 
 #DEBHELPER#

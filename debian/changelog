@@ -1,6 +1,13 @@
 bsdgames (2.9-1) unstable; urgency=low
 
   * New upstream version.
+  * Patch from Malcolm to fix tetris-bsd score formatting if there are more
+    than 10 scores. (Closes: #50031)
+  * Include /var/games/bsdgames/sail, (Closes: #50074)
+  * Fixed robots spelling mistake, (Closes: #50075)
+  * tetris-bsd now uses its name, (Closes: #50077)
+  * Fixed phantasia/characs permissions so it's not world-readable
+    (passwords) (Closes: #50076)
 
  -- Joey Hess <joeyh@master.debian.org>  Sat, 13 Nov 1999 14:14:34 -0800
 
