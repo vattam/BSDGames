@@ -1,3 +1,11 @@
+bsdgames (2.11-2) unstable; urgency=low
+
+  * Patch from pmaydell@chiark.greenend.org.uk to fix a segfault in
+    battlestar if you say "wear knfo" or similar nonsensical things. 
+    (Patch also sent upstream.) Closes: #70465
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 28 Aug 2000 17:16:27 -0700
+
 bsdgames (2.11-1) unstable; urgency=low
 
   * New upstream.

@@ -1,4 +1,4 @@
-/*	$NetBSD: com2.c,v 1.7 1998/08/24 00:22:45 hubertf Exp $	*/
+/*	$NetBSD: com2.c,v 1.8 1999/07/14 17:42:13 hubertf Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)com2.c	8.2 (Berkeley) 4/28/95";
 #else
-__RCSID("$NetBSD: com2.c,v 1.7 1998/08/24 00:22:45 hubertf Exp $");
+__RCSID("$NetBSD: com2.c,v 1.8 1999/07/14 17:42:13 hubertf Exp $");
 #endif
 #endif				/* not lint */
 
@@ -54,12 +54,18 @@ wearit()
 	while (wordtype[++wordnumber] == ADJS);
 	while (wordnumber <= wordcount) {
 		value = wordvalue[wordnumber];
-		for (n = 0; objsht[value][n]; n++);
-		switch (value) {
-
-		case -1:
+		/* Is the thing being worn a known object? */
+		if (value == -1) {
 			puts("Wear what?");
 			return (firstnumber);
+		}
+		/* Now find the length of the short description,
+		 * mostly so we know if it ends in 's' or not.
+		 */
+		for (n = 0; objsht[value][n]; n++)
+			/* do nothing */;
+			
+		switch (value) {
 
 		default:
 			printf("You can't wear%s%s!\n", (objsht[value][n - 1] == 's' ? " " : " a "), objsht[value]);
@@ -301,7 +307,7 @@ int
 follow()
 {
 	if (followfight == ourtime) {
-		puts("The Dark Lord leaps away and runs down secret tunnels and corridoors.");
+		puts("The Dark Lord leaps away and runs down secret tunnels and corridors.");
 		puts("You chase him through the darkness and splash in pools of water.");
 		puts("You have cornered him.  His laser sword extends as he steps forward.");
 		position = FINAL;
