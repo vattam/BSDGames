@@ -1,3 +1,10 @@
+bsdgames (2.16-3) unstable; urgency=low
+
+  * Add docdir to config.params and don't unstall trek.me manually.
+    Closes: #bsdgames
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  7 Mar 2004 15:50:16 -0900
+
 bsdgames (2.16-2) unstable; urgency=low
 
   * FIx primes(6). Closes: #234515
