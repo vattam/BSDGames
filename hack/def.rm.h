@@ -1,4 +1,4 @@
-/*	$NetBSD: def.rm.h,v 1.5 2001/01/16 02:50:28 cgd Exp $	*/
+/*	$NetBSD: def.rm.h,v 1.6 2003/04/02 18:36:35 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,

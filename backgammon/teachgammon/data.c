@@ -1,4 +1,4 @@
-/*	$NetBSD: data.c,v 1.5 1999/02/10 12:29:48 hubertf Exp $	*/
+/*	$NetBSD: data.c,v 1.6 2003/08/07 09:36:58 agc Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -12,11 +12,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *	This product includes software developed by the University of
- *	California, Berkeley and its contributors.
- * 4. Neither the name of the University nor the names of its contributors
+ * 3. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -38,7 +34,7 @@
 #if 0
 static char sccsid[] = "@(#)data.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: data.c,v 1.5 1999/02/10 12:29:48 hubertf Exp $");
+__RCSID("$NetBSD: data.c,v 1.6 2003/08/07 09:36:58 agc Exp $");
 #endif
 #endif				/* not lint */
 
@@ -92,7 +88,7 @@ const char   *const text4[] = {
 
 const char   *const text5[] = {
 	"Not a spectacular move, but a safe one.  I follow by rolling 6 1.",
-	"I decide to use this roll to move 22-16,16-17.  It leaves me with",
+	"I decide to use this roll to move 22-16,16-15.  It leaves me with",
 	"one man still open, but the blot is farther back on the board, and",
 	"would suffer less of a loss by being hit.",
 	0
@@ -123,7 +119,7 @@ const char   *const text8[] = {
 
 const char   *const text9[] = {
 	"My venture off the bar did not last long.  However, I got lucky",
-	"and rolled double 1's, allowing me to move 0-1,1-2,15-14,15-14.",
+	"and rolled double 1's, allowing me to move 25-24,24-23,15-14,15-14.",
 	0
 };
 

@@ -31,47 +31,30 @@ don't worry about it ... it really is more of an aesthetic thing.
 Prerequisites
 =============
 
-You need gcc (the C compiler only - other languages not needed), libc5
-(version 5.4.5 or later) or libc6, and ncurses (any reasonably recent
-version).  Older versions of ncurses may work (but are much more
-buggy), and BSD curses / termcap just might work (but is obsolete),
-but these are completely unsupported; even with recent ncurses
-versions you could run into problems with some games dependent on the
-version of ncurses; if so, get a debugging version of ncurses
-(libncurses_g.a), link with -lncurses_g instead of -lncurses, and good
-luck bug-hunting.  If the display gets confused in ordinary use (as
-opposed for example to after resizing the window), this might be a bug
-in the game, but is probably a bug in ncurses.  You also need some
-sort of lex and yacc; by default this package will use flex and bison,
-but byacc will probably work as well.  Libc5 versions before 5.4.5, or
-libc4, will not work since they don't have the BSD <err.h> error
-reporting functions.  libcrypto from OpenSSL can optionally be used by
-factor.
+You need the following to build this distribution:
+
+* GCC (the C compiler only - other languages not needed).
+
+* glibc 2.3 or later.  Older versions will not work (at least for
+  hunt) since they lack the <ifaddrs.h> header.
+
+* ncurses; other curses / termcap implementations might work, but are
+  unsupported.
+
+* lex and yacc; by default this package will use flex and bison, but
+  byacc will probably work as well.
+
+* GNU make.
+
+* A POSIX shell, such as bash, in /bin/sh.
+
+libcrypto from OpenSSL can optionally be used by factor.
 
 You now need a word list for boggle and hangman; bsd-games no longer
 provides one itself.  The GNU miscfiles package contains one, for
 example.  The path can be specified at configure time (default:
 /usr/share/dict/words).  The file used by hangman can also be
 specified at run time with the "-d" option.
-
-The makefiles require GNU make; if you have a strange system on which
-"make" is not GNU make you can use it under some other name since
-$(MAKE) is used where appropriate.  The configure script assumes that
-/bin/sh is a POSIX.2 shell (bash is known to work; current versions of
-ksh and ash should be OK but I haven't tested them); it can be run
-manually with "bash configure" or similar if /bin/sh is not a POSIX.2
-shell.  It uses the POSIX.2 printf utility (in GNU sh-utils, and a
-builtin in bash 2.02) to avoid depending on echo -n.
-
-I am not aware of any dependence on the version of gcc used, although
-it would be advisable to use gcc 2.7.2.1 or later (or use
--fno-strength-reduce).  EGCS releases 1.1.x may produce spurious
-warnings about uninitialized variables because of limitations in the
-code to detect this, but this does not affect the correctness of the
-compiled code; this seems to be fixed in GCC 2.95.  Some glibc
-versions may produce many warnings in the system headers; these
-generally represent bugs in the headers whose only impact is cosmetic,
-and can be ignored.
 
 Security
 ========

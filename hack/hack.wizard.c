@@ -1,4 +1,4 @@
-/*	$NetBSD: hack.wizard.c,v 1.5 2001/03/25 20:44:04 jsm Exp $	*/
+/*	$NetBSD: hack.wizard.c,v 1.6 2003/04/02 18:36:41 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,
@@ -63,7 +63,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: hack.wizard.c,v 1.5 2001/03/25 20:44:04 jsm Exp $");
+__RCSID("$NetBSD: hack.wizard.c,v 1.6 2003/04/02 18:36:41 jsm Exp $");
 #endif				/* not lint */
 
 /* wizard code - inspired by rogue code from Merlyn Leroy (digi-g!brian) */

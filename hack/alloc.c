@@ -1,4 +1,4 @@
-/*	$NetBSD: alloc.c,v 1.4 1997/10/19 16:56:47 christos Exp $	*/
+/*	$NetBSD: alloc.c,v 1.5 2003/04/02 18:36:33 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,
@@ -63,7 +63,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: alloc.c,v 1.4 1997/10/19 16:56:47 christos Exp $");
+__RCSID("$NetBSD: alloc.c,v 1.5 2003/04/02 18:36:33 jsm Exp $");
 #endif				/* not lint */
 
 #include <stdlib.h>

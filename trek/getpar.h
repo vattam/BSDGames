@@ -1,4 +1,4 @@
-/*	$NetBSD: getpar.h,v 1.6 1999/09/08 21:18:01 jsm Exp $	*/
+/*	$NetBSD: getpar.h,v 1.8 2003/11/17 11:16:10 wiz Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -12,11 +12,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *	This product includes software developed by the University of
- *	California, Berkeley and its contributors.
- * 4. Neither the name of the University nor the names of its contributors
+ * 3. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -36,7 +32,7 @@
  */
 
 typedef void (*cmdfun) __P((int));
-struct cvntab		/* used for getcodpar() paramater list */
+struct cvntab		/* used for getcodpar() parameter list */
 {
 	const char	*abrev;
 	const char	*full;

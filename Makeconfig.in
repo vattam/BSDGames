@@ -112,6 +112,7 @@ CANFIELD_SCOREFILE := @canfield_scorefile@
 CRIBBAGE_INSTRFILE := @cribbage_instrfile@
 CRIBBAGE_SCOREFILE := @cribbage_scorefile@
 FISH_INSTRFILE := @fish_instrfile@
+FORTUNE_DIR := @fortune_dir@
 FORTUNE_TYPE := @fortune_type@
 HACK_DIR := @hack_dir@
 MONOP_CARDSFILE := @monop_cardsfile@

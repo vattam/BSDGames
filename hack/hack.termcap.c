@@ -1,4 +1,4 @@
-/*	$NetBSD: hack.termcap.c,v 1.11 2001/11/02 18:27:00 christos Exp $	*/
+/*	$NetBSD: hack.termcap.c,v 1.12 2003/04/02 18:36:40 jsm Exp $	*/
 /* For Linux: still using old termcap interface from version 1.9.  */
 
 /*
@@ -64,7 +64,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: hack.termcap.c,v 1.11 2001/11/02 18:27:00 christos Exp $");
+__RCSID("$NetBSD: hack.termcap.c,v 1.12 2003/04/02 18:36:40 jsm Exp $");
 #endif				/* not lint */
 
 #include <string.h>

@@ -1,3 +1,247 @@
+2003-12-18  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* Version 2.15.
+
+	* NEWS, bsd-games.lsm, bsd-games-non-free.lsm: Update.
+
+	* README: Update.
+
+2003-12-17  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* backgammon/backgammon/main.c (main): Only score as a Gammon or a
+	Backgammon if the opponent hasn't removed any pieces, not if the
+	opponent has removed pieces but has had a piece knocked back to
+	the bar afterwards.  Fixes Debian bug 185101 from Konstantin
+	Seiler <list@kseiler.de>.
+
+	* fortune/fortune/fortune.c (fortlen): Return proper fortune
+	length for fortune files without STR_RANDOM or STR_ORDERED rather
+	than comparing it to SLEN.  Bug reported by Simon Williams
+	<simon@no-dns-yet.org.uk>.
+
+	* fortune/fortune/fortune.c (init_prob): Show residual probability
+	rather than non-residual in "No place to put residual probability"
+	error message.  Distribute residual probability correctly rather
+	than all to one file.  Patch from Mike Castle
+	<dalgoda@ix.netcom.com>.
+
+	* configure, Makeconfig.in, fortune/fortune/pathnames.h.in,
+	fortune/datfiles/Makefrag: Make fortune directory configurable;
+	default to NetBSD default.
+
+	* rogue/Makefrag: Don't use -fwritable-strings.
+	* rogue/rogue.h (struct id): Add const.
+	* TODO: Update.
+
+	* backgammon/teachgammon/data.c: Make tutorial text match actual
+	moves.  From FreeBSD via OpenBSD.  Fixes Debian bug 212478 from
+	Jim W. Jaszewski <grok@sprint.ca>.
+
+	* adventure/glorkz: Fix capitalisation of compass directions.
+
+	* phantasia/main.c (cleanup): Only close files that have been
+	opened successfully.
+	* phantasic/misc.c (error): Give error text rather than errno
+	number.
+	Patch from Joey Hess <joey@kitenet.net> for Debian bug 187251 from
+	Mikael Hedin <micce@debian.org>.
+
+	* wtf/acronyms: Add two acronyms suggested by Pavel Machek
+	<pavel@ucw.cz>.
+
+	* wargames/wargames.6: Fix typo.  Patch from Joey Hess
+	<joeyh@debian.org>.
+
+	* hack/hack.options.c (parseoptions): Refer to 'O' rather than 'o'
+	as command to set options.  Bug reported by Christian Garbs
+	<debian@cgarbs.de> in Debian bug 191452.
+
+	* caesar/caesar.c (main): Make dot and winnerdot of type double.
+	Patch from Jan Vornberger <jan@uos.de> in Debian bug 197816.
+	* tests/caesar.197816in, tests/caesar.197816out: New tests.
+	* tests/caesar.test: Update.
+
+	* worm/worm.6: Score is in upper right corner, not upper left
+	corner.  Patch from Robert Hunter <roh@cryptocracy.hn.org> in
+	Debian bug 209034.
+
+	* atc/atc.6.in: Document that pressing return allows you to "fast
+	forward" the game clock.  Patch from Peter Maydell
+	<pmaydell@chiark.greenend.org.uk> in Debian bug 216980.
+
+	* PACKAGING: Remove some old version references.
+
+	* INSTALL: Simplify and remove some obsolete information.
+
+	* adventure/Makefile.bsd, adventure/adventure.6, adventure/crc.c,
+	adventure/done.c, adventure/hdr.h, adventure/init.c,
+	adventure/io.c, adventure/main.c, adventure/save.c,
+	adventure/setup.c, adventure/subr.c, adventure/vocab.c,
+	adventure/wizard.c, arithmetic/arithmetic.6,
+	arithmetic/arithmetic.c, atc/Makefile.bsd, atc/atc.6.in,
+	atc/def.h, atc/extern.c, atc/extern.h, atc/grammar.y,
+	atc/graphics.c, atc/include.h, atc/input.c, atc/lex.l, atc/list.c,
+	atc/log.c, atc/main.c, atc/pathnames.h.in, atc/struct.h,
+	atc/tunable.c, atc/tunable.h, atc/update.c,
+	backgammon/backgammon/backgammon.6.in,
+	backgammon/backgammon/extra.c, backgammon/backgammon/main.c,
+	backgammon/backgammon/move.c, backgammon/backgammon/text.c,
+	backgammon/backgammon/version.c, backgammon/common_source/allow.c,
+	backgammon/common_source/back.h, backgammon/common_source/board.c,
+	backgammon/common_source/check.c,
+	backgammon/common_source/fancy.c, backgammon/common_source/init.c,
+	backgammon/common_source/odds.c, backgammon/common_source/one.c,
+	backgammon/common_source/save.c, backgammon/common_source/subs.c,
+	backgammon/common_source/table.c, backgammon/teachgammon/data.c,
+	backgammon/teachgammon/teach.c, backgammon/teachgammon/ttext1.c,
+	backgammon/teachgammon/ttext2.c, backgammon/teachgammon/tutor.c,
+	backgammon/teachgammon/tutor.h, banner/banner.6, banner/banner.c,
+	battlestar/battlestar.6, battlestar/battlestar.c,
+	battlestar/command1.c, battlestar/command2.c,
+	battlestar/command3.c, battlestar/command4.c,
+	battlestar/command5.c, battlestar/command6.c,
+	battlestar/command7.c, battlestar/cypher.c, battlestar/dayfile.c,
+	battlestar/dayobjs.c, battlestar/extern.h, battlestar/fly.c,
+	battlestar/getcom.c, battlestar/globals.c, battlestar/init.c,
+	battlestar/misc.c, battlestar/nightfile.c, battlestar/nightobjs.c,
+	battlestar/parse.c, battlestar/pathnames.h.in, battlestar/room.c,
+	battlestar/save.c, battlestar/words.c, bcd/bcd.6, bcd/bcd.c,
+	boggle/Makefile.bsd, boggle/boggle/bog.c, boggle/boggle/bog.h.in,
+	boggle/boggle/boggle.6, boggle/boggle/extern.h,
+	boggle/boggle/help.c, boggle/boggle/mach.c,
+	boggle/boggle/prtable.c, boggle/boggle/timer.c,
+	boggle/boggle/word.c, boggle/mkdict/mkdict.c,
+	boggle/mkindex/mkindex.c, caesar/caesar.6, caesar/caesar.c,
+	canfield/canfield/canfield.6.in, canfield/canfield/canfield.c,
+	canfield/canfield/pathnames.h.in, canfield/cfscores/cfscores.c,
+	countmail/countmail.6, cribbage/cards.c, cribbage/crib.c,
+	cribbage/cribbage.6.in, cribbage/cribbage.h, cribbage/cribcur.h,
+	cribbage/deck.h, cribbage/extern.c, cribbage/instr.c,
+	cribbage/io.c, cribbage/pathnames.h.in, cribbage/score.c,
+	cribbage/support.c, dm/dm.8.in, dm/dm.c, dm/dm.conf.5.in,
+	dm/pathnames.h.in, factor/factor.6, factor/factor.c, fish/fish.6,
+	fish/fish.c, fish/pathnames.h.in, fortune/datfiles/Makefile.bsd,
+	fortune/datfiles/farber, fortune/datfiles/fortunes,
+	fortune/datfiles/fortunes-o.real, fortune/datfiles/fortunes2,
+	fortune/datfiles/fortunes2-o.real, fortune/datfiles/limerick,
+	fortune/datfiles/limerick-o.real, fortune/datfiles/netbsd,
+	fortune/datfiles/netbsd-o.real, fortune/datfiles/startrek,
+	fortune/datfiles/startrek.sp.ok, fortune/datfiles/zippy,
+	fortune/datfiles/zippy.sp.ok, fortune/fortune/fortune.6.in,
+	fortune/fortune/fortune.c, fortune/fortune/pathnames.h.in,
+	fortune/strfile/strfile.8, fortune/strfile/strfile.c,
+	fortune/strfile/strfile.h, fortune/unstr/unstr.c, gomoku/bdinit.c,
+	gomoku/bdisp.c, gomoku/gomoku.6, gomoku/gomoku.h, gomoku/main.c,
+	gomoku/makemove.c, gomoku/pickmove.c, gomoku/stoc.c,
+	hack/COPYRIGHT, hack/COPYRIGHT-JF, hack/Makefile.bsd,
+	hack/alloc.c, hack/config.h, hack/date.h, hack/def.edog.h,
+	hack/def.eshk.h, hack/def.flag.h, hack/def.func_tab.h,
+	hack/def.gen.h, hack/def.gold.h, hack/def.mkroom.h,
+	hack/def.monst.h, hack/def.obj.h, hack/def.objclass.h,
+	hack/def.objects.h, hack/def.permonst.h, hack/def.rm.h,
+	hack/def.trap.h, hack/def.wseg.h, hack/hack.6.in,
+	hack/hack.Decl.c, hack/hack.apply.c, hack/hack.bones.c,
+	hack/hack.c, hack/hack.cmd.c, hack/hack.do.c, hack/hack.do_name.c,
+	hack/hack.do_wear.c, hack/hack.dog.c, hack/hack.eat.c,
+	hack/hack.end.c, hack/hack.engrave.c, hack/hack.fight.c,
+	hack/hack.h, hack/hack.invent.c, hack/hack.ioctl.c,
+	hack/hack.lev.c, hack/hack.main.c, hack/hack.makemon.c,
+	hack/hack.mfndpos.h, hack/hack.mhitu.c, hack/hack.mklev.c,
+	hack/hack.mkmaze.c, hack/hack.mkobj.c, hack/hack.mkshop.c,
+	hack/hack.mon.c, hack/hack.monst.c, hack/hack.o_init.c,
+	hack/hack.objnam.c, hack/hack.options.c, hack/hack.pager.c,
+	hack/hack.potion.c, hack/hack.pri.c, hack/hack.read.c,
+	hack/hack.rip.c, hack/hack.rumors.c, hack/hack.save.c,
+	hack/hack.search.c, hack/hack.sh, hack/hack.shk.c,
+	hack/hack.shknam.c, hack/hack.steal.c, hack/hack.termcap.c,
+	hack/hack.timeout.c, hack/hack.topl.c, hack/hack.track.c,
+	hack/hack.trap.c, hack/hack.tty.c, hack/hack.u_init.c,
+	hack/hack.unix.c, hack/hack.vault.c, hack/hack.version.c,
+	hack/hack.wield.c, hack/hack.wizard.c, hack/hack.worm.c,
+	hack/hack.worn.c, hack/hack.zap.c, hack/makedefs.c,
+	hack/pathnames.h.in, hack/rnd.c, hangman/endgame.c,
+	hangman/extern.c, hangman/getguess.c, hangman/getword.c,
+	hangman/hangman.6.in, hangman/hangman.h, hangman/main.c,
+	hangman/pathnames.h.in, hangman/playgame.c, hangman/prdata.c,
+	hangman/prman.c, hangman/prword.c, hangman/setup.c,
+	hunt/Makefile.inc.bsd, hunt/hunt/connect.c, hunt/hunt/hunt.6.in,
+	hunt/hunt/hunt.c, hunt/hunt/otto.c, hunt/hunt/playit.c,
+	hunt/huntd/answer.c, hunt/huntd/bsd.h, hunt/huntd/ctl.c,
+	hunt/huntd/ctl_transact.c, hunt/huntd/draw.c, hunt/huntd/driver.c,
+	hunt/huntd/execute.c, hunt/huntd/expl.c, hunt/huntd/extern.c,
+	hunt/huntd/faketalk.c, hunt/huntd/get_names.c, hunt/huntd/hunt.h,
+	hunt/huntd/huntd.6.in, hunt/huntd/makemaze.c,
+	hunt/huntd/pathname.c, hunt/huntd/shots.c, hunt/huntd/talk_ctl.h,
+	hunt/huntd/terminal.c, mille/comp.c, mille/end.c, mille/extern.c,
+	mille/init.c, mille/mille.6, mille/mille.c, mille/mille.h,
+	mille/misc.c, mille/move.c, mille/print.c, mille/roll.c,
+	mille/save.c, mille/table.c, mille/types.c, mille/varpush.c,
+	monop/Makefile.bsd, monop/brd.dat, monop/cards.c, monop/deck.h,
+	monop/execute.c, monop/getinp.c, monop/houses.c, monop/initdeck.c,
+	monop/jail.c, monop/malloc.c, monop/misc.c, monop/mon.dat,
+	monop/monop.6.in, monop/monop.c, monop/monop.def, monop/monop.ext,
+	monop/monop.h, monop/morg.c, monop/pathnames.h.in, monop/print.c,
+	monop/prop.c, monop/prop.dat, monop/rent.c, monop/roll.c,
+	monop/spec.c, monop/trade.c, morse/morse.c, number/number.6,
+	number/number.c, phantasia/Makefile.bsd, phantasia/main.c,
+	phantasia/misc.c, phantasia/pathnames.h.in, phantasia/phantasia.6,
+	phantasia/phantglobs.h, phantasia/setup.c, pig/pig.6, pig/pig.c,
+	pom/pom.6, pom/pom.c, ppt/ppt.c, primes/pattern.c,
+	primes/pr_tbl.c, primes/primes.c, primes/primes.h,
+	quiz/pathnames.h.in, quiz/quiz.6.in, quiz/quiz.c, quiz/quiz.h,
+	quiz/rxp.c, rain/rain.6, rain/rain.c, random/random.6,
+	random/random.c, robots/extern.c, robots/flush_in.c,
+	robots/init_field.c, robots/main.c, robots/make_level.c,
+	robots/move.c, robots/move_robs.c, robots/pathnames.h.in,
+	robots/play_level.c, robots/query.c, robots/rnd_pos.c,
+	robots/robots.6.in, robots/robots.h, robots/score.c,
+	rogue/USD.doc/Makefile.bsd, rogue/USD.doc/rogue.me, rogue/hit.c,
+	rogue/init.c, rogue/inventory.c, rogue/level.c, rogue/machdep.c,
+	rogue/main.c, rogue/message.c, rogue/monster.c, rogue/move.c,
+	rogue/object.c, rogue/pack.c, rogue/pathnames.h.in, rogue/play.c,
+	rogue/random.c, rogue/ring.c, rogue/rogue.6.in, rogue/rogue.h,
+	rogue/room.c, rogue/save.c, rogue/score.c, rogue/spec_hit.c,
+	rogue/throw.c, rogue/trap.c, rogue/use.c, rogue/zap.c,
+	sail/assorted.c, sail/dr_1.c, sail/dr_2.c, sail/dr_3.c,
+	sail/dr_4.c, sail/dr_5.c, sail/dr_main.c, sail/driver.h,
+	sail/extern.h, sail/game.c, sail/globals.c, sail/lo_main.c,
+	sail/machdep.h, sail/main.c, sail/misc.c, sail/parties.c,
+	sail/pathnames.h.in, sail/pl_1.c, sail/pl_2.c, sail/pl_3.c,
+	sail/pl_4.c, sail/pl_5.c, sail/pl_6.c, sail/pl_7.c,
+	sail/pl_main.c, sail/player.h, sail/sail.6, sail/sync.c,
+	sail/version.c, snake/snake/pathnames.h.in,
+	snake/snake/snake.6.in, snake/snake/snake.c,
+	snake/snscore/snscore.c, tetris/input.c, tetris/input.h,
+	tetris/pathnames.h.in, tetris/scores.c, tetris/scores.h,
+	tetris/screen.c, tetris/screen.h, tetris/shapes.c,
+	tetris/tetris.6.in, tetris/tetris.c, tetris/tetris.h,
+	trek/USD.doc/Makefile.bsd, trek/USD.doc/trek.me, trek/abandon.c,
+	trek/attack.c, trek/autover.c, trek/capture.c, trek/cgetc.c,
+	trek/check_out.c, trek/checkcond.c, trek/compkl.c,
+	trek/computer.c, trek/damage.c, trek/damaged.c, trek/dcrept.c,
+	trek/destruct.c, trek/dock.c, trek/dumpgame.c, trek/dumpme.c,
+	trek/dumpssradio.c, trek/events.c, trek/externs.c, trek/getcodi.c,
+	trek/getpar.c, trek/getpar.h, trek/help.c, trek/impulse.c,
+	trek/initquad.c, trek/kill.c, trek/klmove.c, trek/lose.c,
+	trek/lrscan.c, trek/main.c, trek/move.c, trek/nova.c, trek/out.c,
+	trek/phaser.c, trek/play.c, trek/ram.c, trek/ranf.c, trek/rest.c,
+	trek/schedule.c, trek/score.c, trek/setup.c, trek/setwarp.c,
+	trek/shield.c, trek/snova.c, trek/srscan.c, trek/systemname.c,
+	trek/torped.c, trek/trek.6, trek/trek.h, trek/visual.c,
+	trek/warp.c, trek/win.c, worm/worm.6, worm/worm.c, worms/worms.6,
+	worms/worms.c, wtf/wtf.in, wtf/wtf.6.in, wump/pathnames.h.in,
+	wump/wump.6, wump/wump.c: Update from NetBSD CVS.
+	* wtf/acronyms: Update from NetBSD CVS.
+	* wtf/acronyms.comp: New file from NetBSD CVS.
+	* wtf/Makefrag: Update.
+	* COPYING: Update.
+	* INSTALL: Note that glibc 2.3 now required at least for hunt (for
+	<ifaddrs.h>).
+
+2003-11-08  Joseph S. Myers  <jsm@polyomino.org.uk>
+
+	* THANKS: Update Malcolm Parsons's email address.
+
 2003-04-01  Joseph S. Myers  <jsm@polyomino.org.uk>
 
 	* Version 2.14.

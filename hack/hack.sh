@@ -1,5 +1,5 @@
 #!/bin/sh
-#	$NetBSD: hack.sh,v 1.2 1995/03/23 08:31:30 cgd Exp $
+#	$NetBSD: hack.sh,v 1.3 2003/04/02 18:36:40 jsm Exp $
 
 #
 # Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,

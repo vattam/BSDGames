@@ -89,12 +89,9 @@ users.
 long as they apply without error, even though they may no longer be
 needed or even be harmful.
 
-If you have patches that are needed for the package to build (in a
-supported environment: libc 5.3.12 (or any Linux libc before 5.4.5)
-and glibc 1.99 (or other old snapshots) are not supported although the
-latter may work; nor is BSD curses/libtermcap or ncurses before 1.9.9e
-(== 3.0 shared library version)) or to fix bugs (again in a supported
-environment) or that provide enhancements other than conforming to
+If you have patches that are needed for the package to build or to fix
+bugs (in a supported environment, not with old versions of libraries
+and tools) or that provide enhancements other than conforming to
 distribution-specific policy, please send them to me (unidiffs
 preferred; see notes on bug reporting and sending patches at the end
 of README).  Do not assume that old patches should be applied to new

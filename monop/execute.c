@@ -1,4 +1,4 @@
-/*	$NetBSD: execute.c,v 1.8 2001/08/29 18:23:44 jsm Exp $	*/
+/*	$NetBSD: execute.c,v 1.10 2003/08/07 09:37:27 agc Exp $	*/
 
 /*
  * Copyright (c) 1980, 1993
@@ -12,11 +12,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *	This product includes software developed by the University of
- *	California, Berkeley and its contributors.
- * 4. Neither the name of the University nor the names of its contributors
+ * 3. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -38,7 +34,7 @@
 #if 0
 static char sccsid[] = "@(#)execute.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: execute.c,v 1.8 2001/08/29 18:23:44 jsm Exp $");
+__RCSID("$NetBSD: execute.c,v 1.10 2003/08/07 09:37:27 agc Exp $");
 #endif
 #endif /* not lint */
 
@@ -59,6 +55,7 @@ typedef	struct tm	TIME;
 static char	buf[257];
 
 static bool	new_play;	/* set if move on to new player		*/
+extern void 	*heapstart;
 
 static void show_move __P((void));
 
@@ -209,7 +206,7 @@ save()
 	for (sp = buf; *sp != '\n'; sp++)
 		continue;
 	*sp = '\0';
-	start = 0;
+	start = heapstart;
 	end = sbrk(0);
 	while (start < end) {		/* write out entire data space */
 		num = start + 16 * 1024 > end ? end - start : 16 * 1024;
@@ -258,7 +255,7 @@ rest_f(file)
 		perror(file);
 		exit(1);
 	}
-	start = 0;
+	start = heapstart;
 	brk(end = start + sbuf.st_size);
 	while (start < end) {		/* write out entire data space */
 		num = start + 16 * 1024 > end ? end - start : 16 * 1024;

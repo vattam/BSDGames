@@ -1,6 +1,6 @@
 # Makefrag - makefile fragment for fortune/datfiles
 #
-# Copyright (c) 1997, 1998, 1999 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 1999, 2001, 2003 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@ fortune_datfiles_SRCFILESp := fortune/datfiles/farber \
 	fortune/datfiles/zippy
 
 fortune_datfiles_CLEANFILES := $(fortune_datfiles_DATFILES) $(fortune_datfiles_DATFILES_off) $(fortune_datfiles_GENSRCFILES)
-fortune_datfiles_DIRS := $(SHAREDIR)/fortunes
+fortune_datfiles_DIRS := $(FORTUNE_DIR)
 
 fortune_datfiles_all:	$(fortune_datfiles_DATFILESp) $(fortune_datfiles_DATFILES_offp) $(fortune_datfiles_SRCFILESp) $(fortune_datfiles_GENSRCFILESp)
 
@@ -56,7 +56,7 @@ fortune_datfiles_install:	fortune_datfiles_all
 	    $(fortune_datfiles_GENSRCFILES) $(fortune_datfiles_DATFILES) \
 		$(fortune_datfiles_DATFILES_off); do \
 		$(INSTALL_DATA) fortune/datfiles/$$f \
-		    $(INSTALL_PREFIX)$(SHAREDIR)/fortunes/$$f; \
+		    $(INSTALL_PREFIX)$(FORTUNE_DIR)/$$f; \
 	    done
 
 $(fortune_datfiles_DATFILESp): fortune/datfiles/%.dat: fortune/datfiles/% fortune/strfile/strfile

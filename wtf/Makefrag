@@ -1,6 +1,6 @@
 # Makefrag - makefile fragment for wtf
 #
-# Copyright (c) 1999 Joseph Samuel Myers.
+# Copyright (c) 1999, 2003 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,4 +34,5 @@ wtf_install:	wtf_all
 	$(INSTALL_SCRIPT) wtf/wtf $(INSTALL_PREFIX)$(GAMESDIR)/wtf
 	$(HIDE_GAME) wtf
 	$(INSTALL_DATA) wtf/acronyms $(INSTALL_PREFIX)$(WTF_ACRONYMFILE)
+	$(INSTALL_DATA) wtf/acronyms.comp $(INSTALL_PREFIX)$(WTF_ACRONYMFILE).comp
 	$(INSTALL_MANUAL) wtf/wtf.6

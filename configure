@@ -485,6 +485,7 @@ game_ask dm "Configuration file for dm" dm_configfile /etc/dm.conf
 game_ask dm "File to disable games playing" dm_nogamesfile /etc/nogames
 game_ask dm "Log file for dm" dm_logfile "$varlibdir/games.log"
 game_ask fish "File for fish instructions" fish_instrfile "$sharedir/fish.instr"
+game_ask fortune "Directory for fortune files" fortune_dir "$sharedir/fortune"
 game_ask hack "Directory for hack variable data" hack_dir "$varlibdir/hack"
 
 if building_in hack; then

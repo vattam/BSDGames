@@ -11,6 +11,23 @@ changes in installation instructions.  Packagers should also reread
 the PACKAGING file each version (or do a diff between the old and new
 versions of the package and read that).
 
+Version 2.15 (2003-12-18)
+============
+
+* Updated from NetBSD CVS of 2003-12-17.  This includes:
+
+  + Advertising clause removed from licence of almost all
+  UCB-copyright code.
+
+  + Hunt licence clarified.
+
+* Various bugs fixed, though some bug reports are still backlogged.
+
+* Glibc 2.3 or later now required, at least for hunt.
+
+* Directory for fortune files individually configurable, and default
+has changed to match that used in NetBSD.
+
 Version 2.14 (2003-04-01)
 ============
 

@@ -1,4 +1,4 @@
-/*	$NetBSD: date.h,v 1.4 2001/03/25 20:43:58 jsm Exp $ */
+/*	$NetBSD: date.h,v 1.5 2003/04/02 18:36:33 jsm Exp $ */
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,

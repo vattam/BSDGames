@@ -1,4 +1,4 @@
-/*	$NetBSD: hack.pri.c,v 1.7 2002/05/26 00:12:12 wiz Exp $	*/
+/*	$NetBSD: hack.pri.c,v 1.7 1.8 2003/04/02 18:36:39 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,
@@ -63,7 +63,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: hack.pri.c,v 1.7 2002/05/26 00:12:12 wiz Exp $");
+__RCSID("$NetBSD: hack.pri.c,v 1.8 2003/04/02 18:36:39 jsm Exp $");
 #endif				/* not lint */
 
 #include "hack.h"

@@ -1,8 +1,8 @@
-.\"	$NetBSD: wtf.6,v 1.5 2002/09/26 16:12:44 wiz Exp $
+.\"	$NetBSD: wtf.6,v 1.8 2003/04/25 19:08:31 jmmv Exp $
 .\"
 .\" Public Domain
 .\"
-.Dd July 21, 1999
+.Dd April 25, 2003
 .Dt WTF 6
 .Os
 .Sh NAME
@@ -10,6 +10,8 @@
 .Nd translates acronyms for you
 .Sh SYNOPSIS
 .Nm
+.Op Fl f Ar dbfile
+.Op Fl t Ar type
 .Op Ar is
 .Ar acronym Ar ...
 .Sh DESCRIPTION
@@ -29,6 +31,21 @@ is specified on the command line, it will be ignored, allowing the
 fairly natural
 .Dq wtf is WTF
 usage.
+.Pp
+The following options are available:
+.Bl -tag -width flag
+.It Fl f Ar dbfile
+Overrides the default acronym database, bypassing the value of the
+.Ev ACRONYMDB
+variable.
+.It Fl t Ar type
+Specifies the acronym's type.
+Simply put, it makes the program use the acronyms database named
+.Pa @wtf_acronymfile@.type ,
+where
+.Ar type
+is given by the argument.
+.El
 .Sh ENVIRONMENT
 .Bl -tag -width ACRONYMDB
 .It Ev ACRONYMDB
@@ -38,9 +55,11 @@ environment variable
 to the name of a file in the proper format (acronym[tab]meaning).
 .El
 .Sh FILES
-.Bl -tag -width @wtf_acronymfile@ -compact
+.Bl -tag -width @wtf_acronymfile@.XXXX -compact
 .It Pa @wtf_acronymfile@
 default acronym database.
+.It Pa @wtf_acronymfile@.comp
+computer-related acronym database.
 .El
 .Sh SEE ALSO
 .Xr whatis 1

@@ -1,4 +1,4 @@
-/*	$NetBSD: def.monst.h,v 1.6 2001/03/25 20:43:58 jsm Exp $	*/
+/*	$NetBSD: def.monst.h,v 1.7 2003/04/02 18:36:34 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,

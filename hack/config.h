@@ -1,4 +1,4 @@
-/*	$NetBSD: config.h,v 1.6 2001/01/16 02:50:28 cgd Exp $	*/
+/*	$NetBSD: config.h,v 1.7 2003/04/02 18:36:33 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,
@@ -88,12 +88,11 @@
 /* #define PYRAMID_BUG */	/* avoid a bug on the Pyramid */
 /* #define NOWAITINCLUDE */	/* neither <wait.h> nor <sys/wait.h> exists */
 
-//#define WIZARD  "bruno"	/* the person allowed to use the -D option */
 /*
  * Debian mods: use root for WIZARD, and move files that are static to
  * /usr/share/ -- JEH
  */
-#define WIZARD  "root" /* the person allowed to use the -D option */
+#define WIZARD  "root"	/* the person allowed to use the -D option */
 #define SHAREDIR "/usr/share/games/bsdgames/hack/"
 #define RECORD	"record"/* the file containing the list of topscorers */
 #define	NEWS	"news"	/* the file containing the latest hack news */

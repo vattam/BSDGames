@@ -16,6 +16,36 @@ Most games are under the standard BSD terms:
    2. Redistributions in binary form must reproduce the above copyright
       notice, this list of conditions and the following disclaimer in the
       documentation and/or other materials provided with the distribution.
+   3. Neither the name of the University nor the names of its contributors
+      may be used to endorse or promote products derived from this software
+      without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+   ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+   FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+   DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+   OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+   HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+   LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+   OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+   SUCH DAMAGE.
+
+The files "caesar/rot13.in" and "wargames/wargames" have a similar
+licence but with an additional advertising clause:
+
+   Copyright (c) 1985, 1992, 1993
+  	The Regents of the University of California.  All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+   1. Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+   2. Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
    3. All advertising materials mentioning features or use of this software
       must display the following acknowledgement:
   	This product includes software developed by the University of
@@ -35,6 +65,41 @@ Most games are under the standard BSD terms:
    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
    SUCH DAMAGE.
+
+The game "hunt" has a similar licence, mentioning the University of
+California, San Francisco:
+
+   Copyright (c) 1983-2003, Regents of the University of California.
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without 
+   modification, are permitted provided that the following conditions are 
+   met:
+
+   + Redistributions of source code must retain the above copyright 
+     notice, this list of conditions and the following disclaimer.
+   + Redistributions in binary form must reproduce the above copyright 
+     notice, this list of conditions and the following disclaimer in the 
+     documentation and/or other materials provided with the distribution.
+   + Neither the name of the University of California, San Francisco nor 
+     the names of its contributors may be used to endorse or promote 
+     products derived from this software without specific prior written 
+     permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS 
+   IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED 
+   TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
+   PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+   OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
+   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+These terms also apply to "hunt/Makeconfig", which is derived from the
+hunt "Makefile.inc" distributed by NetBSD.
 
 The files "backgammon/backgammon/backlocal.h", "countmail/countmail",
 "hack/extern.h", "robots/auto.c", "sail/display.h" and
@@ -201,24 +266,6 @@ The game "boggle" used to bear a copyright notice in the name of Barry
 Brachman, but he confirmed that he had assigned his copyright to the
 University of California and the continued inclusion of the old
 copyright notice was an omission on their part.
-
-The game "hunt" appears to be copyrighted by its authors and the
-University of California:
-
-   Copyright (c) 1985 Conrad C. Huang, Gregory S. Couch, Kenneth C.R.C. Arnold
-   San Francisco, California
-
-   Copyright (c) 1983, 1985 Regents of the University of California.
-   All rights reserved.  The Berkeley software License Agreement
-   specifies the terms and conditions for redistribution.
-
-   Hunt is part of the user-contributed software distributed by
-   Berkeley in 4BSD.  The sources are copyrighted by the authors
-   and the University of California.  You may redistribute freely
-   as long as the copyright notices are retained.
-
-These terms also apply to "hunt/Makeconfig", which is derived from the
-hunt "Makefile.inc" distributed by NetBSD.
 
 The game "phantasia" is not copyright (except for
 "phantasia/pathnames.h.in" to which the BSD copyright and licence

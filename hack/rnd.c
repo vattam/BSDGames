@@ -1,4 +1,4 @@
-/*	$NetBSD: rnd.c,v 1.4 1997/10/19 16:59:39 christos Exp $	*/
+/*	$NetBSD: rnd.c,v 1.5 2003/04/02 18:36:42 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,
@@ -63,7 +63,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: rnd.c,v 1.4 1997/10/19 16:59:39 christos Exp $");
+__RCSID("$NetBSD: rnd.c,v 1.5 2003/04/02 18:36:42 jsm Exp $");
 #endif				/* not lint */
 
 #include <stdlib.h>

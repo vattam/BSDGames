@@ -1,4 +1,4 @@
-/*	$NetBSD: hack.mfndpos.h,v 1.4 1997/10/19 16:58:19 christos Exp $	*/
+/*	$NetBSD: hack.mfndpos.h,v 1.5 2003/04/02 18:36:37 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,

@@ -20,16 +20,9 @@ has been removed because of the lack of a clear licence.
 The games are mostly not enhanced from the NetBSD versions, but many
 bugs are fixed.
 
-The games should work with ncurses (any reasonably recent version).
-They might also work with BSD curses/termcap, but this is not tested
-by me.  They should work with both libc5 (version 5.4.5 or later -
-earlier versions won't work) and libc6 (glibc 2).  Note however that I
-don't test all possible combinations of libraries for each release, so
-tell me if some versions don't work.  For details of prerequisites,
-see INSTALL.
-
-For installation instructions, see the file "INSTALL".  Some games
-have "README.linux" files you may wish to read.
+For installation instructions and details of prerequisites, see the
+file "INSTALL".  Some games have "README.linux" files you may wish to
+read.
 
 The statement of year 2000 issues associated with bsd-games and
 bsd-games-non-free is in the file "YEAR2000".

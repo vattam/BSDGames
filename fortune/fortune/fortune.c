@@ -1,4 +1,4 @@
-/*	$NetBSD: fortune.c,v 1.38 2002/11/24 18:03:14 christos Exp $	*/
+/*	$NetBSD: fortune.c,v 1.39 2003/08/07 09:37:14 agc Exp $	*/
 
 /*-
  * Copyright (c) 1986, 1993
@@ -15,11 +15,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *	This product includes software developed by the University of
- *	California, Berkeley and its contributors.
- * 4. Neither the name of the University nor the names of its contributors
+ * 3. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -46,7 +42,7 @@ __COPYRIGHT("@(#) Copyright (c) 1986, 1993\n\
 #if 0
 static char sccsid[] = "@(#)fortune.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: fortune.c,v 1.38 2002/11/24 18:03:14 christos Exp $");
+__RCSID("$NetBSD: fortune.c,v 1.39 2003/08/07 09:37:14 agc Exp $");
 #endif
 #endif /* not lint */
 
@@ -327,7 +323,7 @@ fortlen()
 	char	line[BUFSIZ];
 
 	if (!(Fortfile->tbl.str_flags & (STR_RANDOM | STR_ORDERED)))
-		nchar = (Seekpts[1] - Seekpts[0] <= SLEN);
+		nchar = Seekpts[1] - Seekpts[0];
 	else {
 		open_fp(Fortfile);
 		(void) fseek(Fortfile->inf, (long)Seekpts[0], SEEK_SET);
@@ -947,7 +943,7 @@ init_prob()
 		errx(1, "Probabilities sum to %d%%!", percent);
 	else if (percent < 100 && num_noprob == 0)
 		errx(1, "No place to put residual probability (%d%%)",
-		    percent);
+		    100 - percent);
 	else if (percent == 100 && num_noprob != 0)
 		errx(1, "No probability left to put in residual files");
 	percent = 100 - percent;
@@ -956,7 +952,7 @@ init_prob()
 			if (num_noprob > 1) {
 				frac = percent / num_noprob;
 				DPRINTF(1, (stderr, ", frac = %d%%", frac));
-				for (fp = File_list; fp != last; fp = fp->next)
+				for (fp = File_tail; fp != last; fp = fp->prev)
 					if (fp->percent == NO_PROB) {
 						fp->percent = frac;
 						percent -= frac;

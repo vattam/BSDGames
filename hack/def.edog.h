@@ -1,4 +1,4 @@
-/*	$NetBSD: def.edog.h,v 1.4 1997/10/19 16:56:51 christos Exp $	*/
+/*	$NetBSD: def.edog.h,v 1.5 2003/04/02 18:36:33 jsm Exp $	*/
 
 /*
  * Copyright (c) 1985, Stichting Centrum voor Wiskunde en Informatica,

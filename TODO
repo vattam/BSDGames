@@ -34,12 +34,6 @@ those.  The issues listed there are not included in this list.
 
 1998-07-28 - Support building in a directory other than the source directory.
 
-1998-08-18 - Fix whatever makes rogue need -fwritable-strings.  This
-             seem to be various arrays of struct id being initialised
-             with constant strings, but then being modified in the
-             course of saving and restoring.  Only object.c needs to
-             be compiled with -fwritable-strings.
-
 1998-08-27 - Convert the games that use termcap to use curses.
              Currently these are backgammon, hack and tetris; rain,
              snake and worms have been done.  If it becomes possible
