@@ -1,6 +1,6 @@
 # Makefrag - makefile fragment for phantasia
 #
-# Copyright (c) 1997, 1998 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 1999, 2001 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -27,16 +27,25 @@
 # SUCH DAMAGE.
 
 phantasia_DIRS := $(GAMESDIR) $(MAN6DIR) $(PHANTASIA_DIR)
-phantasia_VFILES := gold lastdead mess monsters motd scoreboard void
-phantasia_DEFS := -D_GNU_SOURCE
+phantasia_VFILES1 := gold lastdead mess monsters motd void
+phantasia_VFILES2 := scoreboard characs
+phantasia_CLEANFILES := $(phantasia_VFILES1) $(phantasia_VFILES2) scorefiles.stamp
 
-phantasia_all:	phantasia/phantasia phantasia/setup phantasia/monsters.asc phantasia/phantasia.6
+phantasia_all:	phantasia/phantasia phantasia/phantasia.6 phantasia/scorefiles.stamp
+
+phantasia/scorefiles.stamp: phantasia/setup phantasia/monsters.asc
+	cd phantasia && ./setup -m monsters.asc
+	touch phantasia/scorefiles.stamp
 
 phantasia_install:	phantasia_all
 	$(INSTALL_SCORE_GAME) phantasia/phantasia $(INSTALL_PREFIX)$(GAMESDIR)/phantasia
 	$(HIDE_GAME) phantasia
-	DESTDIR=$(INSTALL_PREFIX) phantasia/setup -m phantasia/monsters.asc
-	(set -e; for f in $(phantasia_VFILES); do $(INSTALL_SCORE_FILE) \
-	    $(PHANTASIA_DIR)/$$f; done; \
+	(set -e; for f in $(phantasia_VFILES1); do \
+	    cp phantasia/$$f $(INSTALL_PREFIX)$(PHANTASIA_DIR)/$$f; \
+	    $(INSTALL_SCORE_FILE) $(PHANTASIA_DIR)/$$f; done)
+	(set -e; for f in $(phantasia_VFILES2); do \
+	    if [ ! -e $(PHANTASIA_DIR)/$$f ]; then \
+		cp phantasia/$$f $(INSTALL_PREFIX)$(PHANTASIA_DIR)/$$f; fi; done; \
+	    $(INSTALL_SCORE_FILE) $(PHANTASIA_DIR)/scoreboard; \
 	    $(INSTALL_SCORE_FILE) -p $(PHANTASIA_DIR)/characs)
 	$(INSTALL_MANUAL) phantasia/phantasia.6

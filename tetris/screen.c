@@ -292,8 +292,8 @@ scr_set()
 	newtt = oldtt;
 	newtt.c_lflag &= ~(ICANON|ECHO);
 	newtt.c_oflag &= ~OXTABS;
-	newtt.c_cc[VMIN] = 1;
-	newtt.c_cc[VTIME] = 0;
+	newtt.c_cc[VMIN] = 1; /* don't lag behind 3 keystrokes on sun */
+	newtt.c_cc[VTIME] = 0; /* systems -- JEH */
 	if (tcsetattr(0, TCSADRAIN, &newtt) < 0)
 		stop("tcsetattr() fails");
 	ospeed = cfgetospeed(&newtt);

@@ -437,7 +437,7 @@ game_ask atc "Directory for atc static data" atc_dir "$sharedir/atc"
 game_ask atc "Score file for atc" atc_scorefile "$varlibdir/atc_score"
 game_ask battlestar "Score file for battlestar" battlestar_scorefile "$varlibdir/battlestar.log"
 # Bog has some other configuration
-game_ask boggle "Dictionary for boggle (CHECK ANSWER)" dictionary_src /usr/share/dict/american-english
+game_ask boggle "Dictionary for boggle (CHECK ANSWER)" dictionary_src /usr/share/dict/words
 game_ask boggle "Directory for boggle static data" boggle_dir "$sharedir/boggle"
 game_ask canfield "Score file for canfield" canfield_scorefile "$varlibdir/cfscores"
 game_ask cribbage "File for cribbage instructions" cribbage_instrfile "$sharedir/cribbage.instr"

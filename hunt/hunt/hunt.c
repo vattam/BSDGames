@@ -1,4 +1,4 @@
-/*	$NetBSD: hunt.c,v 1.11 2000/04/14 05:58:03 simonb Exp $	*/
+/*	$NetBSD: hunt.c,v 1.12 2001/02/05 00:40:45 christos Exp $	*/
 /*
  *  Hunt
  *  Copyright (c) 1985 Conrad C. Huang, Gregory S. Couch, Kenneth C.R.C. Arnold
@@ -7,7 +7,7 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: hunt.c,v 1.11 2000/04/14 05:58:03 simonb Exp $");
+__RCSID("$NetBSD: hunt.c,v 1.12 2001/02/05 00:40:45 christos Exp $");
 #endif /* not lint */
 
 # include	<sys/param.h>
@@ -52,6 +52,10 @@ static struct termios saved_tty;
 extern int	_putchar();
 #endif
 
+#ifndef MAXHOSTNAMELEN
+#define MAXHOSTNAMELEN 256
+#endif
+
 FLAG	Last_player = FALSE;
 # ifdef MONITOR
 FLAG	Am_monitor = FALSE;
@@ -94,6 +98,7 @@ int	main __P((int, char *[]));
 SOCKET *list_drivers __P((void));
 # endif
 
+extern int	Otto_mode;
 /*
  * main:
  *	Main program for local process
@@ -105,7 +110,6 @@ main(ac, av)
 {
 	char		*term;
 	int		c;
-	extern int	Otto_mode;
 	long		enter_status;
 
 	/* Revoke setgid privileges */
@@ -393,11 +397,7 @@ list_drivers()
 	static SOCKET		test;
 	int			test_socket;
 	int			namelen;
-# ifdef MAXHOSTNAMELEN
 	char			local_name[MAXHOSTNAMELEN + 1];
-# else
-	char			local_name[] = "127.0.0.1";
-# endif
 	static int		initial = TRUE;
 	static struct in_addr	local_address;
 	struct hostent		*hp;
@@ -418,13 +418,11 @@ list_drivers()
 # ifndef BROADCAST
 		sethostent(1);		/* don't bother to close host file */
 # endif
-# ifdef MAXHOSTNAMELEN
 		if (gethostname(local_name, sizeof local_name) < 0) {
 			leave(1, "Sorry, I have no name.");
 			/* NOTREACHED */
 		}
 		local_name[sizeof(local_name) - 1] = '\0';
-# endif
 		if ((hp = gethostbyname(local_name)) == NULL) {
 			leave(1, "Can't find myself.");
 			/* NOTREACHED */

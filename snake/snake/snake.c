@@ -169,7 +169,7 @@ main(argc, argv)
 
 	while ((ch = getopt(argc, argv, "l:w:t")) != -1)
 		switch ((char) ch) {
-#if 0
+#ifdef DEBUG
 		case 'd':
 			tv = atol(optarg);
 			break;
@@ -185,7 +185,11 @@ main(argc, argv)
 			break;
 		case '?':
 		default:
+#ifdef DEBUG
+			fputs("usage: snake [-d seed] [-w width] [-l length] [-t]\n", stderr);
+#else
 			fputs("usage: snake [-w width] [-l length] [-t]\n", stderr);
+#endif
 			exit(1);
 		}
 

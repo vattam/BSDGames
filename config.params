@@ -1,3 +1,6 @@
+# This file is read by configure and is used during the build of the
+# Debian package.
+
 # Don't run configure interactively.
 bsd_games_cfg_non_interactive=y
 

@@ -1,9 +1,8 @@
-/*	$NetBSD: setup.c,v 1.10 1999/09/19 18:14:52 jsm Exp $	*/
+/*	$NetBSD: setup.c,v 1.11 2001/03/27 02:23:28 simonb Exp $	*/
 
 /*
  * setup.c - set up all files for Phantasia
  */
-#include <stdio.h>
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -64,16 +63,12 @@ main(argc, argv)
 	int argc;
 	char *argv[];
 {
-	register const char *const *filename; /* for pointing to file names */
-	register int	fd;		/* file descriptor */
-	FILE	*fp;			/* for opening files */
+	const char *const *filename; /* for pointing to file names */
+	int		fd;		/* file descriptor */
+	FILE		*fp;			/* for opening files */
 	struct stat	fbuf;		/* for getting files statistics */
 	int ch;
-#if defined(__GLIBC__)
-	char *path, *prefix;
-#else
-	char path[MAXPATHLEN], *prefix;
-#endif
+	char *path;
 
 	while ((ch = getopt(argc, argv, "m:")) != -1)
 		switch(ch) {
@@ -91,39 +86,15 @@ main(argc, argv)
 
     umask(0117);		/* only owner can read/write created files */
 
-    prefix = getenv("DESTDIR");
-
     /* try to create data files */
     filename = &files[0];
     while (*filename != NULL)
 	/* create each file */
 	{
-#if defined(__GLIBC__)
-	path = NULL;
-	asprintf(&path, "%s%s", prefix?prefix:"", *filename);
-	if (!path)
-		Error ("Not enough memory to store filename.", "");
-		/*NOTREACHED*/
-#else
-	snprintf(path, sizeof(path), "%s%s", prefix?prefix:"", *filename);
-#endif
+	path = strrchr(*filename, '/') + 1;
 	if (stat(path, &fbuf) == 0)
 	    /* file exists; remove it */
 	    {
-	    if (!strcmp(*filename, _PATH_PEOPLE))
-		/* do not reset character file if it already exists */
-		{
-		++filename;
-		continue;
-		}
-
-	    if (!strcmp(*filename, _PATH_SCORE))
-		/* do not reset score file if it already exists */
-		{
-		++filename;
-		continue;
-		}
-
 	    if (unlink(path) < 0)
 		Error("Cannot unlink %s.\n", path);
 		/*NOTREACHED*/
@@ -136,24 +107,13 @@ main(argc, argv)
 	close(fd);			/* close newly created file */
 
 	++filename;			/* process next file */
-#if defined(__GLIBC__)
-	free (path);
-#endif
 	}
 
     /* put holy grail info into energy void file */
     Enrgyvoid.ev_active = TRUE;
     Enrgyvoid.ev_x = ROLL(-1.0e6, 2.0e6);
     Enrgyvoid.ev_y = ROLL(-1.0e6, 2.0e6);
-#if defined(__GLIBC__)
-	path = NULL;
-	asprintf (&path, "%s%s", prefix?prefix:"", _PATH_VOID);
-	if (!path)
-		Error ("Not enough memory to store filename.", "");
-		/*NOTREACHED*/
-#else
-    snprintf(path, sizeof(path), "%s%s", prefix?prefix:"", _PATH_VOID);
-#endif
+    path = strrchr(_PATH_VOID, '/') + 1;
     if ((fp = fopen(path, "w")) == NULL)
 	Error("Cannot update %s.\n", path);
     else
@@ -164,20 +124,9 @@ main(argc, argv)
 	    Error("Writing %s.\n", path);
 	fclose(fp);
 	}
-#if defined(__GLIBC__)
-	free (path);
-#endif
 
     /* create binary monster data base */
-#if defined(__GLIBC__)
-	path = NULL;
-	asprintf (&path, "%s%s", prefix?prefix:"", _PATH_MONST);
-	if (!path)
-		Error ("Not enough memory to store filename.", "");
-		/*NOTREACHED*/
-#else
-    snprintf(path, sizeof(path), "%s%s", prefix?prefix:"", _PATH_MONST);
-#endif
+    path = strrchr(_PATH_MONST, '/') + 1;
     if ((Monstfp = fopen(path, "w")) == NULL)
 	Error("Cannot update %s.\n", path);
     else
@@ -215,24 +164,13 @@ main(argc, argv)
 	    fclose(Monstfp);
 	    }
 	}
-#if defined(__GLIBC__)
-	free (path);
-#endif
 
 #ifdef MAKE_INSTALLS_THIS_AND_DOESNT_WANT_TO_HEAR_ABOUT_IT
     /* write to motd file */
     printf("One line 'motd' ? ");
     if (fgets(Databuf, SZ_DATABUF, stdin) == NULL)
 	Databuf[0] = '\0';
-#if defined(__GLIBC__)
-	path = NULL;
-	asprintf (&path, "%s%s", prefix?prefix:"", _PATH_MOTD);
-	if (!path)
-		Error ("Not enough memory to store filename.", "");
-		/*NOTREACHED*/
-#else
-    snprintf(path, sizeof(path), "%s%s", prefix?prefix:"", _PATH_MOTD);
-#endif
+    path = strrchr(_PATH_MOTD, '/') + 1;
     if ((fp = fopen(path, "w")) == NULL)
 	Error("Cannot update %s.\n", path);
     else
@@ -240,9 +178,6 @@ main(argc, argv)
 	fwrite(Databuf, sizeof(char), strlen(Databuf), fp);
 	fclose(fp);
 	}
-#if defined(__GLIBC__)
-	free (path);
-#endif
 
     /* report compile-time options */
     printf("Compiled options:\n\n");

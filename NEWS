@@ -11,6 +11,21 @@ changes in installation instructions.  Packagers should also reread
 the PACKAGING file each version (or do a diff between the old and new
 versions of the package and read that).
 
+Version 2.13 (2001-08-30)
+============
+
+* Warning now present in README about the inclusion of cryptographic
+software (caesar and rot13).
+
+* Various minor improvements and bugfixes, some from NetBSD, some from
+OpenBSD, some from other contributors.  Current with NetBSD CVS of
+2001-08-29.
+
+* Some fixes to avoid some warnings when compiling with current glibc
+and GCC 3.
+
+* May support GNU Hurd (untested).
+
 Version 2.12 (2000-09-25)
 ============
 
@@ -346,7 +361,7 @@ Version 1.3.1beta (1997-05-01)
 
 * Now works with libc 5 ;-).
 
-* Debian patches from Joey Hess <joeyh@debian.org> mostly
+* Debian patches from Joey Hess <joeyh@master.debian.org> mostly
 integrated up to Debian version 1.3-7.
 
 * New ports of tetris and gomoku, thanks to David Frey

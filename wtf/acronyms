@@ -1,4 +1,4 @@
-$NetBSD: acronyms,v 1.68 2000/09/10 20:49:20 wiz Exp $
+$NetBSD: acronyms,v 1.89 2001/08/11 11:57:35 wennmach Exp $
 
 AFAICR	as far as I can recall
 AFAICT	as far as I can tell
@@ -8,14 +8,19 @@ AFK	away from keyboard
 AIUI	as I understand it
 AKA	also known as
 ASAP	as soon as possible
+AWOL	absent without official leave
+AYBABTU	all your base are belong to us
 BBL	[I'll] be back later
 BBS	be back soon
 BBT	be back tomorrow
 BFD	big fucking deal
 BIAB	back in a bit
 BIAF	back in a few
+BIALW	back in a little while
 BIAS	back in a second
 BIAW	back in a while
+BOFH	bastard operator from hell
+BOHICA	bend over here it comes again
 BRB	[I'll] be right back
 BTDT	been there, done that
 BTTH	butt to the head
@@ -30,10 +35,13 @@ DWIM	do what I mean
 EG	evil grin
 EMSG	email message
 ETLA	extended three letter acronym
+EWAG	experienced wild-ass guess
 FAQ	frequently asked question
-FIIK	fuck if I know
+FIIK	fuck[ed] if I know
+FIIR	fuck[ed] if I remember
 FOAD	fall over and die
 FSDO	for some definition of
+FSVO	for some value of
 FUBAR	fucked up beyond all recognition
 FUD	fear, uncertainty and doubt
 FWIW	for what it's worth
@@ -57,6 +65,7 @@ IRL	in real life
 ISTM	it seems to me
 ISTR	I seem to recall
 ITYM	I think you mean
+JIC	just in case
 JK	just kidding
 JMO	just my opinion
 JTLYK	just to let you know
@@ -64,6 +73,8 @@ KISS	keep it simple, stupid
 KITA	kick in the ass
 KNF	kernel normal form
 L8R	later
+LART	luser attitude readjustment tool (ie, hammer)
+LJBF	let's just be friends
 LMSO	laughing my socks off
 LOL	laughing out loud
 LTNS	long time no see
@@ -75,6 +86,7 @@ MYOB	mind your own business
 NBD	no big deal
 NFC	no fucking clue
 NFI	no fucking idea
+NFW	no fucking way
 NIH	not invented here
 NP	no problem
 NRFPT	not ready for prime time
@@ -83,6 +95,7 @@ OIC	oh, I see
 OTL	out to lunch
 OTOH	on the other hand
 OTTOMH	off the top of my head
+PFY	pimply faced youth
 PITA	pain in the ass
 PNG	persona non grata
 POC	point of contact
@@ -91,13 +104,14 @@ PPL	pretty please
 QED	quod erat demonstrandum
 RFC	request for comments
 RL	real life
+RLC	rod length check
 ROTFL	rolling on the floor laughing
 RP	responsible person
 RSN	real soon now
-RTFB	read the fine book
-RTFM	read the fine manual
-RTFMP	read the fine man page
-RTFS	read the fine source
+RTFB	read the fine/fucking book
+RTFM	read the fine/fucking manual
+RTFMP	read the fine/fucking man page
+RTFS	read the fine/fucking source
 SCNR	sorry, could not resist
 SEP	someone else's problem
 SFA	sweet fuck all
@@ -107,18 +121,26 @@ SMOP	simple matter of programming
 SNAFU	situation normal, all fucked up
 SNERT	snot-nosed egotistical rude teenager
 SO	significant other
+SOB	son of [a] bitch
 SOL	shit out [of] luck
+SUS	stupid user syndrome
 SWAG	silly, wild-assed guess
 SWAHBI	silly, wild-assed hare-brained idea
+TANSTAAFL	there ain't no such thing as a free lunch
+TBD	to be {decided,determined,done}
 TIA	thanks in advance
 TLA	three letter acronym
+TMA	too many abbreviations
 TMI	too much information
 TTFN	ta ta for now
 TTYL	talk to you later
 TYVM	thank you very much
 UTSL	use the source, Luke
 VEG	very evil grin
+WAG	wild-ass guess
+WIBNI	wouldn't it be nice if
 WOFTAM	waste of fucking time and money
+WOMBAT	waste of money, brain, and time
 WTF	{what,where,who,why} the fuck
 WTH	{what,where,who,why} the hell
 WYSIWYG	what you see is what you get
