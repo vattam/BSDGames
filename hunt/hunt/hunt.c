@@ -1,4 +1,4 @@
-/*	$NetBSD: hunt.c,v 1.9 2000/01/21 17:08:33 mycroft Exp $	*/
+/*	$NetBSD: hunt.c,v 1.11 2000/04/14 05:58:03 simonb Exp $	*/
 /*
  *  Hunt
  *  Copyright (c) 1985 Conrad C. Huang, Gregory S. Couch, Kenneth C.R.C. Arnold
@@ -7,9 +7,10 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: hunt.c,v 1.9 2000/01/21 17:08:33 mycroft Exp $");
+__RCSID("$NetBSD: hunt.c,v 1.11 2000/04/14 05:58:03 simonb Exp $");
 #endif /* not lint */
 
+# include	<sys/param.h>
 # include	<sys/stat.h>
 # include	<sys/time.h>
 # include	<ctype.h>
@@ -23,7 +24,6 @@ __RCSID("$NetBSD: hunt.c,v 1.9 2000/01/21 17:08:33 mycroft Exp $");
 # include	<termios.h>
 static struct termios saved_tty;
 # endif
-# include	<sys/param.h>
 # include	<unistd.h>
 
 # include	"hunt.h"
@@ -106,8 +106,6 @@ main(ac, av)
 	char		*term;
 	int		c;
 	extern int	Otto_mode;
-	extern int	optind;
-	extern char	*optarg;
 	long		enter_status;
 
 	/* Revoke setgid privileges */

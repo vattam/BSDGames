@@ -1,3 +1,9 @@
+bsdgames (2.11-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 19 Apr 2000 14:30:22 -0700
+
 bsdgames (2.10-3) unstable; urgency=low
 
   * Modified asian capitals quiz with some corrections. Closes: #62078 

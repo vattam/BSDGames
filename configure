@@ -1,7 +1,7 @@
 #!/bin/sh
 # configure - home-grown configuration script for bsd-games.
 #
-# Copyright (c) 1997, 1998, 1999 Joseph Samuel Myers.
+# Copyright (c) 1997, 1998, 1999, 2000 Joseph Samuel Myers.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -446,6 +446,19 @@ game_ask dm "Configuration file for dm" dm_configfile /etc/dm.conf
 game_ask dm "File to disable games playing" dm_nogamesfile /etc/nogames
 game_ask dm "Log file for dm" dm_logfile "$varlibdir/games.log"
 game_ask fish "File for fish instructions" fish_instrfile "$sharedir/fish.instr"
+game_ask hack "Directory for hack variable data" hack_dir "$varlibdir/hack"
+
+if building_in hack; then
+    echo
+    echo "This directory will need to be writable by hack at runtime."
+    echo "Note that with the default permissions given here this will"
+    echo "not work: you may want to choose permissions appropriate to the"
+    echo "security policy you are using (e.g. 2775 root.games for setgid"
+    echo "games)."
+    askperms "Hack directory" hack_dir root root 0755
+    install_hack_dir=`echo "$install_hack_dir" |sed 's/install -c/install -d/'`
+fi
+
 game_ask hangman "Words file for hangman (CHECK ANSWER)" hangman_wordsfile /usr/share/dict/words
 # Hunt has some other configuration
 game_ask monop "File for monop cards" monop_cardsfile "$sharedir/monop-cards.pck"
@@ -528,16 +541,16 @@ prog_to_exec () {
     fi
 }
 
-slash_to_under () {
-    echo "$1" |sed 's:/:_:g'
+slashdot_to_under () {
+    echo "$1" |sed 's:/:_:g' |sed 's:\.:_:g'
 }
 
 exec_to_libs () {
-    eval echo \$$(slash_to_under $1)_libs
+    eval echo \$$(slashdot_to_under $1)_libs
 }
 
 exec_to_objs () {
-    eval echo \$$(slash_to_under $1)_objs
+    eval echo \$$(slashdot_to_under $1)_objs
 }
 
 make_dirs_tmp="$(find $build_dirs -depth -type d) lib"
@@ -553,7 +566,7 @@ done
 all_dependencies=
 
 for dir in $make_dirs; do
-    udir=$(slash_to_under $dir)
+    udir=$(slashdot_to_under $dir)
     all_dependencies="$all_dependencies ${udir}_all"
 done
 
@@ -575,7 +588,7 @@ include subst.rules
 EOF
 
 for dir in $make_dirs; do
-    udir=$(slash_to_under $dir)
+    udir=$(slashdot_to_under $dir)
     eval clean_$udir=
     cat >>GNUmakefile <<EOF
 include $dir/Makefrag
@@ -604,7 +617,7 @@ while read prog libs; do
 	continue
     fi
     exec=$(prog_to_exec $prog)
-    evar=$(slash_to_under $exec)_libs
+    evar=$(slashdot_to_under $exec)_libs
     eval $evar=\"\$libs\"
 done <exec.libs.tmp
 
@@ -614,10 +627,10 @@ while read prog objs; do
 	continue
     fi
     exec=$(prog_to_exec $prog)
-    evar=$(slash_to_under $exec)_libs
+    evar=$(slashdot_to_under $exec)_libs
     eval libs=\"\$$evar\"
     dir=$(dirname $exec)
-    udir=$(slash_to_under $dir)
+    udir=$(slashdot_to_under $dir)
     nobjs=
     deps_to_inc=
     eval clean_$udir=\"\$clean_$udir $(basename $exec)\"
@@ -626,8 +639,8 @@ while read prog objs; do
 	    obj=$dir/$obj
 	fi
 	nobjs="$nobjs $obj"
-	obj_dep_var=$(slash_to_under $obj)
-	obj_dep_var=${obj_dep_var%%.o}_deps_included
+	obj_dep_var=$(slashdot_to_under $obj)
+	obj_dep_var=${obj_dep_var}_deps_included
 	eval obj_dep_val=\$$obj_dep_var
 	if [ "x$obj_dep_val" = "x" ]; then
 	    deps_to_inc="$deps_to_inc ${obj%%.o}.d"
@@ -651,7 +664,7 @@ clean_dependencies=
 install_dependencies=
 
 for dir in $make_dirs; do
-    udir=$(slash_to_under $dir)
+    udir=$(slashdot_to_under $dir)
     clean_dependencies="$clean_dependencies ${udir}_clean"
     install_dependencies="$install_dependencies ${udir}_install"
     eval clean=\"\$clean_$udir\"

@@ -11,6 +11,16 @@ changes in installation instructions.  Packagers should also reread
 the PACKAGING file each version (or do a diff between the old and new
 versions of the package and read that).
 
+Version 2.11 (2000-04-19)
+============
+
+* bsd-games-non-free now includes hack 1.0.3 by Andries Brouwer; this
+may be of interest to nethack players wishing to play an ancestral
+game.
+
+* Various minor changes and bugfixes; current with NetBSD CVS of
+2000-04-19.
+
 Version 2.10 (2000-02-12)
 ============
 

@@ -38,6 +38,9 @@ factor:		Landon Curt Noll <chongo@toad.com>
 fish:		Muffy Barkocy
 fortune:	Ken Arnold (fortunes from many sources)
 gomoku:		Ralph Campbell (with acknowledgement to Peter Langston)
+hack:		Originally Jay Fenlason, with help from Kenny
+		Woodland, Mike Thome and Jon Payne; this version
+		almost entirely rewritten by Andries Brouwer <aeb@cwi.nl>.
 hangman:	Ken Arnold
 hunt:		Conrad Huang <conrad@cgl.ucsf.edu>,
 		Greg Couch <gregc@cgl.ucsf.edu>
