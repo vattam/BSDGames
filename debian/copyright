@@ -1,6 +1,6 @@
 This is a Debian prepackaged version of the BSD games package.
 
-This package was put together by Joey Hess <joeyh@master.debian.org>, using
+This package was put together by Joey Hess <joeyh@debian.org>, using
 sources from:
 	ftp://sunsite.unc.edu/pub/Linux/Incoming/bsd-games-2.5.tar.gz
 

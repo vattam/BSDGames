@@ -1,7 +1,7 @@
 Source: bsdgames
 Section: games
 Priority: optional
-Maintainer: Joey Hess <joeyh@master.debian.org>
+Maintainer: Joey Hess <joeyh@debian.org>
 Standards-Version: 3.1.0.0
 
 Package: bsdgames

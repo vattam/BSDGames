@@ -9,7 +9,7 @@ bsdgames (2.9-1) unstable; urgency=low
   * Fixed phantasia/characs permissions so it's not world-readable
     (passwords) (Closes: #50076)
 
- -- Joey Hess <joeyh@master.debian.org>  Sat, 13 Nov 1999 14:14:34 -0800
+ -- Joey Hess <joeyh@debian.org>  Sat, 13 Nov 1999 14:14:34 -0800
 
 bsdgames (2.8-5) unstable; urgency=low
 
@@ -18,27 +18,27 @@ bsdgames (2.8-5) unstable; urgency=low
   * Patch from Malcolm to fix robots so it asks if you want a new game after
     each game. (Closes: #49897)
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 11 Nov 1999 11:28:52 -0800
+ -- Joey Hess <joeyh@debian.org>  Thu, 11 Nov 1999 11:28:52 -0800
 
 bsdgames (2.8-4) unstable; urgency=low
 
   * Fixed rot13 test suite to work before the package is installed. 
     Closes: #48559
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 28 Oct 1999 11:35:49 -0700
+ -- Joey Hess <joeyh@debian.org>  Thu, 28 Oct 1999 11:35:49 -0700
 
 bsdgames (2.8-3) unstable; urgency=low
 
   * Patch from William Brioschi to make random work on alpha. Closes: #47903
     (forwared upstream)
 
- -- Joey Hess <joeyh@master.debian.org>  Sun, 24 Oct 1999 16:27:54 -0700
+ -- Joey Hess <joeyh@debian.org>  Sun, 24 Oct 1999 16:27:54 -0700
 
 bsdgames (2.8-2) unstable; urgency=low
 
   * Corrected the capital of Monaco. (Closes: #46119)
 
- -- Joey Hess <joeyh@master.debian.org>  Mon, 27 Sep 1999 12:53:20 -0700
+ -- Joey Hess <joeyh@debian.org>  Mon, 27 Sep 1999 12:53:20 -0700
 
 bsdgames (2.8-1) unstable; urgency=low
 
@@ -46,7 +46,7 @@ bsdgames (2.8-1) unstable; urgency=low
   * Updated copyright based on the updated COPYING file
   * RUn the regression tests at build time.
 
- -- Joey Hess <joeyh@master.debian.org>  Sun, 26 Sep 1999 14:30:06 -0700
+ -- Joey Hess <joeyh@debian.org>  Sun, 26 Sep 1999 14:30:06 -0700
 
 bsdgames (2.7-3) unstable; urgency=low
 
@@ -54,70 +54,70 @@ bsdgames (2.7-3) unstable; urgency=low
     are moved to there in the postinst now.
   * Removed bashisms in debian/rules
 
- -- Joey Hess <joeyh@master.debian.org>  Wed,  8 Sep 1999 17:02:12 -0700
+ -- Joey Hess <joeyh@debian.org>  Wed,  8 Sep 1999 17:02:12 -0700
 
 bsdgames (2.7-2) unstable; urgency=low
 
   * Removed 2 patches I made that are no longer necessary.
 
- -- Joey Hess <joeyh@master.debian.org>  Wed,  7 Apr 1999 14:53:52 -0700
+ -- Joey Hess <joeyh@debian.org>  Wed,  7 Apr 1999 14:53:52 -0700
 
 bsdgames (2.7-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Joey Hess <joeyh@master.debian.org>  Tue,  6 Apr 1999 23:50:51 -0700
+ -- Joey Hess <joeyh@debian.org>  Tue,  6 Apr 1999 23:50:51 -0700
 
 bsdgames (2.6-2) unstable; urgency=low
 
   * Fixed backgammon to correctly calculate the game value, patch from
     sjl@debian.lib.monash.edu.au (Stuart Lamble) (#35038)
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 25 Mar 1999 13:33:07 -0800
+ -- Joey Hess <joeyh@debian.org>  Thu, 25 Mar 1999 13:33:07 -0800
 
 bsdgames (2.6-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Joey Hess <joeyh@master.debian.org>  Sun, 20 Dec 1998 00:24:18 -0500
+ -- Joey Hess <joeyh@debian.org>  Sun, 20 Dec 1998 00:24:18 -0500
 
 bsdgames (2.5-4) frozen unstable; urgency=low
 
   * Commented out a bogus sprintf prototype in sail/sync.c, makes sail
     not segfault on startup. (#30246).
 
- -- Joey Hess <joeyh@master.debian.org>  Tue,  1 Dec 1998 12:52:14 -0800
+ -- Joey Hess <joeyh@debian.org>  Tue,  1 Dec 1998 12:52:14 -0800
 
 bsdgames (2.5-3) unstable; urgency=low
 
   * Built with newest debhelper to change how sgid binaries are registered.
 
- -- Joey Hess <joeyh@master.debian.org>  Tue, 27 Oct 1998 20:59:48 -0800
+ -- Joey Hess <joeyh@debian.org>  Tue, 27 Oct 1998 20:59:48 -0800
 
 bsdgames (2.5-2) unstable; urgency=low
 
   * Removed bougs wordlist | wenglish dependancy.
 
- -- Joey Hess <joeyh@master.debian.org>  Thu,  1 Oct 1998 12:59:53 -0700
+ -- Joey Hess <joeyh@debian.org>  Thu,  1 Oct 1998 12:59:53 -0700
 
 bsdgames (2.5-1) unstable; urgency=low
 
   * New upstream release - boggle is now free.
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 24 Sep 1998 17:17:32 -0700
+ -- Joey Hess <joeyh@debian.org>  Thu, 24 Sep 1998 17:17:32 -0700
 
 bsdgames (2.4-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Joey Hess <joeyh@master.debian.org>  Sat,  5 Sep 1998 15:49:53 -0700
+ -- Joey Hess <joeyh@debian.org>  Sat,  5 Sep 1998 15:49:53 -0700
 
 bsdgames (2.3-2) unstable; urgency=low
 
   * Make NEWS be a symlink to the upstream changelog, so the file name is
     preserved.
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 20 Aug 1998 15:57:14 -0700
+ -- Joey Hess <joeyh@debian.org>  Thu, 20 Aug 1998 15:57:14 -0700
 
 bsdgames (2.3-1) unstable; urgency=low
 
@@ -132,39 +132,39 @@ bsdgames (2.3-1) unstable; urgency=low
     negative value.
   * Re-enabled bell in robots, it seems to work ok in an xterm now.
 
- -- Joey Hess <joeyh@master.debian.org>  Wed, 19 Aug 1998 14:54:48 -0700
+ -- Joey Hess <joeyh@debian.org>  Wed, 19 Aug 1998 14:54:48 -0700
 
 bsdgames (2.1-8) unstable; urgency=low
 
   * Use single = in postrm (#25512).
 
- -- Joey Hess <joeyh@master.debian.org>  Fri,  7 Aug 1998 12:14:35 -0700
+ -- Joey Hess <joeyh@debian.org>  Fri,  7 Aug 1998 12:14:35 -0700
 
 bsdgames (2.1-7) unstable; urgency=low
 
   * Fixed menu file so adventure will show up.
 
- -- Joey Hess <joeyh@master.debian.org>  Wed,  5 Aug 1998 14:21:20 -0700
+ -- Joey Hess <joeyh@debian.org>  Wed,  5 Aug 1998 14:21:20 -0700
 
 bsdgames (2.1-6) unstable; urgency=low
 
   * Once more rebuilt with newer ncurses lib to fix worm and mille
     segfaults. Why is ncusrses doing this to me?  
 
- -- Joey Hess <joeyh@master.debian.org>  Wed, 22 Jul 1998 20:22:01 -0700
+ -- Joey Hess <joeyh@debian.org>  Wed, 22 Jul 1998 20:22:01 -0700
 
 bsdgames (2.1-5) unstable; urgency=low
 
   * Rebuilt with fakeroot to fix libtricks breakage.
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 16 Jul 1998 11:03:20 -0700
+ -- Joey Hess <joeyh@debian.org>  Thu, 16 Jul 1998 11:03:20 -0700
 
 bsdgames (2.1-4) unstable; urgency=low
 
   * Fixed minor spelling error in quiz/europe (#24586), reported by Branden
     Robinson.
 
- -- Joey Hess <joeyh@master.debian.org>  Tue, 14 Jul 1998 23:02:23 -0700
+ -- Joey Hess <joeyh@debian.org>  Tue, 14 Jul 1998 23:02:23 -0700
 
 bsdgames (2.1-3) frozen unstable; urgency=medium
 
@@ -175,13 +175,13 @@ bsdgames (2.1-3) frozen unstable; urgency=medium
     of one.
   * Added a README.Debian exaplaining this in greater detail.
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 18 Jun 1998 10:06:54 -0700
+ -- Joey Hess <joeyh@debian.org>  Thu, 18 Jun 1998 10:06:54 -0700
 
 bsdgames (2.1-2) frozen unstable; urgency=low
 
   * Just rebuilt with newer ncurses lib to fix worm and mille segfaults. 
 
- -- Joey Hess <joeyh@master.debian.org>  Sun,  7 Jun 1998 09:17:11 -0400
+ -- Joey Hess <joeyh@debian.org>  Sun,  7 Jun 1998 09:17:11 -0400
 
 bsdgames (2.1-1) frozen unstable; urgency=low
 
@@ -192,7 +192,7 @@ bsdgames (2.1-1) frozen unstable; urgency=low
     - changes to build process that don't affect us.
     - bugfixes.
 
- -- Joey Hess <joeyh@master.debian.org>  Mon, 30 Mar 1998 12:03:30 -0800
+ -- Joey Hess <joeyh@debian.org>  Mon, 30 Mar 1998 12:03:30 -0800
 
 bsdgames (2.0-4) unstable; urgency=low
 
@@ -202,20 +202,20 @@ bsdgames (2.0-4) unstable; urgency=low
     /usr/share/games/bsdgames/phantasia in the postinst, if they don't
     already exist.
 
- -- Joey Hess <joeyh@master.debian.org>  Tue, 10 Mar 1998 18:08:51 -0800
+ -- Joey Hess <joeyh@debian.org>  Tue, 10 Mar 1998 18:08:51 -0800
 
 bsdgames (2.0-3) unstable; urgency=low
 
   * Added a man page for wargames. (Wow, never thought my movie guide book
     would be useful in debian development!)
 
- -- Joey Hess <joeyh@master.debian.org>  Sun, 22 Feb 1998 18:42:17 -0800
+ -- Joey Hess <joeyh@debian.org>  Sun, 22 Feb 1998 18:42:17 -0800
 
 bsdgames (2.0-2) unstable; urgency=low
 
   * Updated standards-version.
 
- -- Joey Hess <joeyh@master.debian.org>  Mon,  9 Feb 1998 15:09:56 -0800
+ -- Joey Hess <joeyh@debian.org>  Mon,  9 Feb 1998 15:09:56 -0800
 
 bsdgames (2.0-1) unstable; urgency=low
 
@@ -225,7 +225,7 @@ bsdgames (2.0-1) unstable; urgency=low
   * Removed hunt from the debian menu - for now, you need to manually run 
     huntd, and then hunt.
 
- -- Joey Hess <joeyh@master.debian.org>  Fri, 26 Dec 1997 13:34:34 -0500
+ -- Joey Hess <joeyh@debian.org>  Fri, 26 Dec 1997 13:34:34 -0500
 
 bsdgames (1.5-4) unstable; urgency=low
 
@@ -234,7 +234,7 @@ bsdgames (1.5-4) unstable; urgency=low
     - Modified snake/snake/move.c to not redefine raw().
     - Modified worms.c to not redefine random.
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 11 Dec 1997 12:10:17 -0500
+ -- Joey Hess <joeyh@debian.org>  Thu, 11 Dec 1997 12:10:17 -0500
 
 bsdgames (1.5-3) unstable; urgency=low
 
@@ -242,7 +242,7 @@ bsdgames (1.5-3) unstable; urgency=low
     Thanks, Culus!
   * Moved screen savers into Screen/Save/Text menu.
 
- -- Joey Hess <joeyh@master.debian.org>  Fri, 21 Nov 1997 16:22:14 -0500
+ -- Joey Hess <joeyh@debian.org>  Fri, 21 Nov 1997 16:22:14 -0500
 
 bsdgames (1.5-2) unstable; urgency=low
 
@@ -252,7 +252,7 @@ bsdgames (1.5-2) unstable; urgency=low
   * Install factor.6 as primes.6, instead of making a symlink.
   * Use debhelper.
 
- -- Joey Hess <joeyh@master.debian.org>  Sun,  9 Nov 1997 14:13:05 -0500
+ -- Joey Hess <joeyh@debian.org>  Sun,  9 Nov 1997 14:13:05 -0500
 
 bsdgames (1.5-1) unstable; urgency=low
 
@@ -269,7 +269,7 @@ bsdgames (1.5-1) unstable; urgency=low
   * Make tetris-bsd score file a conffile.
   * Use pristine upstream source.
 
- -- Joey Hess <joeyh@master.debian.org>  Sat, 19 Jul 1997 12:25:03 -0400
+ -- Joey Hess <joeyh@debian.org>  Sat, 19 Jul 1997 12:25:03 -0400
 
 bsdgames (1.4-1) unstable; urgency=low
 
@@ -282,7 +282,7 @@ bsdgames (1.4-1) unstable; urgency=low
   * /usr/share used for arch-independant data.
   * Reccommends: wordlist | wenglish; closes #8487
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 1 May 1997 23:07:46 -0400
+ -- Joey Hess <joeyh@debian.org>  Thu, 1 May 1997 23:07:46 -0400
 
 bsdgames (1.3-8) unstable; urgency=low
 
@@ -290,27 +290,27 @@ bsdgames (1.3-8) unstable; urgency=low
     package (#9168).
   * Converted menufile to menu-1 format.
 
- -- Joey Hess <joeyh@master.debian.org>  Mon, 28 Apr 1997 13:25:24 -0400
+ -- Joey Hess <joeyh@debian.org>  Mon, 28 Apr 1997 13:25:24 -0400
 
 bsdgames (1.3-7) frozen unstable; urgency=low
 
   * Fixed problem with including tetris in the source package. Tetris is now
     included as a shar archive.
 
- -- Joey Hess <joeyh@master.debian.org>  Wed, 16 Apr 1997 18:39:31 -0400
+ -- Joey Hess <joeyh@debian.org>  Wed, 16 Apr 1997 18:39:31 -0400
 
 bsdgames (1.3-6) frozen unstable; urgency=low
 
   * Fixed segfault in backgammon if any command line options were given.
   * Use backgammon -pb in the debian menu file.
 
- -- Joey Hess <joeyh@master.debian.org>  Tue, 15 Apr 1997 14:27:04 -0400
+ -- Joey Hess <joeyh@debian.org>  Tue, 15 Apr 1997 14:27:04 -0400
 
 bsdgames (1.3-5) frozen unstable; urgency=low
 
   * Hacked around in mille to fix bug #8556.
 
- -- Joey Hess <joeyh@master.debian.org>  Tue, 8 Apr 1997 20:03:23 -0400
+ -- Joey Hess <joeyh@debian.org>  Tue, 8 Apr 1997 20:03:23 -0400
 
 bsdgames (1.3-4) unstable; urgency=low
 
@@ -319,7 +319,7 @@ bsdgames (1.3-4) unstable; urgency=low
   * Routine update of debian/rules:
     Run dpkg-gencontrol after debstd, and delete substvars during clean.
 
- -- Joey Hess <joeyh@master.debian.org>  Fri, 4 Apr 1997 19:48:12 -0500
+ -- Joey Hess <joeyh@debian.org>  Fri, 4 Apr 1997 19:48:12 -0500
 
 bsdgames (1.3-3) unstable; urgency=low
 
@@ -328,7 +328,7 @@ bsdgames (1.3-3) unstable; urgency=low
     * dpkg-source -x would not work with version 1.3-2. Fixed this.
   * Corrected typo in hangman's man page.
 
- -- Joey Hess <joeyh@master.debian.org>  Wed, 26 Mar 1997 14:02:24 -0500
+ -- Joey Hess <joeyh@debian.org>  Wed, 26 Mar 1997 14:02:24 -0500
 
 bsdgames (1.3-2) unstable; urgency=low
 
@@ -338,7 +338,7 @@ bsdgames (1.3-2) unstable; urgency=low
     Run dpkg-gencontrol after debstd, and delete substvars during clean.
   * Added tetris, thanks to David Frey <david@eos.lugs.ch>.
 
- -- Joey Hess <joeyh@master.debian.org>  Sun, 23 Mar 1997 18:05:41 -0500
+ -- Joey Hess <joeyh@debian.org>  Sun, 23 Mar 1997 18:05:41 -0500
 
 bsdgames (1.3-1) unstable; urgency=low
 
@@ -356,7 +356,7 @@ bsdgames (1.3-1) unstable; urgency=low
   * snscore: don't segfault if the score file is empty.
   * snscore: don't give "too many players" error.
 
- -- Joey Hess <joeyh@master.debian.org>  Thu, 20 Mar 1997 23:31:16 -0500
+ -- Joey Hess <joeyh@debian.org>  Thu, 20 Mar 1997 23:31:16 -0500
 
 Local variables:
 mode: debian-changelog
