@@ -1,4 +1,4 @@
-/*	$NetBSD: caesar.c,v 1.7 1998/09/13 15:27:27 hubertf Exp $	*/
+/*	$NetBSD: caesar.c,v 1.11 2000/05/08 07:56:02 mycroft Exp $	*/
 
 /*
  * Copyright (c) 1989, 1993
@@ -51,7 +51,7 @@ __COPYRIGHT("@(#) Copyright (c) 1989, 1993\n\
 #if 0
 static char sccsid[] = "@(#)caesar.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: caesar.c,v 1.7 1998/09/13 15:27:27 hubertf Exp $");
+__RCSID("$NetBSD: caesar.c,v 1.11 2000/05/08 07:56:02 mycroft Exp $");
 #endif
 #endif /* not lint */
 
@@ -88,7 +88,8 @@ main(argc, argv)
 	int argc;
 	char **argv;
 {
-	int ch, dot, i, nread, winnerdot;
+	int ch, i, nread;
+	double dot, winnerdot;
 	char *inbuf;
 	int obs[26], try, winner;
 
@@ -100,7 +101,7 @@ main(argc, argv)
 		printit(argv[1]);
 
 	if (!(inbuf = malloc(LINELENGTH)))
-		errx(1, "out of memory");
+		err(1, NULL);
 
 	/* adjust frequency table to weight low probs REAL low */
 	for (i = 0; i < 26; ++i)

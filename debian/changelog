@@ -1,3 +1,11 @@
+bsdgames (2.14-5) unstable; urgency=low
+
+  * Fix rounding error in caesar due to too small data type. Caused it to
+    sometimes make incorrect guesses. Thanks to Jan Vornberger for analysis
+    and patch. Also forwarded upstream. Closes: #197816
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 17 Jun 2003 19:36:44 -0400
+
 bsdgames (2.14-4) unstable; urgency=low
 
   * Move atc and sail to Games/Strategy in menu, cf #194782
