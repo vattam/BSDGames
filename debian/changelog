@@ -1,3 +1,12 @@
+bsdgames (2.12-9) unstable; urgency=low
+
+  * Corrected cost of slime. Closes: #110782
+  * Added '-' to character class, so wargames can launch moon-buggy.
+    This is clearly a vital fix, but I hesitate to increase the severity of
+    this upload. Closes: #93638
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 17 Sep 2001 00:51:07 -0400
+
 bsdgames (2.12-8) unstable; urgency=low
 
   * Applied a patch from Igor Khavkine <i_khavki@alcor.concordia.ca> to
