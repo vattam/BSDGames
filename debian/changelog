@@ -1,3 +1,9 @@
+bsdgames (2.9-3) unstable; urgency=low
+
+  * Download directory update.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 11 Jan 2000 15:53:35 -0800
+
 bsdgames (2.9-2) unstable; urgency=low
 
   * Build deps. Boggle is now forced to always build with wgenlish as it's
