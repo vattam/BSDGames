@@ -1,3 +1,9 @@
+bsdgames (2.12-2) unstable; urgency=low
+
+  * Depends on wordlist, Closes: #76331
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  5 Nov 2000 15:25:06 -0800
+
 bsdgames (2.12-1) unstable; urgency=low
 
   * New upstream release, fixing problems in battlestar. Closes: #70465

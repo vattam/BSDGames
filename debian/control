@@ -7,7 +7,7 @@ Standards-Version: 3.2.1.0
 
 Package: bsdgames
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, wordlist
 Conflicts: bsdgames-nonfree (<< 2.5)
 Replaces: bsdgames-nonfree (<< 2.5)
 Description: collection of text games from BSD systems
