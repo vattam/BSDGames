@@ -384,6 +384,10 @@ Planes enter at 7000 feet and leave at 9000 feet.
 Planes flying at an altitude of 0 crash if they are not over an airport.
 .It
 Planes waiting at airports can only be told to take off (climb in altitude).
+.It
+Pressing return (that is, entering an empty command) will perform the
+next update immediately. This allows you to ``fast forward''
+the game clock if nothing interesting is happening.
 .El
 .Sh NEW GAMES
 The

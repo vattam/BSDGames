@@ -46,7 +46,7 @@ if [ ! -e /var/games/bsdgames/phantasia/monsters ] ; then
 fi
 
 touch $SCOREFILES
-chown root.games $SCOREFILES
+chown root:games $SCOREFILES
 chmod 664 $SCOREFILES
 
 # These files may not be world-readable as they have passwords
@@ -56,7 +56,7 @@ chmod 660 /var/games/bsdgames/phantasia/characs
 # I have to make this directory here, because older version of this package
 # always deleted it in their postrm. Oops.
 mkdir -p /var/games/bsdgames/sail
-chown root.games /var/games/bsdgames/sail
+chown root:games /var/games/bsdgames/sail
 chmod g+rws /var/games/bsdgames/sail
 
 #DEBHELPER#

@@ -63,7 +63,7 @@ binary-arch: build
 
 	chmod -R u+rw debian/bsdgames/usr/
 	# Games with score files need to be set up sgid games.
-	chown root.games debian/bsdgames/usr/games/atc \
+	chown root:games debian/bsdgames/usr/games/atc \
 		debian/bsdgames/usr/games/battlestar \
 		debian/bsdgames/usr/games/canfield \
 		debian/bsdgames/usr/games/cribbage \
@@ -85,7 +85,7 @@ binary-arch: build
 		debian/bsdgames/usr/games/hack
 	# The game directories need to be sgid too, and let's
 	# remove all the zero byte score files in them.
-	chown root.games debian/bsdgames/var/games/bsdgames/ \
+	chown root:games debian/bsdgames/var/games/bsdgames/ \
 		debian/bsdgames/var/games/bsdgames/sail \
 		debian/bsdgames/var/games/bsdgames/phantasia \
 		debian/bsdgames/var/games/bsdgames/hack \
