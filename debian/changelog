@@ -1,3 +1,11 @@
+bsdgames (2.7-3) unstable; urgency=low
+
+  * FHS. This involves moving to /var/games for all game data. Score files
+    are moved to there in the postinst now.
+  * Removed bashisms in debian/rules
+
+ -- Joey Hess <joeyh@master.debian.org>  Wed,  8 Sep 1999 17:02:12 -0700
+
 bsdgames (2.7-2) unstable; urgency=low
 
   * Removed 2 patches I made that are no longer necessary.
