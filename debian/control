@@ -1,9 +1,9 @@
 Source: bsdgames
 Section: games
 Priority: optional
-Build-Depends: debhelper (>= 3), libncurses5-dev, flex, bison, wenglish
+Build-Depends: debhelper (>= 3), libncurses5-dev, flex, bison, wenglish, wbritish
 Maintainer: Joey Hess <joeyh@debian.org>
-Standards-Version: 3.5.6.0
+Standards-Version: 3.5.6.1
 
 Package: bsdgames
 Architecture: any

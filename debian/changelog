@@ -1,3 +1,11 @@
+bsdgames (2.13-7) unstable; urgency=low
+
+  * Make sure boggle is always built with the same wordlist, and use the union
+    of wenglish and wbristish for that list. Building with web2 resulted in
+    too many scrabble-words..
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  7 Apr 2002 20:27:57 -0400
+
 bsdgames (2.13-6) unstable; urgency=low
 
   * Fixed man page warnings, Closes: #139414

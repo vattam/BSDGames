@@ -31,3 +31,7 @@ bsd_games_cfg_gzip_manpages=n
 
 # Policy says to use /usr/bin/pager by default.
 bsd_games_cfg_pager=/usr/bin/pager
+
+# Always use the same wordlist for boggle, and don't use web2, it's too
+# big. Instead, use the union of the wenglish and wbritish wordlists.
+dictionary_src=`pwd`/temp-dictionary

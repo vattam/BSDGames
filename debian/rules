@@ -10,6 +10,11 @@ export DH_COMPAT=3
 build: build-stamp
 build-stamp:
 	dh_testdir
+
+	# Set up wordlist
+	cat /usr/share/dict/american-english /usr/share/dict/british-english | \
+		sort | uniq > temp-dictionary
+
 	./configure
 	$(MAKE)
 	$(MAKE) test
@@ -19,7 +24,7 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp
-	dh_clean
+	dh_clean temp-dictionary
 	-$(MAKE) -i distclean
 
 # Build architecture-independent files here.
