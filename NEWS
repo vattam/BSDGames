@@ -11,6 +11,24 @@ changes in installation instructions.  Packagers should also reread
 the PACKAGING file each version (or do a diff between the old and new
 versions of the package and read that).
 
+Version 2.10 (2000-02-12)
+============
+
+* Avoid world-readable characs file in phantasia.  Note the new
+configuration question which will need an appropriate answer,
+especially if packaging for a distribution.
+
+* Various minor bugfixes.
+
+* Essentially all relevant changes, except to hunt (which will
+eventually be replaced by the OpenBSD version), now merged back into
+NetBSD.
+
+* Some minor changes from NetBSD CVS of 2000-02-12.
+
+* No new bsd-games-non-free version; bsd-games-non-free 2.8 is still
+current.
+
 Version 2.9 (1999-11-12)
 ===========
 

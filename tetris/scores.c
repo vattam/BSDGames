@@ -1,4 +1,4 @@
-/*	$NetBSD: scores.c,v 1.8 1999/09/18 19:38:55 jsm Exp $	*/
+/*	$NetBSD: scores.c,v 1.10 2000/01/21 02:10:56 jsm Exp $	*/
 
 /*-
  * Copyright (c) 1992, 1993

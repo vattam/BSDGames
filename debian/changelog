@@ -1,3 +1,9 @@
+bsdgames (2.10-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 12 Feb 2000 16:35:11 -0800
+
 bsdgames (2.9-4) unstable; urgency=low
 
   * Built with ncurses5, Closes: #55448

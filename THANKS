@@ -46,6 +46,10 @@ Stuart Lamble <sjl@debian.lib.monash.edu.au>
   For a bug report and analysis (with patch) about scoring in
   backgammon.
 
+Malcolm Parsons <malcolm@bits.bris.ac.uk>
+
+  For several bug reports and fixes.
+
 For the original bsd-games package (versions up to 1.3):
 
 Special Thanks to:

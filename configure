@@ -283,6 +283,8 @@ askperms "Manpage" manpage root root 0644
 askperms "Constant data" constdata root root 0644
 askperms "Variable data" vardata root root 0644 # or 0666?
 
+ask "Permissions on variable data that should not be world readable" vardata_perms_priv 0640
+
 use_dot_so=
 while test x$use_dot_so = x; do
     ask "Use .so or symlinks for manpages" use_dot_so .so
