@@ -15,7 +15,7 @@
 	title="Go Fish" \
 	command="sh -c '/usr/games/fish;echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Card" \
-	title="Mille Bournes" command="/usr/games/mille"
+	title="Mille Bornes" command="/usr/games/mille"
 ?package(bsdgames):needs="text" section="Games/Board" \
 	title="Monopoly" command="/usr/games/monop"
 ?package(bsdgames):needs="text" section="Games/Board" hints="Backgammon" \

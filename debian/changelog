@@ -1,3 +1,10 @@
+bsdgames (2.14-3) unstable; urgency=low
+
+  * Corrected Bornes typo in menu entry. It's all the bash shell's fault. :-)
+    Closes: #193126
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 13 May 2003 10:19:41 -0400
+
 bsdgames (2.14-2) unstable; urgency=low
 
   * My patch to bcd.6 is no longer necessary.
