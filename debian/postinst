@@ -17,8 +17,24 @@ SCOREFILES="
 	/var/games/bsdgames/phantasia/motd
 	/var/games/bsdgames/phantasia/scoreboard
 	/var/games/bsdgames/phantasia/void
-	/var/games/bsdgames/phantasia/monsters"
+	/var/games/bsdgames/phantasia/monsters
+	/var/games/bsdgames/hack/perm
+	/var/games/bsdgames/hack/record"
 
+# Hack moved over from bsdgames-nonfree.
+if [ -d /var/games/bsdgames-nonfree ]; then
+	for file in perm record; do
+		if [ -e /var/games/bsdgames-nonfree/hack/$file ]; then
+			mv -f /var/games/bsdgames-nonfree/hack/$file \
+				/var/games/bsdgames/hack/$file
+		fi
+	done
+	cp -a -f /var/games/bsdgames-nonfree/hack/save/* \
+		/var/games/bsdgames/hack/save/ 2>/dev/null || true
+	rm -f /var/games/bsdgames-nonfree/hack/save/* 2>/dev/null || true
+	rmdir -p /var/games/bsdgames-nonfree/hack/save 2>/dev/null || true
+fi
+	
 # These files cannot just be zero-byte files:
 if [ ! -e /var/games/bsdgames/phantasia/void ]; then
 	cp /usr/share/games/bsdgames/phantasia/void \

@@ -27,7 +27,8 @@ binary-arch: build
 	dh_testroot
 	dh_clean
 	dh_installdirs usr/share/doc/bsdgames \
-		usr/share/games/bsdgames/phantasia
+		usr/share/games/bsdgames/phantasia \
+		var/games/bsdgames/hack/save
 
 	$(MAKE) install
 	cp atc/BUGS debian/bsdgames/usr/share/doc/bsdgames/BUGS.atc
@@ -36,6 +37,8 @@ binary-arch: build
 	cp phantasia/README debian/bsdgames/usr/share/doc/bsdgames/README.phantasia
 	cp boggle/README debian/bsdgames/usr/share/doc/bsdgames/README.boggle
 	cp boggle/README.linux debian/bsdgames/usr/share/doc/bsdgames/README.linux.boggle
+	cp hack/Original_READ_ME debian/bsdgames/usr/share/doc/bsdgames/Original_READ_ME.hack
+	cp hack/READ_ME debian/bsdgames/usr/share/doc/bsdgames/READ_ME.hack
 	# Since factor is not installed, and primes.6 is a symlink to
 	# factor.6, I need to change that to the actual man page.
 	-rm -f debian/bsdgames/usr/share/man/man6/factor.6.gz \
@@ -68,7 +71,8 @@ binary-arch: build
 		debian/bsdgames/usr/games/snake \
 		debian/bsdgames/usr/games/tetris-bsd \
 		debian/bsdgames/usr/games/phantasia \
-		debian/bsdgames/usr/games/sail
+		debian/bsdgames/usr/games/sail \
+		debian/bsdgames/usr/games/hack
 	chmod g+s debian/bsdgames/usr/games/atc \
 		debian/bsdgames/usr/games/battlestar \
 		debian/bsdgames/usr/games/canfield \
@@ -77,15 +81,20 @@ binary-arch: build
 		debian/bsdgames/usr/games/snake \
 		debian/bsdgames/usr/games/tetris-bsd \
 		debian/bsdgames/usr/games/phantasia \
-		debian/bsdgames/usr/games/sail
+		debian/bsdgames/usr/games/sail \
+		debian/bsdgames/usr/games/hack
 	# The game directories need to be sgid too, and let's
 	# remove all the zero byte score files in them.
 	chown root.games debian/bsdgames/var/games/bsdgames/ \
 		debian/bsdgames/var/games/bsdgames/sail \
-		debian/bsdgames/var/games/bsdgames/phantasia
+		debian/bsdgames/var/games/bsdgames/phantasia \
+		debian/bsdgames/var/games/bsdgames/hack \
+		debian/bsdgames/var/games/bsdgames/hack/save
 	chmod g+rws debian/bsdgames/var/games/bsdgames/ \
 		debian/bsdgames/var/games/bsdgames/sail \
-		debian/bsdgames/var/games/bsdgames/phantasia
+		debian/bsdgames/var/games/bsdgames/phantasia \
+		debian/bsdgames/var/games/bsdgames/hack \
+		debian/bsdgames/var/games/bsdgames/hack/save
 	find debian/bsdgames/var/games/bsdgames -size 0 -exec rm {} \;
 
 	dh_installdeb

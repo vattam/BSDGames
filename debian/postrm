@@ -17,13 +17,17 @@ SCOREFILES="
 	/var/games/bsdgames/phantasia/motd
 	/var/games/bsdgames/phantasia/scoreboard
 	/var/games/bsdgames/phantasia/void
-	/var/games/bsdgames/phantasia/monsters"
+	/var/games/bsdgames/phantasia/monsters
+	/var/games/bsdgames/hack/perm
+	/var/games/bsdgames/hack/record"
 
 # Remove high score files on purge.
 if [ "$1" = "purge" ]; then
 	rm -f $SCOREFILES
 	rmdir /var/games/bsdgames/phantasia /var/games/bsdgames/sail \
 	      /var/games/bsdgames /var/games 2>/dev/null || true 
+	rm -f /var/games/bsdgames/hack/save/* 2>/dev/null || true
+	rmdir -p /var/games/bsdgames/hack/save 2>/dev/null || true
 fi
 
 #DEBHELPER#

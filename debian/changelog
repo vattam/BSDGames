@@ -1,3 +1,20 @@
+bsdgames (2.14-1) unstable; urgency=low
+
+  * New upstream release, whivh includes hack, back fron bsdgames-nonfree.
+  * Conflict and replace with old versions of bsdgames-nonfree that include
+    hack.
+  * Add hack to package description and menu file.
+  * Add in hack's two READ_ME files to binay package.
+  * Patched hack config.h as it is patched in bsdgames-nonfree.
+  * Unlike bsdgames-nonfree, put the help, hh, rumors, and data files in
+    /usr/share/games/bsdgames/hack, as the patched config.h makes it look
+    there.
+  * postinst moves over hack state files to new directory
+  * Patched phantasia to use strerror and not segfault if it cannot open the
+    var files. Closes: #187251 (patch sent upstream)
+
+ -- Joey Hess <joeyh@debian.org>  Wed,  2 Apr 2003 20:44:19 -0500
+
 bsdgames (2.13-11) unstable; urgency=low
 
   * Fixed silly typo in wargames man page. Closes: #169307

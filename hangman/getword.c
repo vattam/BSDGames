@@ -1,4 +1,4 @@
-/*	$NetBSD: getword.c,v 1.6 1999/09/08 21:57:17 jsm Exp $	*/
+/*	$NetBSD: getword.c,v 1.7 2002/01/20 00:42:51 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -38,7 +38,7 @@
 #if 0
 static char sccsid[] = "@(#)getword.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: getword.c,v 1.6 1999/09/08 21:57:17 jsm Exp $");
+__RCSID("$NetBSD: getword.c,v 1.7 2002/01/20 00:42:51 jsm Exp $");
 #endif
 #endif /* not lint */
 

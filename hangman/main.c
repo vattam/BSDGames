@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.9 2000/05/08 07:56:04 mycroft Exp $	*/
+/*	$NetBSD: main.c,v 1.10 2002/01/20 00:42:51 jsm Exp $	*/
 
 /*
  * Copyright (c) 1983, 1993
@@ -43,10 +43,11 @@ __COPYRIGHT("@(#) Copyright (c) 1983, 1993\n\
 #if 0
 static char sccsid[] = "@(#)main.c	8.1 (Berkeley) 5/31/93";
 #else
-__RCSID("$NetBSD: main.c,v 1.9 2000/05/08 07:56:04 mycroft Exp $");
+__RCSID("$NetBSD: main.c,v 1.10 2002/01/20 00:42:51 jsm Exp $");
 #endif
 #endif /* not lint */
 
+#include	<err.h>
 #include	"hangman.h"
 
 /*
@@ -62,17 +63,15 @@ main(argc, argv)
 	/* Revoke setgid privileges */
 	setregid(getgid(), getgid());
 
-	while ((ch = getopt(argc, argv, "m:d:")) != -1) {
+	while ((ch = getopt(argc, argv, "d:m:")) != -1) {
 		switch (ch) {
 		case 'd':
 			Dict_name = optarg;
 			break;
 		case 'm':
 			Minlen = atoi(optarg);
-			if (Minlen < 2) {
-				fprintf(stderr, "minlen too short\n");
-				exit(1);
-			}
+			if (Minlen < 2)
+				errx(1, "minimum word length too short");
 			break;
 		case '?':
 		default:

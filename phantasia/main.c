@@ -1,4 +1,4 @@
-/*	$NetBSD: main.c,v 1.5 1998/08/30 09:19:39 veego Exp $	*/
+/*	$NetBSD: main.c,v 1.10 2001/12/06 12:15:37 blymn Exp $	*/
 
 /*
  * Phantasia 3.3.2 -- Interterminal fantasy game
@@ -288,6 +288,8 @@ initialstate()
 	if ((Playersfp = fopen(_PATH_PEOPLE, "r+")) == NULL)
 		error(_PATH_PEOPLE);
 	/* NOTREACHED */
+	if (fileno(Playersfp) < 3)
+		exit(1);
 
 	if ((Monstfp = fopen(_PATH_MONST, "r+")) == NULL)
 		error(_PATH_MONST);
@@ -384,7 +386,7 @@ rollnewplayer()
 	do {
 		mvaddstr(20, 0, "Give your character a password [up to 8 characters] ? ");
 		getstring(Player.p_password, SZ_PASSWORD);
-		mvaddstr(21, 0, "One more time to verify ? ");
+		mvaddstr(21, 0, "Enter again to verify: ");
 		getstring(Databuf, SZ_PASSWORD);
 	}
 	while (strcmp(Player.p_password, Databuf) != 0);
@@ -627,7 +629,7 @@ titlelist()
 		fclose(fp);
 	}
 	/* search for king */
-	fseek(Playersfp, 0L, 0);
+	fseek(Playersfp, 0L, SEEK_SET);
 	while (fread((char *) &Other, SZ_PLAYERSTRUCT, 1, Playersfp) == 1)
 		if (Other.p_specialtype == SC_KING &&
 		    Other.p_status != S_NOTUSED)
@@ -643,7 +645,7 @@ titlelist()
 		mvaddstr(4, 24, "There is no ruler at this time.");
 
 	/* search for valar */
-	fseek(Playersfp, 0L, 0);
+	fseek(Playersfp, 0L, SEEK_SET);
 	while (fread((char *) &Other, SZ_PLAYERSTRUCT, 1, Playersfp) == 1)
 		if (Other.p_specialtype == SC_VALAR && Other.p_status != S_NOTUSED)
 			/* found the valar */
@@ -653,7 +655,7 @@ titlelist()
 			break;
 		}
 	/* search for council of the wise */
-	fseek(Playersfp, 0L, 0);
+	fseek(Playersfp, 0L, SEEK_SET);
 	Lines = 10;
 	while (fread((char *) &Other, SZ_PLAYERSTRUCT, 1, Playersfp) == 1)
 		if (Other.p_specialtype == SC_COUNCIL && Other.p_status != S_NOTUSED)
@@ -672,7 +674,7 @@ titlelist()
 	hiexp = 0.0;
 	nxtlvl = hilvl = 0;
 
-	fseek(Playersfp, 0L, 0);
+	fseek(Playersfp, 0L, SEEK_SET);
 	while (fread((char *) &Other, SZ_PLAYERSTRUCT, 1, Playersfp) == 1)
 		if (Other.p_experience > hiexp && Other.p_specialtype <= SC_KING && Other.p_status != S_NOTUSED)
 			/* highest found so far */
@@ -874,7 +876,7 @@ genchar(type)
 	int     type;
 {
 	int     subscript;	/* used for subscripting into Stattable */
-	struct charstats *statptr;	/* for pointing into Stattable */
+	const struct charstats *statptr; /* for pointing into Stattable */
 
 	subscript = type - '1';
 
@@ -983,7 +985,7 @@ playinit()
 
 	initscr();		/* turn on curses */
 	noecho();		/* do not echo input */
-	crmode();		/* do not process erase, kill */
+	cbreak();		/* do not process erase, kill */
 #ifdef NCURSES_VERSION /* Ncurses needs some terminal mode fiddling */
 	tcgetattr(0, &tty);
 	tty.c_iflag |= ICRNL;
@@ -1001,13 +1003,17 @@ cleanup(doexit)
 	if (Windows) {
 		move(LINES - 2, 0);
 		refresh();
-		nocrmode();
+		nocbreak();
 		endwin();
 	}
-	fclose(Playersfp);
-	fclose(Monstfp);
-	fclose(Messagefp);
-	fclose(Energyvoidfp);
+	if (Playersfp)
+		fclose(Playersfp);
+	if (Monstfp)
+		fclose(Monstfp);
+	if (Messagefp)
+		fclose(Messagefp);
+	if (Energyvoidfp)
+		fclose(Energyvoidfp);
 
 	if (doexit)
 		exit(0);

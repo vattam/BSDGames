@@ -5,6 +5,8 @@
 	command="sh -c '/usr/games/atc ; echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
 	title="Battlestar" command="sh -c '/usr/games/battlestar;echo PRESS ENTER;read line'"
+?package(bsdgames):needs="text" section="Games/Adventure" \
+	title="Hack" command=/usr/games/hack
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Canfield" command="/usr/games/canfield"
 ?package(bsdgames):needs="text" section="Games/Card" \

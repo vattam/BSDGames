@@ -88,13 +88,19 @@
 /* #define PYRAMID_BUG */	/* avoid a bug on the Pyramid */
 /* #define NOWAITINCLUDE */	/* neither <wait.h> nor <sys/wait.h> exists */
 
-#define WIZARD  "bruno"	/* the person allowed to use the -D option */
+//#define WIZARD  "bruno"	/* the person allowed to use the -D option */
+/*
+ * Debian mods: use root for WIZARD, and move files that are static to
+ * /usr/share/ -- JEH
+ */
+#define WIZARD  "root" /* the person allowed to use the -D option */
+#define SHAREDIR "/usr/share/games/bsdgames/hack/"
 #define RECORD	"record"/* the file containing the list of topscorers */
 #define	NEWS	"news"	/* the file containing the latest hack news */
-#define	HELP	"help"	/* the file containing a description of the commands */
-#define	SHELP	"hh"	/* abbreviated form of the same */
-#define	RUMORFILE	"rumors"	/* a file with fortune cookies */
-#define	DATAFILE	"data"	/* a file giving the meaning of symbols used */
+#define	HELP	SHAREDIR "help"	/* the file containing a description of the commands */
+#define	SHELP	SHAREDIR "hh"	/* abbreviated form of the same */
+#define	RUMORFILE	SHAREDIR "rumors"	/* a file with fortune cookies */
+#define	DATAFILE	SHAREDIR "data"	/* a file giving the meaning of symbols used */
 #define	FMASK	0660	/* file creation mask */
 #define	HLOCK	"perm"	/* an empty file used for locking purposes */
 #define LLOCK	"safelock"	/* link to previous */

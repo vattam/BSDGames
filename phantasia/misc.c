@@ -1,16 +1,16 @@
-/*	$NetBSD: misc.c,v 1.4 1998/08/30 09:19:39 veego Exp $	*/
+/*	$NetBSD: misc.c,v 1.8 2003/01/20 05:29:55 simonb Exp $	*/
 
 /*
  * misc.c  Phantasia miscellaneous support routines
  */
 
 #include "include.h"
-
+#include <string.h>
 
 void
 movelevel()
 {
-	struct charstats *statptr;	/* for pointing into Stattable */
+	const struct charstats *statptr; /* for pointing into Stattable */
 	double  new;		/* new level */
 	double  inc;		/* increment between new and old levels */
 
@@ -60,15 +60,15 @@ movelevel()
 		death("Old age");
 }
 
-char   *
+const char   *
 descrlocation(playerp, shortflag)
 	struct player *playerp;
 	bool    shortflag;
 {
 	double  circle;		/* corresponding circle for coordinates */
 	int     quadrant;	/* quandrant of grid */
-	char   *label;		/* pointer to place name */
-	static char *nametable[4][4] =	/* names of places */
+	const char   *label;	/* pointer to place name */
+	static const char *const nametable[4][4] =	/* names of places */
 	{
 		{"Anorien", "Ithilien", "Rohan", "Lorien"},
 		{"Gondor", "Mordor", "Dunland", "Rovanion"},
@@ -412,7 +412,7 @@ displaystats()
 void
 allstatslist()
 {
-	static char *flags[] =	/* to print value of some bools */
+	static const char *const flags[] = /* to print value of some bools */
 	{
 		"False",
 		" True"
@@ -426,7 +426,7 @@ allstatslist()
 	mvprintw(13, 0, "Sin       : %9.5f", Player.p_sin);
 	mvprintw(14, 0, "Poison    : %9.5f", Player.p_poison);
 	mvprintw(15, 0, "Gems      : %9.0f", Player.p_gems);
-	mvprintw(16, 0, "Age       : %9d", Player.p_age);
+	mvprintw(16, 0, "Age       : %9ld", Player.p_age);
 	mvprintw(10, 40, "Holy Water: %9d", Player.p_holywater);
 	mvprintw(11, 40, "Amulets   : %9d", Player.p_amulets);
 	mvprintw(12, 40, "Charms    : %9d", Player.p_charms);
@@ -442,13 +442,13 @@ allstatslist()
 	    flags[(int)Player.p_palantir]);
 }
 
-char   *
+const char   *
 descrtype(playerp, shortflag)
 	struct player *playerp;
 	bool    shortflag;
 {
 	int     type;		/* for caluculating result subscript */
-	static char *results[] =/* description table */
+	static const char *const results[] =/* description table */
 	{
 		" Magic User", " MU",
 		" Fighter", " F ",
@@ -508,12 +508,12 @@ descrtype(playerp, shortflag)
 
 long
 findname(name, playerp)
-	char   *name;
+	const char   *name;
 	struct player *playerp;
 {
 	long    loc = 0;	/* location in the file */
 
-	fseek(Playersfp, 0L, 0);
+	fseek(Playersfp, 0L, SEEK_SET);
 	while (fread((char *) playerp, SZ_PLAYERSTRUCT, 1, Playersfp) == 1) {
 		if (strcmp(playerp->p_name, name) == 0) {
 			if (playerp->p_status != S_NOTUSED || Wizard)
@@ -531,7 +531,7 @@ allocrecord()
 {
 	long    loc = 0L;	/* location in file */
 
-	fseek(Playersfp, 0L, 0);
+	fseek(Playersfp, 0L, SEEK_SET);
 	while (fread((char *) &Other, SZ_PLAYERSTRUCT, 1, Playersfp) == 1) {
 		if (Other.p_status == S_NOTUSED)
 			/* found an empty record */
@@ -576,11 +576,11 @@ leavegame()
 
 void
 death(how)
-	char   *how;
+	const char   *how;
 {
 	FILE   *fp;		/* for updating various files */
 	int     ch;		/* input */
-	static char *deathmesg[] =
+	static const char *const deathmesg[] =
 	/* add more messages here, if desired */
 	{
 		"You have been wounded beyond repair.  ",
@@ -638,10 +638,10 @@ death(how)
 						{
 							mvaddstr(4, 0,
 							    "Your ring has taken control of you and turned you into a monster!\n");
-							fseek(Monstfp, 13L * SZ_MONSTERSTRUCT, 0);
+							fseek(Monstfp, 13L * SZ_MONSTERSTRUCT, SEEK_SET);
 							fread((char *) &Curmonster, SZ_MONSTERSTRUCT, 1, Monstfp);
 							strcpy(Curmonster.m_name, Player.p_name);
-							fseek(Monstfp, 13L * SZ_MONSTERSTRUCT, 0);
+							fseek(Monstfp, 13L * SZ_MONSTERSTRUCT, SEEK_SET);
 							fwrite((char *) &Curmonster, SZ_MONSTERSTRUCT, 1, Monstfp);
 							fflush(Monstfp);
 						}
@@ -684,7 +684,7 @@ writerecord(playerp, place)
 	struct player *playerp;
 	long    place;
 {
-	fseek(Playersfp, place, 0);
+	fseek(Playersfp, place, SEEK_SET);
 	fwrite((char *) playerp, SZ_PLAYERSTRUCT, 1, Playersfp);
 	fflush(Playersfp);
 }
@@ -768,7 +768,7 @@ readrecord(playerp, loc)
 	struct player *playerp;
 	long    loc;
 {
-	fseek(Playersfp, loc, 0);
+	fseek(Playersfp, loc, SEEK_SET);
 	fread((char *) playerp, SZ_PLAYERSTRUCT, 1, Playersfp);
 }
 
@@ -790,7 +790,7 @@ adjuststats()
 
 	/* calculate effective quickness */
 	dtemp = ((Player.p_gold + Player.p_gems / 2.0) - 1000.0) / Statptr->c_goldtote
-	    - Player.p_level;;
+	    - Player.p_level;
 	dtemp = MAX(0.0, dtemp);/* gold slows player down */
 	Player.p_speed = Player.p_quickness + Player.p_quksilver - dtemp;
 
@@ -928,14 +928,14 @@ readmessage()
 {
 	move(3, 0);
 	clrtoeol();
-	fseek(Messagefp, 0L, 0);
+	fseek(Messagefp, 0L, SEEK_SET);
 	if (fgets(Databuf, SZ_DATABUF, Messagefp) != NULL)
 		addstr(Databuf);
 }
 
 void
 error(whichfile)
-	char   *whichfile;
+	const char   *whichfile;
 {
 	int     (*funcp) __P((const char *,...));
 
@@ -945,7 +945,7 @@ error(whichfile)
 	} else
 		funcp = printf;
 
-	(*funcp) ("An unrecoverable error has occurred reading %s.  (errno = %d)\n", whichfile, errno);
+	(*funcp) ("An unrecoverable error has occurred reading %s.  (%s)\n", whichfile, strerror(errno));
 	(*funcp) ("Please run 'setup' to determine the problem.\n");
 	cleanup(TRUE);
 	/* NOTREACHED */
@@ -973,7 +973,7 @@ ill_sig(whichsig)
 	/* NOTREACHED */
 }
 
-char *
+const char *
 descrstatus(playerp)
 	struct player *playerp;
 {
@@ -1064,7 +1064,7 @@ collecttaxes(gold, gems)
 		dtemp = 0.0;
 		fread((char *) &dtemp, sizeof(double), 1, fp);
 		dtemp += floor(taxes);
-		fseek(fp, 0L, 0);
+		fseek(fp, 0L, SEEK_SET);
 		fwrite((char *) &dtemp, sizeof(double), 1, fp);
 		fclose(fp);
 	}

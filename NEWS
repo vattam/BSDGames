@@ -11,6 +11,26 @@ changes in installation instructions.  Packagers should also reread
 the PACKAGING file each version (or do a diff between the old and new
 versions of the package and read that).
 
+Version 2.14 (2003-04-01)
+============
+
+* Hack is now BSD-licensed
+<http://www.cwi.nl/~aeb/games/hack/hack.html>, so moves from
+bsd-games-non-free to bsd-games.
+
+* Updated from NetBSD CVS of 2003-03-29.  This includes:
+
+  + Security fix for rogue (in bsd-games-non-free); see NetBSD
+  Security Advisory 2002-021.
+
+  + Optional support for large numbers in factor using libcrypto from
+  OpenSSL.  This can handle larger numbers than GNU factor (which is
+  limited to 64-bit numbers) but not that much larger efficiently, as
+  the algorithm used (Pollard rho) is O(n^{1/4}) in the number
+  factored.
+
+* Some bugs fixed, though a backlog of bug reports remains.
+
 Version 2.13 (2001-08-30)
 ============
 

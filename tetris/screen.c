@@ -1,4 +1,4 @@
-/*	$NetBSD: screen.c,v 1.15 2000/05/24 14:43:00 blymn Exp $	*/
+/*	$NetBSD: screen.c,v 1.16 2001/11/02 18:27:00 christos Exp $	*/
 /* For Linux: still using old termcap interface from version 1.13.  */
 
 /*-
@@ -182,13 +182,13 @@ scr_init()
 		stop("cannot find your termcap");
 	fill = combuf;
 	{
-		register struct tcsinfo *p;
+		struct tcsinfo *p;
 
 		for (p = tcstrings; p->tcaddr; p++)
 			*p->tcaddr = tgetstr(p->tcname, &fill);
 	}
 	{
-		register struct tcninfo *p;
+		struct tcninfo *p;
 
 		for (p = tcflags; p->tcaddr; p++)
 			*p->tcaddr = tgetflag(p->tcname);
@@ -292,8 +292,8 @@ scr_set()
 	newtt = oldtt;
 	newtt.c_lflag &= ~(ICANON|ECHO);
 	newtt.c_oflag &= ~OXTABS;
-	newtt.c_cc[VMIN] = 1; /* don't lag behind 3 keystrokes on sun */
-	newtt.c_cc[VTIME] = 0; /* systems -- JEH */
+	newtt.c_cc[VMIN] = 1;
+	newtt.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, &newtt) < 0)
 		stop("tcsetattr() fails");
 	ospeed = cfgetospeed(&newtt);
@@ -378,9 +378,9 @@ typedef cell regcell;
 void
 scr_update()
 {
-	register cell *bp, *sp;
-	register regcell so, cur_so = 0;
-	register int i, ccol, j;
+	cell *bp, *sp;
+	regcell so, cur_so = 0;
+	int i, ccol, j;
 	sigset_t sigset, osigset;
 	static const struct shape *lastshape;
 
@@ -490,12 +490,12 @@ scr_update()
  */
 void
 scr_msg(s, set)
-	register char *s;
+	char *s;
 	int set;
 {
 	
 	if (set || CEstr == NULL) {
-		register int l = strlen(s);
+		int l = strlen(s);
 
 		moveto(Rows - 2, ((Cols - l) >> 1) - 1);
 		if (set)

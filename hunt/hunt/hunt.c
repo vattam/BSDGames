@@ -1,4 +1,4 @@
-/*	$NetBSD: hunt.c,v 1.12 2001/02/05 00:40:45 christos Exp $	*/
+/*	$NetBSD: hunt.c,v 1.16 2002/12/06 01:50:56 thorpej Exp $	*/
 /*
  *  Hunt
  *  Copyright (c) 1985 Conrad C. Huang, Gregory S. Couch, Kenneth C.R.C. Arnold
@@ -7,12 +7,13 @@
 
 #include <sys/cdefs.h>
 #ifndef lint
-__RCSID("$NetBSD: hunt.c,v 1.12 2001/02/05 00:40:45 christos Exp $");
+__RCSID("$NetBSD: hunt.c,v 1.16 2002/12/06 01:50:56 thorpej Exp $");
 #endif /* not lint */
 
 # include	<sys/param.h>
 # include	<sys/stat.h>
 # include	<sys/time.h>
+# include	<sys/poll.h>
 # include	<ctype.h>
 # include	<err.h>
 # include	<errno.h>
@@ -47,10 +48,6 @@ static struct termios saved_tty;
 # define	put_ch		addch
 # define	put_str		addstr
 # endif
-
-#if !defined(BSD_RELEASE) || BSD_RELEASE < 44
-extern int	_putchar();
-#endif
 
 #ifndef MAXHOSTNAMELEN
 #define MAXHOSTNAMELEN 256
@@ -411,8 +408,7 @@ list_drivers()
 	static	SOCKET		*listv;
 	static	unsigned int	listmax;
 	unsigned int		listc;
-	fd_set			mask;
-	struct timeval		wait;
+	struct pollfd		set[1];
 
 	if (initial) {			/* do one time initialization */
 # ifndef BROADCAST
@@ -465,13 +461,7 @@ list_drivers()
 
 # ifdef BROADCAST
 	if (initial)
-		brdc = broadcast_vec(test_socket, (struct sockaddr **) &brdv);
-
-	if (brdc <= 0) {
-		initial = FALSE;
-		test.sin_addr = local_address;
-		goto test_one_host;
-	}
+		brdc = broadcast_vec(test_socket, (void *) &brdv);
 
 # ifdef SO_BROADCAST
 	/* Sun's will broadcast even though this option can't be set */
@@ -495,6 +485,13 @@ list_drivers()
 			/* NOTREACHED */
 		}
 	}
+	test.sin_addr = local_address;
+	if (sendto(test_socket, (char *) &msg, sizeof msg, 0,
+	    (struct sockaddr *) &test, DAEMON_SIZE) < 0) {
+		warn("sendto");
+		leave(1, "sendto");
+		/* NOTREACHED */
+	}
 # else /* !BROADCAST */
 	/* loop thru all hosts on local net and send msg to them. */
 	msg = htons(C_TESTMSG());
@@ -512,9 +509,9 @@ list_drivers()
 get_response:
 	namelen = DAEMON_SIZE;
 	errno = 0;
+	set[0].fd = test_socket;
+	set[0].events = POLLIN;
 	for (;;) {
-		wait.tv_sec = 1;
-		wait.tv_usec = 0;
 		if (listc + 1 >= listmax) {
 			listmax += 20;
 			listv = (SOCKET *) realloc((char *) listv,
@@ -523,9 +520,7 @@ get_response:
 				leave(1, "Out of memory!");
 		}
 
-		FD_ZERO(&mask);
-		FD_SET(test_socket, &mask);
-		if (select(test_socket + 1, &mask, NULL, NULL, &wait) == 1 &&
+		if (poll(set, 1, 1000) == 1 &&
 		    recvfrom(test_socket, (char *) &port_num, sizeof(port_num),
 		    0, (struct sockaddr *) &listv[listc], &namelen) > 0) {
 			/*
@@ -543,8 +538,8 @@ get_response:
 		}
 
 		if (errno != 0 && errno != EINTR) {
-			warn("select/recvfrom");
-			leave(1, "select/recvfrom");
+			warn("poll/recvfrom");
+			leave(1, "poll/recvfrom");
 			/* NOTREACHED */
 		}
 
