@@ -95,8 +95,6 @@ binary-arch: build
 		debian/bsdgames/var/games/bsdgames/phantasia
 	find debian/bsdgames/var/games/bsdgames -size 0 -exec rm {} \;
 
-	dh_suidregister
-
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
