@@ -1,3 +1,9 @@
+bsdgames (2.13-4) unstable; urgency=low
+
+  * Corrected hint => hints, Closes: #134120
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 15 Feb 2002 16:36:20 -0500
+
 bsdgames (2.13-3) unstable; urgency=low
 
   * Added -m option to hangman to set MINLEN. Closes: #129998
