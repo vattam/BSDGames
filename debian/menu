@@ -13,7 +13,7 @@
 	title="Cribbage" command="/usr/games/cribbage"
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Go Fish" \
-	command="sh -c '/usr/games/fish;echo;echo PRESS ENTER;read line'"
+	command="sh -c '/usr/games/go-fish;echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Mille Bornes" command="/usr/games/mille"
 ?package(bsdgames):needs="text" section="Games/Board" \

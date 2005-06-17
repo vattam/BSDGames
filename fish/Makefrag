@@ -31,7 +31,9 @@ fish_DIRS := $(GAMESDIR) $(MAN6DIR) $(shell dirname $(FISH_INSTRFILE))
 fish_all:	fish/fish fish/fish.instr fish/fish.6
 
 fish_install:	fish_all
-	$(INSTALL_BINARY) fish/fish $(INSTALL_PREFIX)$(GAMESDIR)/fish
-	$(HIDE_GAME) fish
+	$(INSTALL_BINARY) fish/fish $(INSTALL_PREFIX)$(GAMESDIR)/go-fish
+	$(HIDE_GAME) go-fish
 	$(INSTALL_DATA) fish/fish.instr $(INSTALL_PREFIX)$(FISH_INSTRFILE)
-	$(INSTALL_MANUAL) fish/fish.6
+	ln -sf fish.6 fish/go-fish.6 # hack for rename
+	$(INSTALL_MANUAL) fish/go-fish.6
+	rm -f fish/go-fish.6

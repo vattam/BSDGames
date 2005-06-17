@@ -1,3 +1,10 @@
+bsdgames (2.17-2) unstable; urgency=low
+
+  * Rename fish to go-fish, since fish is also the command name of
+    the fish shell. Closes: #314460
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 17 Jun 2005 13:51:14 -0400
+
 bsdgames (2.17-1) unstable; urgency=low
 
   * New upstream release.
