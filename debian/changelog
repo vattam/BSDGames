@@ -1,3 +1,9 @@
+bsdgames (2.17-3) unstable; urgency=low
+
+  * Rebuilt for g++ transition.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 12 Oct 2005 16:09:58 -0400
+
 bsdgames (2.17-2) unstable; urgency=low
 
   * Rename fish to go-fish, since fish is also the command name of
