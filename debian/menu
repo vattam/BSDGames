@@ -6,7 +6,7 @@
 ?package(bsdgames):needs="text" section="Games/Adventure" \
 	title="Battlestar" command="sh -c '/usr/games/battlestar;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
-	title="Hack" command=/usr/games/hack
+	title="Hack" command="/usr/games/hack"
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Canfield" command="/usr/games/canfield"
 ?package(bsdgames):needs="text" section="Games/Card" \
@@ -52,4 +52,4 @@
 	title="Hangman" command="/usr/games/hangman"
 ?package(bsdgames):needs="text" section="Games/Puzzles" \
         title="Boggle" \
-        command=/usr/games/boggle
+        command="/usr/games/boggle"

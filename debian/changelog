@@ -1,3 +1,10 @@
+bsdgames (2.17-4) unstable; urgency=low
+
+  * Manu file quoting improvmenets.
+  * Current standards version.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 18 Dec 2005 17:35:38 -0500
+
 bsdgames (2.17-3) unstable; urgency=low
 
   * Rebuilt for g++ transition.
@@ -34,7 +41,6 @@ bsdgames (2.16-4) unstable; urgency=low
 bsdgames (2.16-3) unstable; urgency=low
 
   * Add docdir to config.params and don't unstall trek.me manually.
-    Closes: #bsdgames
 
  -- Joey Hess <joeyh@debian.org>  Sun,  7 Mar 2004 15:50:16 -0900
 

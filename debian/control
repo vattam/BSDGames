@@ -3,19 +3,19 @@ Section: games
 Priority: optional
 Build-Depends: debhelper (>= 4), libncurses5-dev, flex, bison, wenglish, wbritish, dpkg-dev (>= 1.9.0)
 Maintainer: Joey Hess <joeyh@debian.org>
-Standards-Version: 3.6.1.0
+Standards-Version: 3.6.2
 
 Package: bsdgames
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, wenglish | wordlist
-Conflicts: bsdgames-nonfree (<< 2.14), suidmanager (<< 0.50)
+Conflicts: bsdgames-nonfree (<< 2.14)
 Replaces: bsdgames-nonfree (<< 2.14)
 Description: a collection of classic textual unix games
  This is a collection of some of the text-based games and amusements that have
  been enjoyed for decades on unix systems.
  .
  Includes these programs: adventure, arithmetic, atc, backgammon, battlestar,
- bcd, boggle, caesar, canfield, countmail, cribbage, dab, go-fish, gomoku, hack, 
- hangman, hunt, mille, monop, morse, number, pig, phantasia, pom, ppt, primes,
- quiz, random, rain, robots, sail, snake, tetris, trek, wargames, worm, worms,
- wump, wtf
+ bcd, boggle, caesar, canfield, countmail, cribbage, dab, go-fish, gomoku,
+ hack, hangman, hunt, mille, monop, morse, number, pig, phantasia, pom, ppt,
+ primes, quiz, random, rain, robots, sail, snake, tetris, trek, wargames,
+ worm, worms, wump, wtf
