@@ -1,3 +1,10 @@
+bsdgames (2.17-6) unstable; urgency=medium
+
+  * tetris-bsd: Apply patch from gentoo to fix input validation in score
+    reading code to avoid stack overflow, and . Closes: # (CVE-2006-1539)
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  6 Apr 2006 18:58:10 -0400
+
 bsdgames (2.17-5) unstable; urgency=low
 
   * Deal with removal of wenglish package. Closes: #345975
