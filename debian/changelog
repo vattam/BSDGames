@@ -1,3 +1,11 @@
+bsdgames (2.17-7) unstable; urgency=medium
+
+  * sail: Fix a scanf buffer overrun in initial broadside prompt code,
+    possibly exploitable. Closes: #360989
+  * dm: Fix some other, non exploitable scanf buffer overruns.
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  6 Apr 2006 19:59:35 -0400
+
 bsdgames (2.17-6) unstable; urgency=medium
 
   * tetris-bsd: Apply patch from gentoo to fix input validation in score

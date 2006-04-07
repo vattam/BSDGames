@@ -219,7 +219,7 @@ reprint:
 		printf("\nInitial broadside %s (grape, chain, round, double): ",
 			n ? "right" : "left");
 		fflush(stdout);
-		scanf("%s", buf);
+		scanf("%9s", buf);
 		switch (*buf) {
 		case 'g':
 			load = L_GRAPE;
