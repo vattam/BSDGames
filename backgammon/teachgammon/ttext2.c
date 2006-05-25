@@ -65,7 +65,7 @@ const char   *const stragy[] = {
 	"points in a row) are difficult to form, many points nestled close-",
 	"ly together produce a formidable barrier.  Also, while it is good",
 	"to move back men forward, doing so lessens the opportunity for you",
-	"to hit men.  Finally, remember that once the two player's have",
+	"to hit men.  Finally, remember that once the two players have",
 	"passed each other on the board, there is no chance of either team",
 	"being hit, so the game reduces to a race off the board.  Addi-",
 	"tional hints on strategy are presented in the practice game.",

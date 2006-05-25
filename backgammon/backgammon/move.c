@@ -152,6 +152,9 @@ move(okay)
 	trymove(0, 0);
 	pickmove();
 
+	if (d0)
+		swap;
+
 	/* print move */
 	writel(" and moves ");
 	for (i = 0; i < mvlim; i++) {

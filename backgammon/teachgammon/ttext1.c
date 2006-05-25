@@ -94,7 +94,7 @@ const char   *const intro2[] = {
 	"\n   Although not indicated on the board, the players' homes are",
 	"located just to the right of the board.  A player's men are placed",
 	"there when they are removed from the board.  The board you just",
-	"saw was in it's initial position.  All games start with the board",
+	"saw was in its initial position.  All games start with the board",
 	"looking like this.  Notice that red's pieces are represented by the",
 	"letter 'r' and white's pieces are represented by the letter 'w'.",
 	"Also, a position may have zero or more pieces on it, e.g.  posi-",

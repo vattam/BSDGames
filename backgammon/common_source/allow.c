@@ -83,8 +83,10 @@ movallow()
 				p[i--] = bar;
 				if (p[i] != bar)
 					continue;
-				else
+				else if (d0)
 					break;
+				swap;
+				continue;
 			}
 			if (d0 || m == 4)
 				break;
