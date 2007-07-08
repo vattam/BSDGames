@@ -1,55 +1,51 @@
 ?package(bsdgames):needs="text" section="Apps/Education" \
-	title="Arithmetic Quiz" command="sh -c '/usr/games/arithmetic;echo PRESS ENTER;read line'"
+	title="Arithmetic Quiz" command="sh -c 'arithmetic;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Strategy" \
 	title="Air Traffic Controller" \
-	command="sh -c '/usr/games/atc ; echo;echo PRESS ENTER;read line'"
+	command="sh -c 'atc ; echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
-	title="Battlestar" command="sh -c '/usr/games/battlestar;echo PRESS ENTER;read line'"
+	title="Battlestar" command="sh -c 'battlestar;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
-	title="Hack" command="/usr/games/hack"
+	title="Hack" command="hack"
 ?package(bsdgames):needs="text" section="Games/Card" \
-	title="Canfield" command="/usr/games/canfield"
+	title="Canfield" command="canfield"
 ?package(bsdgames):needs="text" section="Games/Card" \
-	title="Cribbage" command="/usr/games/cribbage"
+	title="Cribbage" command="cribbage"
 ?package(bsdgames):needs="text" section="Games/Card" \
 	title="Go Fish" \
-	command="sh -c '/usr/games/go-fish;echo;echo PRESS ENTER;read line'"
+	command="sh -c 'go-fish;echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Card" \
-	title="Mille Bornes" command="/usr/games/mille"
+	title="Mille Bornes" command="mille"
 ?package(bsdgames):needs="text" section="Games/Board" \
-	title="Monopoly" command="/usr/games/monop"
+	title="Monopoly" command="monop"
 ?package(bsdgames):needs="text" section="Games/Board" hints="Backgammon" \
-	title="Backgammon" command="/usr/games/backgammon -pb"
+	title="Backgammon" command="backgammon -pb"
 ?package(bsdgames):needs="text" section="Games/Toys" \
-	title="Rain" command="/usr/games/rain"
-?package(bsdgames):needs="text" section="Games/Arcade" \
-	title="Robots" command="/usr/games/robots"
+	title="Rain" command="rain"
+?package(bsdgames):needs="text" section="Games/Action" \
+	title="Robots" command="robots"
 ?package(bsdgames):needs="text" section="Games/Strategy" \
-	title="Sail" command="/usr/games/sail"
-?package(bsdgames):needs="text" section="Games/Arcade" \
-	title="Snake" command="sh -c '/usr/games/snake;echo PRESS ENTER;read line'"
-?package(bsdgames):needs="text" section="Games/Arcade" \
-	title="Star Trek" command="/usr/games/trek"
-?package(bsdgames):needs="text" section="Games/Arcade" \
-	title="Worm" command="sh -c '/usr/games/worm;echo PRESS ENTER;read line'"
+	title="Sail" command="sail"
+?package(bsdgames):needs="text" section="Games/Action" \
+	title="Snake" command="sh -c 'snake;echo PRESS ENTER;read line'"
+?package(bsdgames):needs="text" section="Games/Action" \
+	title="Star Trek" command="trek"
+?package(bsdgames):needs="text" section="Games/Action" \
+	title="Worm" command="sh -c 'worm;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="vc" section="Games/Toys" \
-	title="Worms" command="/usr/games/worms"
+	title="Worms" command="worms"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
-	title="Hunt the Wumpus" command="/usr/games/wump"
+	title="Hunt the Wumpus" command="wump"
 ?package(bsdgames):needs="text" section="Games/Tetris-like" \
 	title="Bsd Tetris" \
-	command="sh -c '/usr/games/tetris-bsd;echo;echo PRESS ENTER;read line'"
+	command="sh -c 'tetris-bsd;echo;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Board" hints="Go" \
-	title="Gomoku" \
-	command="/usr/games/gomoku"
+	title="Gomoku" command="gomoku"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
-	title="Phantasia" \
-	command="/usr/games/phantasia"
+	title="Phantasia" command="phantasia"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
-	title="Adventure" \
-	command="/usr/games/adventure"
+	title="Adventure" command="adventure"
 ?package(bsdgames):needs="text" section="Games/Puzzles" \
-	title="Hangman" command="/usr/games/hangman"
+	title="Hangman" command="hangman"
 ?package(bsdgames):needs="text" section="Games/Puzzles" \
-        title="Boggle" \
-        command="/usr/games/boggle"
+        title="Boggle" command="boggle"

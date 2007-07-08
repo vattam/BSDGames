@@ -1,3 +1,11 @@
+bsdgames (2.17-9) unstable; urgency=low
+
+  * De-hardcode paths to /usr/games in menu file.
+  * Menu section transition.
+  * Current policy version.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 08 Jul 2007 16:17:43 -0400
+
 bsdgames (2.17-8) unstable; urgency=low
 
   * Patch from Alan Curry to backgammon to fix a bug that caused the computer
