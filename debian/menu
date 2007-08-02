@@ -32,7 +32,7 @@
 	title="Star Trek" command="trek"
 ?package(bsdgames):needs="text" section="Games/Action" \
 	title="Worm" command="sh -c 'worm;echo PRESS ENTER;read line'"
-?package(bsdgames):needs="vc" section="Games/Toys" \
+?package(bsdgames):needs="text" section="Games/Toys" \
 	title="Worms" command="worms"
 ?package(bsdgames):needs="text" section="Games/Adventure" \
 	title="Hunt the Wumpus" command="wump"
