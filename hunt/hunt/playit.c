@@ -114,7 +114,7 @@ playit()
 		bad_con();
 		/* NOTREACHED */
 	}
-	if (ntohl(version) != (unsigned long)HUNT_VERSION) {
+	if (ntohl(version) != (uint32_t)HUNT_VERSION) {
 		bad_ver();
 		/* NOTREACHED */
 	}
@@ -649,7 +649,7 @@ do_message()
 		bad_con();
 		/* NOTREACHED */
 	}
-	if (ntohl(version) != (unsigned long)HUNT_VERSION) {
+	if (ntohl(version) != (uint32_t)HUNT_VERSION) {
 		bad_ver();
 		/* NOTREACHED */
 	}
