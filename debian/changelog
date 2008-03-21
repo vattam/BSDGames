@@ -1,3 +1,10 @@
+bsdgames (2.17-13) UNRELEASED; urgency=low
+
+  * Patch from Aaron Denney, fixing pluralization of singular fractions.
+    Closes: #471762
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 20 Mar 2008 21:43:00 -0400
+
 bsdgames (2.17-12) unstable; urgency=low
 
   * Fix a bad cast in hunt that caused it to refuse to run on amd64 and likely
