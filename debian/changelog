@@ -1,9 +1,9 @@
-bsdgames (2.17-13) UNRELEASED; urgency=low
+bsdgames (2.17-13) unstable; urgency=low
 
   * Patch from Aaron Denney, fixing pluralization of singular fractions.
     Closes: #471762
 
- -- Joey Hess <joeyh@debian.org>  Thu, 20 Mar 2008 21:43:00 -0400
+ -- Joey Hess <joeyh@debian.org>  Thu, 20 Mar 2008 21:47:24 -0400
 
 bsdgames (2.17-12) unstable; urgency=low
 
