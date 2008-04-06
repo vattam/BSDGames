@@ -2,6 +2,7 @@ bsdgames (2.17-14) unstable; urgency=low
 
   * Fix missing bracket in quiz poetry data file. Closes: #474594
   * Update menu file to current policy.
+  * Fixed some man page markup.
 
  -- Joey Hess <joeyh@debian.org>  Sun, 06 Apr 2008 13:33:55 -0400
 

@@ -387,7 +387,7 @@ how many of player's shots were ducked
 how many slime kills player had
 .It enemy
 how many enemies were killed
-.tI friend
+.It friend
 how many friends were killed (self and same team)
 .It deaths
 how many times player died
