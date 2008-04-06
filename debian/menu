@@ -1,4 +1,4 @@
-?package(bsdgames):needs="text" section="Apps/Education" \
+?package(bsdgames):needs="text" section="Applications/Education" \
 	title="Arithmetic Quiz" command="sh -c 'arithmetic;echo PRESS ENTER;read line'"
 ?package(bsdgames):needs="text" section="Games/Strategy" \
 	title="Air Traffic Controller" \
