@@ -18,7 +18,7 @@ clean:
 	dh_testroot
 	rm -f build-stamp
 	dh_clean temp-dictionary
-	if [ -e Makefile ]; then $(MAKE) -i distclean; fi
+	if [ -e GNUmakefile ]; then $(MAKE) -i distclean; fi
 
 binary-indep: build
 
