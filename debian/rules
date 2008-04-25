@@ -1,36 +1,17 @@
 #!/usr/bin/make -f
+%:
+	dh $@
 
 build: build-stamp
 build-stamp:
-	dh_testdir
-
 	# Set up wordlist
 	cat /usr/share/dict/american-english /usr/share/dict/british-english | \
 		sort | uniq > temp-dictionary
-
-	./configure
-	$(MAKE)
-	$(MAKE) test
+	dh build
 	touch build-stamp
 
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp
-	dh_clean temp-dictionary
-	if [ -e GNUmakefile ]; then $(MAKE) -i distclean; fi
-
-binary-indep: build
-
 binary-arch: build
-	dh_testdir
-	dh_testroot
-	dh_clean
-	dh_installdirs usr/share/doc/bsdgames \
-		usr/share/games/bsdgames/phantasia \
-		var/games/bsdgames/hack/save
-
-	$(MAKE) install
+	dh binary-arch --until dh_installdocs
 	cp atc/BUGS debian/bsdgames/usr/share/doc/bsdgames/BUGS.atc
 	cp hunt/README debian/bsdgames/usr/share/doc/bsdgames/README.hunt
 	cp phantasia/README debian/bsdgames/usr/share/doc/bsdgames/README.phantasia
@@ -42,18 +23,9 @@ binary-arch: build
 	mv debian/bsdgames/var/games/bsdgames/phantasia/monsters \
 	   debian/bsdgames/var/games/bsdgames/phantasia/void \
 	   debian/bsdgames/usr/share/games/bsdgames/phantasia/
-
-	dh_installdocs ChangeLog ChangeLog.0 TODO README SECURITY THANKS \
-		AUTHORS BUGS YEAR2000
 	cat COPYING >> debian/bsdgames/usr/share/doc/bsdgames/copyright
-	dh_installexamples
-	dh_installmenu
-	dh_installcron
-	dh_installchangelogs -k NEWS
-	dh_strip
-	dh_compress
-	dh_fixperms
-
+	
+	dh binary-arch --until dh_fixperms
 	chmod -R u+rw debian/bsdgames/usr/
 	# Games with score files need to be set up sgid games.
 	chown root:games debian/bsdgames/usr/games/atc \
@@ -89,12 +61,6 @@ binary-arch: build
 		debian/bsdgames/var/games/bsdgames/hack \
 		debian/bsdgames/var/games/bsdgames/hack/save
 	find debian/bsdgames/var/games/bsdgames -size 0 -exec rm {} \;
-
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+	dh binary-arch --remaining
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary
