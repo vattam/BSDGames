@@ -42,6 +42,8 @@ __RCSID("$NetBSD: crc.c,v 1.8 2003/08/07 09:36:50 agc Exp $");
 #endif
 #endif /* not lint */
 
+#include <limits.h>
+
 #include "extern.h"
 
 const unsigned long crctab[] = {
@@ -125,7 +127,7 @@ crc(ptr, nr)		/* Process nr bytes at a time; ptr points to them */
 
 	while (nr > 0)
 		for (p = ptr; nr--; ++p) {
-			if (!(i = crcval >> 24 ^ *p)) {
+			if (!(i = crcval >> (sizeof(crcval) * CHAR_BIT - 8) ^ *p)) {
 				i = step++;
 				if (step >= sizeof(crctab) / sizeof(crctab[0]))
 					step = 0;

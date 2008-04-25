@@ -1,6 +1,8 @@
 bsdgames (2.17-15) UNRELEASED; urgency=low
 
   * Include rot13 in package description. Closes: #477141
+  * adventure: Fix crc code to not segfault on 64 bit architectures.
+    Closes: #477768
 
  -- Joey Hess <joeyh@debian.org>  Mon, 21 Apr 2008 12:37:44 -0400
 
