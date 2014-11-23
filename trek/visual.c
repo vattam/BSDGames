@@ -72,7 +72,7 @@ void
 visual(z)
 	int z __attribute__((__unused__));
 {
-	int		ix, iy;
+	char		ix, iy;
 	int		co;
 	struct xy	*v;
 
