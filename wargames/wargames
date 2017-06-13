@@ -34,7 +34,7 @@
 #
 #	@(#)wargames.sh	8.1 (Berkeley) 5/31/93
 #
-echo -n "Would you like to play a game? "
+echo -n "Shall we play a game? "
 read x
 
 x=`echo $x | sed 's/[^-a-z0-9]//g'`
