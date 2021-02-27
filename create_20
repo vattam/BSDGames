@@ -1,0 +1,26 @@
+#!/bin/bash
+# read whole file into array and select 20 at random
+# $1 is the name of the file in /usr/share/games/bsdgames/quiz
+# zero out previous quiz questions
+cat /dev/null >/usr/games/quiz_files/$1_quiz
+# read file into array
+IFS=$'\012';lines=( $(</usr/share/games/bsdgames/quiz/$1) );unset IFS
+num=${#lines[@]}
+#echo $num
+i=0
+while [[ $i -lt 20 ]]
+do
+#x=$(($RANDOM+1))  # for some reason $RANDOM in next statement (%$RANDOM) only works by substitution (?)  ¯\_(ツ)_/¯
+y=$(($RANDOM$RANDOM$RANDOM%$num)) # %$num is only marginally faster
+#select line, echo to 20-questions file
+if [[ $y -le $num ]]
+then
+if [[ "${arr[@]/"$y"/}" == "${arr[@]}" ]]  #make sure we don't have this line already -- bash-style negative grep of array
+then
+line=${lines[$y]}
+echo $line >>/usr/games/quiz_files/$1_quiz
+i=$((i+1))
+arr+=( "$y" )
+fi
+fi
+done
