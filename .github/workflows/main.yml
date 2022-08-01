@@ -55,8 +55,8 @@ jobs:
 
     - name: PWD
       run: |
-      pwd
-      ls -lsa
+      sh pwd
+      sh ls -lsa
 
     - name: Create makefile
       run: sudo ./configure
