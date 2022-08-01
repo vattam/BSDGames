@@ -49,10 +49,8 @@ jobs:
 # Start code changes
 
     - name: Install dependencies
-
-      run: |
-      sudo apt-get update -y |
-      sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
+      
+      run: sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
 
     - name: Build
 
