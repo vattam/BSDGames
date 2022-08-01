@@ -54,9 +54,10 @@ jobs:
 
     - name: Build
 
-      run: ./configure |
-      make |
-      make check |
+      run: |
+      ./configure
+      make
+      make check
       make install
 
 # End code changes
