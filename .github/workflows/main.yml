@@ -57,10 +57,10 @@ jobs:
       run: sudo ./configure
       
     - name: Build from source
-      run: make
+      run: sudo make
 
     - name: Run post build tests
-      run: make check
+      run: sudo make check
 
     - name: Install
       run: sudo make install
