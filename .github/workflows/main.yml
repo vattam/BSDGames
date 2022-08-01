@@ -49,16 +49,19 @@ jobs:
 # Start code changes
 
     - name: Install dependencies
-      
       run: sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
 
-    - name: Build
+    - name: Create makefile
+      run: sudo ./configure
+      
+    - name: Build from source
+      run: make
 
-      run: |
-      ./configure
-      make
-      make check
-      make install
+    - name: Run post build tests
+      run: make check
+
+    - name: Install
+      run: sudo make install
 
 # End code changes
 
