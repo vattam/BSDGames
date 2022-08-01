@@ -53,11 +53,16 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
 
+    - name: PWD
+      run: |
+      pwd
+      ls -lsa
+
     - name: Create makefile
       run: sudo ./configure
       
     - name: Build from source
-      run: sudo make
+      run: sudo ./build
 
     - name: Run post build tests
       run: sudo make check
