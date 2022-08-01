@@ -51,15 +51,14 @@ jobs:
     - name: Install dependencies
 
       run: |
-      apt-get update -y
-      apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
+      sudo apt-get update -y |
+      sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
 
     - name: Build
 
-      run: |
-      ./configure
-      make
-      make check
+      run: ./configure |
+      make |
+      make check |
       make install
 
 # End code changes
