@@ -46,15 +46,23 @@ jobs:
 
       uses: github/codeql-action/init@v1
 
- 
+# Start code changes
+
+    - name: Install dependencies
+
+      run: |
+      apt-get update -y
+      apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
 
     - name: Build
 
-      run: #TO DO - FILL ME IN 
+      run: |
+      ./configure
+      make
+      make check
+      make install
 
-  
-
-  
+# End code changes
 
     - name: Perform CodeQL Analysis
 

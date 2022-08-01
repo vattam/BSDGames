@@ -34,7 +34,7 @@ bsd_games_cfg_pager=/usr/bin/pager
 
 # Always use the same wordlist for boggle, and don't use web2, it's too
 # big. Instead, use the union of the wenglish and wbritish wordlists.
-bsd_games_cfg_dictionary_src=`pwd`/temp-dictionary
+bsd_games_cfg_dictionary_src=/usr/share/dict/words
 
 # Put it in /usr/share/games with the rest of the games data.
 bsd_games_cfg_wtf_acronymfile=/usr/share/games/bsdgames/acronyms
