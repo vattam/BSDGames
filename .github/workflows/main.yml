@@ -57,7 +57,7 @@ jobs:
       run: sudo ./configure
       
     - name: Build from source
-      run: sudo make clean
+      run: sudo make build
 
 # End code changes
   
