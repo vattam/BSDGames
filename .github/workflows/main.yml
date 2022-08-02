@@ -48,20 +48,17 @@ jobs:
 
       uses: github/codeql-action/init@v1
 
- # Start code changes
-
+    # install four required dependencies with BSD native package manager:
     - name: Install dependencies
       run: sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
 
+    # run configure file to generate the Makefile:
     - name: Create makefile
       run: sudo ./configure
-      
-    - name: Build from source
-      run: sudo make build
 
-# End code changes
-  
+    # compile from source code based on newly created Makefile:
+    - name: Build from source
+      run: sudo make  
 
     - name: Perform CodeQL Analysis
-
       uses: github/codeql-action/analyze@v1
