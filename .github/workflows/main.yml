@@ -54,15 +54,15 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update -y
-        sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev ncurses lex yacc
+        sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
 
     # run configure file to generate the Makefile:
     - name: Create makefile
-      run: sudo ./configure
+      run: ./configure
 
     # compile from source code based on newly created Makefile:
     - name: Build from source
-      run: sudo make
+      run: make
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
