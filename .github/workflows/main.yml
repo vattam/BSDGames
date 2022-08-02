@@ -64,6 +64,10 @@ jobs:
     # debugging 
     - name: print makefile
       run: cat GNUmakefile
+      
+    # debugging 
+    - name: print words list
+      run: cat /usr/dict/words
 
     # compile from source code based on newly created Makefile:
     - name: Build from source
