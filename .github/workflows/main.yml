@@ -59,7 +59,7 @@ jobs:
 
     # run configure file to generate the Makefile:
     - name: Create makefile
-      run: sudo ./configure
+      run: ./configure
 
     # debugging 
     - name: print makefile
@@ -67,11 +67,11 @@ jobs:
       
     # debugging 
     - name: print words list
-      run: cat /usr/share/dict/words
+      run: head -n 20 /usr/share/dict/words
 
     # compile from source code based on newly created Makefile:
     - name: Build from source
-      run: sudo make
+      run: make
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
