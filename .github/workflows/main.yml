@@ -67,7 +67,7 @@ jobs:
 
     # compile from source code based on newly created Makefile:
     - name: Build from source
-      run: sudo make all
+      run: sudo make
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
