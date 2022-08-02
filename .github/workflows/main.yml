@@ -33,8 +33,6 @@ jobs:
     strategy:
 
       fail-fast: false
-      matrix:
-        language: ['c', 'cpp']
 
  
 
@@ -49,6 +47,9 @@ jobs:
     - name: Initialize CodeQL
 
       uses: github/codeql-action/init@v1
+      with:
+        languages: cpp
+        queries: security-and-quality
 
     # install four required dependencies with BSD native package manager:
     - name: Install dependencies
