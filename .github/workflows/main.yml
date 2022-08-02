@@ -59,9 +59,6 @@ jobs:
     - name: Build from source
       run: sudo make clean
 
-    - name: Install
-      run: sudo make install
-
 # End code changes
   
 
