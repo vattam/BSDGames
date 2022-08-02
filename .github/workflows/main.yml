@@ -51,8 +51,8 @@ jobs:
     # install four required dependencies with BSD native package manager:
     - name: Install dependencies
       run: |
-      sudo apt-get update -y
-      sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
+        sudo apt-get update -y
+        sudo apt-get install -y flex-old bison libncurses5-dev libncursesw5-dev
 
     # run configure file to generate the Makefile:
     - name: Create makefile
