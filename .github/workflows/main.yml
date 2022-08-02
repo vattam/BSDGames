@@ -59,11 +59,15 @@ jobs:
 
     # run configure file to generate the Makefile:
     - name: Create makefile
-      run: ./configure
+      run: sudo ./configure
+
+    # debugging 
+    - name: print makefile
+      run: cat GNUmakefile
 
     # compile from source code based on newly created Makefile:
     - name: Build from source
-      run: make clean
+      run: sudo make
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
