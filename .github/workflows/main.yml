@@ -33,6 +33,8 @@ jobs:
     strategy:
 
       fail-fast: false
+      matrix:
+        language: ['c', 'cpp']
 
  
 
@@ -60,7 +62,7 @@ jobs:
 
     # compile from source code based on newly created Makefile:
     - name: Build from source
-      run: sudo make  
+      run: sudo make
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
