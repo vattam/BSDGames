@@ -336,7 +336,7 @@ playgame()
 	}
 
 	while (1) {
-		if (getmyline(buf) == NULL) {
+		if (getline(buf) == NULL) {
 			if (feof(stdin))
 				clearerr(stdin);
 			break;
