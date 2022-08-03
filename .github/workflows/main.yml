@@ -1,57 +1,35 @@
 name: "CodeQL"
 
- 
-
 on:
-
   push:
-
-    branches: [ master, codeql-improvements ]
-
-  pull_request:
-
-    # The branches below must be a subset of the branches above
-
     branches: [ master ]
-
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ master ]
   schedule:
-
     - cron: '20 6 * * 0'
 
- 
-
 jobs:
-
   analyze:
-
     name: Analyze
-
     runs-on: ubuntu-latest
-
- 
-
     strategy:
-
       fail-fast: false
-
- 
 
     steps:
 
     - name: Checkout repository
-
       uses: actions/checkout@v2
 
-    
-
     - name: Initialize CodeQL
-
       uses: github/codeql-action/init@v1
+
+      # specify c/c++ and add additional security & quality query suites:
       with:
         languages: cpp
         queries: security-and-quality
 
-    # install four required dependencies with BSD native package manager:
+    # install four required dependencies and miscfiles for the word list:
     - name: Install dependencies
       run: |
         sudo apt-get update -y
@@ -61,17 +39,10 @@ jobs:
     - name: Create makefile
       run: ./configure
 
-    # debugging 
-    - name: print makefile
-      run: cat GNUmakefile
-      
-    # debugging 
-    - name: print words list
-      run: head -n 20 /usr/share/dict/words
-
     # compile from source code based on newly created Makefile:
     - name: Build from source
       run: make boggle/boggle/bog.i
 
+    # run code analysis:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
