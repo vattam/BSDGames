@@ -43,7 +43,7 @@ void	 delay(int);
 long	 dictseek(FILE *, long, int);
 void	 findword(void);
 void	 flushin(FILE *);
-char	*getline(char *);
+char	*my_getline(char *);
 void	 getword(char *);
 int	 help(void);
 int	 inputch(void);
